@@ -1,0 +1,6 @@
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_CustomClass\Mack_John_CustomClass\bin\Debug\Mack_John_CustomClass.exe.config
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_CustomClass\Mack_John_CustomClass\bin\Debug\Mack_John_CustomClass.exe
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_CustomClass\Mack_John_CustomClass\bin\Debug\Mack_John_CustomClass.pdb
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_CustomClass\Mack_John_CustomClass\obj\Debug\Mack_John_CustomClass.csprojResolveAssemblyReference.cache
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_CustomClass\Mack_John_CustomClass\obj\Debug\Mack_John_CustomClass.exe
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_CustomClass\Mack_John_CustomClass\obj\Debug\Mack_John_CustomClass.pdb

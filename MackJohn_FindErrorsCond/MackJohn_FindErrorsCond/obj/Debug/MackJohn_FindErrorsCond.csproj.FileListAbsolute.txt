@@ -1,0 +1,6 @@
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\MackJohn_FindErrorsCond\MackJohn_FindErrorsCond\bin\Debug\MackJohn_FindErrorsCond.exe.config
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\MackJohn_FindErrorsCond\MackJohn_FindErrorsCond\bin\Debug\MackJohn_FindErrorsCond.exe
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\MackJohn_FindErrorsCond\MackJohn_FindErrorsCond\bin\Debug\MackJohn_FindErrorsCond.pdb
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\MackJohn_FindErrorsCond\MackJohn_FindErrorsCond\obj\Debug\MackJohn_FindErrorsCond.csprojResolveAssemblyReference.cache
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\MackJohn_FindErrorsCond\MackJohn_FindErrorsCond\obj\Debug\MackJohn_FindErrorsCond.exe
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\MackJohn_FindErrorsCond\MackJohn_FindErrorsCond\obj\Debug\MackJohn_FindErrorsCond.pdb

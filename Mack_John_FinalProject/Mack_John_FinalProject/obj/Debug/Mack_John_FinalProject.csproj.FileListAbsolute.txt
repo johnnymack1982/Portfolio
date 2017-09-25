@@ -1,0 +1,6 @@
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_FinalProject\Mack_John_FinalProject\bin\Debug\Mack_John_FinalProject.exe.config
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_FinalProject\Mack_John_FinalProject\bin\Debug\Mack_John_FinalProject.exe
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_FinalProject\Mack_John_FinalProject\bin\Debug\Mack_John_FinalProject.pdb
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_FinalProject\Mack_John_FinalProject\obj\Debug\Mack_John_FinalProject.csprojResolveAssemblyReference.cache
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_FinalProject\Mack_John_FinalProject\obj\Debug\Mack_John_FinalProject.exe
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_FinalProject\Mack_John_FinalProject\obj\Debug\Mack_John_FinalProject.pdb

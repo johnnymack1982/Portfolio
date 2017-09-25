@@ -1,0 +1,6 @@
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_Conditionals\Mack_John_Conditionals\bin\Debug\Mack_John_Conditionals.exe.config
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_Conditionals\Mack_John_Conditionals\bin\Debug\Mack_John_Conditionals.exe
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_Conditionals\Mack_John_Conditionals\bin\Debug\Mack_John_Conditionals.pdb
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_Conditionals\Mack_John_Conditionals\obj\Debug\Mack_John_Conditionals.csprojResolveAssemblyReference.cache
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_Conditionals\Mack_John_Conditionals\obj\Debug\Mack_John_Conditionals.exe
+\\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_Conditionals\Mack_John_Conditionals\obj\Debug\Mack_John_Conditionals.pdb
