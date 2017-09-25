@@ -1,0 +1,30 @@
+//vmware-host/Shared Folders/Lab/DVP1/Experiments/Experiments/bin/Debug/Experiments.exe.config
+//vmware-host/Shared Folders/Lab/DVP1/Experiments/Experiments/bin/Debug/Experiments.exe
+//vmware-host/Shared Folders/Lab/DVP1/Experiments/Experiments/bin/Debug/Experiments.pdb
+//vmware-host/Shared Folders/Lab/DVP1/Experiments/Experiments/obj/Debug/Experiments.csprojResolveAssemblyReference.cache
+//vmware-host/Shared Folders/Lab/DVP1/Experiments/Experiments/obj/Debug/Experiments.exe
+//vmware-host/Shared Folders/Lab/DVP1/Experiments/Experiments/obj/Debug/Experiments.pdb
+/Users/EML/Desktop/Lab/DVP1/Experiments/Experiments/bin/Debug/Experiments.exe.config
+/Users/EML/Desktop/Lab/DVP1/Experiments/Experiments/bin/Debug/Experiments.exe
+/Users/EML/Desktop/Lab/DVP1/Experiments/Experiments/bin/Debug/Experiments.pdb
+/Users/EML/Desktop/Lab/DVP1/Experiments/Experiments/obj/Debug/Experiments.csproj.CoreCompileInputs.cache
+/Users/EML/Desktop/Lab/DVP1/Experiments/Experiments/obj/Debug/Experiments.exe
+/Users/EML/Desktop/Lab/DVP1/Experiments/Experiments/obj/Debug/Experiments.pdb
+/Users/EML/Desktop/Experiments/Experiments/bin/Debug/Experiments.exe.config
+/Users/EML/Desktop/Experiments/Experiments/bin/Debug/Experiments.exe
+/Users/EML/Desktop/Experiments/Experiments/bin/Debug/Experiments.pdb
+/Users/EML/Desktop/Experiments/Experiments/obj/Debug/Experiments.csproj.CoreCompileInputs.cache
+/Users/EML/Desktop/Experiments/Experiments/obj/Debug/Experiments.exe
+/Users/EML/Desktop/Experiments/Experiments/obj/Debug/Experiments.pdb
+\\vmware-host\Shared Folders\Lab\DVP1\ DISTRIBUTION         #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#% RM GIT FOLDER B4 Distribution\Experiments\Experiments\bin\Debug\Experiments.exe.config
+\\vmware-host\Shared Folders\Lab\DVP1\ DISTRIBUTION         #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#% RM GIT FOLDER B4 Distribution\Experiments\Experiments\bin\Debug\Experiments.exe
+\\vmware-host\Shared Folders\Lab\DVP1\ DISTRIBUTION         #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#% RM GIT FOLDER B4 Distribution\Experiments\Experiments\bin\Debug\Experiments.pdb
+\\vmware-host\Shared Folders\Lab\DVP1\ DISTRIBUTION         #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#% RM GIT FOLDER B4 Distribution\Experiments\Experiments\obj\Debug\Experiments.csprojResolveAssemblyReference.cache
+\\vmware-host\Shared Folders\Lab\DVP1\ DISTRIBUTION         #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#% RM GIT FOLDER B4 Distribution\Experiments\Experiments\obj\Debug\Experiments.exe
+\\vmware-host\Shared Folders\Lab\DVP1\ DISTRIBUTION         #%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#% RM GIT FOLDER B4 Distribution\Experiments\Experiments\obj\Debug\Experiments.pdb
+\\vmware-host\Shared Folders\Labs\1710 Online\Experiments\Experiments\bin\Debug\Experiments.exe.config
+\\vmware-host\Shared Folders\Labs\1710 Online\Experiments\Experiments\obj\Debug\Experiments.exe
+\\vmware-host\Shared Folders\Labs\1710 Online\Experiments\Experiments\obj\Debug\Experiments.pdb
+\\vmware-host\Shared Folders\Labs\1710 Online\Experiments\Experiments\bin\Debug\Experiments.exe
+\\vmware-host\Shared Folders\Labs\1710 Online\Experiments\Experiments\bin\Debug\Experiments.pdb
+\\vmware-host\Shared Folders\Labs\1710 Online\Experiments\Experiments\obj\Debug\Experiments.csprojResolveAssemblyReference.cache

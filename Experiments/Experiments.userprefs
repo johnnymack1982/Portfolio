@@ -1,0 +1,12 @@
+﻿<Properties StartupConfiguration="{38C16C15-2917-4460-8E58-D61AD406D4CF}|Default">
+  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations>
+    <MultiItemSolutionRunConfiguration Id="Run in Terminal" Name="Run in Terminal" />
+  </MultiItemStartupConfigurations>
+  <MonoDevelop.Ide.ItemProperties.Experiments PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
