@@ -28,3 +28,6 @@
 \\vmware-host\Shared Folders\Labs\1710 Online\Experiments\Experiments\bin\Debug\Experiments.exe
 \\vmware-host\Shared Folders\Labs\1710 Online\Experiments\Experiments\bin\Debug\Experiments.pdb
 \\vmware-host\Shared Folders\Labs\1710 Online\Experiments\Experiments\obj\Debug\Experiments.csprojResolveAssemblyReference.cache
+Z:\Project & Portfolio 1\Experiments\Experiments\bin\Debug\Experiments.exe.config
+Z:\Project & Portfolio 1\Experiments\Experiments\obj\Debug\Experiments.exe
+Z:\Project & Portfolio 1\Experiments\Experiments\obj\Debug\Experiments.pdb
