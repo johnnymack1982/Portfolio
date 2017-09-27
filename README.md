@@ -7,3 +7,8 @@
 * This portfolio will showcase all coursework and completed projects for this course and demonstrate my mastery of the material covered at the completion of this class.
 * This file will be updated regularly as I progress through the current course and will reflect information relevant to my current achievements and completed projects.
 * [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+
+### What's Included ##
+
+* All completed projects from Scalable Data Infrastructures, previously completed at Full Sail University.
+* Evidence of refractoring on original SDI projects, as required for coursework in Project and Portfolio 1.
