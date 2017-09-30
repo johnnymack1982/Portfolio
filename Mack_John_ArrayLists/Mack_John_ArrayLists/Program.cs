@@ -68,6 +68,7 @@ namespace Mack_John_ArrayLists
         public static void MyFamily()
         {
 
+            //Print a blank line to separate each list for readability
             Console.WriteLine(" ");
 
             //Create the first ArrayList with the names of my family
@@ -91,6 +92,7 @@ namespace Mack_John_ArrayLists
                 
             }
 
+            //Print a blank line to separate each list for readability
             Console.WriteLine(" ");
 
             //Remove last two items from first ArrayList
@@ -102,7 +104,7 @@ namespace Mack_John_ArrayLists
             //Add new item to the beginning of the first ArrayList
             myFamily.Insert(0, "Myra");
 
-            //Add new item to the beginning of the first ArrayList
+            //Add new item to the beginning of the second ArrayList
             familyRoles.Insert(0, "the new baby");
 
             //Reset familyRolesIndex to 0
@@ -119,7 +121,6 @@ namespace Mack_John_ArrayLists
                 familyRolesIndex++;
 
             }
-
         }
     }
 }
