@@ -10,23 +10,23 @@ namespace Mack_John_CustomClass
     {
 
         //Declare member variables;
-        int mMaxHitPoints;
-        int mMinHitPoints;
+        int mMaximumHitPoints;
+        int mMinimumHitPoints;
         int mCurrentHitPoints;
-        string mCharName;
-        string mCharClass;
+        string mCharacterName;
+        string mCharacterClass;
 
 
 
         //Declare constructor method
-        public HitPoints(int _maxHitPoints, int _minHitPoints, int _currentHitPoints, string _CharName, string _charClass)
+        public HitPoints(int _maximumHitPoints, int _minimumHitPoints, int _currentHitPoints, string _CharacterName, string _characterClass)
         {
 
-            mMaxHitPoints = _maxHitPoints;
-            mMinHitPoints = _minHitPoints;
+            mMaximumHitPoints = _maximumHitPoints;
+            mMinimumHitPoints = _minimumHitPoints;
             mCurrentHitPoints = _currentHitPoints;
-            mCharName = _CharName;
-            mCharClass = _charClass;
+            mCharacterName = _CharacterName;
+            mCharacterClass = _characterClass;
 
         }
 
@@ -38,7 +38,7 @@ namespace Mack_John_CustomClass
         {
 
             //Set the value of mMaxHitPoints
-            this.mMaxHitPoints = _maxHitPoints;
+            this.mMaximumHitPoints = _maxHitPoints;
 
         }
 
@@ -46,7 +46,7 @@ namespace Mack_John_CustomClass
         {
 
             //Set the value of mMinHitPoints
-            this.mMinHitPoints = _minHitPoints;
+            this.mMinimumHitPoints = _minHitPoints;
 
         }
 
@@ -58,38 +58,38 @@ namespace Mack_John_CustomClass
 
         }
 
-        public void SetCharName(string _charName)
+        public void SetCharacterName(string _charName)
         {
 
             //Set the value of mCharName
-            this.mCharName = _charName;
+            this.mCharacterName = _charName;
 
         }
 
-        public void SetCharClass(string _charClass)
+        public void SetCharacterClass(string _charClass)
         {
 
             //Set the value of mCharClass
-            this.mCharClass = _charClass.ToLower();
+            this.mCharacterClass = _charClass.ToLower();
 
         }
 
 
 
         //Declare getter methods
-        public int GetMaxHitPoints()
+        public int GetMaximumHitPoints()
         {
 
             //Return the value of mMaxHitPoints
-            return mMaxHitPoints;
+            return mMaximumHitPoints;
 
         }
 
-        public int GetMinHitPoints()
+        public int GetMinimumHitPoints()
         {
 
             //Return the value of mMinHitPoints
-            return mMinHitPoints;
+            return mMinimumHitPoints;
 
         }
 
@@ -101,19 +101,19 @@ namespace Mack_John_CustomClass
 
         }
 
-        public string GetCharName()
+        public string GetCharacterName()
         {
 
             //Return the value of mCharName
-            return mCharName;
+            return mCharacterName;
 
         }
 
-        public string GetCharClass()
+        public string GetCharacterClass()
         {
 
             //Return the value of mCharClass
-            return mCharClass;
+            return mCharacterClass;
 
         }
 
@@ -125,23 +125,23 @@ namespace Mack_John_CustomClass
 
             if(_charClass == "fighter")
             {
-                mMaxHitPoints = 500;
+                mMaximumHitPoints = 500;
                 mCurrentHitPoints = 250;
-                mCharClass = "Fighter";
+                mCharacterClass = "Fighter";
             }
 
             else if (_charClass == "mage")
             {
-                mMaxHitPoints = 250;
+                mMaximumHitPoints = 250;
                 mCurrentHitPoints = 125;
-                mCharClass = "Mage";
+                mCharacterClass = "Mage";
             }
 
             else if(_charClass == "healer")
             {
-                mMaxHitPoints = 120;
+                mMaximumHitPoints = 120;
                 mCurrentHitPoints = 60;
-                mCharClass = "Healer";
+                mCharacterClass = "Healer";
             }
 
         }

@@ -66,8 +66,7 @@ namespace Mack_John_CustomClass
             Console.WriteLine("\r\nGreetings, adventurer!  A world of excitement and adventure awaits you, but first we have to create your character.  Are you ready?\r\ntype \"Yes\" or \"No\".");
 
             //Capture user response and response
-            string ready = Console.ReadLine();
-            ready = ready.ToLower();
+            string ready = Console.ReadLine().ToLower();
 
             //Validate user input and respond appropriately
             while (!(ready == "yes") && !(ready == "no"))
@@ -95,35 +94,35 @@ namespace Mack_John_CustomClass
             }
 
             //Capture user input for character name
-            playerCharacter.SetCharName(Console.ReadLine());
+            playerCharacter.SetCharacterName(Console.ReadLine());
 
             //Declare a double variable used to determine if user entered letters or numbers for charName
-            double charNameInvalid;
+            double characterNameInvalid;
 
             //Validate user input and reprompt if invalid
-            while (double.TryParse(playerCharacter.GetCharName(), out charNameInvalid) || string.IsNullOrWhiteSpace(playerCharacter.GetCharName()))
+            while (double.TryParse(playerCharacter.GetCharacterName(), out characterNameInvalid) || string.IsNullOrWhiteSpace(playerCharacter.GetCharacterName()))
             {
                 //If user entered numbers, tell them what's wrong and reprompt
-                if (double.TryParse(playerCharacter.GetCharName(), out charNameInvalid))
+                if (double.TryParse(playerCharacter.GetCharacterName(), out characterNameInvalid))
                 {
                     Console.WriteLine("\r\nOops!  Please enter only letters for your character's name.  Let's try again.\r\nWhat would you like to name your character?");
                 }
 
                 //If user left blank, tell them what's wrong and reprompt
-                else if (string.IsNullOrWhiteSpace(playerCharacter.GetCharName()))
+                else if (string.IsNullOrWhiteSpace(playerCharacter.GetCharacterName()))
                 {
                     Console.WriteLine("\r\nOops!  Please don't leave this blank.  Let's try again.\r\nWhat would you like to name your character?");
                 }
 
                 //Recapture user input
-                playerCharacter.SetCharName(Console.ReadLine());
+                playerCharacter.SetCharacterName(Console.ReadLine());
             }
 
             //Report character build progess back to user
-            Console.WriteLine("\r\nCharacter Name: {0}", playerCharacter.GetCharName());
+            Console.WriteLine("\r\nCharacter Name: {0}", playerCharacter.GetCharacterName());
 
             //Tell the user what's next
-            Console.WriteLine("\r\nWelcome, {0}!  Now, things are going to get a bit more interesting.  We're going to choose your character class.  Your class will determine your starting and maximum HP.  Ready?", playerCharacter.GetCharName());
+            Console.WriteLine("\r\nWelcome, {0}!  Now, things are going to get a bit more interesting.  We're going to choose your character class.  Your class will determine your starting and maximum HP.  Ready?", playerCharacter.GetCharacterName());
             Console.WriteLine("\r\nFirst, we'll list out all of your options:");
             Console.WriteLine("FIGHTER:  Maximum HP = 500     Starting HP = 250");
             Console.WriteLine("MAGE:     Maximum HP = 250     Starting HP = 125");
@@ -136,7 +135,7 @@ namespace Mack_John_CustomClass
             playerCharacter.SetCharClass(Console.ReadLine());
 
             //Validate user input.  If invalid, reprompt
-            while(!(playerCharacter.GetCharClass() == "fighter") && !(playerCharacter.GetCharClass() == "mage") && !(playerCharacter.GetCharClass() == "healer"))
+            while(!(playerCharacter.GetCharacterClass() == "fighter") && !(playerCharacter.GetCharacterClass() == "mage") && !(playerCharacter.GetCharacterClass() == "healer"))
             {
                 //Tell the user what's wrong and reprompt
                 Console.WriteLine("\r\nOops!  That isn't a valid option.  Let's try again.\r\nEnter \"Fighter,\" \"Mage,\" or \"Healer\":");
@@ -146,10 +145,10 @@ namespace Mack_John_CustomClass
             }
 
             //Build character based on class selection
-            playerCharacter.BuildCharacter(playerCharacter.GetCharClass());
+            playerCharacter.BuildCharacter(playerCharacter.GetCharacterClass());
 
             //Report character build progress back to user
-            Console.WriteLine("\r\nCharacter Name: {0}\r\nCharacter Class: {1}\r\nMaximum HP: {2}\r\nStarting HP: {3}", playerCharacter.GetCharName(), playerCharacter.GetCharClass(), playerCharacter.GetMaxHitPoints(), playerCharacter.GetCurrentHitPoints());
+            Console.WriteLine("\r\nCharacter Name: {0}\r\nCharacter Class: {1}\r\nMaximum HP: {2}\r\nStarting HP: {3}", playerCharacter.GetCharacterName(), playerCharacter.GetCharacterClass(), playerCharacter.GetMaximumHitPoints(), playerCharacter.GetCurrentHitPoints());
 
             //Tell the user what's next
             Console.WriteLine("\r\nNow we're ready to fight!  Each turn, you'll be allowed to choose between one of two actions: \"ATTACK\" or \"HEAL\".");
@@ -160,7 +159,7 @@ namespace Mack_John_CustomClass
             int healingPotions = 5;
 
             //Loop through actions that will either increase or decrease player's HP
-            while((playerCharacter.GetCurrentHitPoints() > playerCharacter.GetMinHitPoints()))
+            while((playerCharacter.GetCurrentHitPoints() > playerCharacter.GetMinimumHitPoints()))
             {
                 //Ask the user what they would like to do next
                 Console.WriteLine("\r\nNow, would you like to heal or attack?");
@@ -204,19 +203,19 @@ namespace Mack_John_CustomClass
                 }
                 
                 //If HP is max, it cannot increase any further
-                if(playerCharacter.GetCurrentHitPoints() >= playerCharacter.GetMaxHitPoints())
+                if(playerCharacter.GetCurrentHitPoints() >= playerCharacter.GetMaximumHitPoints())
                 {
-                    playerCharacter.SetCurrentHitPoints(playerCharacter.GetMaxHitPoints());
+                    playerCharacter.SetCurrentHitPoints(playerCharacter.GetMaximumHitPoints());
 
                     //Report character's HP to the user
-                    Console.WriteLine("\r\n{0} has {1} HP and {2} healing potions remaining", playerCharacter.GetCharName(), playerCharacter.GetCurrentHitPoints(), healingPotions);
+                    Console.WriteLine("\r\n{0} has {1} HP and {2} healing potions remaining", playerCharacter.GetCharacterName(), playerCharacter.GetCurrentHitPoints(), healingPotions);
                 }
 
                 //If player's HP reaches 0, the character has died
-                else if(playerCharacter.GetCurrentHitPoints() <= playerCharacter.GetMinHitPoints())
+                else if(playerCharacter.GetCurrentHitPoints() <= playerCharacter.GetMinimumHitPoints())
                 {
                     //Report character death to the user
-                    Console.WriteLine("\r\nOh, no!  {0} has died and the game is over.", playerCharacter.GetCharName());
+                    Console.WriteLine("\r\nOh, no!  {0} has died and the game is over.", playerCharacter.GetCharacterName());
                     break;
                 }
 
@@ -224,7 +223,7 @@ namespace Mack_John_CustomClass
                 else
                 {
                     //Report player's HP to the user
-                    Console.WriteLine("\r\n{0} has {1} HP and {2} healing potions remaining.", playerCharacter.GetCharName(), playerCharacter.GetCurrentHitPoints(), healingPotions);
+                    Console.WriteLine("\r\n{0} has {1} HP and {2} healing potions remaining.", playerCharacter.GetCharacterName(), playerCharacter.GetCurrentHitPoints(), healingPotions);
                 }
 
 
