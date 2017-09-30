@@ -4,3 +4,6 @@
 \\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_Methods\Mack_John_Methods\obj\Debug\Mack_John_Methods.csprojResolveAssemblyReference.cache
 \\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_Methods\Mack_John_Methods\obj\Debug\Mack_John_Methods.exe
 \\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_Methods\Mack_John_Methods\obj\Debug\Mack_John_Methods.pdb
+Z:\Project & Portfolio 1\Mack_John_Methods\Mack_John_Methods\bin\Debug\Mack_John_Methods.exe.config
+Z:\Project & Portfolio 1\Mack_John_Methods\Mack_John_Methods\obj\Debug\Mack_John_Methods.exe
+Z:\Project & Portfolio 1\Mack_John_Methods\Mack_John_Methods\obj\Debug\Mack_John_Methods.pdb
