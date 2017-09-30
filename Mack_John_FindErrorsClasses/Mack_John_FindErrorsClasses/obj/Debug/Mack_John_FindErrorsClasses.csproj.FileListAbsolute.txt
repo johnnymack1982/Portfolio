@@ -4,3 +4,6 @@
 \\vmware-host\Shared Folders\Documents\Visual Studio 2015\Projects\Mack_John_FindErrorsClasses\Mack_John_FindErrorsClasses\bin\Debug\Mack_John_FindErrorsClasses.pdb
 \\vmware-host\Shared Folders\Documents\Visual Studio 2015\Projects\Mack_John_FindErrorsClasses\Mack_John_FindErrorsClasses\obj\Debug\Mack_John_FindErrorsClasses.exe
 \\vmware-host\Shared Folders\Documents\Visual Studio 2015\Projects\Mack_John_FindErrorsClasses\Mack_John_FindErrorsClasses\obj\Debug\Mack_John_FindErrorsClasses.pdb
+Z:\Project & Portfolio 1\Mack_John_FindErrorsClasses\Mack_John_FindErrorsClasses\bin\Debug\Mack_John_FindErrorsClasses.exe.config
+Z:\Project & Portfolio 1\Mack_John_FindErrorsClasses\Mack_John_FindErrorsClasses\obj\Debug\Mack_John_FindErrorsClasses.exe
+Z:\Project & Portfolio 1\Mack_John_FindErrorsClasses\Mack_John_FindErrorsClasses\obj\Debug\Mack_John_FindErrorsClasses.pdb
