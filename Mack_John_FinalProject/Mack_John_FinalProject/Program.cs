@@ -112,10 +112,10 @@ namespace Mack_John_FinalProject
             //Create custom function, SumOfCosts
 
             //Send eventCostArray to SumOfCosts method and capture result
-            decimal totalofEvents = SumOfCosts(eventCostArray);
+            decimal totalOfEvents = SumOfCosts(eventCostArray);
 
             //Display results for user
-            Console.WriteLine("\r\nThe cost for all of your events will be {0}.", totalofEvents.ToString("C"));
+            Console.WriteLine("\r\nThe cost for all of your events will be {0}.", totalOfEvents.ToString("C"));
 
             /*
              Test Values:
@@ -156,6 +156,7 @@ namespace Mack_John_FinalProject
 
             //Remove all spaces from userList
             int currentCount = 0;
+
             foreach (string element in listArray)
             {
                 listArray[currentCount] = element.Trim();
