@@ -21,55 +21,37 @@ namespace Mack_John_RestaurantCalc
             Console.WriteLine("Hello, there!  Thank you for using \"Tip Calculator.\"  Before we begin, would you mind telling me your name?");
             string userName = Console.ReadLine();
 
-            //Print a blank line
-            Console.WriteLine(" ");
-
             //Thank the user for their input and read their name back to them.
-            Console.WriteLine("Awesome.  Thanks, " + userName + "!");
-
-            //Print a blank line to create a new "paragraph"
-            Console.WriteLine(" ");
+            Console.WriteLine("\r\nAwesome.  Thanks, {0}!", userName);
 
             //Explain the next step and collect dollar amount for the first meal
-            Console.WriteLine("Next, we're going to ask you to enter the dollar amount for each of the meals you and your guests ordered today.\n\rSo how much was your first meal?");
+            Console.WriteLine("\r\nNext, we're going to ask you to enter the dollar amount for each of the meals you and your guests ordered today.\n\rSo how much was your first meal?");
             Console.Write("$");
             string firstMealInput = Console.ReadLine();
-
-            //Print a blank line
-            Console.WriteLine(" ");
 
             //Convert the user's input from string to decimal for use in math later on
             decimal firstMealPrice = decimal.Parse(firstMealInput);
 
             //Collect the dollar amount for the second meal
-            Console.WriteLine("Great!  Now, how much was your second meal?");
+            Console.WriteLine("\r\nGreat!  Now, how much was your second meal?");
             Console.Write("$");
             string secondMealInput = Console.ReadLine();
-
-            //Print a blank line
-            Console.WriteLine(" ");
 
             //Convert the user's input from string to decimal for use in math later on
             decimal secondMealPrice = decimal.Parse(secondMealInput);
 
             //Collect the dollar amount for the third meal
-            Console.WriteLine("And finally, how much did you pay for the third meal?");
+            Console.WriteLine("\r\nAnd finally, how much did you pay for the third meal?");
             Console.Write("$");
             string thirdMealInput = Console.ReadLine();
 
             //Convert the user's input from string to decimal for use in math later on
             decimal thirdMealPrice = decimal.Parse(thirdMealInput);
 
-            //Print a blank line to create a new "paragraph"
-            Console.WriteLine(" ");
-
             //Explain the next step and collect the tip amount
-            Console.WriteLine("Now, please enter a tip percentage based on your overall satisfaction with the service you received today.");
+            Console.WriteLine("\r\nNow, please enter a tip percentage based on your overall satisfaction with the service you received today.");
             Console.Write("%");
             string tipPercentInput = Console.ReadLine();
-
-            //Print a blank line
-            Console.WriteLine(" ");
 
             //Convert user's input from string to decimal for use in math later on
             decimal tipPercent = decimal.Parse(tipPercentInput);
@@ -78,34 +60,31 @@ namespace Mack_John_RestaurantCalc
             tipPercent = tipPercent / 100;
 
             //Thank the user for their input
-            Console.WriteLine("Thanks, " + userName + "!  Your total is shown below.  Please come again!");
-
-            //Print a blank line
-            Console.WriteLine(" ");
+            Console.WriteLine("\r\nThanks, {0}!  Your total is shown below.  Please come again!", userName);
 
             //Calculate subtotal of the three meals
             decimal mealSubTotal = firstMealPrice + secondMealPrice + thirdMealPrice;
 
             //Display the subtotal for the user
-            Console.WriteLine("Your subtotal for three meals is $" + mealSubTotal);
+            Console.WriteLine("\r\nYour subtotal for three meals is $" + mealSubTotal.ToString("0.00"));
 
             //Calculate total price of the tip
             decimal tipSubTotal = mealSubTotal * tipPercent;
 
             //Display the tip total for the user
-            Console.WriteLine("Your total tip is $" + tipSubTotal);
+            Console.WriteLine("Your total tip is ${0}", tipSubTotal.ToString("0.00"));
 
             //Calculate the total bill, including tip
             decimal finalTotal = mealSubTotal + tipSubTotal;
 
             //Display the final total for the user
-            Console.WriteLine("Your total, including tip, is $" + finalTotal);
+            Console.WriteLine("Your total, including tip, is ${0}", finalTotal.ToString("0.00"));
 
             //Calculate the total split three ways
             decimal splitTheBill = finalTotal /= 3;
 
             //Display the bill split three ways for the user
-            Console.WriteLine("If you want to split the bill between all three guests, you should each pay $" + splitTheBill);
+            Console.WriteLine("If you want to split the bill between all three guests, you should each pay ${0}", splitTheBill.ToString("0.00"));
 
             /*
              Test #1
