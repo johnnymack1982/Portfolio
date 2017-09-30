@@ -86,52 +86,52 @@ namespace Mack_John_Conditionals
             Console.WriteLine("\r\nHello!  Let's convert some temperatures!  Please enter the temperuature you would like to convert now:");
 
             //Declare input variable and define it with the user's input
-            string tempInput = Console.ReadLine();
+            string temperatureInput = Console.ReadLine();
 
             //Declare a new variable to convert the user's input to an number
-            double temp;
+            double temperature;
 
             //Validate user's input and re-prompt if necessary
-            while (!double.TryParse(tempInput, out temp))
+            while (!double.TryParse(temperatureInput, out temperature))
             {
                 //Tell the user what went wrong
                 Console.WriteLine("\r\nSorry.  Please enter whole numbers, only.  Do not include letters or decimals.\r\nPlease enter the tempurature you would like to conver now:");
 
                 //Re-capture the user's input
-                tempInput = Console.ReadLine();
+                temperatureInput = Console.ReadLine();
             }
 
             //Thank the user for their input and move on to the next step
             Console.WriteLine("\r\nThanks!  Now, is this tempurature in Fahrenheit or Celcius?\r\nEnter 'F' for Fahrenheit\r\nEnter 'C' for Celcius");
 
             //Declare a new char variable and use it to store the user's input
-            string farOrCelc = Console.ReadLine();
+            string farenheitOrCelcius = Console.ReadLine().ToLower();
 
             //Test to make sure the user entered either 'F' or 'C'
-            while (!((farOrCelc == "F" || farOrCelc == "f") || (farOrCelc == "C" || farOrCelc == "c")))
+            while (!((farenheitOrCelcius == "f" || farenheitOrCelcius == "c")))
             {
                 Console.WriteLine("\r\nSorry!  Please choose from one of the following.\r\nEnter'F' for Fahrenheit\r\nEnter 'C' for Celcius:");
-                farOrCelc = Console.ReadLine();
+                farenheitOrCelcius = Console.ReadLine();
             }
 
             //Declare and define a variable holding the equation to convert from Fahrenheit to Celcius
-            double farToCel = (temp - 32) / 1.8;
+            double farenheitConvertCelcius = (temperature - 32) / 1.8;
 
             //Declare and define a variable holding the equation to convert from Celcius to Fahrenheit
-            double celToFar = (temp * 9) / 5 + 32;
+            double celciusConvertFarenheit = (temperature * 9) / 5 + 32;
 
             //If the user entered 'F', execute this block of code
-            if (farOrCelc == "F" || farOrCelc == "f")
+            if (farenheitOrCelcius == "f")
             {
                 //Display the user's conversion
-                Console.WriteLine("\r\nThe temperature is {0} degrees Celcius.\r\n", farToCel);
+                Console.WriteLine("\r\nThe temperature is {0} degrees Celcius.\r\n", farenheitConvertCelcius);
             }
 
             //If the user entered 'C', execute this block of code
-            else if (farOrCelc == "C" || farOrCelc == "c")
+            else if (farenheitOrCelcius == "c")
             {
                 //Display the user's conversion
-                Console.WriteLine("The tempurature is {0} degrees Fahrenheit.\r\n", celToFar);
+                Console.WriteLine("The tempurature is {0} degrees Fahrenheit.\r\n", celciusConvertFarenheit);
             }
 
             /*
@@ -163,7 +163,7 @@ namespace Mack_John_Conditionals
              */
 
             //Welcome user and prompt for size of gas tank
-            Console.WriteLine("\r\nWelcome, traveler!  You've been on the road for a while now.\r\nYou're about to arrive at the last gas station for the next 200 mile.");
+            Console.WriteLine("\r\nWelcome, traveler!  You've been on the road for a while now.\r\nYou're about to arrive at the last gas station for the next 200 miles.");
             Console.WriteLine("Let's make sure you've got enough gas to keep going.\r\nIf not, we better stop to fill up!");
             Console.WriteLine("\r\nFirst, how big (in gallons) is your gas tank?");
 
@@ -410,17 +410,11 @@ namespace Mack_John_Conditionals
             //Calculate total purchase amount and store in a new variable
             decimal totalPurchase = firstItem + secondItem;
 
-            //Calculate 10% discount and store in a new variable
-            decimal discount10 = .9m;
-
-            //Calculate 5% discount and store in a new variable
-            decimal discount5 = .95m;
-
             //If totalPurchase is $100 or more, apply 10% discount and let the user know
             if (totalPurchase >= 100)
             {
                 //Calculate total purchase price, including discount
-                totalPurchase = totalPurchase * discount10;
+                totalPurchase = totalPurchase * .9m;
                 Math.Round(totalPurchase, 2);
 
                 //Tell the user their final price
@@ -431,7 +425,7 @@ namespace Mack_John_Conditionals
             else if (totalPurchase >= 50)
             {
                 //Calculate total purchase price, including discount
-                totalPurchase = totalPurchase * discount5;
+                totalPurchase = totalPurchase * .95m;
                 Math.Round(totalPurchase, 2);
 
                 //Tell the user their final price
