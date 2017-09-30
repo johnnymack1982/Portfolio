@@ -36,10 +36,10 @@ namespace Mack_John_LogicLoops
              */
 
             //Declare array to store front tire pressure values for use in conditional loop
-            int[] frontPressure = new int[2];
+            int[] frontTirePressure = new int[2];
 
             //Declare array to store back tire pressure values for use in conditional loop
-            int[] backPressure = new int[2];
+            int[] backTirePressure = new int[2];
 
             //Welcome the user and explain what we're going to do
             Console.WriteLine("Welcome!  To meet maintenance standards for your car, the two front tires should have the same pressure and\r\nthe back two tires should have the same pressure.");
@@ -49,68 +49,68 @@ namespace Mack_John_LogicLoops
             Console.WriteLine("\r\nPlease enter the tire pressure for your FRONT LEFT tire:");
 
             //Capture user input for Front Left tire pressure
-            string frontLeftInput = Console.ReadLine();
+            string frontLeftTireInput = Console.ReadLine();
 
             //Validate user input for frontLeftInput and reprompt if invalid.  Convert and store in frontPressure array if valid.
-            while (!int.TryParse(frontLeftInput, out frontPressure[0]))
+            while (!int.TryParse(frontLeftTireInput, out frontTirePressure[0]))
             {
                 //Tell the user what's wrong
                 Console.WriteLine("\r\nOops!  That entry wasn't invalid.  Let's try again.\r\nPlease enter the tire pressure for your FRONT LEFT tire:");
 
                 //Recapture user input
-                frontLeftInput = Console.ReadLine();
+                frontLeftTireInput = Console.ReadLine();
             }
 
             //Prompt user for Front Right tire pressure
             Console.WriteLine("\r\nPlease enter the tire pressure for your FRONT RIGHT tire:");
 
             //Capture user input for Front Right tire pressure
-            string frontRightInput = Console.ReadLine();
+            string frontRightTireInput = Console.ReadLine();
 
             //Validate user input for frontRightInput and reprompt if invalid.  Convert and store in frontPressure array if valid.
-            while (!int.TryParse(frontRightInput, out frontPressure[1]))
+            while (!int.TryParse(frontRightTireInput, out frontTirePressure[1]))
             {
                 //Tell the user what's wrong
                 Console.WriteLine("\r\nOops!  That entry wasn't valid.  Let's try again.\r\nPlease enter the tire pressure for your FRONT RIGHT tire:");
 
                 //Recapture user input
-                frontRightInput = Console.ReadLine();
+                frontRightTireInput = Console.ReadLine();
             }
 
             //Prompt user for Back Left tire pressure
             Console.WriteLine("\r\nPlease enter the tire pressure for your BACK LEFT tire:");
 
             //Capture user input for Back Left tire pressure
-            string backLeftInput = Console.ReadLine();
+            string backLeftTireInput = Console.ReadLine();
 
             //Validate user input for backLeftInput and reprompt if invalid.  Convert and store in backPressure array if valid.
-            while (!int.TryParse(backLeftInput, out backPressure[0]))
+            while (!int.TryParse(backLeftTireInput, out backTirePressure[0]))
             {
                 //Tell the user what's wrong
                 Console.WriteLine("\r\nOops!  That entry wasn't valid.  Let's try again.\r\nPlease enter the tire pressure for your BACK LEFT tire:");
 
                 //Recapture user input
-                backLeftInput = Console.ReadLine();
+                backLeftTireInput = Console.ReadLine();
             }
 
             //Prompt user for Back Right tire pressure
             Console.WriteLine("\r\nPlease enter the tire pressure for your BACK RIGHT tire:");
 
             //Capture user input for Back Right tire pressure
-            string backRightInput = Console.ReadLine();
+            string backRightTireInput = Console.ReadLine();
 
             //Validate user input for backRightInput and reprompt if invalid.  Convert and store in backPressure array if valid.
-            while (!int.TryParse(backRightInput, out backPressure[1]))
+            while (!int.TryParse(backRightTireInput, out backTirePressure[1]))
             {
                 //Tell the user what's wrong
                 Console.WriteLine("\r\nOops!  That entry wasn't valid.  Let's try again.\r\nPlease enter the tire pressure for your BACK RIGHT tire:");
 
                 //Recapture user input
-                backRightInput = Console.ReadLine();
+                backRightTireInput = Console.ReadLine();
             }
 
             //Run check to see if car is up to spec.  If so, let the user know
-            if (frontPressure[0] == frontPressure[1] && backPressure[0] == backPressure[1])
+            if (frontTirePressure[0] == frontTirePressure[1] && backTirePressure[0] == backTirePressure[1])
             {
                 Console.WriteLine("\r\nThe tires pass spec!\r\n");
             }
@@ -235,10 +235,10 @@ namespace Mack_John_LogicLoops
             Console.WriteLine("Now, would you like to see the sum of the ODD or EVEN numbers in this list?\r\nPlease enter the word ODD or EVEN:");
 
             //Capture the user's input and store in a new string variable
-            string oddOrEven = Console.ReadLine();
+            string oddOrEven = Console.ReadLine().ToLower();
 
             //Validate user's input.  If invalid, reprompt
-            while (oddOrEven != "ODD" && oddOrEven != "EVEN" && oddOrEven != "odd" && oddOrEven != "even" && oddOrEven != "Odd" && oddOrEven != "Even")
+            while (oddOrEven != "odd" && oddOrEven != "even")
             {
                 //Tell the user what's wrong
                 Console.WriteLine("\r\nOops!  That's not a valid entry.  Let's try again.\r\nWould you like to see the sum of the ODD or EVEN numbers?");
@@ -254,13 +254,13 @@ namespace Mack_John_LogicLoops
             foreach (int element in numberArray)
             {
                 //If user selected ODD, add all odd numbers and store sum in numberSum
-                if ((oddOrEven == "ODD" || oddOrEven == "odd" || oddOrEven == "Odd") && element %2 == 1)
+                if (oddOrEven == "odd" && element %2 == 1)
                 {
                     numberSum = numberSum + element;
                 }
 
                 //If user selected EVEN, add all even numbers and store sum in numberSum
-                else if ((oddOrEven == "EVEN" || oddOrEven == "even" || oddOrEven == "Even") && element %2 == 0)
+                else if (oddOrEven == "even" && element %2 == 0)
                 {
                     numberSum = numberSum + element;
                 }
