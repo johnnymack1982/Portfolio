@@ -33,13 +33,13 @@ namespace Mack_John_Arrays
             double firstArrayTotal = firstArray[0] + firstArray[1] + firstArray[2] + firstArray[3];
 
             //This line outputs the value of firstArrayTotal to the Console
-            Console.WriteLine("The total of the first array is " + firstArrayTotal + ".");
+            Console.WriteLine("The total of the first array is {0}.", firstArrayTotal);
 
             //This line declares and defines the variable to store the total of the second array
             double secondArrayTotal = secondArray[0] + secondArray[1] + secondArray[2] + secondArray[3];
 
             //This line outpouts the value of secondArrayTotal to the Console
-            Console.WriteLine("The total of the second array is " + secondArrayTotal + ".");
+            Console.WriteLine("The total of the second array is {0}.", secondArrayTotal);
 
 
             //Calculate the average of each array and store it in a variable and output to console
@@ -49,13 +49,13 @@ namespace Mack_John_Arrays
             double firstArrayAverage = (firstArray[0] + firstArray[1] + firstArray[2] + firstArray[3]) / 4;
 
             //This line outputs the value of firstArrayAverage to the Console
-            Console.WriteLine("The average of the first array is " + firstArrayAverage + ".");
+            Console.WriteLine("The average of the first array is {0}.", firstArrayAverage);
 
             //This line declares and defines the variable to store the average of the second array
             double secondArrayAverage = (secondArray[0] + secondArray[1] + secondArray[2] + secondArray[3]) / 4;
 
             //This line outputs the value of the secondArrayAverage to the Console
-            Console.WriteLine("The average of the second array is " + secondArrayAverage + ".");
+            Console.WriteLine("The average of the second array is {0}.", secondArrayAverage);
 
 
 
@@ -74,7 +74,7 @@ namespace Mack_John_Arrays
             double[] thirdArray = new double[4] { firstArray[0] + secondArray[0], firstArray[1] + secondArray[1], firstArray[2] + secondArray[2], firstArray[3] + secondArray[3] };
 
             //This line displays the values for each index in the new array to the Console
-            Console.WriteLine("The elements of the third array are " + thirdArray[0] + ", " + thirdArray[1] + ", " + thirdArray[2] + ", and " + thirdArray[3] + ".");
+            Console.WriteLine("The elements of the third array are {0}, {1}, {2}, {3}.", thirdArray[0], thirdArray[1], thirdArray[2], thirdArray[3]);
 
 
 
