@@ -13,19 +13,19 @@
 * Evidence of refractoring on original SDI projects, as required for coursework in Project and Portfolio 1.
 
 * **Debugging Projects** - _Source code, originally written by another person with multiple syntax and logical errors.  All errors have been corrected._
-	*Mack-John-FindErrorsClasses
-	*Mack-John-Find-Errors-Func
-	*Mack-John-FindErrorsCond
+	* Mack-John-FindErrorsClasses
+	* Mack-John-Find-Errors-Func
+	* Mack-John-FindErrorsCond
 	
 * **Coding Projects** - _Original source code, written based on specified requirements as outlined by course instructor._
-	*Mack-John-Array-Lists
-	*Mack-John-Arrays
-	*Mack-John_Conditionals
-	*Mack-John-CountFish
-	*Mack-John-CustomClass
-	*Mack-John-FinalProject
-	*Mack-John-LogicLoops
-	*Mack-John-MadLibs
-	*Mack-John-Methods
-	*Mack-John-RestaurantCalc
-	*Mack-John-StringObjects
+	* Mack-John-Array-Lists
+	* Mack-John-Arrays
+	* Mack-John_Conditionals
+	* Mack-John-CountFish
+	* Mack-John-CustomClass
+	* Mack-John-FinalProject
+	* Mack-John-LogicLoops
+	* Mack-John-MadLibs
+	* Mack-John-Methods
+	* Mack-John-RestaurantCalc
+	* Mack-John-StringObjects
