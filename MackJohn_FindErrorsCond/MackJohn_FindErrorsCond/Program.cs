@@ -36,10 +36,10 @@ namespace MackJohn_FindErrorsCond
 
             //Corrected string concatonation
             Console.WriteLine("Hello!  My name is {0}.", myName);
-            Console.WriteLine("I'm a " + myJob + ".");
+            Console.WriteLine("I'm a {0}.", myJob);
 
             //Added missing space to string concatonation
-            Console.WriteLine("My current assignment has me wrangling " + numberOfCats + " cats.");
+            Console.WriteLine("My current assignment has me wrangling {0} cats.", numberOfCats);
             Console.WriteLine("So, let's get to work!");
 
             while (numberOfCats > 0) //Do Not Change This line
@@ -52,7 +52,7 @@ namespace MackJohn_FindErrorsCond
                     totalPay += myRatePerCat;
 
                     //Corrected 'System.out.println' to 'Console.WriteLine'
-                    Console.WriteLine("I've wrangled another cat and I have made $" + totalPay + " so far.  \r\nOnly " + numberOfCats + " left!");
+                    Console.WriteLine("I've wrangled another cat and I have made ${0} so far.  \r\nOnly {1} left!", totalPay, numberOfCats);
 
                 }
                 else
