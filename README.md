@@ -11,7 +11,6 @@
 
 * All completed projects from Scalable Data Infrastructures, previously completed at Full Sail University.
 * Evidence of refractoring on original SDI projects, as required for coursework in Project and Portfolio 1.
-
 * **Debugging Projects** - _Source code, originally written by another person with multiple syntax and logical errors.  All errors have been corrected._
 	* Mack-John-FindErrorsClasses
 	* Mack-John-Find-Errors-Func
