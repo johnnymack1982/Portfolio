@@ -33,4 +33,4 @@
 	
 ######
 * **DVP1.CE1** - _Original source code, written based on specified requirements as outlined in the Project & Portfolio 1 course.
-	* SwapInfo - _Collects first and last name of user and displays that input back to the user.  Using a custom function, reverses the values of variables storing first and last name and displays the reversed values back to the user.
+	* SwapInfo - _Collects first and last name of user and displays that input back to the user.  Using a custom function, reverses the values of variables storing first and last name and displays the reversed values back to the user._
