@@ -15,8 +15,7 @@
 * **Debugging Projects** - _Source code, originally written by another person with multiple syntax and logical errors.  All errors have been corrected._
 	* Mack-John-FindErrorsClasses
 	* Mack-John-Find-Errors-Func
-	* Mack-John-FindErrorsCond
-	
+	* Mack-John-FindErrorsCond  
 	
 * **Coding Projects** - _Original source code, written based on specified requirements as outlined by course instructor._
 	* Mack-John-Array-Lists
