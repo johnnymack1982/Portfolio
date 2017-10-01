@@ -4,3 +4,6 @@
 \\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_StringObjects\Mack_John_StringObjects\obj\Debug\Mack_John_StringObjects.csprojResolveAssemblyReference.cache
 \\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_StringObjects\Mack_John_StringObjects\obj\Debug\Mack_John_StringObjects.exe
 \\vmware-host\shared folders\documents\visual studio 2015\Projects\Mack_John_StringObjects\Mack_John_StringObjects\obj\Debug\Mack_John_StringObjects.pdb
+Z:\Project & Portfolio 1\Mack_John_StringObjects\Mack_John_StringObjects\bin\Debug\Mack_John_StringObjects.exe.config
+Z:\Project & Portfolio 1\Mack_John_StringObjects\Mack_John_StringObjects\obj\Debug\Mack_John_StringObjects.exe
+Z:\Project & Portfolio 1\Mack_John_StringObjects\Mack_John_StringObjects\obj\Debug\Mack_John_StringObjects.pdb

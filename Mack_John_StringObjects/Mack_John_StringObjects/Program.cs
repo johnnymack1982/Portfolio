@@ -66,10 +66,10 @@ namespace Mack_John_StringObjects
             //Declare a new method to validate user input
 
             //Store returned value from ValidateEmail method
-            bool valid = ValidateEmail(userEmail);
+            bool validEmailAddress = ValidateEmail(userEmail);
 
             //If email address is valid, let the user know
-            if (valid == true)
+            if (validEmailAddress == true)
             {
                 Console.WriteLine("\r\nThe email address of {0} is a valid email address.\r\n", userEmail);
             }
@@ -199,7 +199,7 @@ namespace Mack_John_StringObjects
         {
 
             //Create a variable to determine if input is valid
-            bool valid;
+            bool validEmailAddress;
 
             //Checks if input contains first "@"
             bool contains1At;
@@ -261,15 +261,15 @@ namespace Mack_John_StringObjects
 
             if (contains1At == true && containsSpace == false && contains2At == false && dotAfterAt == true)
             {
-                valid = true;
+                validEmailAddress = true;
             }
 
             else
             {
-                valid = false;
+                validEmailAddress = false;
             }
 
-            return valid;
+            return validEmailAddress;
 
             }
 
