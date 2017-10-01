@@ -17,6 +17,7 @@
 	* Mack-John-Find-Errors-Func
 	* Mack-John-FindErrorsCond
 	
+	
 * **Coding Projects** - _Original source code, written based on specified requirements as outlined by course instructor._
 	* Mack-John-Array-Lists
 	* Mack-John-Arrays
