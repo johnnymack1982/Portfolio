@@ -4,3 +4,6 @@
 \\vmware-host\shared folders\documents\visual studio 2015\Projects\MackJohn_Find_Errors_Func\MackJohn_Find_Errors_Func\bin\Debug\MackJohn_Find_Errors_Func.pdb
 \\vmware-host\shared folders\documents\visual studio 2015\Projects\MackJohn_Find_Errors_Func\MackJohn_Find_Errors_Func\obj\Debug\MackJohn_Find_Errors_Func.exe
 \\vmware-host\shared folders\documents\visual studio 2015\Projects\MackJohn_Find_Errors_Func\MackJohn_Find_Errors_Func\obj\Debug\MackJohn_Find_Errors_Func.pdb
+Z:\Project & Portfolio 1\MackJohn_Find_Errors_Func\MackJohn_Find_Errors_Func\bin\Debug\MackJohn_Find_Errors_Func.exe.config
+Z:\Project & Portfolio 1\MackJohn_Find_Errors_Func\MackJohn_Find_Errors_Func\obj\Debug\MackJohn_Find_Errors_Func.exe
+Z:\Project & Portfolio 1\MackJohn_Find_Errors_Func\MackJohn_Find_Errors_Func\obj\Debug\MackJohn_Find_Errors_Func.pdb
