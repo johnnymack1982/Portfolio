@@ -9,7 +9,6 @@ namespace DVP1.CE1
     class SwapInfo
     {
 
-        //Constructor Function
         public SwapInfo()
         {
 
