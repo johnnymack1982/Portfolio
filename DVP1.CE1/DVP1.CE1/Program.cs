@@ -18,10 +18,7 @@ namespace DVP1.CE1
              Synposis:  
              */
 
-            new SwapInfo();
-            new Backwards();
-            new AgeConvert();
-            new TempConvert();
+            new Menu();
 
         }
     }
