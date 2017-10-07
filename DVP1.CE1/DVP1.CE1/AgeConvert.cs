@@ -70,6 +70,9 @@ namespace DVP1.CE1
             decimal secondsAlive = SecondsAlive(minutesAlive);
             Console.WriteLine("{0} has been alive for {1} seconds.", userName, secondsAlive.ToString("#,##0"));
 
+            Console.WriteLine("\r\nPress any key to continue...");
+            Console.ReadKey();
+
         }
 
 
