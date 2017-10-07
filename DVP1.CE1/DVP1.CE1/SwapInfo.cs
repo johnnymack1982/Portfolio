@@ -78,6 +78,8 @@ namespace DVP1.CE1
             Console.WriteLine("\r\nPress any key to continue...");
             Console.ReadKey();
 
+            new Menu();
+
         }
 
 
