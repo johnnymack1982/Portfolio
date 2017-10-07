@@ -55,6 +55,8 @@ namespace DVP1.CE1
             Console.Clear();
             Console.WriteLine("Your reversed sentence looks like this:");
             Console.WriteLine("\"{0}\"", reversedSentence);
+            Console.WriteLine("\r\nPress any key to continue...");
+            Console.ReadKey();
 
         }
 
