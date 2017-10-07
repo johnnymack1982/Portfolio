@@ -37,4 +37,6 @@
 	
 	* Backwards - _Prompts user for a sentence containing no fewer than six (6) words.  Using a custom function, reverses the characters in the user's string and reports the reversed string back to the user._
 	
-	* AgeConvert - Prompts user for their name and age in years.  The user's age is then passed into multiple custom functions to calculate age in days, hours, minutes and seconds before reporting this information back to the user.
+	* AgeConvert - _Prompts user for their name and age in years.  The user's age is then passed into multiple custom functions to calculate age in days, hours, minutes and seconds before reporting this information back to the user._
+	
+	* TempConvert - _Promputs user for a temperature in fareneit, converts that temperature to celcius and reports the results back to the user.  Then the user is prompted for a temperature is celcius, converts to farenheit and reports the results back to the user.
