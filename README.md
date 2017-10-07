@@ -39,6 +39,6 @@
 	
 	* AgeConvert - _Prompts user for their name and age in years.  The user's age is then passed into multiple custom functions to calculate age in days, hours, minutes and seconds before reporting this information back to the user._
 	
-	* TempConvert - _Promputs user for a temperature in fareneit, converts that temperature to celcius and reports the results back to the user.  Then the user is prompted for a temperature is celcius, converts to farenheit and reports the results back to the user.
+	* TempConvert - _Promputs user for a temperature in fareneit, converts that temperature to celcius and reports the results back to the user.  Then the user is prompted for a temperature is celcius, converts to farenheit and reports the results back to the user._
 	
-	* Menu - _Presents user with a menu to select from the other four coding challenges in this project and runs each external class based on the user's selection.
+	* Menu - _Presents user with a menu to select from the other four coding challenges in this project and runs each external class based on the user's selection._
