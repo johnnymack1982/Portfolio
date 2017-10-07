@@ -75,6 +75,8 @@ namespace DVP1.CE1
             
 
             Console.WriteLine("POOF!  Now, your name looks like this!  \r\n\r\nFIRST NAME - {0} \r\nLAST NAME - {1}", firstName, lastName);
+            Console.WriteLine("\r\nPress any key to continue...");
+            Console.ReadKey();
 
         }
 
