@@ -21,6 +21,7 @@ namespace DVP1.CE1
             Console.WriteLine("2) Challenge 2 - Backwards:  Enter a sentence and we'll type it again in reverse!");
             Console.WriteLine("3) Challenge 3 - Age Convert:  Enter your age in years and we'll tell you how many days, hours, minutes, and seconds you've been alive!");
             Console.WriteLine("4) Challenge 4 - Temp Convert:  Enter temperatures in farenheit and celcius and we'll convert them for you!");
+            Console.WriteLine("5) EXIT PROGRAM");
 
             Console.Write("\r\nPlease enter your selection:  ");
             string userChoiceInput = Console.ReadLine();
@@ -39,6 +40,7 @@ namespace DVP1.CE1
                 Console.WriteLine("2) Challenge 2 - Backwards:  Enter a sentence and we'll type it again in reverse!");
                 Console.WriteLine("3) Challenge 3 - Age Convert:  Enter your age in years and we'll tell you how many days, hours, minutes, and seconds you've been alive!");
                 Console.WriteLine("4) Challenge 4 - Temp Convert:  Enter temperatures in farenheit and celcius and we'll convert them for you!");
+                Console.WriteLine("5) EXIT PROGRAM");
 
                 Console.WriteLine("\r\nOops!  That wasn't a valid choice.  Please enter the number that corresponds with your choice.");
                 Console.Write("\r\nPlease enter your selection:  ");
@@ -79,6 +81,19 @@ namespace DVP1.CE1
             {
 
                 new TempConvert();
+
+            }
+
+
+
+            else
+            {
+
+                Console.Clear();
+                Console.WriteLine("EXIT PROGRAM");
+                Console.WriteLine("\r\nYou have chosen to exit the program.\r\n\r\n");
+
+                Environment.Exit(0);
 
             }
 
