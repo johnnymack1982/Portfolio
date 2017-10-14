@@ -28,12 +28,14 @@ namespace DVP1.CE1
 
             string firstName = Console.ReadLine();
 
+            int isNumber;
 
 
-            while (String.IsNullOrWhiteSpace(firstName))
+
+            while (String.IsNullOrWhiteSpace(firstName) ||int.TryParse(firstName, out isNumber))
             {
                 Console.Clear();
-                Console.Write("Oops!  Please don't leave this blank.  \r\nPlease enter your FIRST NAME:  ");
+                Console.Write("Oops!  That wasn't a valid entry.  \r\nPlease enter your FIRST NAME:  ");
 
                 firstName = Console.ReadLine();
             }
@@ -49,10 +51,10 @@ namespace DVP1.CE1
 
 
 
-            while (String.IsNullOrWhiteSpace(lastName))
+            while (String.IsNullOrWhiteSpace(lastName) || int.TryParse(lastName, out isNumber))
             {
                 Console.Clear();
-                Console.Write("Opps!  Please don't leave this blank.  \r\nPlease enter your LAST NAME:  ");
+                Console.Write("Opps!  That wasn't a valid entry.  \r\nPlease enter your LAST NAME:  ");
 
                 lastName = Console.ReadLine();
             }
