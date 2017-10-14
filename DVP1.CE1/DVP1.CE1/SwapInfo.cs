@@ -35,7 +35,8 @@ namespace DVP1.CE1
             while (String.IsNullOrWhiteSpace(firstName) ||int.TryParse(firstName, out isNumber))
             {
                 Console.Clear();
-                Console.Write("Oops!  That wasn't a valid entry.  \r\nPlease enter your FIRST NAME:  ");
+                Console.WriteLine("Coding Challenge 1:  SWAP INFO");
+                Console.Write("\r\nOops!  That wasn't a valid entry.  \r\nPlease enter your FIRST NAME:  ");
 
                 firstName = Console.ReadLine();
             }
@@ -45,7 +46,8 @@ namespace DVP1.CE1
 
 
             Console.Clear();
-            Console.Write("Thanks, {0}!  Now, please enter your LAST NAME:  ", firstName);
+            Console.WriteLine("Coding Challenge 1:  SWAP INFO");
+            Console.Write("\r\nThanks, {0}!  Now, please enter your LAST NAME:  ", firstName);
 
             string lastName = Console.ReadLine();
 
@@ -54,7 +56,8 @@ namespace DVP1.CE1
             while (String.IsNullOrWhiteSpace(lastName) || int.TryParse(lastName, out isNumber))
             {
                 Console.Clear();
-                Console.Write("Opps!  That wasn't a valid entry.  \r\nPlease enter your LAST NAME:  ");
+                Console.WriteLine("Coding Challenge 1:  SWAP INFO");
+                Console.Write("\r\nOpps!  That wasn't a valid entry.  \r\nPlease enter your LAST NAME:  ");
 
                 lastName = Console.ReadLine();
             }
@@ -64,8 +67,9 @@ namespace DVP1.CE1
 
 
             Console.Clear();
-            Console.WriteLine("Great!  So, your full name is:  \r\n\r\nFIRST NAME - {0} \r\nLAST NAME - {1}", firstName, lastName);
-            Console.WriteLine("Care to have a bit of fun?  Let's pretend your FIRST NAME is your LAST NAME and your LAST NAME is your FIRST NAME!  Ready?");
+            Console.WriteLine("Coding Challenge 1:  SWAP INFO");
+            Console.WriteLine("\r\nGreat!  So, your full name is:  \r\n\r\nFIRST NAME - {0} \r\nLAST NAME - {1}", firstName, lastName);
+            Console.WriteLine("\r\nCare to have a bit of fun?  Let's pretend your FIRST NAME is your LAST NAME and your LAST NAME is your FIRST NAME!  Ready?");
             Console.WriteLine("Don't worry, I'll do all the work for you.  \r\n\r\nPress any key to continue...");
             Console.ReadKey();
 
@@ -75,9 +79,10 @@ namespace DVP1.CE1
             nameArray = SwapNames(nameArray);
             firstName = nameArray[0];
             lastName = nameArray[1];
-            
 
-            Console.WriteLine("POOF!  Now, your name looks like this!  \r\n\r\nFIRST NAME - {0} \r\nLAST NAME - {1}", firstName, lastName);
+
+            Console.WriteLine("Coding Challenge 1:  SWAP INFO");
+            Console.WriteLine("\r\nPOOF!  Now, your name looks like this!  \r\n\r\nFIRST NAME - {0} \r\nLAST NAME - {1}", firstName, lastName);
             Console.WriteLine("\r\nPress any key to continue...");
             Console.ReadKey();
 
