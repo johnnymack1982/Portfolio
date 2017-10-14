@@ -22,6 +22,7 @@ namespace DVP1.CE1
 
             string[] nameArray = new string[2];
 
+            Console.Clear();
             Console.WriteLine("Coding Challenge 1:  SWAP INFO");
             Console.Write("\r\nHello!  \r\nPlease enter your FIRST NAME:  ");
 
