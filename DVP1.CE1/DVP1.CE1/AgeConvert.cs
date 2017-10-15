@@ -27,11 +27,13 @@ namespace DVP1.CE1
             Console.Write("\r\nHello!  Please enter your name:  ");
             string userName = Console.ReadLine();
 
+            int isNumber;
+
             //Validate user input
-            while (String.IsNullOrWhiteSpace(userName))
+            while (String.IsNullOrWhiteSpace(userName) || int.TryParse(userName, out isNumber))
             {
                 Console.Clear();
-                Console.Write("Oops!  Please don't leave this blank.\r\nPlease enter your name:  ");
+                Console.Write("Oops!  That wasn't a valid entry.\r\nPlease enter your name:  ");
                 userName = Console.ReadLine();
             }
 
