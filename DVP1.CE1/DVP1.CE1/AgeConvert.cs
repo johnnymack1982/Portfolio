@@ -33,12 +33,14 @@ namespace DVP1.CE1
             while (String.IsNullOrWhiteSpace(userName) || int.TryParse(userName, out isNumber))
             {
                 Console.Clear();
-                Console.Write("Oops!  That wasn't a valid entry.\r\nPlease enter your name:  ");
+                Console.WriteLine("Coding Challenge 3:  AGE CONVERT");
+                Console.Write("\r\nOops!  That wasn't a valid entry.\r\nPlease enter your name:  ");
                 userName = Console.ReadLine();
             }
 
             Console.Clear();
-            Console.Write("Thanks, {0}!  Now, please enter your age in years:  ", userName);
+            Console.WriteLine("Coding Challenge 3:  AGE CONVERT");
+            Console.Write("\r\nThanks, {0}!  Now, please enter your age in years:  ", userName);
             string userAgeInput = Console.ReadLine();
 
             int userAge;
@@ -47,20 +49,23 @@ namespace DVP1.CE1
             while (!int.TryParse(userAgeInput, out userAge) || userAge < 1)
             {
                 Console.Clear();
-                Console.Write("Oops!  Please enter a whole number greater than 0.\r\nPlease enter your age in years:  ");
+                Console.WriteLine("Coding Challenge 3:  AGE CONVERT");
+                Console.Write("\r\nOops!  Please enter a whole number greater than 0.\r\nPlease enter your age in years:  ");
                 userAgeInput = Console.ReadLine();
             }
 
             Console.Clear();
-            Console.WriteLine("Great!  You entered the following information");
+            Console.WriteLine("Coding Challenge 3:  AGE CONVERT");
+            Console.WriteLine("\r\nGreat!  You entered the following information");
             Console.WriteLine("\r\nName:  {0}\r\nAge:  {1}", userName, userAge);
             Console.WriteLine("\r\nNow, we'll show you how many days, hours, minutes and seconds you have been alive.  Ready?");
             Console.WriteLine("\r\nPress any key to continue...");
             Console.ReadKey();
 
             Console.Clear();
+            Console.WriteLine("Coding Challenge 3:  AGE CONVERT");
             decimal daysAlive = DaysAlive(userAge);
-            Console.WriteLine("{0} has been alive for {1} years.", userName, userAge);
+            Console.WriteLine("\r\n{0} has been alive for {1} years.", userName, userAge);
             Console.WriteLine("{0} has been alive for {1} days.", userName, daysAlive.ToString("#,##0"));
 
             decimal hoursAlive = HoursAlive(daysAlive);
