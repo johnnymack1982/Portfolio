@@ -18,6 +18,8 @@ namespace DVP1.CE1
              Synposis:  
              */
 
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
             new Menu();
 
         }
