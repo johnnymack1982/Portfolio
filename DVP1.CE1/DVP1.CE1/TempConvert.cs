@@ -33,13 +33,15 @@ namespace DVP1.CE1
             {
 
                 Console.Clear();
-                Console.Write("Oops!  Please try again.\r\nEnter a temperature in FARENHEIT:  ");
+                Console.WriteLine("Challenge 4:  TEMP CONVERT");
+                Console.Write("\r\nOops!  Please try again.\r\nEnter a temperature in FARENHEIT:  ");
                 farenheitInput = Console.ReadLine();
 
             }
 
             Console.Clear();
-            Console.WriteLine("Great!  The temperature you entered is {0} FARENHEIT.", farenheit);
+            Console.WriteLine("Challenge 4:  TEMP CONVERT");
+            Console.WriteLine("\r\nGreat!  The temperature you entered is {0} FARENHEIT.", farenheit);
             Console.WriteLine("Now, we'll go ahead and convert that temperature to CELCIUS.  Ready?");
             Console.WriteLine("\r\nPress any key to continue...");
             Console.ReadKey();
@@ -47,13 +49,15 @@ namespace DVP1.CE1
             double celcius = Math.Round(FarenheitToCelcius(farenheit), 2);
 
             Console.Clear();
-            Console.WriteLine("The temperature you entered is {0} FARENHEIT.", farenheit);
+            Console.WriteLine("Challenge 4:  TEMP CONVERT");
+            Console.WriteLine("\r\nThe temperature you entered is {0} FARENHEIT.", farenheit);
             Console.WriteLine("Your converted temperature is {0} CELCIUS.", celcius);
             Console.WriteLine("\r\nPress any key to continue...");
             Console.ReadKey();
 
             Console.Clear();
-            Console.WriteLine("Next, we'll ask you for a temperature in CELCIUS and convert it to FARENHEIT.");
+            Console.WriteLine("Challenge 4:  TEMP CONVERT");
+            Console.WriteLine("\r\nNext, we'll ask you for a temperature in CELCIUS and convert it to FARENHEIT.");
             Console.Write("Please enter a temperature in CELCIUS:  ");
             string celciusInput = Console.ReadLine();
 
@@ -61,13 +65,15 @@ namespace DVP1.CE1
             {
 
                 Console.Clear();
-                Console.Write("Oops!  Please try again.\r\nEnter a temperature in CELCIUS:  ");
+                Console.WriteLine("Challenge 4:  TEMP CONVERT");
+                Console.Write("\r\nOops!  Please try again.\r\nEnter a temperature in CELCIUS:  ");
                 celciusInput = Console.ReadLine();
 
             }
 
             Console.Clear();
-            Console.WriteLine("Greate!  The temperature you entered is {0} CELCIUS.", celcius);
+            Console.WriteLine("Challenge 4:  TEMP CONVERT");
+            Console.WriteLine("\r\nGreat!  The temperature you entered is {0} CELCIUS.", celcius);
             Console.WriteLine("Now, we'll go ahead and covert that tempurature to FARENHEIT.  Ready?");
             Console.WriteLine("\r\nPress any key to continue...");
             Console.ReadKey();
@@ -75,7 +81,8 @@ namespace DVP1.CE1
             farenheit = Math.Round(CelciusToFarenheit(celcius), 2);
 
             Console.Clear();
-            Console.WriteLine("The temperature you entered is {0} CELCIUS.", celcius);
+            Console.WriteLine("Challenge 4:  TEMP CONVERT");
+            Console.WriteLine("\r\nThe temperature you entered is {0} CELCIUS.", celcius);
             Console.WriteLine("Your converted temperature is {0} FARENHEIT.", farenheit);
             Console.WriteLine("\r\nPress any key to continue...");
             Console.ReadKey();
