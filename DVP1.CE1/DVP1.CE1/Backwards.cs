@@ -34,7 +34,8 @@ namespace DVP1.CE1
             while (numberOfWords < 6)
             {
                 Console.Clear();
-                Console.WriteLine("Oops!  There were only {0} words in that sentence.", numberOfWords);
+                Console.WriteLine("Coding Challenge 2:  BACKWARDS");
+                Console.WriteLine("\r\nOops!  There were only {0} words in that sentence.", numberOfWords);
                 Console.WriteLine("Please enter a sentence containing no less than six (6) words:");
                 userSentence = Console.ReadLine();
 
@@ -44,16 +45,18 @@ namespace DVP1.CE1
             }
 
             Console.Clear();
-            Console.WriteLine("Great!  The sentence you entered is {0} words long.  Here it is again, in case you forgot what it was:", numberOfWords);
+            Console.WriteLine("Coding Challenge 2:  BACKWARDS");
+            Console.WriteLine("\r\nGreat!  The sentence you entered is {0} words long.  Here it is again, in case you forgot what it was:", numberOfWords);
             Console.WriteLine("\"{0}\"", userSentence);
 
-            Console.WriteLine("\r\nNext, we'll show you what that sentence would look like if you typed it backwards.  Ready?\r\nPress any key to continue...");
+            Console.WriteLine("\r\nNext, we'll show you what that sentence would look like if you typed it backwards.  Ready?\r\n\r\nPress any key to continue...");
             Console.ReadKey();
 
             string reversedSentence = ReverseSentence(userSentence);
 
             Console.Clear();
-            Console.WriteLine("Your reversed sentence looks like this:");
+            Console.WriteLine("Coding Challenge 2:  BACKWARDS");
+            Console.WriteLine("\r\nYour reversed sentence looks like this:");
             Console.WriteLine("\"{0}\"", reversedSentence);
             Console.WriteLine("\r\nPress any key to continue...");
             Console.ReadKey();
