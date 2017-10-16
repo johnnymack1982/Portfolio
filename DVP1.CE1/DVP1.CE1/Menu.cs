@@ -91,7 +91,7 @@ namespace DVP1.CE1
 
                 Console.Clear();
                 Console.WriteLine("EXIT PROGRAM");
-                Console.WriteLine("\r\nYou have chosen to exit the program.\r\n\r\n");
+                Console.WriteLine("\r\nYou have chosen to exit the program.\r\n");
 
                 Environment.Exit(0);
 
