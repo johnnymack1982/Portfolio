@@ -50,50 +50,32 @@ namespace DVP1.CE1
 
 
 
-            if (userChoice == 1)
+            switch (userChoice)
             {
 
-                new SwapInfo();
+                case 1:
+                    new SwapInfo();
+                    break;
 
-            }
+                case 2:
+                    new Backwards();
+                    break;
 
+                case 3:
+                    new AgeConvert();
+                    break;
 
+                case 4:
+                    new TempConvert();
+                    break;
 
-            else if (userChoice == 2)
-            {
+                case 5:
+                    Console.Clear();
+                    Console.WriteLine("EXIT PROGRAM");
+                    Console.WriteLine("\r\nYou have chosen to exit the program.\r\n");
 
-                new Backwards();
-
-            }
-
-
-
-            else if (userChoice == 3)
-            {
-
-                new AgeConvert();
-
-            }
-
-
-
-            else if (userChoice == 4)
-            {
-
-                new TempConvert();
-
-            }
-
-
-
-            else
-            {
-
-                Console.Clear();
-                Console.WriteLine("EXIT PROGRAM");
-                Console.WriteLine("\r\nYou have chosen to exit the program.\r\n");
-
-                Environment.Exit(0);
+                    Environment.Exit(0);
+                    break;
 
             }
 
