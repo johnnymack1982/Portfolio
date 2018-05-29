@@ -143,6 +143,7 @@
             this.removeSelectedBtn.TabIndex = 4;
             this.removeSelectedBtn.Text = "X";
             this.removeSelectedBtn.UseVisualStyleBackColor = true;
+            this.removeSelectedBtn.Click += new System.EventHandler(this.removeSelectedBtn_Click);
             // 
             // movetoNeedBtn
             // 

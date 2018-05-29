@@ -38,6 +38,11 @@ namespace MackJohn_Assignment1
             MoveToNeed();
         }
 
+        private void removeSelectedBtn_Click(object sender, EventArgs e)
+        {
+            RemoveSelected();
+        }
+
         private void MoveToHave()
         {
             int currentIndex = -1;
@@ -74,6 +79,27 @@ namespace MackJohn_Assignment1
 
                 haveList.RemoveAt(currentIndex);
                 haveListBox.Items.RemoveAt(currentIndex);
+            }
+        }
+
+        private void RemoveSelected()
+        {
+            int currentIndex = -1;
+
+            if(haveListBox.SelectedItems.Count != 0)
+            {
+                currentIndex = haveListBox.SelectedIndex;
+
+                haveList.RemoveAt(currentIndex);
+                haveListBox.Items.RemoveAt(currentIndex);
+            }
+
+            else if(needListBox.SelectedItems.Count != 0)
+            {
+                currentIndex = needListBox.SelectedIndex;
+
+                needList.RemoveAt(currentIndex);
+                needListBox.Items.RemoveAt(currentIndex);
             }
         }
 
