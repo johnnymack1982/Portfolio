@@ -55,6 +55,11 @@ namespace MackJohn_Assignment1
             ValidateInput();
         }
 
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void ClearFields()
         {
             itemNameTextBox.Text = null;
