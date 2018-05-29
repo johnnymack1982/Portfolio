@@ -160,6 +160,7 @@
             this.addNewBtn.TabIndex = 6;
             this.addNewBtn.Text = "New Item";
             this.addNewBtn.UseVisualStyleBackColor = true;
+            this.addNewBtn.Click += new System.EventHandler(this.addNewBtn_Click);
             // 
             // FormShoppingList
             // 
