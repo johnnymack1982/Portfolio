@@ -67,6 +67,7 @@
             this.itemNameTextBox.Name = "itemNameTextBox";
             this.itemNameTextBox.Size = new System.Drawing.Size(264, 31);
             this.itemNameTextBox.TabIndex = 0;
+            this.itemNameTextBox.TextChanged += new System.EventHandler(this.itemNameTextBox_TextChanged);
             // 
             // labelItemName
             // 
@@ -90,6 +91,7 @@
             this.pricePicker.Size = new System.Drawing.Size(120, 31);
             this.pricePicker.TabIndex = 2;
             this.pricePicker.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.pricePicker.ValueChanged += new System.EventHandler(this.pricePicker_ValueChanged);
             // 
             // labelPrice
             // 
@@ -110,6 +112,7 @@
             this.haveRdoBtn.TabStop = true;
             this.haveRdoBtn.Text = "I HAVE this item";
             this.haveRdoBtn.UseVisualStyleBackColor = true;
+            this.haveRdoBtn.CheckedChanged += new System.EventHandler(this.haveRdoBtn_CheckedChanged);
             // 
             // needRdoBtn
             // 
@@ -121,6 +124,7 @@
             this.needRdoBtn.TabStop = true;
             this.needRdoBtn.Text = "I NEED this item";
             this.needRdoBtn.UseVisualStyleBackColor = true;
+            this.needRdoBtn.CheckedChanged += new System.EventHandler(this.needRdoBtn_CheckedChanged);
             // 
             // priorityPicker
             // 
@@ -131,6 +135,7 @@
             this.priorityPicker.Name = "priorityPicker";
             this.priorityPicker.Size = new System.Drawing.Size(264, 33);
             this.priorityPicker.TabIndex = 6;
+            this.priorityPicker.TextChanged += new System.EventHandler(this.priorityPicker_TextChanged);
             // 
             // labelPriority
             // 

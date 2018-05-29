@@ -34,5 +34,43 @@ namespace MackJohn_Assignment1
             priorityPicker.Enabled = false;
             addBtn.Enabled = false;
         }
+
+        private void itemNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ValidateInput();
+        }
+
+        private void ValidateInput()
+        {
+            if(itemNameTextBox.Text != null && pricePicker.Value != 0 && (haveRdoBtn.Checked == true || needRdoBtn.Checked == true) && priorityPicker.Text != null)
+            {
+                addBtn.Enabled = true;
+            }
+
+            else
+            {
+                addBtn.Enabled = false;
+            }
+        }
+
+        private void pricePicker_ValueChanged(object sender, EventArgs e)
+        {
+            ValidateInput();
+        }
+
+        private void haveRdoBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            ValidateInput();
+        }
+
+        private void needRdoBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            ValidateInput();
+        }
+
+        private void priorityPicker_TextChanged(object sender, EventArgs e)
+        {
+            ValidateInput();
+        }
     }
 }
