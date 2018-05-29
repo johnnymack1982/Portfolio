@@ -205,7 +205,10 @@ namespace MackJohn_Assignment1
 
                     if (loadStream.Name != "Shopping_List")
                     {
-                        MessageBox.Show("Invalid File");
+                        string message = "Please choose a valid XML file";
+                        string caption = "Invalid File";
+
+                        MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                         return;
                     }
