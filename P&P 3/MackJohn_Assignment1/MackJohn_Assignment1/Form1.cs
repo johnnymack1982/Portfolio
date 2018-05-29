@@ -30,11 +30,18 @@ namespace MackJohn_Assignment1
 
         private void moveToHaveBtn_Click(object sender, EventArgs e)
         {
+            MoveToHave();
+        }
+
+        private void MoveToHave()
+        {
             int currentIndex = -1;
 
-            if(needListBox.SelectedItems.Count != 0)
+            if (needListBox.SelectedItems.Count != 0)
             {
                 currentIndex = needListBox.SelectedIndex;
+
+                needList[currentIndex].Priority = 4;
 
                 haveList.Add(needList[currentIndex]);
                 haveListBox.Items.Add(needList[currentIndex]);

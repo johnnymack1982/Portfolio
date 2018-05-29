@@ -78,24 +78,7 @@ namespace MackJohn_Assignment1
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            newItem.Name = itemNameTextBox.Text;
-            newItem.Price = pricePicker.Value;
-
-            if(haveRdoBtn.Checked == true)
-            {
-                newItem.HaveOrNeed = 1;
-                newItem.Priority = 4;
-            }
-
-            else if(needRdoBtn.Checked == true)
-            {
-                newItem.HaveOrNeed = 2;
-                newItem.Priority = priorityPicker.SelectedIndex;
-            }
-
-            NewItemAdded(this, new EventArgs());
-
-            this.Close();
+            AddItem();
         }
 
         private void ClearFields()
@@ -136,6 +119,28 @@ namespace MackJohn_Assignment1
                 priorityPicker.Enabled = true;
                 priorityPicker.Text = null;
             }
+        }
+
+        private void AddItem()
+        {
+            newItem.Name = itemNameTextBox.Text;
+            newItem.Price = pricePicker.Value;
+
+            if (haveRdoBtn.Checked == true)
+            {
+                newItem.HaveOrNeed = 1;
+                newItem.Priority = 4;
+            }
+
+            else if (needRdoBtn.Checked == true)
+            {
+                newItem.HaveOrNeed = 2;
+                newItem.Priority = priorityPicker.SelectedIndex;
+            }
+
+            NewItemAdded(this, new EventArgs());
+
+            this.Close();
         }
     }
 }
