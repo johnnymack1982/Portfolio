@@ -61,6 +61,11 @@ namespace MackJohn_Assignment1
             needListBox.SelectedIndex = currentIndex;
         }
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void MoveToHave()
         {
             int currentIndex = -1;
