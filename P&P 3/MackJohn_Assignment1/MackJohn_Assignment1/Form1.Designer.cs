@@ -41,6 +41,7 @@
             this.removeSelectedBtn = new System.Windows.Forms.Button();
             this.movetoNeedBtn = new System.Windows.Forms.Button();
             this.addNewBtn = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.groupBoxHave.SuspendLayout();
             this.groupBoxNeed.SuspendLayout();
@@ -53,7 +54,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(974, 42);
+            this.menuStrip1.Size = new System.Drawing.Size(974, 40);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -73,6 +74,7 @@
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
@@ -171,6 +173,11 @@
             this.addNewBtn.UseVisualStyleBackColor = true;
             this.addNewBtn.Click += new System.EventHandler(this.addNewBtn_Click);
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "xml";
+            this.saveFileDialog1.Filter = ".xml|";
+            // 
             // FormShoppingList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -211,6 +218,7 @@
         private System.Windows.Forms.Button removeSelectedBtn;
         private System.Windows.Forms.Button movetoNeedBtn;
         private System.Windows.Forms.Button addNewBtn;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 
