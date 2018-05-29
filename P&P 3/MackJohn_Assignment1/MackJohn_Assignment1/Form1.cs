@@ -33,6 +33,11 @@ namespace MackJohn_Assignment1
             MoveToHave();
         }
 
+        private void movetoNeedBtn_Click(object sender, EventArgs e)
+        {
+            MoveToNeed();
+        }
+
         private void MoveToHave()
         {
             int currentIndex = -1;
@@ -48,6 +53,27 @@ namespace MackJohn_Assignment1
 
                 needList.RemoveAt(currentIndex);
                 needListBox.Items.RemoveAt(currentIndex);
+            }
+        }
+
+        private void MoveToNeed()
+        {
+            int currentIndex = -1;
+
+            if(haveListBox.SelectedItems.Count != 0)
+            {
+                currentIndex = haveListBox.SelectedIndex;
+
+                if(haveList[currentIndex].Priority == 4)
+                {
+                    haveList[currentIndex].Priority = 2;
+                }
+
+                needList.Add(haveList[currentIndex]);
+                needListBox.Items.Add(haveList[currentIndex]);
+
+                haveList.RemoveAt(currentIndex);
+                haveListBox.Items.RemoveAt(currentIndex);
             }
         }
 

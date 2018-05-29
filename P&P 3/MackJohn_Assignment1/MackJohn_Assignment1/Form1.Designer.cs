@@ -152,6 +152,7 @@
             this.movetoNeedBtn.TabIndex = 5;
             this.movetoNeedBtn.Text = ">>";
             this.movetoNeedBtn.UseVisualStyleBackColor = true;
+            this.movetoNeedBtn.Click += new System.EventHandler(this.movetoNeedBtn_Click);
             // 
             // addNewBtn
             // 
