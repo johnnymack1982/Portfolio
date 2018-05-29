@@ -104,6 +104,7 @@
             this.haveListBox.Name = "haveListBox";
             this.haveListBox.Size = new System.Drawing.Size(374, 552);
             this.haveListBox.TabIndex = 0;
+            this.haveListBox.SelectedIndexChanged += new System.EventHandler(this.haveListBox_SelectedIndexChanged);
             // 
             // groupBoxNeed
             // 
@@ -124,6 +125,7 @@
             this.needListBox.Name = "needListBox";
             this.needListBox.Size = new System.Drawing.Size(374, 552);
             this.needListBox.TabIndex = 0;
+            this.needListBox.SelectedIndexChanged += new System.EventHandler(this.needListBox_SelectedIndexChanged);
             // 
             // moveToHaveBtn
             // 

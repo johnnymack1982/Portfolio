@@ -43,6 +43,24 @@ namespace MackJohn_Assignment1
             RemoveSelected();
         }
 
+        private void haveListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int currentIndex = haveListBox.SelectedIndex;
+
+            needListBox.SelectedItem = null;
+
+            haveListBox.SelectedIndex = currentIndex;
+        }
+
+        private void needListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int currentIndex = needListBox.SelectedIndex;
+
+            haveListBox.SelectedItem = null;
+
+            needListBox.SelectedIndex = currentIndex;
+        }
+
         private void MoveToHave()
         {
             int currentIndex = -1;
