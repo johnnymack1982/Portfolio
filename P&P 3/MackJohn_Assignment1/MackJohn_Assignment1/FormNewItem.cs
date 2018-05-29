@@ -12,6 +12,8 @@ namespace MackJohn_Assignment1
 {
     public partial class FormNewItem : Form
     {
+        ShoppingItem newItem = new ShoppingItem();
+
         public FormNewItem()
         {
             InitializeComponent();
@@ -24,6 +26,35 @@ namespace MackJohn_Assignment1
             ClearFields();
         }
 
+        private void itemNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ValidateInput();
+        }
+
+        private void pricePicker_ValueChanged(object sender, EventArgs e)
+        {
+            ValidateInput();
+        }
+
+        private void haveRdoBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            HaveOrNeed();
+
+            ValidateInput();
+        }
+
+        private void needRdoBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            HaveOrNeed();
+
+            ValidateInput();
+        }
+
+        private void priorityPicker_TextChanged(object sender, EventArgs e)
+        {
+            ValidateInput();
+        }
+
         private void ClearFields()
         {
             itemNameTextBox.Text = null;
@@ -33,11 +64,6 @@ namespace MackJohn_Assignment1
             priorityPicker.Text = null;
             priorityPicker.Enabled = false;
             addBtn.Enabled = false;
-        }
-
-        private void itemNameTextBox_TextChanged(object sender, EventArgs e)
-        {
-            ValidateInput();
         }
 
         private void ValidateInput()
@@ -53,24 +79,20 @@ namespace MackJohn_Assignment1
             }
         }
 
-        private void pricePicker_ValueChanged(object sender, EventArgs e)
+        private void HaveOrNeed()
         {
-            ValidateInput();
-        }
+            if(haveRdoBtn.Checked == true)
+            {
+                priorityPicker.Enabled = false;
+                priorityPicker.Text = "Already Have";
+                newItem.Priority = 4;
+            }
 
-        private void haveRdoBtn_CheckedChanged(object sender, EventArgs e)
-        {
-            ValidateInput();
-        }
-
-        private void needRdoBtn_CheckedChanged(object sender, EventArgs e)
-        {
-            ValidateInput();
-        }
-
-        private void priorityPicker_TextChanged(object sender, EventArgs e)
-        {
-            ValidateInput();
+            else if(needRdoBtn.Checked == true)
+            {
+                priorityPicker.Enabled = true;
+                priorityPicker.Text = null;
+            }
         }
     }
 }
