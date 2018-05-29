@@ -131,6 +131,11 @@
             this.priorityPicker.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.priorityPicker.Enabled = false;
             this.priorityPicker.FormattingEnabled = true;
+            this.priorityPicker.Items.AddRange(new object[] {
+            "URGENT",
+            "Must Have",
+            "Need Soon",
+            "Nice to Have"});
             this.priorityPicker.Location = new System.Drawing.Point(169, 267);
             this.priorityPicker.Name = "priorityPicker";
             this.priorityPicker.Size = new System.Drawing.Size(264, 33);

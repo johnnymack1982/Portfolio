@@ -84,7 +84,7 @@ namespace MackJohn_Assignment1
             if(haveRdoBtn.Checked == true)
             {
                 priorityPicker.Enabled = false;
-                priorityPicker.Text = "Already Have";
+                priorityPicker.Text = null;
                 newItem.Priority = 4;
             }
 
