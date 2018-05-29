@@ -15,6 +15,24 @@ namespace MackJohn_Assignment1
         public FormNewItem()
         {
             InitializeComponent();
+
+            ClearFields();
+        }
+
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+        }
+
+        private void ClearFields()
+        {
+            itemNameTextBox.Text = null;
+            pricePicker.Value = 0;
+            haveRdoBtn.Checked = false;
+            needRdoBtn.Checked = false;
+            priorityPicker.Text = null;
+            priorityPicker.Enabled = false;
+            addBtn.Enabled = false;
         }
     }
 }

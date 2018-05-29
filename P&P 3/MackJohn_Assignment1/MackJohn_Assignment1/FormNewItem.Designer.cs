@@ -35,7 +35,7 @@
             this.labelPrice = new System.Windows.Forms.Label();
             this.haveRdoBtn = new System.Windows.Forms.RadioButton();
             this.needRdoBtn = new System.Windows.Forms.RadioButton();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.priorityPicker = new System.Windows.Forms.ComboBox();
             this.labelPriority = new System.Windows.Forms.Label();
             this.clearBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
@@ -47,7 +47,7 @@
             // groupBoxNewItem
             // 
             this.groupBoxNewItem.Controls.Add(this.labelPriority);
-            this.groupBoxNewItem.Controls.Add(this.comboBox1);
+            this.groupBoxNewItem.Controls.Add(this.priorityPicker);
             this.groupBoxNewItem.Controls.Add(this.needRdoBtn);
             this.groupBoxNewItem.Controls.Add(this.haveRdoBtn);
             this.groupBoxNewItem.Controls.Add(this.labelPrice);
@@ -122,15 +122,15 @@
             this.needRdoBtn.Text = "I NEED this item";
             this.needRdoBtn.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // priorityPicker
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Enabled = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(169, 267);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(264, 33);
-            this.comboBox1.TabIndex = 6;
+            this.priorityPicker.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.priorityPicker.Enabled = false;
+            this.priorityPicker.FormattingEnabled = true;
+            this.priorityPicker.Location = new System.Drawing.Point(169, 267);
+            this.priorityPicker.Name = "priorityPicker";
+            this.priorityPicker.Size = new System.Drawing.Size(264, 33);
+            this.priorityPicker.TabIndex = 6;
             // 
             // labelPriority
             // 
@@ -149,6 +149,7 @@
             this.clearBtn.TabIndex = 1;
             this.clearBtn.Text = "Clear";
             this.clearBtn.UseVisualStyleBackColor = true;
+            this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
             // cancelBtn
             // 
@@ -193,7 +194,7 @@
 
         private System.Windows.Forms.GroupBox groupBoxNewItem;
         private System.Windows.Forms.Label labelPriority;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox priorityPicker;
         private System.Windows.Forms.RadioButton needRdoBtn;
         private System.Windows.Forms.RadioButton haveRdoBtn;
         private System.Windows.Forms.Label labelPrice;
