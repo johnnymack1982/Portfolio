@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MackJohn_Assignment1
 {
-    public partial class Form1 : Form
+    public partial class FormShoppingList : Form
     {
-        public Form1()
+        public FormShoppingList()
         {
             InitializeComponent();
         }
