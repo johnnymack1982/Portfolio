@@ -67,7 +67,29 @@ namespace MackJohn_Assignment1
 
         public override string ToString()
         {
-            return Name + ": $" + Price.ToString();
+            string priorityString = "";
+
+            if(Priority == 0)
+            {
+                priorityString = " - URGENT";
+            }
+
+            else if(Priority == 1)
+            {
+                priorityString = " - Must Have";
+            }
+
+            else if (Priority == 2)
+            {
+                priorityString = " - Need Soon";
+            }
+
+            else if (Priority == 3)
+            {
+                priorityString = " - Nice to Have";
+            }
+
+            return Name + ": " + Price.ToString("C") + priorityString;
         }
     }
 }

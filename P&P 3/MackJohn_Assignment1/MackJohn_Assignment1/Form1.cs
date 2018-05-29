@@ -27,5 +27,25 @@ namespace MackJohn_Assignment1
             FormNewItem formNewItem = new FormNewItem();
             formNewItem.ShowDialog();
         }
+
+        public void HandleNewItemAdded(object sender, EventArgs e)
+        {
+            FormNewItem extractForm = sender as FormNewItem;
+
+            currentItem = new ShoppingItem();
+            currentItem = extractForm.NewItem;
+
+            if(currentItem.HaveOrNeed == 1)
+            {
+                haveList.Add(currentItem);
+                haveListBox.Items.Add(currentItem);
+            }
+
+            else if(currentItem.HaveOrNeed == 2)
+            {
+                needList.Add(currentItem);
+                needListBox.Items.Add(currentItem);
+            }
+        }
     }
 }

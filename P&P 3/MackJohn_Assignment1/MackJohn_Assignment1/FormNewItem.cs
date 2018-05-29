@@ -10,15 +10,31 @@ using System.Windows.Forms;
 
 namespace MackJohn_Assignment1
 {
-    public partial class FormNewItem : Form
+    partial class FormNewItem : Form
     {
+        private EventHandler NewItemAdded;
+
+        FormShoppingList formShoppingList = Application.OpenForms[0] as FormShoppingList;
+
         ShoppingItem newItem = new ShoppingItem();
+
+        public ShoppingItem NewItem
+        {
+            get
+            {
+                return newItem;
+            }
+        }
 
         public FormNewItem()
         {
             InitializeComponent();
 
+            NewItemAdded += formShoppingList.HandleNewItemAdded;
+
             ClearFields();
+
+            newItem = new ShoppingItem();
         }
 
         private void clearBtn_Click(object sender, EventArgs e)
@@ -57,6 +73,28 @@ namespace MackJohn_Assignment1
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            newItem.Name = itemNameTextBox.Text;
+            newItem.Price = pricePicker.Value;
+
+            if(haveRdoBtn.Checked == true)
+            {
+                newItem.HaveOrNeed = 1;
+                newItem.Priority = 4;
+            }
+
+            else if(needRdoBtn.Checked == true)
+            {
+                newItem.HaveOrNeed = 2;
+                newItem.Priority = priorityPicker.SelectedIndex;
+            }
+
+            NewItemAdded(this, new EventArgs());
+
             this.Close();
         }
 
