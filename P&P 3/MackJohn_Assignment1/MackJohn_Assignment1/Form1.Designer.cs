@@ -42,6 +42,7 @@
             this.movetoNeedBtn = new System.Windows.Forms.Button();
             this.addNewBtn = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.groupBoxHave.SuspendLayout();
             this.groupBoxNeed.SuspendLayout();
@@ -82,6 +83,7 @@
             this.loadToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
             this.loadToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
             this.loadToolStripMenuItem.Text = "Load";
+            this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -178,6 +180,12 @@
             this.saveFileDialog1.DefaultExt = "xml";
             this.saveFileDialog1.Filter = ".xml|";
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.DefaultExt = "xml";
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = ".xml|";
+            // 
             // FormShoppingList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -219,6 +227,7 @@
         private System.Windows.Forms.Button movetoNeedBtn;
         private System.Windows.Forms.Button addNewBtn;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

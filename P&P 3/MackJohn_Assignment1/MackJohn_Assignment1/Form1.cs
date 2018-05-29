@@ -74,6 +74,11 @@ namespace MackJohn_Assignment1
             SaveToFile();
         }
 
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadFromFile();
+        }
+
         private void MoveToHave()
         {
             int currentIndex = -1;
@@ -180,6 +185,100 @@ namespace MackJohn_Assignment1
 
                     saveStream.WriteEndElement();
                     saveStream.WriteEndElement();
+                }
+            }
+        }
+
+        private void LoadFromFile()
+        {
+            XmlReaderSettings settings = new XmlReaderSettings();
+
+            settings.ConformanceLevel = ConformanceLevel.Document;
+            settings.IgnoreComments = true;
+            settings.IgnoreWhitespace = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                using (XmlReader loadStream = XmlReader.Create(openFileDialog1.FileName, settings))
+                {
+                    loadStream.MoveToContent();
+
+                    if (loadStream.Name != "Shopping_List")
+                    {
+                        MessageBox.Show("Invalid File");
+
+                        return;
+                    }
+
+                    else
+                    {
+                        haveList.Clear();
+                        haveListBox.Items.Clear();
+
+                        needList.Clear();
+                        needListBox.Items.Clear();
+                    }
+
+                    while (loadStream.Read())
+                    {
+                        if (loadStream.Name == "Item" && loadStream.IsStartElement())
+                        {
+                            currentItem = new ShoppingItem();
+                        }
+
+                        if (loadStream.Name == "Name" && loadStream.IsStartElement())
+                        {
+                            currentItem.Name = loadStream.ReadString();
+                        }
+
+                        if (loadStream.Name == "Price" && loadStream.IsStartElement())
+                        {
+                            string priceString = null;
+                            decimal price = 0;
+
+                            priceString = loadStream.ReadString();
+
+                            decimal.TryParse(priceString, out price);
+
+                            currentItem.Price = price;
+                        }
+
+                        if (loadStream.Name == "Have_Or_Need" && loadStream.IsStartElement())
+                        {
+                            string haveOrNeedString = null;
+                            int haveOrNeed = 0;
+
+                            haveOrNeedString = loadStream.ReadString();
+
+                            int.TryParse(haveOrNeedString, out haveOrNeed);
+
+                            currentItem.HaveOrNeed = haveOrNeed;
+                        }
+
+                        if (loadStream.Name == "Priority" && loadStream.IsStartElement())
+                        {
+                            string priorityString = null;
+                            int priority = 0;
+
+                            priorityString = loadStream.ReadString();
+
+                            int.TryParse(priorityString, out priority);
+
+                            currentItem.Priority = priority;
+
+                            if (currentItem.HaveOrNeed == 1)
+                            {
+                                haveList.Add(currentItem);
+                                haveListBox.Items.Add(currentItem);
+                            }
+
+                            else if (currentItem.HaveOrNeed == 2)
+                            {
+                                needList.Add(currentItem);
+                                needListBox.Items.Add(currentItem);
+                            }
+                        }
+                    }
                 }
             }
         }
