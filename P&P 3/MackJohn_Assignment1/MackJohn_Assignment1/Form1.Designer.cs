@@ -133,6 +133,7 @@
             this.moveToHaveBtn.TabIndex = 3;
             this.moveToHaveBtn.Text = "<<";
             this.moveToHaveBtn.UseVisualStyleBackColor = true;
+            this.moveToHaveBtn.Click += new System.EventHandler(this.moveToHaveBtn_Click);
             // 
             // removeSelectedBtn
             // 

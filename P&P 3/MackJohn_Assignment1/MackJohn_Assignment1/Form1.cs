@@ -28,6 +28,22 @@ namespace MackJohn_Assignment1
             formNewItem.ShowDialog();
         }
 
+        private void moveToHaveBtn_Click(object sender, EventArgs e)
+        {
+            int currentIndex = -1;
+
+            if(needListBox.SelectedItems.Count != 0)
+            {
+                currentIndex = needListBox.SelectedIndex;
+
+                haveList.Add(needList[currentIndex]);
+                haveListBox.Items.Add(needList[currentIndex]);
+
+                needList.RemoveAt(currentIndex);
+                needListBox.Items.RemoveAt(currentIndex);
+            }
+        }
+
         public void HandleNewItemAdded(object sender, EventArgs e)
         {
             FormNewItem extractForm = sender as FormNewItem;
