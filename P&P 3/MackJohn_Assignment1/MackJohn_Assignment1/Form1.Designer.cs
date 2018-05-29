@@ -34,8 +34,8 @@
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxHave = new System.Windows.Forms.GroupBox();
-            this.groupBoxNeed = new System.Windows.Forms.GroupBox();
             this.haveListBox = new System.Windows.Forms.ListBox();
+            this.groupBoxNeed = new System.Windows.Forms.GroupBox();
             this.needListBox = new System.Windows.Forms.ListBox();
             this.moveToHaveBtn = new System.Windows.Forms.Button();
             this.removeSelectedBtn = new System.Windows.Forms.Button();
@@ -70,19 +70,19 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(165, 38);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(165, 38);
             this.loadToolStripMenuItem.Text = "Load";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(165, 38);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // groupBoxHave
@@ -95,16 +95,6 @@
             this.groupBoxHave.TabStop = false;
             this.groupBoxHave.Text = "Items I HAVE";
             // 
-            // groupBoxNeed
-            // 
-            this.groupBoxNeed.Controls.Add(this.needListBox);
-            this.groupBoxNeed.Location = new System.Drawing.Point(562, 73);
-            this.groupBoxNeed.Name = "groupBoxNeed";
-            this.groupBoxNeed.Size = new System.Drawing.Size(380, 582);
-            this.groupBoxNeed.TabIndex = 2;
-            this.groupBoxNeed.TabStop = false;
-            this.groupBoxNeed.Text = "Items I NEED";
-            // 
             // haveListBox
             // 
             this.haveListBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -114,6 +104,16 @@
             this.haveListBox.Name = "haveListBox";
             this.haveListBox.Size = new System.Drawing.Size(374, 552);
             this.haveListBox.TabIndex = 0;
+            // 
+            // groupBoxNeed
+            // 
+            this.groupBoxNeed.Controls.Add(this.needListBox);
+            this.groupBoxNeed.Location = new System.Drawing.Point(562, 73);
+            this.groupBoxNeed.Name = "groupBoxNeed";
+            this.groupBoxNeed.Size = new System.Drawing.Size(380, 582);
+            this.groupBoxNeed.TabIndex = 2;
+            this.groupBoxNeed.TabStop = false;
+            this.groupBoxNeed.Text = "Items I NEED";
             // 
             // needListBox
             // 
@@ -173,6 +173,7 @@
             this.Controls.Add(this.groupBoxNeed);
             this.Controls.Add(this.groupBoxHave);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormShoppingList";
             this.Text = "Shopping List";
