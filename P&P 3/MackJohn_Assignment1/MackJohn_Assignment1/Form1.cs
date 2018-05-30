@@ -205,85 +205,51 @@ namespace MackJohn_Assignment1
         // Custom method to save current lists to XML file
         private void SaveToFile()
         {
+            // Make sure the file name in the Save dialog is empty to prevent confusion
+            saveFileDialog1.FileName = null;
+
             // Show the Save File dialog and proceed if the user clicks OK
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                // Clear the filename from the dialog box to prevent confusion
-                saveFileDialog1.FileName = null;
-
-                // Instantiate new XML settings item
-                XmlWriterSettings settings = new XmlWriterSettings();
-
-                // Set the save stream conformance level to Document
-                settings.ConformanceLevel = ConformanceLevel.Document;
-
-                // Set the save stream to indent child elements
-                settings.Indent = true;
-
-                // Opens save stream, saves to selected file name, and closes the stream when finished
-                using (XmlWriter saveStream = XmlWriter.Create(saveFileDialog1.FileName, settings))
+                // Open save stream, write each item to file, and close the stream when finished
+                using (StreamWriter saveStream = new StreamWriter(saveFileDialog1.FileName))
                 {
-                    // Write valid file indicator
-                    saveStream.WriteStartElement("Shopping_List");
+                    // Write beginning line of new file
+                    saveStream.WriteLine("Shopping List");
 
-                    // Write beginning line for HAVE list
-                    saveStream.WriteStartElement("Have_List");
+                    // Write a blank line
+                    saveStream.WriteLine();
 
-                    // For each item in the HAVE list, this will run
+                    // Write beginning line for the HAVE list
+                    saveStream.WriteLine("Items I HAVE:");
+
+                    // Declare variable to track current item number in list
+                    int itemNumber = 1;
+
+                    // Write each item in the HAVE list to file
                     foreach (ShoppingItem item in haveList)
                     {
-                        // Start a new item
-                        saveStream.WriteStartElement("Item");
+                        saveStream.WriteLine(itemNumber.ToString() + ") " + item.ToString());
 
-                        // Write the current item's name to file
-                        saveStream.WriteElementString("Name", item.Name);
-
-                        // Write the current item's price to file
-                        saveStream.WriteElementString("Price", item.Price.ToString());
-
-                        // Write the current item's HAVE or NEED indicator to file
-                        saveStream.WriteElementString("Have_Or_Need", "1");
-
-                        // Write the current item's priority level to file
-                        saveStream.WriteElementString("Priority", "4");
-
-                        // Write end element for the current item
-                        saveStream.WriteEndElement();
+                        itemNumber++;
                     }
 
-                    // Write end element for the HAVE list
-                    saveStream.WriteEndElement();
+                    // Write a blank line
+                    saveStream.WriteLine();
 
                     // Write beginning line for NEED list
-                    saveStream.WriteStartElement("Need_List");
+                    saveStream.WriteLine("Items I NEED:");
 
-                    // For each item in the NEED list, this will run
+                    // Reset item count for next list
+                    itemNumber = 1;
+
+                    // Write each item in the NEED list to file
                     foreach (ShoppingItem item in needList)
                     {
-                        // Start a new item
-                        saveStream.WriteStartElement("Item");
+                        saveStream.WriteLine(itemNumber.ToString() + ") " + item.ToString());
 
-                        // Write the current item's name to file
-                        saveStream.WriteElementString("Name", item.Name);
-
-                        // Write the current item's price to file
-                        saveStream.WriteElementString("Price", item.Price.ToString());
-
-                        // Write the current item's Have or Need indicator to file
-                        saveStream.WriteElementString("Have_Or_Need", "2");
-
-                        // Write the current item's priority level to file
-                        saveStream.WriteElementString("Priority", item.Priority.ToString());
-
-                        // Write end element for the current item
-                        saveStream.WriteEndElement();
+                        itemNumber++;
                     }
-
-                    // Write end element for the NEED list
-                    saveStream.WriteEndElement();
-
-                    // Write end element for the XML file
-                    saveStream.WriteEndElement();
                 }
             }
         }
