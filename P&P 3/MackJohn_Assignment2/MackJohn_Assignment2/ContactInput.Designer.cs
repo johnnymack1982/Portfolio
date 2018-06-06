@@ -229,6 +229,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(514, 504);
             this.Controls.Add(this.groupBoxContactInfo);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormContactDetails";
             this.Text = "Contact Details";
             this.groupBoxContactInfo.ResumeLayout(false);

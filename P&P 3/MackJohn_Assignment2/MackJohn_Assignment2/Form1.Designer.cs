@@ -59,7 +59,7 @@
             this.viewToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1302, 42);
+            this.menuStrip1.Size = new System.Drawing.Size(1302, 40);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -70,7 +70,7 @@
             this.loadToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(64, 38);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(64, 36);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // saveToolStripMenuItem
@@ -104,7 +104,7 @@
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.contactToolStripMenuItem.Name = "contactToolStripMenuItem";
-            this.contactToolStripMenuItem.Size = new System.Drawing.Size(109, 38);
+            this.contactToolStripMenuItem.Size = new System.Drawing.Size(109, 36);
             this.contactToolStripMenuItem.Text = "Contact";
             // 
             // addToolStripMenuItem
@@ -137,7 +137,7 @@
             this.largeToolStripMenuItem,
             this.smallToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(78, 38);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(78, 36);
             this.viewToolStripMenuItem.Text = "View";
             // 
             // largeToolStripMenuItem
@@ -164,10 +164,10 @@
             // 
             this.contactsListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contactsListView.LargeImageList = this.imageListLarge;
-            this.contactsListView.Location = new System.Drawing.Point(0, 42);
+            this.contactsListView.Location = new System.Drawing.Point(0, 40);
             this.contactsListView.MultiSelect = false;
             this.contactsListView.Name = "contactsListView";
-            this.contactsListView.Size = new System.Drawing.Size(1302, 728);
+            this.contactsListView.Size = new System.Drawing.Size(1302, 730);
             this.contactsListView.SmallImageList = this.imageListSmall;
             this.contactsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.contactsListView.TabIndex = 1;
@@ -206,6 +206,7 @@
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "FormContactList";
             this.Text = "Contact List";
             this.menuStrip1.ResumeLayout(false);
