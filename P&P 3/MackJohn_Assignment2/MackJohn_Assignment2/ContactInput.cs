@@ -84,7 +84,7 @@ namespace MackJohn_Assignment2
             {
                 firstNameValid = false;
 
-                labelFirstName.ForeColor = Color.Black;
+                labelLastName.ForeColor = Color.Black;
 
                 lastNameValidator.Clear();
             }
@@ -168,6 +168,11 @@ namespace MackJohn_Assignment2
             this.Close();
         }
 
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+        }
+
         private void ValidateInput()
         {
             if (firstNameValid && lastNameValid && phoneValid && emailValid && typeSelected)
@@ -192,6 +197,25 @@ namespace MackJohn_Assignment2
             {
                 newContact.ImageIndex = 1;
             }
+        }
+
+        private void ClearFields()
+        {
+            firstNameInput.Text = null;
+            lastNameInput.Text = null;
+            phoneInput.Text = null;
+            emailInput.Text = null;
+            personalRdoBtn.Checked = false;
+            businessRdoBtn.Checked = false;
+
+            labelFirstName.ForeColor = Color.Black;
+            labelLastName.ForeColor = Color.Black;
+            labelPhone.ForeColor = Color.Black;
+            labelEMail.ForeColor = Color.Black;
+
+            firstNameValidator.Clear();
+            lastNameValidator.Clear();
+            emailValidator.Clear();
         }
     }
 }
