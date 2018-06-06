@@ -167,6 +167,8 @@
             // 
             // smallToolStripMenuItem
             // 
+            this.smallToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.smallToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.smallToolStripMenuItem.Name = "smallToolStripMenuItem";
             this.smallToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
             this.smallToolStripMenuItem.Text = "Small";
