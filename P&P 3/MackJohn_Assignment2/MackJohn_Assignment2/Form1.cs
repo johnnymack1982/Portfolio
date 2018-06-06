@@ -91,6 +91,11 @@ namespace MackJohn_Assignment2
             }
         }
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void Edit()
         {
             if(contactsListView.SelectedItems.Count != 0)
