@@ -41,6 +41,9 @@
             this.contactsListView = new System.Windows.Forms.ListView();
             this.imageListLarge = new System.Windows.Forms.ImageList(this.components);
             this.imageListSmall = new System.Windows.Forms.ImageList(this.components);
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.largeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.smallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,10 +52,11 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.contactToolStripMenuItem});
+            this.contactToolStripMenuItem,
+            this.viewToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1302, 42);
+            this.menuStrip1.Size = new System.Drawing.Size(1302, 40);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -123,9 +127,9 @@
             // 
             this.contactsListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contactsListView.LargeImageList = this.imageListSmall;
-            this.contactsListView.Location = new System.Drawing.Point(0, 42);
+            this.contactsListView.Location = new System.Drawing.Point(0, 40);
             this.contactsListView.Name = "contactsListView";
-            this.contactsListView.Size = new System.Drawing.Size(1302, 728);
+            this.contactsListView.Size = new System.Drawing.Size(1302, 730);
             this.contactsListView.SmallImageList = this.imageListLarge;
             this.contactsListView.TabIndex = 1;
             this.contactsListView.UseCompatibleStateImageBehavior = false;
@@ -141,6 +145,31 @@
             this.imageListSmall.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageListSmall.ImageSize = new System.Drawing.Size(16, 16);
             this.imageListSmall.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.largeToolStripMenuItem,
+            this.smallToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(78, 36);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // largeToolStripMenuItem
+            // 
+            this.largeToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.largeToolStripMenuItem.Checked = true;
+            this.largeToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.largeToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.largeToolStripMenuItem.Name = "largeToolStripMenuItem";
+            this.largeToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
+            this.largeToolStripMenuItem.Text = "Large";
+            // 
+            // smallToolStripMenuItem
+            // 
+            this.smallToolStripMenuItem.Name = "smallToolStripMenuItem";
+            this.smallToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
+            this.smallToolStripMenuItem.Text = "Small";
             // 
             // FormContactList
             // 
@@ -174,6 +203,9 @@
         private System.Windows.Forms.ListView contactsListView;
         private System.Windows.Forms.ImageList imageListSmall;
         private System.Windows.Forms.ImageList imageListLarge;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem largeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem smallToolStripMenuItem;
     }
 }
 
