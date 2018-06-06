@@ -83,6 +83,14 @@ namespace MackJohn_Assignment2
             }
         }
 
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                LoadFile();
+            }
+        }
+
         private void Edit()
         {
             if(contactsListView.SelectedItems.Count != 0)
@@ -166,6 +174,81 @@ namespace MackJohn_Assignment2
                 }
 
                 saveStream.WriteEndElement();
+            }
+        }
+
+        public void LoadFile()
+        {
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.ConformanceLevel = ConformanceLevel.Document;
+            settings.IgnoreComments = true;
+            settings.IgnoreWhitespace = true;
+
+            using(XmlReader loadStream = XmlReader.Create(openFileDialog1.FileName))
+            {
+                loadStream.MoveToContent();
+
+                if(loadStream.Name != "Contact_List")
+                {
+                    string caption = "Invalid File";
+                    string message = "Please load a valid XML file";
+                    MessageBoxButtons okBtn = MessageBoxButtons.OK;
+
+                    MessageBox.Show(message, caption, okBtn);
+
+                    return;
+                }
+
+                while (loadStream.Read())
+                {
+                    ListViewItem newContact = new ListViewItem();
+
+                    if(loadStream.Name == "Contact" && loadStream.IsStartElement())
+                    {
+                        currentContact = new Contact();
+                        newContact = new ListViewItem();
+                    }
+
+                    if(loadStream.Name == "First_Name" && loadStream.IsStartElement())
+                    {
+                        currentContact.FirstName = loadStream.ReadString();
+                    }
+
+                    if(loadStream.Name == "Last_Name" && loadStream.IsStartElement())
+                    {
+                        currentContact.LastName = loadStream.ReadString();
+                    }
+
+                    if(loadStream.Name == "Phone" && loadStream.IsStartElement())
+                    {
+                        currentContact.Phone = loadStream.ReadString();
+                    }
+
+                    if(loadStream.Name == "E_Mail" && loadStream.IsStartElement())
+                    {
+                        currentContact.EMail = loadStream.ReadString();
+                    }
+
+                    if(loadStream.Name == "Image_Index" && loadStream.IsStartElement())
+                    {
+                        string imageIndexString = loadStream.ReadString();
+                        int imageIndex = -1;
+
+                        int.TryParse(imageIndexString, out imageIndex);
+
+                        currentContact.ImageIndex = imageIndex;
+
+                        newContact.Text = currentContact.ToString();
+                        newContact.ImageIndex = currentContact.ImageIndex;
+                        newContact.Tag = currentContact;
+
+                        contactsListView.Items.Add(newContact);
+                        contactsListView.Sort();
+
+                        newContact = new ListViewItem();
+                        currentContact = new Contact();
+                    }
+                }
             }
         }
     }
