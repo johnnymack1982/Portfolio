@@ -11,8 +11,12 @@ using System.Text.RegularExpressions;
 
 namespace MackJohn_Assignment2
 {
-    public partial class FormContactDetails : Form
+    partial class FormContactDetails : Form
     {
+        private EventHandler ContactAdded;
+
+        FormContactList formContactList = Application.OpenForms[0] as FormContactList;
+
         bool firstNameValid = false;
         bool lastNameValid = false;
         bool phoneValid = false;
@@ -20,6 +24,14 @@ namespace MackJohn_Assignment2
         bool typeSelected = false;
 
         Contact newContact = new Contact();
+
+        public Contact NewContact
+        {
+            get
+            {
+                return newContact;
+            }
+        }
 
         public FormContactDetails()
         {
@@ -173,6 +185,17 @@ namespace MackJohn_Assignment2
             ClearFields();
         }
 
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            PopulateContact();
+
+            ContactAdded += formContactList.HandleContactAdded;
+
+            ContactAdded(this, new EventArgs());
+
+            this.Close();
+        }
+
         private void ValidateInput()
         {
             if (firstNameValid && lastNameValid && phoneValid && emailValid && typeSelected)
@@ -190,12 +213,12 @@ namespace MackJohn_Assignment2
         {
             if (personalRdoBtn.Checked)
             {
-                newContact.ImageIndex = 0;
+                newContact.ImageIndex = 1;
             }
 
             else if (businessRdoBtn.Checked)
             {
-                newContact.ImageIndex = 1;
+                newContact.ImageIndex = 0;
             }
         }
 
@@ -216,6 +239,14 @@ namespace MackJohn_Assignment2
             firstNameValidator.Clear();
             lastNameValidator.Clear();
             emailValidator.Clear();
+        }
+
+        private void PopulateContact()
+        {
+            newContact.FirstName = firstNameInput.Text;
+            newContact.LastName = lastNameInput.Text;
+            newContact.Phone = phoneInput.Text;
+            newContact.EMail = emailInput.Text;
         }
     }
 }

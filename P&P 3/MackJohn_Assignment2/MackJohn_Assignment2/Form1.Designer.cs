@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormContactList));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +57,7 @@
             this.viewToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1302, 40);
+            this.menuStrip1.Size = new System.Drawing.Size(1302, 42);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -126,25 +127,29 @@
             // contactsListView
             // 
             this.contactsListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contactsListView.LargeImageList = this.imageListSmall;
-            this.contactsListView.Location = new System.Drawing.Point(0, 40);
+            this.contactsListView.LargeImageList = this.imageListLarge;
+            this.contactsListView.Location = new System.Drawing.Point(0, 42);
+            this.contactsListView.MultiSelect = false;
             this.contactsListView.Name = "contactsListView";
-            this.contactsListView.Size = new System.Drawing.Size(1302, 730);
-            this.contactsListView.SmallImageList = this.imageListLarge;
+            this.contactsListView.Size = new System.Drawing.Size(1302, 728);
+            this.contactsListView.SmallImageList = this.imageListSmall;
+            this.contactsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.contactsListView.TabIndex = 1;
             this.contactsListView.UseCompatibleStateImageBehavior = false;
             // 
             // imageListLarge
             // 
-            this.imageListLarge.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageListLarge.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageListLarge.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListLarge.ImageStream")));
             this.imageListLarge.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListLarge.Images.SetKeyName(0, "icons8-company-96.png");
+            this.imageListLarge.Images.SetKeyName(1, "icons8-user-account-64.png");
             // 
             // imageListSmall
             // 
-            this.imageListSmall.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageListSmall.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageListSmall.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListSmall.ImageStream")));
             this.imageListSmall.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListSmall.Images.SetKeyName(0, "icons8-company-96.png");
+            this.imageListSmall.Images.SetKeyName(1, "icons8-user-account-64.png");
             // 
             // viewToolStripMenuItem
             // 
@@ -152,7 +157,7 @@
             this.largeToolStripMenuItem,
             this.smallToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(78, 36);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(78, 38);
             this.viewToolStripMenuItem.Text = "View";
             // 
             // largeToolStripMenuItem
@@ -164,6 +169,7 @@
             this.largeToolStripMenuItem.Name = "largeToolStripMenuItem";
             this.largeToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
             this.largeToolStripMenuItem.Text = "Large";
+            this.largeToolStripMenuItem.Click += new System.EventHandler(this.largeToolStripMenuItem_Click);
             // 
             // smallToolStripMenuItem
             // 
@@ -172,6 +178,7 @@
             this.smallToolStripMenuItem.Name = "smallToolStripMenuItem";
             this.smallToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
             this.smallToolStripMenuItem.Text = "Small";
+            this.smallToolStripMenuItem.Click += new System.EventHandler(this.smallToolStripMenuItem_Click);
             // 
             // FormContactList
             // 
