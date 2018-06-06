@@ -52,7 +52,7 @@
             this.contactToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1302, 40);
+            this.menuStrip1.Size = new System.Drawing.Size(1302, 42);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -94,7 +94,7 @@
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.contactToolStripMenuItem.Name = "contactToolStripMenuItem";
-            this.contactToolStripMenuItem.Size = new System.Drawing.Size(109, 36);
+            this.contactToolStripMenuItem.Size = new System.Drawing.Size(109, 38);
             this.contactToolStripMenuItem.Text = "Contact";
             // 
             // addToolStripMenuItem
@@ -103,6 +103,7 @@
             this.addToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.addToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
             this.addToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -122,9 +123,9 @@
             // 
             this.contactsListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contactsListView.LargeImageList = this.imageListSmall;
-            this.contactsListView.Location = new System.Drawing.Point(0, 40);
+            this.contactsListView.Location = new System.Drawing.Point(0, 42);
             this.contactsListView.Name = "contactsListView";
-            this.contactsListView.Size = new System.Drawing.Size(1302, 730);
+            this.contactsListView.Size = new System.Drawing.Size(1302, 728);
             this.contactsListView.SmallImageList = this.imageListLarge;
             this.contactsListView.TabIndex = 1;
             this.contactsListView.UseCompatibleStateImageBehavior = false;
@@ -148,6 +149,7 @@
             this.ClientSize = new System.Drawing.Size(1302, 770);
             this.Controls.Add(this.contactsListView);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormContactList";
             this.Text = "Contact List";

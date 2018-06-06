@@ -16,5 +16,11 @@ namespace MackJohn_Assignment2
         {
             InitializeComponent();
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormContactDetails formContactDetails = new FormContactDetails();
+            formContactDetails.ShowDialog();
+        }
     }
 }
