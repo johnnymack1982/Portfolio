@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace MackJohn_Assignment2
 {
@@ -70,6 +73,16 @@ namespace MackJohn_Assignment2
             DeleteContact();
         }
 
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.FileName = null;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                SaveFile();
+            }
+        }
+
         private void Edit()
         {
             if(contactsListView.SelectedItems.Count != 0)
@@ -125,6 +138,35 @@ namespace MackJohn_Assignment2
             currentContact = new Contact();
 
             contactsListView.Sort();
+        }
+
+        public void SaveFile()
+        {
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.ConformanceLevel = ConformanceLevel.Document;
+            settings.Indent = true;
+
+            using (XmlWriter saveStream = XmlWriter.Create(saveFileDialog1.FileName))
+            {
+                saveStream.WriteStartElement("Contact_List");
+
+                foreach(ListViewItem contact in contactsListView.Items)
+                {
+                    currentContact = contact.Tag as Contact;
+
+                    saveStream.WriteStartElement("Contact");
+
+                    saveStream.WriteElementString("First_Name", currentContact.FirstName);
+                    saveStream.WriteElementString("Last_Name", currentContact.LastName);
+                    saveStream.WriteElementString("Phone", currentContact.Phone);
+                    saveStream.WriteElementString("E_Mail", currentContact.EMail);
+                    saveStream.WriteElementString("Image_Index", currentContact.ImageIndex.ToString());
+
+                    saveStream.WriteEndElement();
+                }
+
+                saveStream.WriteEndElement();
+            }
         }
     }
 }

@@ -45,6 +45,7 @@
             this.contactsListView = new System.Windows.Forms.ListView();
             this.imageListLarge = new System.Windows.Forms.ImageList(this.components);
             this.imageListSmall = new System.Windows.Forms.ImageList(this.components);
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +58,7 @@
             this.viewToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1302, 42);
+            this.menuStrip1.Size = new System.Drawing.Size(1302, 40);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -68,7 +69,7 @@
             this.loadToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(64, 38);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(64, 36);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // saveToolStripMenuItem
@@ -77,6 +78,7 @@
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(245, 38);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
@@ -99,14 +101,14 @@
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.contactToolStripMenuItem.Name = "contactToolStripMenuItem";
-            this.contactToolStripMenuItem.Size = new System.Drawing.Size(109, 38);
+            this.contactToolStripMenuItem.Size = new System.Drawing.Size(109, 36);
             this.contactToolStripMenuItem.Text = "Contact";
             // 
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
             this.addToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(269, 38);
             this.addToolStripMenuItem.Text = "Add";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
@@ -114,7 +116,7 @@
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(269, 38);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
@@ -122,7 +124,7 @@
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(269, 38);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -132,7 +134,7 @@
             this.largeToolStripMenuItem,
             this.smallToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(78, 38);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(78, 36);
             this.viewToolStripMenuItem.Text = "View";
             // 
             // largeToolStripMenuItem
@@ -159,10 +161,10 @@
             // 
             this.contactsListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contactsListView.LargeImageList = this.imageListLarge;
-            this.contactsListView.Location = new System.Drawing.Point(0, 42);
+            this.contactsListView.Location = new System.Drawing.Point(0, 40);
             this.contactsListView.MultiSelect = false;
             this.contactsListView.Name = "contactsListView";
-            this.contactsListView.Size = new System.Drawing.Size(1302, 728);
+            this.contactsListView.Size = new System.Drawing.Size(1302, 730);
             this.contactsListView.SmallImageList = this.imageListSmall;
             this.contactsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.contactsListView.TabIndex = 1;
@@ -182,6 +184,11 @@
             this.imageListSmall.TransparentColor = System.Drawing.Color.Transparent;
             this.imageListSmall.Images.SetKeyName(0, "icons8-company-96.png");
             this.imageListSmall.Images.SetKeyName(1, "icons8-user-account-64.png");
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "xml";
+            this.saveFileDialog1.Filter = "xml|";
             // 
             // FormContactList
             // 
@@ -218,6 +225,7 @@
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem largeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem smallToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 
