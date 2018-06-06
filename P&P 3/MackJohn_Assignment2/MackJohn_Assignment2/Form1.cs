@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MackJohn_Assignment2
 {
-    public partial class Form1 : Form
+    public partial class FormContactList : Form
     {
-        public Form1()
+        public FormContactList()
         {
             InitializeComponent();
         }
