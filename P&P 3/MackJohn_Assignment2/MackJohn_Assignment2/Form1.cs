@@ -65,6 +65,11 @@ namespace MackJohn_Assignment2
             Edit();
         }
 
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteContact();
+        }
+
         private void Edit()
         {
             if(contactsListView.SelectedItems.Count != 0)
@@ -78,6 +83,14 @@ namespace MackJohn_Assignment2
                 EditContactRequest(this, new EventArgs());
 
                 formEditContacts.ShowDialog();
+            }
+        }
+
+        private void DeleteContact()
+        {
+            if(contactsListView.SelectedItems.Count != 0)
+            {
+                contactsListView.SelectedItems[0].Remove();
             }
         }
 
