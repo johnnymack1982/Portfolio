@@ -14,6 +14,7 @@ namespace MackJohn_Assignment2
     partial class FormContactDetails : Form
     {
         private EventHandler ContactAdded;
+        private EventHandler ContactUpdated;
 
         FormContactList formContactList = Application.OpenForms[0] as FormContactList;
 
@@ -196,16 +197,29 @@ namespace MackJohn_Assignment2
             this.Close();
         }
 
+        private void applyBtn_Click(object sender, EventArgs e)
+        {
+            PopulateContact();
+
+            ContactUpdated += formContactList.HandleContactUpdated;
+
+            ContactUpdated(this, new EventArgs());
+
+            this.Close();
+        }
+
         private void ValidateInput()
         {
             if (firstNameValid && lastNameValid && phoneValid && emailValid && typeSelected)
             {
                 addBtn.Enabled = true;
+                applyBtn.Enabled = true;
             }
 
             else
             {
                 addBtn.Enabled = false;
+                applyBtn.Enabled = false;
             }
         }
 
@@ -247,6 +261,37 @@ namespace MackJohn_Assignment2
             newContact.LastName = lastNameInput.Text;
             newContact.Phone = phoneInput.Text;
             newContact.EMail = emailInput.Text;
+        }
+
+        public void HandleEditContactRequest(object sender, EventArgs e)
+        {
+            Contact currentContact = new Contact();
+            currentContact = formContactList.CurrentContact;
+
+            firstNameInput.Text = currentContact.FirstName;
+            lastNameInput.Text = currentContact.LastName;
+            phoneInput.Text = currentContact.Phone;
+            emailInput.Text = currentContact.EMail;
+
+            if(currentContact.ImageIndex == 0)
+            {
+                businessRdoBtn.Checked = true;
+                personalRdoBtn.Checked = false;
+                typeSelected = true;
+            }
+
+            else if(currentContact.ImageIndex == 1)
+            {
+                personalRdoBtn.Checked = true;
+                businessRdoBtn.Checked = false;
+                typeSelected = true;
+            }
+
+            ValidateInput();
+
+            addBtn.Visible = false;
+            applyBtn.Visible = true;
+            applyBtn.Enabled = false;
         }
     }
 }

@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBoxContactInfo = new System.Windows.Forms.GroupBox();
+            this.applyBtn = new System.Windows.Forms.Button();
             this.personalRdoBtn = new System.Windows.Forms.RadioButton();
             this.businessRdoBtn = new System.Windows.Forms.RadioButton();
             this.addBtn = new System.Windows.Forms.Button();
@@ -54,6 +55,7 @@
             // 
             // groupBoxContactInfo
             // 
+            this.groupBoxContactInfo.Controls.Add(this.applyBtn);
             this.groupBoxContactInfo.Controls.Add(this.personalRdoBtn);
             this.groupBoxContactInfo.Controls.Add(this.businessRdoBtn);
             this.groupBoxContactInfo.Controls.Add(this.addBtn);
@@ -73,6 +75,17 @@
             this.groupBoxContactInfo.TabIndex = 0;
             this.groupBoxContactInfo.TabStop = false;
             this.groupBoxContactInfo.Text = "Enter Contact Information";
+            // 
+            // applyBtn
+            // 
+            this.applyBtn.Location = new System.Drawing.Point(185, 343);
+            this.applyBtn.Name = "applyBtn";
+            this.applyBtn.Size = new System.Drawing.Size(109, 55);
+            this.applyBtn.TabIndex = 13;
+            this.applyBtn.Text = "Apply";
+            this.applyBtn.UseVisualStyleBackColor = true;
+            this.applyBtn.Visible = false;
+            this.applyBtn.Click += new System.EventHandler(this.applyBtn_Click);
             // 
             // personalRdoBtn
             // 
@@ -246,5 +259,6 @@
         private System.Windows.Forms.ErrorProvider firstNameValidator;
         private System.Windows.Forms.ErrorProvider lastNameValidator;
         private System.Windows.Forms.ErrorProvider emailValidator;
+        private System.Windows.Forms.Button applyBtn;
     }
 }

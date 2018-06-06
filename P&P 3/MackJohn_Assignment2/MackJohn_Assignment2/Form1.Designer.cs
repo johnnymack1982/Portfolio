@@ -116,6 +116,7 @@
             this.editToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
             this.editToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
             this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
@@ -136,6 +137,7 @@
             this.contactsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.contactsListView.TabIndex = 1;
             this.contactsListView.UseCompatibleStateImageBehavior = false;
+            this.contactsListView.DoubleClick += new System.EventHandler(this.contactsListView_DoubleClick);
             // 
             // imageListLarge
             // 

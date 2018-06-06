@@ -10,9 +10,19 @@ using System.Windows.Forms;
 
 namespace MackJohn_Assignment2
 {
-    public partial class FormContactList : Form
+    partial class FormContactList : Form
     {
+        private EventHandler EditContactRequest;
+
         Contact currentContact = new Contact();
+
+        public Contact CurrentContact
+        {
+            get
+            {
+                return currentContact;
+            }
+        }
 
         public FormContactList()
         {
@@ -45,6 +55,32 @@ namespace MackJohn_Assignment2
             }
         }
 
+        private void contactsListView_DoubleClick(object sender, EventArgs e)
+        {
+            Edit();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Edit();
+        }
+
+        private void Edit()
+        {
+            if(contactsListView.SelectedItems.Count != 0)
+            {
+                currentContact = contactsListView.SelectedItems[0].Tag as Contact;
+
+                FormContactDetails formEditContacts = new FormContactDetails();
+
+                EditContactRequest += formEditContacts.HandleEditContactRequest;
+
+                EditContactRequest(this, new EventArgs());
+
+                formEditContacts.ShowDialog();
+            }
+        }
+
         public void HandleContactAdded(object sender, EventArgs e)
         {
             FormContactDetails extractForm = sender as FormContactDetails;
@@ -61,6 +97,21 @@ namespace MackJohn_Assignment2
 
             currentContact = new Contact();
             newContact = new ListViewItem();
+        }
+
+        public void HandleContactUpdated(object sender, EventArgs e)
+        {
+            FormContactDetails extractForm = sender as FormContactDetails;
+
+            currentContact = extractForm.NewContact;
+
+            contactsListView.SelectedItems[0].Text = currentContact.ToString();
+            contactsListView.SelectedItems[0].ImageIndex = currentContact.ImageIndex;
+            contactsListView.SelectedItems[0].Tag = currentContact;
+
+            currentContact = new Contact();
+
+            contactsListView.Sort();
         }
     }
 }
