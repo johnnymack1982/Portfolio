@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MackJohn_Assignment3.Properties
+namespace TicTacToe.Properties
 {
 
 
