@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace TicTacToe
 {
@@ -74,6 +77,16 @@ namespace TicTacToe
 
                 oToolStripMenuItem.Checked = true;
                 xToolStripMenuItem.Checked = false;
+            }
+        }
+
+        private void saveGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.FileName = null;
+
+            if(saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                SaveToFile();
             }
         }
 
@@ -290,6 +303,112 @@ namespace TicTacToe
 
             redToolStripMenuItem.Checked = true;
             blueToolStripMenuItem.Checked = false;
+        }
+
+        private void SaveToFile()
+        {
+            XmlWriterSettings settings = new XmlWriterSettings();
+
+            settings.ConformanceLevel = ConformanceLevel.Document;
+
+            settings.Indent = true;
+
+            using(XmlWriter saveStream = XmlWriter.Create(saveFileDialog1.FileName))
+            {
+                saveStream.WriteStartElement("Tic_Tac_Toe");
+
+                if(r1c1button.ImageIndex != 0 && r1c1button.ImageIndex != 1)
+                {
+                    saveStream.WriteElementString("R1C1", "-1");
+                }
+
+                else
+                {
+                    saveStream.WriteElementString("R1C1", r1c1button.ImageIndex.ToString());
+                }
+
+                if(r1c2button.ImageIndex != 0 && r1c2button.ImageIndex != 1)
+                {
+                    saveStream.WriteElementString("R1C2", "-1");
+                }
+
+                else
+                {
+                    saveStream.WriteElementString("R1C2", r1c2button.ImageIndex.ToString());
+                }
+
+                if(r1c3button.ImageIndex != 0 && r1c3button.ImageIndex != 1)
+                {
+                    saveStream.WriteElementString("R1C3", "-1");
+                }
+
+                else
+                {
+                    saveStream.WriteElementString("R1C3", r1c3button.ImageIndex.ToString());
+                }
+
+                if(r2c1button.ImageIndex != 0 && r2c1button.ImageIndex != 1)
+                {
+                    saveStream.WriteElementString("R2C1", "-1");
+                }
+
+                else
+                {
+                    saveStream.WriteElementString("R2C1", r2c1button.ImageIndex.ToString());
+                }
+
+                if(r2c2button.ImageIndex != 0 && r2c2button.ImageIndex != 1)
+                {
+                    saveStream.WriteElementString("R2C2", "-1");
+                }
+
+                else
+                {
+                    saveStream.WriteElementString("R2C2", r2c2button.ImageIndex.ToString());
+                }
+
+                if(r2c3button.ImageIndex != 0 && r2c3button.ImageIndex != 1)
+                {
+                    saveStream.WriteElementString("R2C3", "-1");
+                }
+
+                else
+                {
+                    saveStream.WriteElementString("R2C3", r2c3button.ImageIndex.ToString());
+                }
+
+                if(r3c1button.ImageIndex != 0 && r3c1button.ImageIndex != 1)
+                {
+                    saveStream.WriteElementString("R3C1", "-1");
+                }
+
+                else
+                {
+                    saveStream.WriteElementString("R3C1", r3c1button.ImageIndex.ToString());
+                }
+
+                if(r3c2button.ImageIndex != 0 && r3c2button.ImageIndex != 1)
+                {
+                    saveStream.WriteElementString("R3C2", "-1");
+                }
+
+                else
+                {
+                    saveStream.WriteElementString("R3C2", r3c3button.ImageIndex.ToString());
+                }
+
+                if(r3c3button.ImageIndex != 0 && r3c3button.ImageIndex != 1)
+                {
+                    saveStream.WriteElementString("R3C3", "-1");
+                }
+
+                else
+                {
+                    saveStream.WriteElementString("R3C3", r3c3button.ImageIndex.ToString());
+                }
+
+                saveStream.WriteEndElement();
+            }
         }
     }
 }
