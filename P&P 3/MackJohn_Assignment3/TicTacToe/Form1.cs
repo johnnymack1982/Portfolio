@@ -55,6 +55,28 @@ namespace TicTacToe
             }
         }
 
+        private void xToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(xToolStripMenuItem.Checked == false)
+            {
+                imageIndex = 1;
+
+                xToolStripMenuItem.Checked = true;
+                oToolStripMenuItem.Checked = false;
+            }
+        }
+
+        private void oToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(oToolStripMenuItem.Checked == false)
+            {
+                imageIndex = 0;
+
+                oToolStripMenuItem.Checked = true;
+                xToolStripMenuItem.Checked = false;
+            }
+        }
+
         private void r1c1button_Click(object sender, EventArgs e)
         {
             if (r1c1button.ImageIndex != 0 && r1c1button.ImageIndex != 1)
@@ -188,7 +210,7 @@ namespace TicTacToe
                (r1c2button.ImageIndex == 0 && r2c2button.ImageIndex == 0 && r3c2button.ImageIndex == 0) ||
                (r1c3button.ImageIndex == 0 && r2c3button.ImageIndex == 0 && r3c3button.ImageIndex == 0) ||
                (r1c1button.ImageIndex == 0 && r2c2button.ImageIndex == 0 && r3c3button.ImageIndex == 0) ||
-               (r1c3button.ImageIndex == 0 && r2c2button.ImageIndex == 0 && r1c3button.ImageIndex == 0))
+               (r1c3button.ImageIndex == 0 && r2c2button.ImageIndex == 0 && r3c1button.ImageIndex == 0))
             {
                 MessageBox.Show("Congratulations, 'O' player! You've won the game!", caption);
 
@@ -202,7 +224,7 @@ namespace TicTacToe
                      (r1c2button.ImageIndex == 1 && r2c2button.ImageIndex == 1 && r3c2button.ImageIndex == 1) ||
                      (r1c3button.ImageIndex == 1 && r2c3button.ImageIndex == 1 && r3c3button.ImageIndex == 1) ||
                      (r1c1button.ImageIndex == 1 && r2c2button.ImageIndex == 1 && r3c3button.ImageIndex == 1) ||
-                     (r1c3button.ImageIndex == 1 && r2c2button.ImageIndex == 1 && r1c3button.ImageIndex == 1))
+                     (r1c3button.ImageIndex == 1 && r2c2button.ImageIndex == 1 && r3c1button.ImageIndex == 1))
             {
                 MessageBox.Show("Congratulations, 'X' player! You've won the game!", caption);
 

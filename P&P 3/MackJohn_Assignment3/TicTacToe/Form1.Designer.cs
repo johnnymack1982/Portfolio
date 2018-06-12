@@ -149,22 +149,30 @@
             this.xToolStripMenuItem,
             this.oToolStripMenuItem});
             this.selectToolStripMenuItem.Name = "selectToolStripMenuItem";
-            this.selectToolStripMenuItem.Size = new System.Drawing.Size(91, 36);
+            this.selectToolStripMenuItem.Size = new System.Drawing.Size(91, 38);
             this.selectToolStripMenuItem.Text = "Select";
             // 
             // xToolStripMenuItem
             // 
+            this.xToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.xToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.xToolStripMenuItem.Name = "xToolStripMenuItem";
             this.xToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.X)));
             this.xToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
             this.xToolStripMenuItem.Text = "X";
+            this.xToolStripMenuItem.Click += new System.EventHandler(this.xToolStripMenuItem_Click);
             // 
             // oToolStripMenuItem
             // 
+            this.oToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.oToolStripMenuItem.Checked = true;
+            this.oToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.oToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.oToolStripMenuItem.Name = "oToolStripMenuItem";
             this.oToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.O)));
             this.oToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
             this.oToolStripMenuItem.Text = "O";
+            this.oToolStripMenuItem.Click += new System.EventHandler(this.oToolStripMenuItem_Click);
             // 
             // redImages
             // 
