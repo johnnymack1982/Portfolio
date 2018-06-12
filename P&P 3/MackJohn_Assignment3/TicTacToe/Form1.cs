@@ -44,6 +44,8 @@ namespace TicTacToe
             {
                 r1c1button.ImageIndex = imageIndex;
 
+                CheckForWinner();
+
                 NextPlayer();
             }
         }
@@ -53,6 +55,8 @@ namespace TicTacToe
             if (r1c2button.ImageIndex != 0 && r1c2button.ImageIndex != 1)
             {
                 r1c2button.ImageIndex = imageIndex;
+
+                CheckForWinner();
 
                 NextPlayer();
             }
@@ -64,6 +68,8 @@ namespace TicTacToe
             {
                 r1c3button.ImageIndex = imageIndex;
 
+                CheckForWinner();
+
                 NextPlayer();
             }
         }
@@ -73,6 +79,8 @@ namespace TicTacToe
             if (r2c1button.ImageIndex != 0 && r2c2button.ImageIndex != 1)
             {
                 r2c1button.ImageIndex = imageIndex;
+
+                CheckForWinner();
 
                 NextPlayer();
             }
@@ -84,6 +92,8 @@ namespace TicTacToe
             {
                 r2c2button.ImageIndex = imageIndex;
 
+                CheckForWinner();
+
                 NextPlayer();
             }
         }
@@ -93,6 +103,8 @@ namespace TicTacToe
             if (r2c3button.ImageIndex != 0 && r2c3button.ImageIndex != 1)
             {
                 r2c3button.ImageIndex = imageIndex;
+
+                CheckForWinner();
 
                 NextPlayer();
             }
@@ -104,6 +116,8 @@ namespace TicTacToe
             {
                 r3c1button.ImageIndex = imageIndex;
 
+                CheckForWinner();
+
                 NextPlayer();
             }
         }
@@ -114,6 +128,8 @@ namespace TicTacToe
             {
                 r3c2button.ImageIndex = imageIndex;
 
+                CheckForWinner();
+
                 NextPlayer();
             }
         }
@@ -123,6 +139,8 @@ namespace TicTacToe
             if (r3c3button.ImageIndex != 0 && r3c3button.ImageIndex != 1)
             {
                 r3c3button.ImageIndex = imageIndex;
+
+                CheckForWinner();
 
                 NextPlayer();
             }
@@ -145,10 +163,48 @@ namespace TicTacToe
         {
             string caption = "WINNER!";
 
-            if(r1c1button.ImageIndex == 0 && r1c2button.ImageIndex == 0)
+            if((r1c1button.ImageIndex == 0 && r1c2button.ImageIndex == 0 && r1c3button.ImageIndex == 0) ||
+               (r2c1button.ImageIndex == 0 && r2c2button.ImageIndex == 0 && r2c3button.ImageIndex == 0) ||
+               (r3c1button.ImageIndex == 0 && r3c2button.ImageIndex == 0 && r3c3button.ImageIndex == 0) ||
+               (r1c1button.ImageIndex == 0 && r2c1button.ImageIndex == 0 && r3c1button.ImageIndex == 0) ||
+               (r1c2button.ImageIndex == 0 && r2c2button.ImageIndex == 0 && r3c2button.ImageIndex == 0) ||
+               (r1c3button.ImageIndex == 0 && r2c3button.ImageIndex == 0 && r3c3button.ImageIndex == 0) ||
+               (r1c1button.ImageIndex == 0 && r2c2button.ImageIndex == 0 && r3c3button.ImageIndex == 0) ||
+               (r1c3button.ImageIndex == 0 && r2c2button.ImageIndex == 0 && r1c3button.ImageIndex == 0))
             {
                 MessageBox.Show("Congratulations, 'O' player! You've won the game!", caption);
+
+                DisableGrid();
             }
+
+            else if ((r1c1button.ImageIndex == 1 && r1c2button.ImageIndex == 1 && r1c3button.ImageIndex == 1) ||
+                     (r2c1button.ImageIndex == 1 && r2c2button.ImageIndex == 1 && r2c3button.ImageIndex == 1) ||
+                     (r3c1button.ImageIndex == 1 && r3c2button.ImageIndex == 1 && r3c3button.ImageIndex == 1) ||
+                     (r1c1button.ImageIndex == 1 && r2c1button.ImageIndex == 1 && r3c1button.ImageIndex == 1) ||
+                     (r1c2button.ImageIndex == 1 && r2c2button.ImageIndex == 1 && r3c2button.ImageIndex == 1) ||
+                     (r1c3button.ImageIndex == 1 && r2c3button.ImageIndex == 1 && r3c3button.ImageIndex == 1) ||
+                     (r1c1button.ImageIndex == 1 && r2c2button.ImageIndex == 1 && r3c3button.ImageIndex == 1) ||
+                     (r1c3button.ImageIndex == 1 && r2c2button.ImageIndex == 1 && r1c3button.ImageIndex == 1))
+            {
+                MessageBox.Show("Congratulations, 'X' player! You've won the game!", caption);
+
+                DisableGrid();
+            }
+        }
+
+        private void DisableGrid()
+        {
+            r1c1button.Enabled = false;
+            r1c2button.Enabled = false;
+            r1c3button.Enabled = false;
+
+            r2c1button.Enabled = false;
+            r2c2button.Enabled = false;
+            r2c3button.Enabled = false;
+
+            r3c1button.Enabled = false;
+            r3c2button.Enabled = false;
+            r3c3button.Enabled = false;
         }
     }
 }
