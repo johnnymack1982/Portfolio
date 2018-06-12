@@ -98,6 +98,11 @@ namespace TicTacToe
             }
         }
 
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            ClearGrid();
+        }
+
         private void r1c1button_Click(object sender, EventArgs e)
         {
             if (r1c1button.ImageIndex != 0 && r1c1button.ImageIndex != 1)
@@ -601,6 +606,8 @@ namespace TicTacToe
 
         private void ClearGrid()
         {
+            turnCount = 0;
+
             r1c1button.ImageIndex = -1;
             r1c2button.ImageIndex = -1;
             r1c3button.ImageIndex = -1;
@@ -612,6 +619,8 @@ namespace TicTacToe
             r3c1button.ImageIndex = -1;
             r3c2button.ImageIndex = -1;
             r3c3button.ImageIndex = -1;
+
+            CheckTurn();
         }
     }
 }
