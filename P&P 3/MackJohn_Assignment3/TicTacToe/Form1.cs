@@ -32,10 +32,27 @@ namespace TicTacToe
         */
 
         int imageIndex = 0;
+        int turnCount = 0;
 
         public frmTicTacToe()
         {
             InitializeComponent();
+        }
+
+        private void blueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(blueToolStripMenuItem.Checked == false)
+            {
+                SwitchToBlue();
+            }
+        }
+
+        private void redToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(redToolStripMenuItem.Checked == false)
+            {
+                SwitchToRed();
+            }
         }
 
         private void r1c1button_Click(object sender, EventArgs e)
@@ -47,6 +64,8 @@ namespace TicTacToe
                 CheckForWinner();
 
                 NextPlayer();
+
+                turnCount++;
             }
         }
 
@@ -59,6 +78,8 @@ namespace TicTacToe
                 CheckForWinner();
 
                 NextPlayer();
+
+                turnCount++;
             }
         }
 
@@ -71,6 +92,8 @@ namespace TicTacToe
                 CheckForWinner();
 
                 NextPlayer();
+
+                turnCount++;
             }
         }
 
@@ -83,6 +106,8 @@ namespace TicTacToe
                 CheckForWinner();
 
                 NextPlayer();
+
+                turnCount++;
             }
         }
 
@@ -95,6 +120,8 @@ namespace TicTacToe
                 CheckForWinner();
 
                 NextPlayer();
+
+                turnCount++;
             }
         }
 
@@ -107,6 +134,8 @@ namespace TicTacToe
                 CheckForWinner();
 
                 NextPlayer();
+
+                turnCount++;
             }
         }
 
@@ -119,6 +148,8 @@ namespace TicTacToe
                 CheckForWinner();
 
                 NextPlayer();
+
+                turnCount++;
             }
         }
 
@@ -131,6 +162,8 @@ namespace TicTacToe
                 CheckForWinner();
 
                 NextPlayer();
+
+                turnCount++;
             }
         }
 
@@ -143,6 +176,8 @@ namespace TicTacToe
                 CheckForWinner();
 
                 NextPlayer();
+
+                turnCount++;
             }
         }
 
@@ -205,6 +240,42 @@ namespace TicTacToe
             r3c1button.Enabled = false;
             r3c2button.Enabled = false;
             r3c3button.Enabled = false;
+        }
+
+        private void SwitchToBlue()
+        {
+            r1c1button.ImageList = blueImages;
+            r1c2button.ImageList = blueImages;
+            r1c3button.ImageList = blueImages;
+
+            r2c1button.ImageList = blueImages;
+            r2c2button.ImageList = blueImages;
+            r2c3button.ImageList = blueImages;
+
+            r3c1button.ImageList = blueImages;
+            r3c2button.ImageList = blueImages;
+            r3c3button.ImageList = blueImages;
+
+            blueToolStripMenuItem.Checked = true;
+            redToolStripMenuItem.Checked = false;
+        }
+
+        private void SwitchToRed()
+        {
+            r1c1button.ImageList = redImages;
+            r1c2button.ImageList = redImages;
+            r1c3button.ImageList = redImages;
+
+            r2c1button.ImageList = redImages;
+            r2c2button.ImageList = redImages;
+            r2c3button.ImageList = redImages;
+
+            r3c1button.ImageList = redImages;
+            r3c2button.ImageList = redImages;
+            r3c3button.ImageList = redImages;
+
+            redToolStripMenuItem.Checked = true;
+            blueToolStripMenuItem.Checked = false;
         }
     }
 }

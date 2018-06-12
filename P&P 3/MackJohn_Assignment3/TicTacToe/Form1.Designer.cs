@@ -72,7 +72,7 @@
             this.selectToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(518, 40);
+            this.menuStrip1.Size = new System.Drawing.Size(518, 42);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -119,7 +119,7 @@
             this.blueToolStripMenuItem,
             this.redToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(78, 36);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(78, 38);
             this.viewToolStripMenuItem.Text = "View";
             // 
             // blueToolStripMenuItem
@@ -131,13 +131,17 @@
             this.blueToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.B)));
             this.blueToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
             this.blueToolStripMenuItem.Text = "Blue";
+            this.blueToolStripMenuItem.Click += new System.EventHandler(this.blueToolStripMenuItem_Click);
             // 
             // redToolStripMenuItem
             // 
+            this.redToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.redToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.redToolStripMenuItem.Name = "redToolStripMenuItem";
             this.redToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
             this.redToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
             this.redToolStripMenuItem.Text = "Red";
+            this.redToolStripMenuItem.Click += new System.EventHandler(this.redToolStripMenuItem_Click);
             // 
             // selectToolStripMenuItem
             // 
@@ -271,7 +275,7 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 40);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 42);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(518, 39);
             this.toolStrip1.TabIndex = 10;
