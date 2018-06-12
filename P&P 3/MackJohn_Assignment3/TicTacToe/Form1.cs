@@ -98,6 +98,11 @@ namespace TicTacToe
             }
         }
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             ClearGrid();
