@@ -225,6 +225,15 @@ namespace TicTacToe
 
                 DisableGrid();
             }
+
+            else if((r1c1button.ImageIndex == 0 || r1c1button.ImageIndex == 1) && (r1c2button.ImageIndex == 0 || r1c2button.ImageIndex == 1) &&
+                    (r1c3button.ImageIndex == 0 || r1c3button.ImageIndex == 1) && (r2c1button.ImageIndex == 0 || r2c1button.ImageIndex == 1) &&
+                    (r2c2button.ImageIndex == 0 || r2c2button.ImageIndex == 1) && (r2c3button.ImageIndex == 0 || r2c3button.ImageIndex == 1) &&
+                    (r3c1button.ImageIndex == 0 || r3c1button.ImageIndex == 1) && (r3c2button.ImageIndex == 0 || r3c2button.ImageIndex == 1) &&
+                    (r3c3button.ImageIndex == 0 || r3c3button.ImageIndex == 1))
+            {
+                MessageBox.Show("Try another game!", "Draw");
+            }
         }
 
         private void DisableGrid()
