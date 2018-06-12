@@ -90,6 +90,14 @@ namespace TicTacToe
             }
         }
 
+        private void loadGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                LoadFile();
+            }
+        }
+
         private void r1c1button_Click(object sender, EventArgs e)
         {
             if (r1c1button.ImageIndex != 0 && r1c1button.ImageIndex != 1)
@@ -409,6 +417,201 @@ namespace TicTacToe
 
                 saveStream.WriteEndElement();
             }
+        }
+
+        private void LoadFile()
+        {
+            ClearGrid();
+
+            turnCount = 0;
+
+            XmlReaderSettings settings = new XmlReaderSettings();
+
+            settings.ConformanceLevel = ConformanceLevel.Document;
+
+            settings.IgnoreComments = true;
+
+            settings.IgnoreWhitespace = true;
+
+            using(XmlReader loadStream = XmlReader.Create(openFileDialog1.FileName))
+            {
+                loadStream.MoveToContent();
+
+                if(loadStream.Name != "Tic_Tac_Toe")
+                {
+                    // Set error window caption
+                    string caption = "Invalid File";
+
+                    // Set error window message
+                    string message = "Please load a valid XML file";
+
+                    // Create ok button for error window
+                    MessageBoxButtons okBtn = MessageBoxButtons.OK;
+
+                    // Display the error window
+                    MessageBox.Show(message, caption, okBtn);
+
+                    // Escape from current method
+                    return;
+                }
+
+                while (loadStream.Read())
+                {
+                    string imageIndexString = null;
+
+                    if(loadStream.Name == "R1C1" && loadStream.IsStartElement())
+                    {
+                        imageIndexString = loadStream.ReadString();
+                        imageIndex = -1;
+
+                        int.TryParse(imageIndexString, out imageIndex);
+
+                        if(imageIndex != -1)
+                        {
+                            r1c1button.ImageIndex = imageIndex;
+
+                            turnCount++;
+                        }
+                    }
+
+                    if (loadStream.Name == "R1C2" && loadStream.IsStartElement())
+                    {
+                        imageIndexString = loadStream.ReadString();
+                        imageIndex = -1;
+
+                        int.TryParse(imageIndexString, out imageIndex);
+
+                        if (imageIndex != -1)
+                        {
+                            r1c2button.ImageIndex = imageIndex;
+
+                            turnCount++;
+                        }
+                    }
+
+                    if (loadStream.Name == "R1C3" && loadStream.IsStartElement())
+                    {
+                        imageIndexString = loadStream.ReadString();
+                        imageIndex = -1;
+
+                        int.TryParse(imageIndexString, out imageIndex);
+
+                        if (imageIndex != -1)
+                        {
+                            r1c3button.ImageIndex = imageIndex;
+
+                            turnCount++;
+                        }
+                    }
+
+                    if (loadStream.Name == "R2C1" && loadStream.IsStartElement())
+                    {
+                        imageIndexString = loadStream.ReadString();
+                        imageIndex = -1;
+
+                        int.TryParse(imageIndexString, out imageIndex);
+
+                        if (imageIndex != -1)
+                        {
+                            r2c1button.ImageIndex = imageIndex;
+
+                            turnCount++;
+                        }
+                    }
+
+                    if (loadStream.Name == "R2C2" && loadStream.IsStartElement())
+                    {
+                        imageIndexString = loadStream.ReadString();
+                        imageIndex = -1;
+
+                        int.TryParse(imageIndexString, out imageIndex);
+
+                        if (imageIndex != -1)
+                        {
+                            r2c2button.ImageIndex = imageIndex;
+
+                            turnCount++;
+                        }
+                    }
+
+                    if (loadStream.Name == "R2C3" && loadStream.IsStartElement())
+                    {
+                        imageIndexString = loadStream.ReadString();
+                        imageIndex = -1;
+
+                        int.TryParse(imageIndexString, out imageIndex);
+
+                        if (imageIndex != -1)
+                        {
+                            r2c3button.ImageIndex = imageIndex;
+
+                            turnCount++;
+                        }
+                    }
+
+                    if (loadStream.Name == "R3C1" && loadStream.IsStartElement())
+                    {
+                        imageIndexString = loadStream.ReadString();
+                        imageIndex = -1;
+
+                        int.TryParse(imageIndexString, out imageIndex);
+
+                        if (imageIndex != -1)
+                        {
+                            r3c1button.ImageIndex = imageIndex;
+
+                            turnCount++;
+                        }
+                    }
+
+                    if (loadStream.Name == "R3C2" && loadStream.IsStartElement())
+                    {
+                        imageIndexString = loadStream.ReadString();
+                        imageIndex = -1;
+
+                        int.TryParse(imageIndexString, out imageIndex);
+
+                        if (imageIndex != -1)
+                        {
+                            r3c2button.ImageIndex = imageIndex;
+
+                            turnCount++;
+                        }
+                    }
+
+                    if (loadStream.Name == "R3C3" && loadStream.IsStartElement())
+                    {
+                        imageIndexString = loadStream.ReadString();
+                        imageIndex = -1;
+
+                        int.TryParse(imageIndexString, out imageIndex);
+
+                        if (imageIndex != -1)
+                        {
+                            r3c3button.ImageIndex = imageIndex;
+
+                            turnCount++;
+                        }
+                    }
+                }
+            }
+
+            CheckTurn();
+        }
+
+        private void ClearGrid()
+        {
+            r1c1button.ImageIndex = -1;
+            r1c2button.ImageIndex = -1;
+            r1c3button.ImageIndex = -1;
+
+            r2c1button.ImageIndex = -1;
+            r2c2button.ImageIndex = -1;
+            r2c3button.ImageIndex = -1;
+
+            r3c1button.ImageIndex = -1;
+            r3c2button.ImageIndex = -1;
+            r3c3button.ImageIndex = -1;
         }
     }
 }
