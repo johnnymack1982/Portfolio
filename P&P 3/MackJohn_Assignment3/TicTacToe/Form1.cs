@@ -61,11 +61,7 @@ namespace TicTacToe
             {
                 r1c1button.ImageIndex = imageIndex;
 
-                CheckForWinner();
-
                 NextPlayer();
-
-                turnCount++;
             }
         }
 
@@ -75,11 +71,7 @@ namespace TicTacToe
             {
                 r1c2button.ImageIndex = imageIndex;
 
-                CheckForWinner();
-
                 NextPlayer();
-
-                turnCount++;
             }
         }
 
@@ -89,11 +81,7 @@ namespace TicTacToe
             {
                 r1c3button.ImageIndex = imageIndex;
 
-                CheckForWinner();
-
                 NextPlayer();
-
-                turnCount++;
             }
         }
 
@@ -103,11 +91,7 @@ namespace TicTacToe
             {
                 r2c1button.ImageIndex = imageIndex;
 
-                CheckForWinner();
-
                 NextPlayer();
-
-                turnCount++;
             }
         }
 
@@ -117,11 +101,7 @@ namespace TicTacToe
             {
                 r2c2button.ImageIndex = imageIndex;
 
-                CheckForWinner();
-
                 NextPlayer();
-
-                turnCount++;
             }
         }
 
@@ -131,11 +111,7 @@ namespace TicTacToe
             {
                 r2c3button.ImageIndex = imageIndex;
 
-                CheckForWinner();
-
                 NextPlayer();
-
-                turnCount++;
             }
         }
 
@@ -145,11 +121,7 @@ namespace TicTacToe
             {
                 r3c1button.ImageIndex = imageIndex;
 
-                CheckForWinner();
-
                 NextPlayer();
-
-                turnCount++;
             }
         }
 
@@ -159,11 +131,7 @@ namespace TicTacToe
             {
                 r3c2button.ImageIndex = imageIndex;
 
-                CheckForWinner();
-
                 NextPlayer();
-
-                turnCount++;
             }
         }
 
@@ -173,11 +141,7 @@ namespace TicTacToe
             {
                 r3c3button.ImageIndex = imageIndex;
 
-                CheckForWinner();
-
                 NextPlayer();
-
-                turnCount++;
             }
         }
 
@@ -191,6 +155,25 @@ namespace TicTacToe
             else if(imageIndex == 1)
             {
                 imageIndex = 0;
+            }
+
+            turnCount++;
+
+            CheckTurn();
+
+            CheckForWinner();
+        }
+
+        private void CheckTurn()
+        {
+            if(turnCount != 0)
+            {
+                selectToolStripMenuItem.Enabled = false;
+            }
+
+            else
+            {
+                selectToolStripMenuItem.Enabled = true;
             }
         }
 
