@@ -13,6 +13,13 @@
 		F2133496216302D20077DD97 /* Keep_Calm_and_Calendar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F2133494216302D20077DD97 /* Keep_Calm_and_Calendar.xcdatamodeld */; };
 		F2133498216302D20077DD97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2133497216302D20077DD97 /* Assets.xcassets */; };
 		F213349B216302D20077DD97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2133499216302D20077DD97 /* LaunchScreen.storyboard */; };
+		F2E5DE5C2163102500325D95 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5DE5B2163102500325D95 /* SignUpViewController.swift */; };
+		F2E5DE5E2163185300325D95 /* ParentCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5DE5D2163185300325D95 /* ParentCodeViewController.swift */; };
+		F2E5DE6021638F6900325D95 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5DE5F21638F6900325D95 /* LogInViewController.swift */; };
+		F2E5DE652163923000325D95 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5DE642163923000325D95 /* ScheduleViewController.swift */; };
+		F2E5DE682164284C00325D95 /* WeekHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E5DE672164284C00325D95 /* WeekHeader.xib */; };
+		F2E5DE6A216429D100325D95 /* WeeklyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5DE69216429D100325D95 /* WeeklyHeaderView.swift */; };
+		F2E5DE6C21642EB600325D95 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5DE6B21642EB600325D95 /* EventCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +31,13 @@
 		F2133497216302D20077DD97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F213349A216302D20077DD97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F213349C216302D20077DD97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2E5DE5B2163102500325D95 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		F2E5DE5D2163185300325D95 /* ParentCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentCodeViewController.swift; sourceTree = "<group>"; };
+		F2E5DE5F21638F6900325D95 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		F2E5DE642163923000325D95 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		F2E5DE672164284C00325D95 /* WeekHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeekHeader.xib; sourceTree = "<group>"; };
+		F2E5DE69216429D100325D95 /* WeeklyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyHeaderView.swift; sourceTree = "<group>"; };
+		F2E5DE6B21642EB600325D95 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +71,10 @@
 			isa = PBXGroup;
 			children = (
 				F213348D216302D20077DD97 /* AppDelegate.swift */,
-				F213348F216302D20077DD97 /* ViewController.swift */,
+				F2E5DE612163902900325D95 /* Welcome Screen */,
+				F2E5DE622163904100325D95 /* Sign Up */,
+				F2E5DE632163904A00325D95 /* Log In */,
+				F2E5DE662163926200325D95 /* Schedule */,
 				F2133491216302D20077DD97 /* Main.storyboard */,
 				F2133497216302D20077DD97 /* Assets.xcassets */,
 				F2133499216302D20077DD97 /* LaunchScreen.storyboard */,
@@ -65,6 +82,42 @@
 				F2133494216302D20077DD97 /* Keep_Calm_and_Calendar.xcdatamodeld */,
 			);
 			path = "Keep Calm and Calendar";
+			sourceTree = "<group>";
+		};
+		F2E5DE612163902900325D95 /* Welcome Screen */ = {
+			isa = PBXGroup;
+			children = (
+				F213348F216302D20077DD97 /* ViewController.swift */,
+			);
+			path = "Welcome Screen";
+			sourceTree = "<group>";
+		};
+		F2E5DE622163904100325D95 /* Sign Up */ = {
+			isa = PBXGroup;
+			children = (
+				F2E5DE5B2163102500325D95 /* SignUpViewController.swift */,
+				F2E5DE5D2163185300325D95 /* ParentCodeViewController.swift */,
+			);
+			path = "Sign Up";
+			sourceTree = "<group>";
+		};
+		F2E5DE632163904A00325D95 /* Log In */ = {
+			isa = PBXGroup;
+			children = (
+				F2E5DE5F21638F6900325D95 /* LogInViewController.swift */,
+			);
+			path = "Log In";
+			sourceTree = "<group>";
+		};
+		F2E5DE662163926200325D95 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				F2E5DE642163923000325D95 /* ScheduleViewController.swift */,
+				F2E5DE672164284C00325D95 /* WeekHeader.xib */,
+				F2E5DE69216429D100325D95 /* WeeklyHeaderView.swift */,
+				F2E5DE6B21642EB600325D95 /* EventCell.swift */,
+			);
+			path = Schedule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +178,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2E5DE682164284C00325D95 /* WeekHeader.xib in Resources */,
 				F213349B216302D20077DD97 /* LaunchScreen.storyboard in Resources */,
 				F2133498216302D20077DD97 /* Assets.xcassets in Resources */,
 				F2133493216302D20077DD97 /* Main.storyboard in Resources */,
@@ -139,7 +193,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2133496216302D20077DD97 /* Keep_Calm_and_Calendar.xcdatamodeld in Sources */,
+				F2E5DE6C21642EB600325D95 /* EventCell.swift in Sources */,
 				F2133490216302D20077DD97 /* ViewController.swift in Sources */,
+				F2E5DE6021638F6900325D95 /* LogInViewController.swift in Sources */,
+				F2E5DE5E2163185300325D95 /* ParentCodeViewController.swift in Sources */,
+				F2E5DE5C2163102500325D95 /* SignUpViewController.swift in Sources */,
+				F2E5DE652163923000325D95 /* ScheduleViewController.swift in Sources */,
+				F2E5DE6A216429D100325D95 /* WeeklyHeaderView.swift in Sources */,
 				F213348E216302D20077DD97 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
