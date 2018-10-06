@@ -16,6 +16,9 @@
 		F213349B216302D20077DD97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2133499216302D20077DD97 /* LaunchScreen.storyboard */; };
 		F21F97B72168214F0023487A /* String_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F97B62168214F0023487A /* String_EXT.swift */; };
 		F250D921216709D1001288EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F250D920216709D1001288EE /* GoogleService-Info.plist */; };
+		F261F2E22168E76500F697A6 /* EventManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F261F2E12168E76500F697A6 /* EventManagerViewController.swift */; };
+		F261F2E52168FFBE00F697A6 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F261F2E42168FFBE00F697A6 /* EventDetailsViewController.swift */; };
+		F2D31943216902B500E64876 /* EventPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D31942216902B500E64876 /* EventPhotoViewController.swift */; };
 		F2E5DE5C2163102500325D95 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5DE5B2163102500325D95 /* SignUpViewController.swift */; };
 		F2E5DE5E2163185300325D95 /* ParentCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5DE5D2163185300325D95 /* ParentCodeViewController.swift */; };
 		F2E5DE6021638F6900325D95 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5DE5F21638F6900325D95 /* LogInViewController.swift */; };
@@ -41,6 +44,9 @@
 		F213349C216302D20077DD97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F21F97B62168214F0023487A /* String_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_EXT.swift; sourceTree = "<group>"; };
 		F250D920216709D1001288EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F261F2E12168E76500F697A6 /* EventManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagerViewController.swift; sourceTree = "<group>"; };
+		F261F2E42168FFBE00F697A6 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
+		F2D31942216902B500E64876 /* EventPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPhotoViewController.swift; sourceTree = "<group>"; };
 		F2E5DE5B2163102500325D95 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F2E5DE5D2163185300325D95 /* ParentCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentCodeViewController.swift; sourceTree = "<group>"; };
 		F2E5DE5F21638F6900325D95 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +115,7 @@
 				F2E5DE622163904100325D95 /* Sign Up */,
 				F2E5DE632163904A00325D95 /* Log In */,
 				F2E5DE662163926200325D95 /* Schedule */,
+				F261F2E32168E77600F697A6 /* Event Manager */,
 				F2133491216302D20077DD97 /* Main.storyboard */,
 				F2133497216302D20077DD97 /* Assets.xcassets */,
 				F2133499216302D20077DD97 /* LaunchScreen.storyboard */,
@@ -117,6 +124,16 @@
 				F2133494216302D20077DD97 /* Keep_Calm_and_Calendar.xcdatamodeld */,
 			);
 			path = "Keep Calm and Calendar";
+			sourceTree = "<group>";
+		};
+		F261F2E32168E77600F697A6 /* Event Manager */ = {
+			isa = PBXGroup;
+			children = (
+				F261F2E12168E76500F697A6 /* EventManagerViewController.swift */,
+				F261F2E42168FFBE00F697A6 /* EventDetailsViewController.swift */,
+				F2D31942216902B500E64876 /* EventPhotoViewController.swift */,
+			);
+			path = "Event Manager";
 			sourceTree = "<group>";
 		};
 		F2E5DE612163902900325D95 /* Welcome Screen */ = {
@@ -276,11 +293,14 @@
 			files = (
 				F2E5DE70216456FA00325D95 /* ScheduleViewController_Ext.swift in Sources */,
 				F2133496216302D20077DD97 /* Keep_Calm_and_Calendar.xcdatamodeld in Sources */,
+				F2D31943216902B500E64876 /* EventPhotoViewController.swift in Sources */,
+				F261F2E22168E76500F697A6 /* EventManagerViewController.swift in Sources */,
 				F2E5DE6C21642EB600325D95 /* EventCell.swift in Sources */,
 				F2133490216302D20077DD97 /* ViewController.swift in Sources */,
 				F2E5DE6021638F6900325D95 /* LogInViewController.swift in Sources */,
 				F2E5DE6E216431FE00325D95 /* Event.swift in Sources */,
 				F21F97B72168214F0023487A /* String_EXT.swift in Sources */,
+				F261F2E52168FFBE00F697A6 /* EventDetailsViewController.swift in Sources */,
 				F2E5DE5E2163185300325D95 /* ParentCodeViewController.swift in Sources */,
 				F2E5DE5C2163102500325D95 /* SignUpViewController.swift in Sources */,
 				F2E5DE652163923000325D95 /* ScheduleViewController.swift in Sources */,
