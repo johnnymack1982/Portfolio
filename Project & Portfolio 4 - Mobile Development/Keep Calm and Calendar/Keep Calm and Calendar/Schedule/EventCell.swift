@@ -9,7 +9,19 @@
 import UIKit
 
 class EventCell: UITableViewCell {
-
+    
+    
+    
+    // MARK: - UI Outlets
+    @IBOutlet weak var eventImage: UIImageView!
+    @IBOutlet weak var taskCompletionIndicator: UIImageView!
+    @IBOutlet weak var eventNameLabel: UILabel!
+    @IBOutlet weak var eventTimeLabel: UILabel!
+    
+    
+    
+    
+    // MARK: - System Generated Functions
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

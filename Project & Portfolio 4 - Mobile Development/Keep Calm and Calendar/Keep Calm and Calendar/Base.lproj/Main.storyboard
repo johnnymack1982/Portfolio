@@ -113,13 +113,13 @@
                                 <rect key="frame" x="45" y="351.5" width="285" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Create a password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mkp-Xf-D6U">
                                 <rect key="frame" x="45" y="452.5" width="285" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="password"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-mail Address:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cub-j1-ALz">
                                 <rect key="frame" x="45" y="320.5" width="140" height="26"/>
@@ -137,7 +137,7 @@
                                 <rect key="frame" x="45" y="528.5" width="285" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="password"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMy-S1-uwN">
                                 <rect key="frame" x="45" y="497.5" width="169" height="26"/>
@@ -190,6 +190,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yW6-TN-6bh"/>
                     </view>
+                    <connections>
+                        <outlet property="confirmPasswordEntry" destination="8IY-0P-FuP" id="c2O-Ra-aSV"/>
+                        <outlet property="emailEntry" destination="jRq-bV-EwB" id="5bU-XX-WKp"/>
+                        <outlet property="passwordEntry" destination="mkp-Xf-D6U" id="TNf-bP-Wqn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lwg-cf-b8O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -227,7 +232,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Create a password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EwH-Dq-jqE">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EwH-Dq-jqE">
                                 <rect key="frame" x="45" y="472" width="285" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -284,6 +289,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Elg-Cz-SfZ"/>
                     </view>
+                    <connections>
+                        <outlet property="emailEntry" destination="I8J-yU-xtS" id="zn1-3S-Xbw"/>
+                        <outlet property="passwordEntry" destination="EwH-Dq-jqE" id="pei-Lu-5GV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Wj-ll-PpP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -301,7 +310,11 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="My Schedule" id="xWj-Di-X4I">
-                                        <barButtonItem key="leftBarButtonItem" title="Edit" id="r8t-TH-5QP"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Edit" id="r8t-TH-5QP">
+                                            <connections>
+                                                <action selector="editButtonTapped:" destination="zwr-86-GlI" id="ouG-JT-6y7"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Add" id="6e6-LY-vtO"/>
                                     </navigationItem>
                                 </items>
@@ -358,6 +371,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.6470588235294118" green="0.87058823529411766" blue="0.22352941176470587" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="eventImage" destination="Yl4-z5-4AL" id="wFR-7F-6cv"/>
+                                            <outlet property="eventNameLabel" destination="62G-fW-gVd" id="AAn-R6-FHz"/>
+                                            <outlet property="eventTimeLabel" destination="scS-rK-7it" id="uDs-ld-wzo"/>
+                                            <outlet property="taskCompletionIndicator" destination="fui-HL-kX6" id="Or4-cb-k2O"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_02" rowHeight="75" id="vvW-Sc-OXF" customClass="EventCell" customModule="Keep_Calm_and_Calendar" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="103" width="375" height="75"/>
@@ -407,6 +426,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.22352941176470587" green="0.87058823529411766" blue="0.6470588235294118" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="eventImage" destination="yxz-Cc-tbE" id="coa-er-HfU"/>
+                                            <outlet property="eventNameLabel" destination="nCm-gE-wcd" id="dOh-QJ-7oJ"/>
+                                            <outlet property="eventTimeLabel" destination="MUG-yy-BBF" id="9aE-Wa-eFo"/>
+                                            <outlet property="taskCompletionIndicator" destination="Tko-cd-Vlm" id="E3E-Rm-19a"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_03" rowHeight="75" id="Wzb-BP-qs5" customClass="EventCell" customModule="Keep_Calm_and_Calendar" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="178" width="375" height="75"/>
@@ -456,6 +481,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.22352941176470587" green="0.37254901960784315" blue="0.87058823529411766" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="eventImage" destination="9eS-HX-npC" id="uRd-SJ-ZSa"/>
+                                            <outlet property="eventNameLabel" destination="77C-id-n4f" id="fPA-nI-zc9"/>
+                                            <outlet property="eventTimeLabel" destination="gor-er-1PG" id="yNu-Ic-cfe"/>
+                                            <outlet property="taskCompletionIndicator" destination="2TK-Ue-58A" id="c8P-xQ-KOd"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_04" rowHeight="75" id="voi-Aw-5CN" customClass="EventCell" customModule="Keep_Calm_and_Calendar" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="253" width="375" height="75"/>
@@ -505,8 +536,18 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.81960784313725488" green="0.22352941176470587" blue="0.87058823529411766" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="eventImage" destination="nfj-TE-p5U" id="W9p-1P-zee"/>
+                                            <outlet property="eventNameLabel" destination="axD-BW-Ll7" id="9Da-gY-m1Q"/>
+                                            <outlet property="eventTimeLabel" destination="TlJ-Rp-lkE" id="uJ3-pi-oX1"/>
+                                            <outlet property="taskCompletionIndicator" destination="U1G-GH-26S" id="WiF-xz-PdK"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="zwr-86-GlI" id="jFY-OX-f67"/>
+                                    <outlet property="delegate" destination="zwr-86-GlI" id="d53-x1-x5U"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.70980392160000005" green="0.80392156859999997" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -521,6 +562,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MFo-Ol-UXL"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="g6Q-56-oHR" id="HXX-Qr-qCm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f18-L7-Vow" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -552,11 +596,11 @@
                                     <constraint firstAttribute="height" constant="195" id="B6l-Za-GXS"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a four-digit code..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Yl-BB-udi">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a four-digit code..." textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3Yl-BB-udi">
                                 <rect key="frame" x="45" y="352" width="285" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" textContentType="password"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parent Code:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEK-MQ-GI1">
                                 <rect key="frame" x="45" y="320.5" width="119" height="26"/>
@@ -618,6 +662,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CQX-hg-Mre"/>
                     </view>
+                    <connections>
+                        <outlet property="parentCodeEntry" destination="3Yl-BB-udi" id="kmU-bR-K1o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zpx-c2-GTf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -16,22 +16,37 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeM-or-hoj">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1pR-3m-QNR">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="35"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeM-or-hoj">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="35"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.99215686274509807" green="0.011764705882352941" blue="0.011764705882352941" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="DeM-or-hoj" firstAttribute="leading" secondItem="1pR-3m-QNR" secondAttribute="leading" id="9qL-jz-djE"/>
+                        <constraint firstItem="DeM-or-hoj" firstAttribute="top" secondItem="1pR-3m-QNR" secondAttribute="top" id="SGm-da-hoZ"/>
+                        <constraint firstAttribute="trailing" secondItem="DeM-or-hoj" secondAttribute="trailing" id="ewy-2B-5hh"/>
+                        <constraint firstAttribute="bottom" secondItem="DeM-or-hoj" secondAttribute="bottom" id="nnc-LW-gsO"/>
+                    </constraints>
+                </view>
             </subviews>
-            <color key="backgroundColor" red="0.99215686274509807" green="0.011764705882352941" blue="0.011764705882352941" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DeM-or-hoj" secondAttribute="trailing" id="UCy-ej-gBy"/>
-                <constraint firstItem="DeM-or-hoj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="c4Y-t7-HDc"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="DeM-or-hoj" secondAttribute="bottom" id="koq-d0-8sk"/>
-                <constraint firstItem="DeM-or-hoj" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="uo0-7z-65e"/>
+                <constraint firstItem="1pR-3m-QNR" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="42c-CJ-U4w"/>
+                <constraint firstItem="1pR-3m-QNR" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="8fq-kM-yjn"/>
+                <constraint firstItem="1pR-3m-QNR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="CY7-sM-5oA"/>
+                <constraint firstItem="1pR-3m-QNR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Qto-ee-fQm"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="headerTitleLabel" destination="DeM-or-hoj" id="2Fi-f8-GUK"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="54"/>
         </view>
     </objects>
 </document>
