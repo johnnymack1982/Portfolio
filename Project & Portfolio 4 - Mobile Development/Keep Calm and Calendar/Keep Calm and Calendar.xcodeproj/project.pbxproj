@@ -19,6 +19,7 @@
 		F261F2E22168E76500F697A6 /* EventManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F261F2E12168E76500F697A6 /* EventManagerViewController.swift */; };
 		F261F2E52168FFBE00F697A6 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F261F2E42168FFBE00F697A6 /* EventDetailsViewController.swift */; };
 		F2D31943216902B500E64876 /* EventPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D31942216902B500E64876 /* EventPhotoViewController.swift */; };
+		F2D31945216A42B400E64876 /* Array_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D31944216A42B400E64876 /* Array_EXT.swift */; };
 		F2E5DE5C2163102500325D95 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5DE5B2163102500325D95 /* SignUpViewController.swift */; };
 		F2E5DE5E2163185300325D95 /* ParentCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5DE5D2163185300325D95 /* ParentCodeViewController.swift */; };
 		F2E5DE6021638F6900325D95 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5DE5F21638F6900325D95 /* LogInViewController.swift */; };
@@ -47,6 +48,7 @@
 		F261F2E12168E76500F697A6 /* EventManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagerViewController.swift; sourceTree = "<group>"; };
 		F261F2E42168FFBE00F697A6 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		F2D31942216902B500E64876 /* EventPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPhotoViewController.swift; sourceTree = "<group>"; };
+		F2D31944216A42B400E64876 /* Array_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array_EXT.swift; sourceTree = "<group>"; };
 		F2E5DE5B2163102500325D95 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F2E5DE5D2163185300325D95 /* ParentCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentCodeViewController.swift; sourceTree = "<group>"; };
 		F2E5DE5F21638F6900325D95 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				F21F97B62168214F0023487A /* String_EXT.swift */,
+				F2D31944216A42B400E64876 /* Array_EXT.swift */,
 				F213348D216302D20077DD97 /* AppDelegate.swift */,
 				F2E5DE6D216431FE00325D95 /* Event.swift */,
 				F2E5DE612163902900325D95 /* Welcome Screen */,
@@ -300,6 +303,7 @@
 				F2E5DE6021638F6900325D95 /* LogInViewController.swift in Sources */,
 				F2E5DE6E216431FE00325D95 /* Event.swift in Sources */,
 				F21F97B72168214F0023487A /* String_EXT.swift in Sources */,
+				F2D31945216A42B400E64876 /* Array_EXT.swift in Sources */,
 				F261F2E52168FFBE00F697A6 /* EventDetailsViewController.swift in Sources */,
 				F2E5DE5E2163185300325D95 /* ParentCodeViewController.swift in Sources */,
 				F2E5DE5C2163102500325D95 /* SignUpViewController.swift in Sources */,

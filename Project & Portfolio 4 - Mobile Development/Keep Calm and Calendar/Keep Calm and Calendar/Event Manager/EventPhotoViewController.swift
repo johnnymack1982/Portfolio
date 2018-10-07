@@ -26,18 +26,58 @@ class EventPhotoViewController: UIViewController {
     var oneTimeEvent = false
     var recurrenceFrequency: Int?
     var eventPhoto: UIImage?
+    var newEvent: Event?
     
     
     
     // MARK: - System Generated Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // Populate header with new event name
+        eventNameLabel.text = eventName
+        
+        // Populate header with new event time
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: dateTime!)
+        let minute = calendar.component(.minute, from: dateTime!)
+        
+        if hour > 12 {
+            eventTimeLabel.text = "\(hour - 12):\(String(format: "%02d", minute)) PM"
+        }
+            
+        else {
+            eventTimeLabel.text = "\(hour):\(String(format: "%02d", minute)) AM"
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        
+        // If user supplied a photo, attach it to the event
+        if let image = eventPhoto {
+            newEvent = Event(name: eventName!, date: dateTime!, image: image, completion: requiresCompletion, recurrenceFrequency: recurrenceFrequency!)
+        }
+        
+        // If user did not supply a photo, attach default image
+        else {
+            newEvent = Event(name: eventName!, date: dateTime!, image: #imageLiteral(resourceName: "Logo"), completion: requiresCompletion, recurrenceFrequency: recurrenceFrequency!)
+        }
+        
+        return true
+    }
+    
+    
+    
+    // MARK: - Action Functions
+    @IBAction func takePhotoTapped(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Coming Soon", message: "Pardon our dust. This feature isn't ready just yet!", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okButton)
+        self.present(alert, animated: true)
     }
 }

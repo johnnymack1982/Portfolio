@@ -29,8 +29,6 @@ class ParentCodeViewController: UIViewController {
     // MARK: - System Generated Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,6 +37,8 @@ class ParentCodeViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        
+        // If the user entered an invalid Parent Code, let them know and prevent segue from performing
         if parentCodeEntry.text?.count != 4 {
             let alert = UIAlertController(title: "Invalid Parent Code", message: "Please enter a four-digit Parent Code.", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -48,6 +48,7 @@ class ParentCodeViewController: UIViewController {
             return false
         }
             
+        // If user entered a valid Parent Code, use provided input to establish a new user account and allow segue to perform
         else {
             Auth.auth().createUser(withEmail: userEmail!, password: userPassword!) { (authResult, error) in
                 // ...
@@ -60,5 +61,9 @@ class ParentCodeViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        // Reference destination view controller and pass necessary information
+        if let destination = segue.destination as? ScheduleViewController {
+            destination.parentCode = parentCode
+        }
     }
 }

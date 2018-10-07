@@ -19,9 +19,12 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     
     // MARK: - Class Properties
     var cellCount = 1
-    let testEvents: [Event] = [Event(name: "Wake Up", date: Date(), image: #imageLiteral(resourceName: "Logo"), completion: true), Event(name: "Breakfast", date: Date(), image: #imageLiteral(resourceName: "Logo"), completion: true), Event(name: "School", date: Date(), image: #imageLiteral(resourceName: "Logo"), completion: false), Event(name: "Home", date: Date(), image: #imageLiteral(resourceName: "Logo"), completion: false), Event(name: "Homework", date: Date(), image: #imageLiteral(resourceName: "Logo"), completion: false)]
+    var events: [Event] = []
+    var tempEvents: [Event] = []
     var filteredEvents: [[Event]?] = []
-    var dates: [(month: Int, day: Int, year: Int)] = []
+    var dates: [Date] = []
+    var dateComponents: [(month: Int, day: Int, year: Int)] = []
+    var parentCode: Int?
     
     
     
@@ -29,14 +32,17 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Hide embedded navigation controller to properly display custom navigation bar
         self.navigationController?.navigationBar.isHidden = true
         
         // Register xib
         let headerNib = UINib.init(nibName: "WeekHeader", bundle: nil)
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "header_01")
         
+        // Call custom function to filter existing events
         filterEvents()
         
+        // Reload tableview
         tableView.reloadData()
     }
     
@@ -46,30 +52,45 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        // Hide embedded navigation controller to properly display custom navigation bar
         self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        let alert = UIAlertController(title: "Coming Soon", message: "This feature will eventually require you to enter your Parent Code. For now, you'll be allowed to continue as if a valid Parent Code has been entered.", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default, handler: {_ in self.performSegue(withIdentifier: "EventManagerSegue", sender: nil) })
+        alert.addAction(okButton)
+        self.present(alert, animated: true)
+        
+        return true
     }
     
     
     
     // MARK: - Table view data source
+    // Determine number of rows in each section according to number of level two elements in each level one element in filtered array
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let filteredEvents = filteredEvents[section] {
             return filteredEvents.count
         }
-        
+            
         else {
             return 0
         }
     }
     
+    // Determine number of sections to display according to level one elements in filtered array
     func numberOfSections(in tableView: UITableView) -> Int {
         return filteredEvents.count
     }
     
+    // Clear default header titles
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return nil
     }
     
+    // Set height for custom cells
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
@@ -77,6 +98,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var returnCell: EventCell?
         
+        // Loop through custom cells. This provides cells of multiple colors to easier differentiate from individual events
         switch cellCount {
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell_01", for: indexPath) as? EventCell
@@ -118,25 +140,28 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
             print("Invalid")
         }
         
+        // Reference the current event to be populated
         let currentEvent = filteredEvents[indexPath.section]![indexPath.row]
         
-        // Configure the cell...
+        // Populate current cell with appropriate information
         returnCell?.eventImage.image = currentEvent.image
         returnCell?.eventNameLabel.text = currentEvent.name
         returnCell?.eventTimeLabel.text = currentEvent.time()
         
-        if currentEvent.completion == true {
-            returnCell?.taskCompletionIndicator.image = #imageLiteral(resourceName: "Complete")
-        }
-        
-        else {
+        if currentEvent.requiresCompletion == true {
             returnCell?.taskCompletionIndicator.image = #imageLiteral(resourceName: "Incomplete")
+            returnCell?.taskCompletionIndicator.isHidden = false
+        }
+            
+        else {
+            returnCell?.taskCompletionIndicator.isHidden = true
         }
         
+        // Helps to keep track of which custom cell to use next
         if cellCount == 4 {
             cellCount = 1
         }
-        
+            
         else {
             cellCount += 1
         }
@@ -144,10 +169,12 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         return returnCell!
     }
     
+    // Set height for custom headers
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
     
+    // Populate custom headers
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var returnHeader: UIView?
         
@@ -167,5 +194,19 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(okButton)
         self.present(alert, animated: true)
+    }
+    
+    @IBAction func returnFromEventManager(segue: UIStoryboardSegue) {
+        
+        // Reference sending view. Add newly created event and filter into the current schedule
+        if let source = segue.source as? EventPhotoViewController {
+            if let newEvent = source.newEvent {
+                events.append(newEvent)
+                
+                filterEvents()
+                
+                tableView.reloadData()
+            }
+        }
     }
 }

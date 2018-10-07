@@ -31,8 +31,7 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
-        
+        // Hide embedded navigation controller to properly display custom navigation bar
         self.navigationController?.navigationBar.isHidden = false
     }
     
@@ -42,6 +41,8 @@ class SignUpViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        
+        // If the user didn't enter a valid e-mail address let them know and prevent segue from performing
         if emailEntry.text?.isValidEmail() == false {
             let alert = UIAlertController(title: "Invalid E-mail", message: "Please enter a valid e-mail address.", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -51,6 +52,7 @@ class SignUpViewController: UIViewController {
             return false
         }
             
+        // If the user didn't enter a valid password, let them know and prevent segue from performing
         else if passwordEntry.text?.isvalidPassword() == false  {
             let alert = UIAlertController(title: "Invalid Password", message: "Your password should be at least 8 characters long.\n\nIt should contain at least one LETTER and one NUMBER.\n\nSpecial characters should not be included.", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -60,6 +62,7 @@ class SignUpViewController: UIViewController {
             return false
         }
             
+        // If the user entered an incorrect password, let them know and prevent segue from performing
         else if confirmPasswordEntry.text != passwordEntry.text {
             let alert = UIAlertController(title: "Invalid Password", message: "Your passwords don't match.", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -69,21 +72,28 @@ class SignUpViewController: UIViewController {
             return false
         }
             
+        // If all input is valid, allow segue to perform
         else {
             return true
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Reference destination view controller
         if let destination = segue.destination as? ParentCodeViewController {
+            
+            // Reference user e-mail input
             if let userEmailInput = emailEntry.text {
                 userEmail = userEmailInput
             }
             
+            // Reference user password input
             if let userPasswordInput = passwordEntry.text {
                 userPassword = userPasswordInput
             }
             
+            // Send user input to the next view
             destination.userEmail = userEmail
             destination.userPassword = userPassword
         }

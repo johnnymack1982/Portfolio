@@ -259,9 +259,13 @@
                                     <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="zwr-86-GlI" kind="show" id="L87-T2-26O"/>
+                                    <segue destination="zwr-86-GlI" kind="show" identifier="LogInToSchedule" id="L87-T2-26O"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="cef-O1-lDr">
+                                <rect key="frame" x="325" y="629" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.70980392160000005" green="0.80392156859999997" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -291,7 +295,9 @@
                         <viewLayoutGuide key="safeArea" id="Elg-Cz-SfZ"/>
                     </view>
                     <connections>
+                        <outlet property="continueButton" destination="AUO-ZA-YCp" id="99G-Yl-Fnx"/>
                         <outlet property="emailEntry" destination="I8J-yU-xtS" id="zn1-3S-Xbw"/>
+                        <outlet property="loadingIndicator" destination="cef-O1-lDr" id="PAS-az-0hD"/>
                         <outlet property="passwordEntry" destination="EwH-Dq-jqE" id="pei-Lu-5GV"/>
                     </connections>
                 </viewController>
@@ -318,7 +324,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Add" id="6e6-LY-vtO">
                                             <connections>
-                                                <segue destination="n8Q-0e-GHo" kind="show" id="rlx-pd-Mjg"/>
+                                                <segue destination="n8Q-0e-GHo" kind="show" identifier="EventManagerSegue" id="rlx-pd-Mjg"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -729,6 +735,7 @@
                                     <segment title="Daily"/>
                                     <segment title="Weekly"/>
                                     <segment title="Monthly"/>
+                                    <segment title="Yearly"/>
                                 </segments>
                                 <color key="tintColor" red="0.57647058823529407" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
@@ -738,6 +745,9 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2F4-pA-hzl">
                                 <rect key="frame" x="163" y="418" width="51" height="31"/>
                                 <color key="tintColor" red="0.57647058819999997" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="oneTimeEventSwitchTapped:" destination="SBV-t9-EPt" eventType="valueChanged" id="RPJ-We-o6g"/>
+                                </connections>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" red="0.70980392160000005" green="0.80392156859999997" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -777,6 +787,7 @@
                         <outlet property="eventTimeLabel" destination="7W6-NF-adM" id="vK4-zD-Hob"/>
                         <outlet property="oneTimeEventEntry" destination="2F4-pA-hzl" id="GlG-wF-D8M"/>
                         <outlet property="recurrenceFrequencyEntry" destination="Lby-S7-ydZ" id="mRC-F5-MIZ"/>
+                        <outlet property="recurrenceFrequencyLabel" destination="8PL-on-PPl" id="heQ-Il-htW"/>
                         <outlet property="requiresCompletionEntry" destination="gyb-k3-kQU" id="YpF-tA-46e"/>
                     </connections>
                 </viewController>
@@ -831,6 +842,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Xge-H7-qod" kind="unwind" unwindAction="returnFromEventManagerWithSegue:" id="OdX-sX-AEE"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ds-un-LmV">
                                 <rect key="frame" x="5" y="421.5" width="365" height="64"/>
@@ -839,6 +853,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="takePhotoTapped:" destination="mbu-Pg-qSf" eventType="touchUpInside" id="3sc-5r-iKa"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Camera" translatesAutoresizingMaskIntoConstraints="NO" id="BEO-T8-DfN">
                                 <rect key="frame" x="30" y="167.5" width="315" height="173"/>
@@ -873,6 +890,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yum-rq-JbB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Xge-H7-qod" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3696.8000000000002" y="1494.6026986506747"/>
         </scene>

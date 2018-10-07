@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Keep Calm and Calendar/Sign Up/ParentCodeViewController.swift"
-            timestampString = "560527995.393698"
+            filePath = "Keep Calm and Calendar/Schedule/ScheduleViewController_Ext.swift"
+            timestampString = "560644430.217014"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "shouldPerformSegue(withIdentifier:sender:)"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
+            landmarkName = "removeOldEvents()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

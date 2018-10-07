@@ -14,9 +14,10 @@ import UIKit
 class Event {
     // MARK: - Stored Properties
     let name: String
-    let date: Date
+    var date: Date
     let image: UIImage
-    let completion: Bool
+    let requiresCompletion: Bool
+    let recurrenceFrequency: Int
     
     
     
@@ -25,11 +26,12 @@ class Event {
     
     
     // MARK: - Initializers
-    init(name: String, date: Date, image: UIImage, completion: Bool) {
+    init(name: String, date: Date, image: UIImage, completion: Bool, recurrenceFrequency: Int) {
         self.name = name
         self.date = date
         self.image = image
-        self.completion = completion
+        self.requiresCompletion = completion
+        self.recurrenceFrequency = recurrenceFrequency
     }
     
     
@@ -68,11 +70,11 @@ class Event {
         let minute = calendar.component(.minute, from: date)
         
         if hour > 12 {
-            returnString = "\(hour - 12):\(minute) PM"
+            returnString = "\(hour - 12):\(String(format: "%02d", minute)) PM"
         }
         
         else {
-            returnString = "\(hour):\(minute) AM"
+            returnString = "\(hour):\(String(format: "%02d", minute)) AM"
         }
         
         return returnString
