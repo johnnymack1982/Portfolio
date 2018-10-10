@@ -13,11 +13,12 @@ import UIKit
 
 class Event {
     // MARK: - Stored Properties
-    let name: String
+    var name: String
     var date: Date
-    let image: UIImage
-    let requiresCompletion: Bool
-    let recurrenceFrequency: Int
+    var image: UIImage
+    var requiresCompletion: Bool
+    var recurrenceFrequency: Int
+    var originalIndex: Int
     
     
     
@@ -26,12 +27,13 @@ class Event {
     
     
     // MARK: - Initializers
-    init(name: String, date: Date, image: UIImage, completion: Bool, recurrenceFrequency: Int) {
+    init(name: String, date: Date, image: UIImage, completion: Bool, recurrenceFrequency: Int, originalIndex: Int) {
         self.name = name
         self.date = date
         self.image = image
         self.requiresCompletion = completion
         self.recurrenceFrequency = recurrenceFrequency
+        self.originalIndex = originalIndex
     }
     
     

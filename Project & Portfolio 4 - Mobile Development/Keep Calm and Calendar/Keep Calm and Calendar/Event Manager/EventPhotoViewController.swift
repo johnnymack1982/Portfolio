@@ -16,6 +16,8 @@ class EventPhotoViewController: UIViewController {
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var eventTimeLabel: UILabel!
     @IBOutlet weak var eventPhotoView: UIImageView!
+    @IBOutlet weak var deleteEventButton: UIButton!
+    @IBOutlet weak var createEventButton: UIButton!
     
     
     
@@ -27,6 +29,9 @@ class EventPhotoViewController: UIViewController {
     var recurrenceFrequency: Int?
     var eventPhoto: UIImage?
     var newEvent: Event?
+    var selectedEvent: Event?
+    var parentMode = false
+    var deleteEvent = false
     
     
     
@@ -49,6 +54,16 @@ class EventPhotoViewController: UIViewController {
         else {
             eventTimeLabel.text = "\(hour):\(String(format: "%02d", minute)) AM"
         }
+        
+        if parentMode == true {
+            createEventButton.setTitle("Save Changes", for: .normal)
+        }
+        
+        deleteEventButton.isHidden = true
+        
+        if parentMode == true {
+            deleteEventButton.isHidden = false
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,12 +75,12 @@ class EventPhotoViewController: UIViewController {
         
         // If user supplied a photo, attach it to the event
         if let image = eventPhoto {
-            newEvent = Event(name: eventName!, date: dateTime!, image: image, completion: requiresCompletion, recurrenceFrequency: recurrenceFrequency!)
+            newEvent = Event(name: eventName!, date: dateTime!, image: image, completion: requiresCompletion, recurrenceFrequency: recurrenceFrequency!, originalIndex: 0)
         }
         
         // If user did not supply a photo, attach default image
         else {
-            newEvent = Event(name: eventName!, date: dateTime!, image: #imageLiteral(resourceName: "Logo"), completion: requiresCompletion, recurrenceFrequency: recurrenceFrequency!)
+            newEvent = Event(name: eventName!, date: dateTime!, image: #imageLiteral(resourceName: "Logo"), completion: requiresCompletion, recurrenceFrequency: recurrenceFrequency!, originalIndex: 0)
         }
         
         return true
@@ -79,5 +94,21 @@ class EventPhotoViewController: UIViewController {
         let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(okButton)
         self.present(alert, animated: true)
+    }
+    
+    @IBAction func deleteButtonTapped(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Delete Event?", message: "Are you sure you want to permanently remove this event? All events in the series will also be removed.", preferredStyle: .alert)
+        
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let deleteButton = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) { (deleteSelectedEvent) in
+            self.deleteEvent = true
+            self.performSegue(withIdentifier: "DeleteFromEventPhoto", sender: nil)
+        }
+        
+        alert.addAction(cancelButton)
+        alert.addAction(deleteButton)
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }

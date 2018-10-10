@@ -19,6 +19,7 @@ class EventDetailsViewController: UIViewController {
     @IBOutlet weak var recurrenceFrequencyLabel: UILabel!
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var eventTimeLabel: UILabel!
+    @IBOutlet weak var deleteEventButton: UIButton!
     
     
     
@@ -28,6 +29,9 @@ class EventDetailsViewController: UIViewController {
     var recurrenceFrequency: Int?
     var eventName: String?
     var dateTime: Date?
+    var selectedEvent: Event?
+    var parentMode = false
+    var deleteEvent = false
     
     
     
@@ -43,12 +47,29 @@ class EventDetailsViewController: UIViewController {
         let hour = calendar.component(.hour, from: dateTime!)
         let minute = calendar.component(.minute, from: dateTime!)
         
+        deleteEventButton.isHidden = true
+        
+        if parentMode == true {
+            deleteEventButton.isHidden = false
+        }
+        
         if hour > 12 {
             eventTimeLabel.text = "\(hour - 12):\(String(format: "%02d", minute)) PM"
         }
             
         else {
             eventTimeLabel.text = "\(hour):\(String(format: "%02d", minute)) AM"
+        }
+        
+        if parentMode == true {
+            if oneTimeEvent == true {
+                oneTimeEventEntry.isOn = true
+            }
+            
+            else {
+                oneTimeEventEntry.isOn = false
+                recurrenceFrequencyEntry.selectedSegmentIndex = (selectedEvent?.recurrenceFrequency)! - 1
+            }
         }
         
         // Call custom function to toggle whether or not this is a one time event
@@ -96,6 +117,14 @@ class EventDetailsViewController: UIViewController {
             destination.recurrenceFrequency = recurrenceFrequency
             destination.eventName = eventName
             destination.dateTime = dateTime
+            
+            if parentMode == true {
+                selectedEvent?.requiresCompletion = requiresCompletion
+                selectedEvent?.recurrenceFrequency = recurrenceFrequency!
+                
+                destination.selectedEvent = selectedEvent
+                destination.parentMode = parentMode
+            }
         }
     }
     
@@ -107,6 +136,23 @@ class EventDetailsViewController: UIViewController {
         // Call custom function to toggle whether or not this is a one time event
         toggleOneTimeEvent()
     }
+    
+    @IBAction func deleteButtonTapped(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Delete Event?", message: "Are you sure you want to permanently remove this event? All events in the series will also be removed.", preferredStyle: .alert)
+        
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let deleteButton = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) { (deleteSelectedEvent) in
+            self.deleteEvent = true
+            self.performSegue(withIdentifier: "DeleteFromEventDetails", sender: nil)
+        }
+        
+        alert.addAction(cancelButton)
+        alert.addAction(deleteButton)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
     
     

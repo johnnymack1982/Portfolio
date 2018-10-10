@@ -13,7 +13,9 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     // MARK: - UI Outlets
+    @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     
     
@@ -25,6 +27,10 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     var dates: [Date] = []
     var dateComponents: [(month: Int, day: Int, year: Int)] = []
     var parentCode: Int?
+    var parentMode = false
+    var selectedEvent: Event?
+    var deleteEvent = false
+    var editingOn = false
     
     
     
@@ -186,26 +192,112 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         return returnHeader
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if parentMode == true {
+            if editingStyle == .delete {
+                let alert = UIAlertController(title: "Delete Event?", message: "Are you sure you want to permanently remove this event? All events in the series will also be removed.", preferredStyle: .alert)
+                
+                let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                
+                let deleteButton = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) { (deleteEvent) in
+                    
+                    // Delete the row from the data source
+                    self.events.remove(at: self.filteredEvents[indexPath.section]![indexPath.row].originalIndex)
+                    self.filterEvents()
+                    
+                    UIView.transition(with: tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+                }
+                
+                alert.addAction(cancelButton)
+                alert.addAction(deleteButton)
+                
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if parentMode == true {
+            selectedEvent = filteredEvents[indexPath.section]![indexPath.row]
+            self.performSegue(withIdentifier: "EventManagerSegue", sender: nil)
+            editingOn = true
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? EventManagerViewController {
+            if editingOn == true {
+                destination.selectedEvent = selectedEvent
+                destination.parentMode = parentMode
+            }
+        }
+    }
+    
     
     
     // MARK: - Action Functions
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Coming Soon", message: "Pardon our dust. This feature isn't ready just yet!", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Coming Soon", message: "This feature will eventually require you to enter your Parent Code. For now, you'll be allowed to continue as if a valid Parent Code has been entered.", preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(okButton)
         self.present(alert, animated: true)
+        
+        toggleParentMode()
     }
     
     @IBAction func returnFromEventManager(segue: UIStoryboardSegue) {
         
         // Reference sending view. Add newly created event and filter into the current schedule
         if let source = segue.source as? EventPhotoViewController {
-            if let newEvent = source.newEvent {
-                events.append(newEvent)
+            if parentMode == true && editingOn == true {
+                selectedEvent = source.selectedEvent
+                events[(selectedEvent?.originalIndex)!] = selectedEvent!
                 
                 filterEvents()
                 
                 tableView.reloadData()
+                
+                editingOn = false
+            }
+                
+            else {
+                if let newEvent = source.newEvent {
+                    events.append(newEvent)
+                    
+                    filterEvents()
+                    
+                    tableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    @IBAction func deleteFromEventManager(segue: UIStoryboardSegue) {
+        if let source = segue.source as? EventManagerViewController {
+            if source.deleteEvent == true {
+                selectedEvent = source.selectedEvent
+                deleteSelectedEvent()
+                editingOn = false
+            }
+        }
+    }
+    
+    @IBAction func deleteFromEventDetails(segue: UIStoryboardSegue) {
+        if let source = segue.source as? EventDetailsViewController {
+            if source.deleteEvent == true {
+                selectedEvent = source.selectedEvent
+                deleteSelectedEvent()
+                editingOn = false
+            }
+        }
+    }
+    
+    @IBAction func deleteFromEventPhoto(segue: UIStoryboardSegue) {
+        if let source = segue.source as? EventPhotoViewController {
+            if source.deleteEvent == true {
+                selectedEvent = source.selectedEvent
+                deleteSelectedEvent()
+                editingOn = false
             }
         }
     }

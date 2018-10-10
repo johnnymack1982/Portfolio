@@ -574,6 +574,8 @@
                         <viewLayoutGuide key="safeArea" id="MFo-Ol-UXL"/>
                     </view>
                     <connections>
+                        <outlet property="editButton" destination="r8t-TH-5QP" id="v5T-hB-aSA"/>
+                        <outlet property="navigationBar" destination="I5g-h6-WcT" id="7IL-T7-NcR"/>
                         <outlet property="tableView" destination="g6Q-56-oHR" id="HXX-Qr-qCm"/>
                     </connections>
                 </viewController>
@@ -627,11 +629,24 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="hAM-AU-aWb">
                                 <rect key="frame" x="10" y="74" width="355" height="140.5"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7e9-7G-bpu">
+                                <rect key="frame" x="10" y="622" width="97" height="35"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                <state key="normal" title="Delete Event">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteButtonTapped:" destination="n8Q-0e-GHo" eventType="touchUpInside" id="FDo-Ef-c0H"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.70980392160000005" green="0.80392156859999997" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Zvr-xH-JEF" firstAttribute="trailing" secondItem="R8B-ZA-qIH" secondAttribute="trailing" constant="5" id="56R-IV-0Za"/>
                             <constraint firstItem="qOl-r6-rd2" firstAttribute="leading" secondItem="Zvr-xH-JEF" secondAttribute="leading" constant="45" id="5Jc-9j-BTa"/>
+                            <constraint firstItem="7e9-7G-bpu" firstAttribute="leading" secondItem="Zvr-xH-JEF" secondAttribute="leading" constant="10" id="5TN-Yy-SXf"/>
+                            <constraint firstItem="Zvr-xH-JEF" firstAttribute="bottom" secondItem="7e9-7G-bpu" secondAttribute="bottom" constant="10" id="C2u-EH-cIL"/>
                             <constraint firstItem="uwe-SO-Slo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="x74-lb-vo0" secondAttribute="leading" constant="20" symbolic="YES" id="DvS-CN-PbR"/>
                             <constraint firstItem="QcX-aZ-CzJ" firstAttribute="top" secondItem="qOl-r6-rd2" secondAttribute="bottom" constant="35" id="Eph-T8-pTo"/>
                             <constraint firstItem="4Mo-IX-y6O" firstAttribute="leading" secondItem="Zvr-xH-JEF" secondAttribute="leading" constant="45" id="GjC-fY-pgx"/>
@@ -643,6 +658,7 @@
                             <constraint firstItem="Zvr-xH-JEF" firstAttribute="trailing" secondItem="qOl-r6-rd2" secondAttribute="trailing" constant="45" id="KMt-rf-AB2"/>
                             <constraint firstItem="Zvr-xH-JEF" firstAttribute="trailing" secondItem="hAM-AU-aWb" secondAttribute="trailing" constant="10" id="Khp-g1-W2C"/>
                             <constraint firstItem="Zvr-xH-JEF" firstAttribute="bottom" secondItem="uwe-SO-Slo" secondAttribute="bottom" constant="10" id="SgX-1U-ZFs"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7e9-7G-bpu" secondAttribute="trailing" constant="20" symbolic="YES" id="YHH-bE-g5W"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QcX-aZ-CzJ" secondAttribute="trailing" constant="20" symbolic="YES" id="Zko-NV-Ads"/>
                             <constraint firstItem="qOl-r6-rd2" firstAttribute="top" secondItem="4Mo-IX-y6O" secondAttribute="bottom" constant="5" id="ZvS-Ec-YYP"/>
                             <constraint firstItem="QcX-aZ-CzJ" firstAttribute="leading" secondItem="Zvr-xH-JEF" secondAttribute="leading" constant="45" id="gPM-QL-JpR"/>
@@ -655,10 +671,13 @@
                     </view>
                     <connections>
                         <outlet property="dateTimeEntry" destination="R8B-ZA-qIH" id="d8i-Ja-iIo"/>
+                        <outlet property="deleteEventButton" destination="7e9-7G-bpu" id="lpv-k2-hAy"/>
                         <outlet property="eventNameEntry" destination="qOl-r6-rd2" id="iRY-mO-Dus"/>
+                        <segue destination="Zv6-b1-Xkc" kind="unwind" identifier="DeleteFromEventManager" unwindAction="deleteFromEventManagerWithSegue:" id="fs3-82-UMn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pSO-Pb-JGX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Zv6-b1-Xkc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3696.8000000000002" y="17.541229385307346"/>
         </scene>
@@ -749,6 +768,17 @@
                                     <action selector="oneTimeEventSwitchTapped:" destination="SBV-t9-EPt" eventType="valueChanged" id="RPJ-We-o6g"/>
                                 </connections>
                             </switch>
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7A-xy-lou">
+                                <rect key="frame" x="10" y="622" width="97" height="35"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                <state key="normal" title="Delete Event">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteButtonTapped:" destination="SBV-t9-EPt" eventType="touchUpInside" id="Hea-An-WqB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.70980392160000005" green="0.80392156859999997" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -757,6 +787,7 @@
                             <constraint firstItem="npa-ob-YEl" firstAttribute="leading" secondItem="1XT-bw-VOV" secondAttribute="leading" id="8uQ-9K-gqG"/>
                             <constraint firstItem="D7x-a1-139" firstAttribute="top" secondItem="1XT-bw-VOV" secondAttribute="top" id="9Ru-qY-ora"/>
                             <constraint firstItem="1XT-bw-VOV" firstAttribute="trailing" secondItem="Lby-S7-ydZ" secondAttribute="trailing" constant="20" id="B8n-Ob-u4O"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="o7A-xy-lou" secondAttribute="trailing" constant="20" symbolic="YES" id="FKo-R3-ZW0"/>
                             <constraint firstItem="gyb-k3-kQU" firstAttribute="top" secondItem="G5f-Gf-2st" secondAttribute="bottom" constant="8" id="Fkd-e2-IGN"/>
                             <constraint firstItem="gyb-k3-kQU" firstAttribute="centerY" secondItem="ekc-al-zcl" secondAttribute="centerY" id="MIY-da-xph"/>
                             <constraint firstItem="D7x-a1-139" firstAttribute="height" secondItem="ekc-al-zcl" secondAttribute="height" multiplier="0.11" id="NB8-gh-39y"/>
@@ -765,6 +796,7 @@
                             <constraint firstItem="2F4-pA-hzl" firstAttribute="top" secondItem="npa-ob-YEl" secondAttribute="bottom" constant="8" id="Vq3-B3-ssh"/>
                             <constraint firstItem="1XT-bw-VOV" firstAttribute="trailing" secondItem="G5f-Gf-2st" secondAttribute="trailing" constant="5" id="Vyy-Q1-Ud2"/>
                             <constraint firstItem="mEq-2E-2d7" firstAttribute="top" secondItem="D7x-a1-139" secondAttribute="bottom" constant="5" id="Wdo-Pc-smQ"/>
+                            <constraint firstItem="1XT-bw-VOV" firstAttribute="bottom" secondItem="o7A-xy-lou" secondAttribute="bottom" constant="10" id="ZmO-h6-rC2"/>
                             <constraint firstItem="gyb-k3-kQU" firstAttribute="centerX" secondItem="ekc-al-zcl" secondAttribute="centerX" id="auJ-3Y-BKO"/>
                             <constraint firstItem="1XT-bw-VOV" firstAttribute="trailing" secondItem="8PL-on-PPl" secondAttribute="trailing" constant="5" id="bXi-ha-cEL"/>
                             <constraint firstItem="1XT-bw-VOV" firstAttribute="trailing" secondItem="mEq-2E-2d7" secondAttribute="trailing" constant="5" id="ckB-qD-s2b"/>
@@ -779,19 +811,23 @@
                             <constraint firstItem="mEq-2E-2d7" firstAttribute="leading" secondItem="1XT-bw-VOV" secondAttribute="leading" constant="5" id="qtM-Ll-dON"/>
                             <constraint firstItem="Lby-S7-ydZ" firstAttribute="leading" secondItem="1XT-bw-VOV" secondAttribute="leading" constant="20" id="sKi-lU-ASi"/>
                             <constraint firstItem="a8S-bC-T22" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ekc-al-zcl" secondAttribute="leading" constant="20" symbolic="YES" id="uQF-d5-NiJ"/>
+                            <constraint firstItem="o7A-xy-lou" firstAttribute="leading" secondItem="1XT-bw-VOV" secondAttribute="leading" constant="10" id="zWM-Rv-EdA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1XT-bw-VOV"/>
                     </view>
                     <connections>
+                        <outlet property="deleteEventButton" destination="o7A-xy-lou" id="oB9-MI-Kgo"/>
                         <outlet property="eventNameLabel" destination="hwT-RE-5sg" id="ZzM-1a-Eja"/>
                         <outlet property="eventTimeLabel" destination="7W6-NF-adM" id="vK4-zD-Hob"/>
                         <outlet property="oneTimeEventEntry" destination="2F4-pA-hzl" id="GlG-wF-D8M"/>
                         <outlet property="recurrenceFrequencyEntry" destination="Lby-S7-ydZ" id="mRC-F5-MIZ"/>
                         <outlet property="recurrenceFrequencyLabel" destination="8PL-on-PPl" id="heQ-Il-htW"/>
                         <outlet property="requiresCompletionEntry" destination="gyb-k3-kQU" id="YpF-tA-46e"/>
+                        <segue destination="Yjc-ER-B7X" kind="unwind" identifier="DeleteFromEventDetails" unwindAction="deleteFromEventDetailsWithSegue:" id="6cc-Gq-ARU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVS-ab-tKh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Yjc-ER-B7X" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3697" y="752"/>
         </scene>
@@ -843,7 +879,7 @@
                                     <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Xge-H7-qod" kind="unwind" unwindAction="returnFromEventManagerWithSegue:" id="OdX-sX-AEE"/>
+                                    <segue destination="Xge-H7-qod" kind="unwind" identifier="CreateEventSegue" unwindAction="returnFromEventManagerWithSegue:" id="OdX-sX-AEE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ds-un-LmV">
@@ -860,6 +896,17 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Camera" translatesAutoresizingMaskIntoConstraints="NO" id="BEO-T8-DfN">
                                 <rect key="frame" x="30" y="167.5" width="315" height="173"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-qX-iMk">
+                                <rect key="frame" x="10" y="622" width="97" height="35"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                <state key="normal" title="Delete Event">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteButtonTapped:" destination="mbu-Pg-qSf" eventType="touchUpInside" id="1pi-AV-lkw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.70980392160000005" green="0.80392156859999997" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -870,7 +917,9 @@
                             <constraint firstItem="Qw4-R2-Jmx" firstAttribute="trailing" secondItem="dSW-8Q-r4Z" secondAttribute="trailing" constant="10" id="9oG-Ex-UBm"/>
                             <constraint firstItem="dSW-8Q-r4Z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Qy0-Pf-MYh" secondAttribute="leading" constant="20" symbolic="YES" id="EHH-nU-meZ"/>
                             <constraint firstItem="Z0g-5q-U9U" firstAttribute="height" secondItem="Qy0-Pf-MYh" secondAttribute="height" multiplier="0.11" id="Rtg-sj-rzN"/>
+                            <constraint firstItem="8bC-qX-iMk" firstAttribute="leading" secondItem="Qw4-R2-Jmx" secondAttribute="leading" constant="10" id="UsN-vR-fnC"/>
                             <constraint firstItem="FuD-Jm-o3f" firstAttribute="centerY" secondItem="Qy0-Pf-MYh" secondAttribute="centerY" constant="50" id="YHa-Su-TFE"/>
+                            <constraint firstItem="Qw4-R2-Jmx" firstAttribute="bottom" secondItem="8bC-qX-iMk" secondAttribute="bottom" constant="10" id="ZG8-qE-CB3"/>
                             <constraint firstItem="Qw4-R2-Jmx" firstAttribute="trailing" secondItem="9ds-un-LmV" secondAttribute="trailing" constant="5" id="Zoo-fv-RHy"/>
                             <constraint firstItem="Qw4-R2-Jmx" firstAttribute="trailing" secondItem="BEO-T8-DfN" secondAttribute="trailing" constant="30" id="c84-c5-WvG"/>
                             <constraint firstItem="BEO-T8-DfN" firstAttribute="leading" secondItem="Qw4-R2-Jmx" secondAttribute="leading" constant="30" id="fTJ-jS-7Ld"/>
@@ -878,15 +927,19 @@
                             <constraint firstItem="Qw4-R2-Jmx" firstAttribute="trailing" secondItem="FuD-Jm-o3f" secondAttribute="trailing" constant="5" id="jaD-Ko-w3Q"/>
                             <constraint firstItem="Z0g-5q-U9U" firstAttribute="trailing" secondItem="Qw4-R2-Jmx" secondAttribute="trailing" id="rOV-ZE-RkV"/>
                             <constraint firstItem="FuD-Jm-o3f" firstAttribute="leading" secondItem="Qw4-R2-Jmx" secondAttribute="leading" constant="5" id="t95-jh-jVd"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8bC-qX-iMk" secondAttribute="trailing" constant="20" symbolic="YES" id="tbg-IH-G7E"/>
                             <constraint firstItem="9ds-un-LmV" firstAttribute="top" secondItem="FuD-Jm-o3f" secondAttribute="bottom" constant="25" id="vDA-pt-6c3"/>
                             <constraint firstItem="BEO-T8-DfN" firstAttribute="top" secondItem="Z0g-5q-U9U" secondAttribute="bottom" constant="30" id="wXq-tw-aJm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Qw4-R2-Jmx"/>
                     </view>
                     <connections>
+                        <outlet property="createEventButton" destination="dSW-8Q-r4Z" id="cNe-6p-HRp"/>
+                        <outlet property="deleteEventButton" destination="8bC-qX-iMk" id="FWG-d1-p2I"/>
                         <outlet property="eventNameLabel" destination="yG7-An-HFD" id="6Pu-dH-EbZ"/>
                         <outlet property="eventPhotoView" destination="BEO-T8-DfN" id="ZFP-b3-8nj"/>
                         <outlet property="eventTimeLabel" destination="XUx-LE-2Lg" id="k10-y1-nfR"/>
+                        <segue destination="Xge-H7-qod" kind="unwind" identifier="DeleteFromEventPhoto" unwindAction="deleteFromEventPhotoWithSegue:" id="YWc-0D-vdF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yum-rq-JbB" userLabel="First Responder" sceneMemberID="firstResponder"/>

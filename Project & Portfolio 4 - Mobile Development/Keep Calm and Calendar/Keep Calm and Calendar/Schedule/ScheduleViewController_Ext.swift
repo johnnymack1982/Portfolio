@@ -13,6 +13,13 @@ extension ScheduleViewController {
     
     // Custom function to filter events into schedule
     func filterEvents() {
+        var currentIndex = 0
+        
+        for event in events {
+            event.originalIndex = currentIndex
+            
+            currentIndex += 1
+        }
         
         // Clear all relevant arrays to prevent duplication
         filteredEvents = []
@@ -25,7 +32,7 @@ extension ScheduleViewController {
         generateRecurrances()
         extractDates()
         
-        var currentIndex = 0
+        currentIndex = 0
         
         // Filter events using extracted dates to make sure they are displayed in the correct cells
         for date in dateComponents {
@@ -99,7 +106,7 @@ extension ScheduleViewController {
                     
                     let newDate = Calendar.current.date(byAdding: dateComponent, to: event.date)
                     
-                    tempEvents.append(Event(name: event.name, date: newDate!, image: event.image, completion: event.requiresCompletion, recurrenceFrequency: event.recurrenceFrequency))
+                    tempEvents.append(Event(name: event.name, date: newDate!, image: event.image, completion: event.requiresCompletion, recurrenceFrequency: event.recurrenceFrequency, originalIndex: event.originalIndex))
                     
                     daysToAdd += 1
                 }
@@ -114,7 +121,7 @@ extension ScheduleViewController {
                     
                     let newDate = Calendar.current.date(byAdding: dateComponent, to: event.date)
                     
-                    tempEvents.append(Event(name: event.name, date: newDate!, image: event.image, completion: event.requiresCompletion, recurrenceFrequency: event.recurrenceFrequency))
+                    tempEvents.append(Event(name: event.name, date: newDate!, image: event.image, completion: event.requiresCompletion, recurrenceFrequency: event.recurrenceFrequency, originalIndex: event.originalIndex))
                     
                     weeksToAdd += 7
                 }
@@ -129,7 +136,7 @@ extension ScheduleViewController {
                     
                     let newDate = Calendar.current.date(byAdding: dateComponent, to: event.date)
                     
-                    tempEvents.append(Event(name: event.name, date: newDate!, image: event.image, completion: event.requiresCompletion, recurrenceFrequency: event.recurrenceFrequency))
+                    tempEvents.append(Event(name: event.name, date: newDate!, image: event.image, completion: event.requiresCompletion, recurrenceFrequency: event.recurrenceFrequency, originalIndex: event.originalIndex))
                     
                     monthsToAdd += 1
                 }
@@ -144,7 +151,7 @@ extension ScheduleViewController {
                     
                     let newDate = Calendar.current.date(byAdding: dateComponent, to: event.date)
                     
-                    tempEvents.append(Event(name: event.name, date: newDate!, image: event.image, completion: event.requiresCompletion, recurrenceFrequency: event.recurrenceFrequency))
+                    tempEvents.append(Event(name: event.name, date: newDate!, image: event.image, completion: event.requiresCompletion, recurrenceFrequency: event.recurrenceFrequency, originalIndex: event.originalIndex))
                     
                     yearsToAdd += 1
                 }
@@ -168,7 +175,7 @@ extension ScheduleViewController {
         var currentIndex = 0
         
         // Used solely to compare event date to the current date
-        let now = Event(name: "Now", date: Date(), image: #imageLiteral(resourceName: "Logo"), completion: false, recurrenceFrequency: 0)
+        let now = Event(name: "Now", date: Date(), image: #imageLiteral(resourceName: "Logo"), completion: false, recurrenceFrequency: 0, originalIndex: 0)
         
         // Cycle throughh events and remove past items
         for event in events {
@@ -363,5 +370,27 @@ extension ScheduleViewController {
             
             currentIndex += 1
         }
+    }
+    
+    func toggleParentMode() {
+        if parentMode == false {
+            editButton.title = "Back"
+            navigationBar.topItem?.title = "Parent Mode"
+            
+            parentMode = true
+        }
+        
+        else {
+            editButton.title = "Edit"
+            navigationBar.topItem?.title = "My Schedule"
+            
+            parentMode = false
+        }
+    }
+    
+    func deleteSelectedEvent() {
+        events.remove(at: (selectedEvent?.originalIndex)!)
+        filterEvents()
+        UIView.transition(with: tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
     }
 }
