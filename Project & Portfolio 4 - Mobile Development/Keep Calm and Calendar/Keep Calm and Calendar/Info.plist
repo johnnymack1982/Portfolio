@@ -45,5 +45,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>Would you like to allow &apos;Keep Calm and Calendar&apos; to access your camera?</string>
 </dict>
 </plist>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventPhotoViewController: UIViewController {
+class EventPhotoViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     
     
@@ -63,6 +63,10 @@ class EventPhotoViewController: UIViewController {
         
         if parentMode == true {
             deleteEventButton.isHidden = false
+            
+            if selectedEvent?.image != #imageLiteral(resourceName: "Logo") {
+                eventPhotoView.image = selectedEvent?.image
+            }
         }
     }
 
@@ -86,14 +90,39 @@ class EventPhotoViewController: UIViewController {
         return true
     }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        
+        guard let capturedImage = info[UIImagePickerControllerEditedImage] as? UIImage
+        
+            else {
+                print("Invalid Image")
+                return
+        }
+        
+        eventPhoto = capturedImage
+        eventPhotoView.image = eventPhoto
+        
+        if parentMode == true {
+            selectedEvent?.image = eventPhoto!
+        }
+    }
+    
     
     
     // MARK: - Action Functions
     @IBAction func takePhotoTapped(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Coming Soon", message: "Pardon our dust. This feature isn't ready just yet!", preferredStyle: .alert)
+        let camera = UIImagePickerController()
+        camera.sourceType = .camera
+        camera.allowsEditing = true
+        camera.delegate = self
+        
+        present(camera, animated: true)
+        
+        /*let alert = UIAlertController(title: "Coming Soon", message: "Pardon our dust. This feature isn't ready just yet!", preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(okButton)
-        self.present(alert, animated: true)
+        self.present(alert, animated: true)*/
     }
     
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
