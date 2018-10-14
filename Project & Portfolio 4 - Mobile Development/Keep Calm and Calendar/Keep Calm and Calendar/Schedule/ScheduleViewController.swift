@@ -197,6 +197,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         
         header?.headerTitleLabel.text = filteredEvents[section]?.last?.weekDay()
         header?.dateLabel.text = (filteredEvents[section]?.last?.monthName())! + " " + (filteredEvents[section]?.last?.day().description)!
+        header?.yearLabel.text = filteredEvents[section]?.last?.year().description
         
         returnHeader = header
         

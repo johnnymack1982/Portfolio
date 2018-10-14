@@ -43,6 +43,10 @@ class EventManagerViewController: UIViewController {
             dateTimeEntry.date = (selectedEvent?.date)!
             deleteEventButton.isHidden = false
         }
+        
+        // Register keyboard notifications. This will be used later to move text fields when the keyboard is active.
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,8 +69,8 @@ class EventManagerViewController: UIViewController {
         }
             
         // If entered date is in the past, let the user know and prevent segue
-        else if newDate.day() < now.day() || (newDate.month() < now.month() && newDate.year() < now.year()) || (newDate.month() < now.month() && newDate.year() == now.year()) || newDate.year() < now.year() {
-            let alert = UIAlertController(title: "Invalid Event Date", message: "Please do not select a date in the past.", preferredStyle: .alert)
+        if newDate.date < now.date {
+            let alert = UIAlertController(title: "Invalid Event Date", message: "Please do not select a date and time in the past.", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(okButton)
             self.present(alert, animated: true)
@@ -134,5 +138,31 @@ class EventManagerViewController: UIViewController {
         alert.addAction(deleteButton)
         
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo
+            
+            else {
+                return
+        }
+        
+        guard let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue
+            
+            else {
+                return
+        }
+        
+        let keyboardFrame = keyboardSize.cgRectValue
+        
+        if self.view.frame.origin.y == 0{
+            self.view.frame.origin.y -= keyboardFrame.height
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0{
+            self.view.frame.origin.y = 0
+        }
     }
 }

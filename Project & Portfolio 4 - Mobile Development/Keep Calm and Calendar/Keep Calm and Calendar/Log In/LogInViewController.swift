@@ -34,6 +34,10 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
         loadingIndicator.isHidden = true
+        
+        // Register keyboard notifications. This will be used later to move text fields when the keyboard is active.
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -113,5 +117,34 @@ class LogInViewController: UIViewController {
         
         // Call this function into action when touch is detected
         super.touchesBegan(touches, with: event)
+    }
+    
+    
+    
+    // MARK: - Action Functions
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo
+            
+            else {
+                return
+        }
+        
+        guard let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue
+            
+            else {
+                return
+        }
+        
+        let keyboardFrame = keyboardSize.cgRectValue
+        
+        if self.view.frame.origin.y == 0{
+            self.view.frame.origin.y -= keyboardFrame.height
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0{
+            self.view.frame.origin.y = 0
+        }
     }
 }
