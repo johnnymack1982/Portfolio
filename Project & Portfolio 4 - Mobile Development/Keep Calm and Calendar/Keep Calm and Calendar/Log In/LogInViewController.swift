@@ -44,7 +44,7 @@ class LogInViewController: UIViewController {
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         
         // If user entered an invalid e-mail address let them know and prevent segue from performing
-        if emailEntry.text?.isValidEmail() == false {
+        if emailEntry.text?.trimmingCharacters(in: .whitespaces).isValidEmail() == false {
             let alert = UIAlertController(title: "Invalid E-mail", message: "Please enter a valid e-mail address.", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(okButton)
@@ -54,7 +54,7 @@ class LogInViewController: UIViewController {
         }
             
         // If user entered an invalid password let them know and prevent segue from performing
-        else if passwordEntry.text?.isvalidPassword() == false  {
+        else if passwordEntry.text?.trimmingCharacters(in: .whitespaces).isvalidPassword() == false  {
             let alert = UIAlertController(title: "Invalid Password", message: "Your password should be at least 8 characters long.\n\nIt should contain at least one LETTER and one NUMBER.\n\nSpecial characters should not be included.", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(okButton)
@@ -65,16 +65,16 @@ class LogInViewController: UIViewController {
             
         // If user entered valid input, attempt to log in
         else {
-            userEmail = emailEntry.text
-            userPassword = passwordEntry.text
+            userEmail = emailEntry.text?.trimmingCharacters(in: .whitespaces)
+            userPassword = passwordEntry.text?.trimmingCharacters(in: .whitespaces)
+            
+            // Hide Continue button and show progress indicator
+            self.continueButton.isHidden = true
+            self.loadingIndicator.isHidden = false
+            self.loadingIndicator.startAnimating()
             
             // Attempt to log into Firebase servers
             Auth.auth().signIn(withEmail: userEmail!, password: userPassword!) { (user, error) in
-                
-                // Hide Continue button and show progress indicator
-                self.continueButton.isHidden = true
-                self.loadingIndicator.isHidden = false
-                self.loadingIndicator.startAnimating()
                 
                 // If login is unsuccessful, let the user know and prevent segue
                 if error != nil {
@@ -107,7 +107,11 @@ class LogInViewController: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // Force application to unfocus from current text field
+        view.endEditing(true)
         
+        // Call this function into action when touch is detected
+        super.touchesBegan(touches, with: event)
     }
 }

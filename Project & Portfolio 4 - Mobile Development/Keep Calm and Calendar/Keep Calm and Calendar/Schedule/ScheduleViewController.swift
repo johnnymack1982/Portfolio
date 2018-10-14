@@ -151,6 +151,15 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Populate current cell with appropriate information
         returnCell?.eventImage.image = currentEvent.image
+        
+        if currentEvent.image == #imageLiteral(resourceName: "Logo") {
+            returnCell?.eventImage.isHidden = true
+        }
+        
+        else {
+            returnCell?.eventImage.isHidden = false
+        }
+        
         returnCell?.eventNameLabel.text = currentEvent.name
         returnCell?.eventTimeLabel.text = currentEvent.time()
         
@@ -185,7 +194,9 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         var returnHeader: UIView?
         
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header_01") as? WeeklyHeaderView
+        
         header?.headerTitleLabel.text = filteredEvents[section]?.last?.weekDay()
+        header?.dateLabel.text = (filteredEvents[section]?.last?.monthName())! + " " + (filteredEvents[section]?.last?.day().description)!
         
         returnHeader = header
         
@@ -218,9 +229,9 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if parentMode == true {
+            editingOn = true
             selectedEvent = filteredEvents[indexPath.section]![indexPath.row]
             self.performSegue(withIdentifier: "EventManagerSegue", sender: nil)
-            editingOn = true
         }
     }
     

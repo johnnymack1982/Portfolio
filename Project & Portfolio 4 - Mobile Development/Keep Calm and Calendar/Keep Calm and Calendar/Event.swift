@@ -95,4 +95,51 @@ class Event {
         
         return (month, day, year)
     }
+    
+    func monthName() -> String {
+        var returnString = ""
+        
+        switch month() {
+        case 1:
+            returnString = "Jan."
+            
+        case 2:
+            returnString = "Feb."
+            
+        case 3:
+            returnString = "Mar."
+            
+        case 4:
+            returnString = "Apr."
+            
+        case 5:
+            returnString = "May"
+            
+        case 6:
+            returnString = "Jun."
+            
+        case 7:
+            returnString = "Jul."
+            
+        case 8:
+            returnString = "Aug."
+            
+        case 9:
+            returnString = "Sep."
+            
+        case 10:
+            returnString = "Oct."
+            
+        case 11:
+            returnString = "Nov."
+            
+        case 12:
+            returnString = "Dec."
+            
+        default:
+            print("Invalid Month")
+        }
+        
+        return returnString
+    }
 }

@@ -39,7 +39,7 @@ class ParentCodeViewController: UIViewController {
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         
         // If the user entered an invalid Parent Code, let them know and prevent segue from performing
-        if parentCodeEntry.text?.count != 4 {
+        if parentCodeEntry.text?.trimmingCharacters(in: .whitespaces).count != 4 {
             let alert = UIAlertController(title: "Invalid Parent Code", message: "Please enter a four-digit Parent Code.", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(okButton)
@@ -55,6 +55,8 @@ class ParentCodeViewController: UIViewController {
                 guard (authResult?.user) != nil else { return }
             }
             
+            parentCode = Int((parentCodeEntry.text?.trimmingCharacters(in: .whitespaces))!)
+            
             return true
         }
     }
@@ -65,5 +67,13 @@ class ParentCodeViewController: UIViewController {
         if let destination = segue.destination as? ScheduleViewController {
             destination.parentCode = parentCode
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // Force application to unfocus from current text field
+        view.endEditing(true)
+        
+        // Call this function into action when touch is detected
+        super.touchesBegan(touches, with: event)
     }
 }

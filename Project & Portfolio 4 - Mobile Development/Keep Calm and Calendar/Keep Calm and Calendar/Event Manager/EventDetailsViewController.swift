@@ -128,6 +128,14 @@ class EventDetailsViewController: UIViewController {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // Force application to unfocus from current text field
+        view.endEditing(true)
+        
+        // Call this function into action when touch is detected
+        super.touchesBegan(touches, with: event)
+    }
+    
     
     
     // MARK: - Action Functions

@@ -14,4 +14,5 @@ class WeeklyHeaderView: UITableViewHeaderFooterView {
     
     // MARK: - UI Outlets
     @IBOutlet weak var headerTitleLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
 }

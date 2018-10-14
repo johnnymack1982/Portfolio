@@ -25,12 +25,21 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan. 31" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXU-6f-i66">
+                            <rect key="frame" x="5" y="0.0" width="67" height="50"/>
+                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                            <color key="textColor" red="0.20784313730000001" green="0.29803921570000003" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.99215686274509807" green="0.011764705882352941" blue="0.011764705882352941" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="DeM-or-hoj" firstAttribute="leading" secondItem="1pR-3m-QNR" secondAttribute="leading" id="9qL-jz-djE"/>
+                        <constraint firstItem="DeM-or-hoj" firstAttribute="leading" secondItem="1pR-3m-QNR" secondAttribute="leading" id="7Yg-xX-DXJ"/>
+                        <constraint firstAttribute="bottom" secondItem="gXU-6f-i66" secondAttribute="bottom" id="IsP-Wn-kGg"/>
                         <constraint firstItem="DeM-or-hoj" firstAttribute="top" secondItem="1pR-3m-QNR" secondAttribute="top" id="SGm-da-hoZ"/>
+                        <constraint firstItem="gXU-6f-i66" firstAttribute="leading" secondItem="1pR-3m-QNR" secondAttribute="leading" constant="5" id="e9D-bz-dWl"/>
                         <constraint firstAttribute="trailing" secondItem="DeM-or-hoj" secondAttribute="trailing" id="ewy-2B-5hh"/>
+                        <constraint firstItem="gXU-6f-i66" firstAttribute="top" secondItem="1pR-3m-QNR" secondAttribute="top" id="i13-Zu-TpD"/>
                         <constraint firstAttribute="bottom" secondItem="DeM-or-hoj" secondAttribute="bottom" id="nnc-LW-gsO"/>
                     </constraints>
                 </view>
@@ -44,6 +53,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="dateLabel" destination="gXU-6f-i66" id="Kti-1A-N7Y"/>
                 <outlet property="headerTitleLabel" destination="DeM-or-hoj" id="2Fi-f8-GUK"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="54"/>

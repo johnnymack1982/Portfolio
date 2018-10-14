@@ -43,7 +43,7 @@ class SignUpViewController: UIViewController {
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         
         // If the user didn't enter a valid e-mail address let them know and prevent segue from performing
-        if emailEntry.text?.isValidEmail() == false {
+        if emailEntry.text?.trimmingCharacters(in: .whitespaces).isValidEmail() == false {
             let alert = UIAlertController(title: "Invalid E-mail", message: "Please enter a valid e-mail address.", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(okButton)
@@ -53,7 +53,7 @@ class SignUpViewController: UIViewController {
         }
             
         // If the user didn't enter a valid password, let them know and prevent segue from performing
-        else if passwordEntry.text?.isvalidPassword() == false  {
+        else if passwordEntry.text?.trimmingCharacters(in: .whitespaces).isvalidPassword() == false  {
             let alert = UIAlertController(title: "Invalid Password", message: "Your password should be at least 8 characters long.\n\nIt should contain at least one LETTER and one NUMBER.\n\nSpecial characters should not be included.", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(okButton)
@@ -63,7 +63,7 @@ class SignUpViewController: UIViewController {
         }
             
         // If the user entered an incorrect password, let them know and prevent segue from performing
-        else if confirmPasswordEntry.text != passwordEntry.text {
+        else if confirmPasswordEntry.text?.trimmingCharacters(in: .whitespaces) != passwordEntry.text?.trimmingCharacters(in: .whitespaces) {
             let alert = UIAlertController(title: "Invalid Password", message: "Your passwords don't match.", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(okButton)
@@ -84,12 +84,12 @@ class SignUpViewController: UIViewController {
         if let destination = segue.destination as? ParentCodeViewController {
             
             // Reference user e-mail input
-            if let userEmailInput = emailEntry.text {
+            if let userEmailInput = emailEntry.text?.trimmingCharacters(in: .whitespaces) {
                 userEmail = userEmailInput
             }
             
             // Reference user password input
-            if let userPasswordInput = passwordEntry.text {
+            if let userPasswordInput = passwordEntry.text?.trimmingCharacters(in: .whitespaces) {
                 userPassword = userPasswordInput
             }
             
@@ -97,5 +97,13 @@ class SignUpViewController: UIViewController {
             destination.userEmail = userEmail
             destination.userPassword = userPassword
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // Force application to unfocus from current text field
+        view.endEditing(true)
+        
+        // Call this function into action when touch is detected
+        super.touchesBegan(touches, with: event)
     }
 }
