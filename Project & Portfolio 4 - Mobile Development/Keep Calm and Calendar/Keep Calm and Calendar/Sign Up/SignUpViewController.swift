@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     
     
@@ -45,41 +45,7 @@ class SignUpViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        
-        // If the user didn't enter a valid e-mail address let them know and prevent segue from performing
-        if emailEntry.text?.trimmingCharacters(in: .whitespaces).isValidEmail() == false {
-            let alert = UIAlertController(title: "Invalid E-mail", message: "Please enter a valid e-mail address.", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(okButton)
-            self.present(alert, animated: true)
-            
-            return false
-        }
-            
-        // If the user didn't enter a valid password, let them know and prevent segue from performing
-        else if passwordEntry.text?.trimmingCharacters(in: .whitespaces).isvalidPassword() == false  {
-            let alert = UIAlertController(title: "Invalid Password", message: "Your password should be at least 8 characters long.\n\nIt should contain at least one LETTER and one NUMBER.\n\nSpecial characters should not be included.", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(okButton)
-            self.present(alert, animated: true)
-            
-            return false
-        }
-            
-        // If the user entered an incorrect password, let them know and prevent segue from performing
-        else if confirmPasswordEntry.text?.trimmingCharacters(in: .whitespaces) != passwordEntry.text?.trimmingCharacters(in: .whitespaces) {
-            let alert = UIAlertController(title: "Invalid Password", message: "Your passwords don't match.", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(okButton)
-            self.present(alert, animated: true)
-            
-            return false
-        }
-            
-        // If all input is valid, allow segue to perform
-        else {
-            return true
-        }
+        return validateInput()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -111,17 +77,42 @@ class SignUpViewController: UIViewController {
         super.touchesBegan(touches, with: event)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case emailEntry:
+            emailEntry.resignFirstResponder()
+            passwordEntry.becomeFirstResponder()
+            
+        case passwordEntry:
+            passwordEntry.resignFirstResponder()
+            confirmPasswordEntry.becomeFirstResponder()
+            
+        case confirmPasswordEntry:
+            if validateInput() == true {
+                performSegue(withIdentifier: "SignUpToParentCode", sender: self)
+            }
+            
+        default:
+            print("Invalid Text Field")
+        }
+        
+        return true
+    }
+    
+    
+    
+    // MARK: - Action Functions
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo
             
-        else {
-            return
+            else {
+                return
         }
         
         guard let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue
             
-        else {
-            return
+            else {
+                return
         }
         
         let keyboardFrame = keyboardSize.cgRectValue
@@ -135,5 +126,47 @@ class SignUpViewController: UIViewController {
         if self.view.frame.origin.y != 0{
             self.view.frame.origin.y = 0
         }
+    }
+    
+    
+    
+    // MARK: - Custom Functions
+    func validateInput() -> Bool {
+        var validInput = false
+        
+        // If the user didn't enter a valid e-mail address let them know and prevent segue from performing
+        if emailEntry.text?.trimmingCharacters(in: .whitespaces).isValidEmail() == false {
+            let alert = UIAlertController(title: "Invalid E-mail", message: "Please enter a valid e-mail address.", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true)
+            
+            validInput = false
+        }
+            
+            // If the user didn't enter a valid password, let them know and prevent segue from performing
+        else if passwordEntry.text?.trimmingCharacters(in: .whitespaces).isvalidPassword() == false  {
+            let alert = UIAlertController(title: "Invalid Password", message: "Your password should be at least 8 characters long.\n\nIt should contain at least one LETTER and one NUMBER.\n\nSpecial characters should not be included.", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true)
+            
+            validInput = false
+        }
+            
+            // If the user entered an incorrect password, let them know and prevent segue from performing
+        else if confirmPasswordEntry.text?.trimmingCharacters(in: .whitespaces) != passwordEntry.text?.trimmingCharacters(in: .whitespaces) {
+            let alert = UIAlertController(title: "Invalid Password", message: "Your passwords don't match.", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true)
+        }
+            
+            // If all input is valid, allow segue to perform
+        else {
+            validInput = true
+        }
+        
+        return validInput
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, UITextFieldDelegate {
     
     
     
@@ -46,6 +46,39 @@ class LogInViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        return validateInput()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // Force application to unfocus from current text field
+        view.endEditing(true)
+        
+        // Call this function into action when touch is detected
+        super.touchesBegan(touches, with: event)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case emailEntry:
+            emailEntry.resignFirstResponder()
+            passwordEntry.becomeFirstResponder()
+            
+        case passwordEntry:
+            passwordEntry.resignFirstResponder()
+            
+            if validateInput() == true {
+                performSegue(withIdentifier: "LogInToSchedule", sender: self)
+            }
+            
+        default:
+            print("Invalid Text Field")
+        }
+        
+        return true
+    }
+    
+    func validateInput() -> Bool {
+        var validInput = false
         
         // If user entered an invalid e-mail address let them know and prevent segue from performing
         if emailEntry.text?.trimmingCharacters(in: .whitespaces).isValidEmail() == false {
@@ -54,20 +87,20 @@ class LogInViewController: UIViewController {
             alert.addAction(okButton)
             self.present(alert, animated: true)
             
-            return false
+            validInput = false
         }
             
-        // If user entered an invalid password let them know and prevent segue from performing
+            // If user entered an invalid password let them know and prevent segue from performing
         else if passwordEntry.text?.trimmingCharacters(in: .whitespaces).isvalidPassword() == false  {
             let alert = UIAlertController(title: "Invalid Password", message: "Your password should be at least 8 characters long.\n\nIt should contain at least one LETTER and one NUMBER.\n\nSpecial characters should not be included.", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(okButton)
             self.present(alert, animated: true)
             
-            return false
+            validInput = false
         }
             
-        // If user entered valid input, attempt to log in
+            // If user entered valid input, attempt to log in
         else {
             userEmail = emailEntry.text?.trimmingCharacters(in: .whitespaces)
             userPassword = passwordEntry.text?.trimmingCharacters(in: .whitespaces)
@@ -92,8 +125,8 @@ class LogInViewController: UIViewController {
                     
                     self.validUser = false
                 }
-                
-                // If login is successful, segue to next view
+                    
+                    // If login is successful, segue to next view
                 else {
                     self.performSegue(withIdentifier: "LogInToSchedule", sender: nil)
                     
@@ -102,21 +135,15 @@ class LogInViewController: UIViewController {
             }
             
             if validUser == true {
-                return true
+                validInput = true
             }
-            
+                
             else {
-                return false
+                validInput = false
             }
         }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // Force application to unfocus from current text field
-        view.endEditing(true)
         
-        // Call this function into action when touch is detected
-        super.touchesBegan(touches, with: event)
+        return validInput
     }
     
     

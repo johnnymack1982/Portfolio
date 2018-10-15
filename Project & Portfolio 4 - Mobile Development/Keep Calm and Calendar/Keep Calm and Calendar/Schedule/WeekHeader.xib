@@ -10,11 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner">
-            <connections>
-                <outlet property="yearLabel" destination="rYt-mT-wom" id="P0v-OA-EUh"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WeeklyHeaderView" customModule="Keep_Calm_and_Calendar" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -36,7 +32,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYt-mT-wom">
-                            <rect key="frame" x="328.5" y="0.0" width="46.5" height="50"/>
+                            <rect key="frame" x="323.5" y="0.0" width="46.5" height="50"/>
                             <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                             <color key="textColor" red="0.20784313730000001" green="0.29803921570000003" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -53,7 +49,7 @@
                         <constraint firstAttribute="trailing" secondItem="DeM-or-hoj" secondAttribute="trailing" id="ewy-2B-5hh"/>
                         <constraint firstItem="gXU-6f-i66" firstAttribute="top" secondItem="1pR-3m-QNR" secondAttribute="top" id="i13-Zu-TpD"/>
                         <constraint firstAttribute="bottom" secondItem="DeM-or-hoj" secondAttribute="bottom" id="nnc-LW-gsO"/>
-                        <constraint firstAttribute="trailing" secondItem="rYt-mT-wom" secondAttribute="trailing" id="ydN-fg-A2s"/>
+                        <constraint firstAttribute="trailing" secondItem="rYt-mT-wom" secondAttribute="trailing" constant="5" id="ydN-fg-A2s"/>
                     </constraints>
                 </view>
             </subviews>
@@ -68,6 +64,7 @@
             <connections>
                 <outlet property="dateLabel" destination="gXU-6f-i66" id="Kti-1A-N7Y"/>
                 <outlet property="headerTitleLabel" destination="DeM-or-hoj" id="2Fi-f8-GUK"/>
+                <outlet property="yearLabel" destination="rYt-mT-wom" id="9pf-wU-8qP"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="54"/>
         </view>

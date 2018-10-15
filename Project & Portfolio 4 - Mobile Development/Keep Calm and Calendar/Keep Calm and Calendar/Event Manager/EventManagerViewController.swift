@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventManagerViewController: UIViewController {
+class EventManagerViewController: UIViewController, UITextFieldDelegate {
     
     
     
@@ -43,10 +43,6 @@ class EventManagerViewController: UIViewController {
             dateTimeEntry.date = (selectedEvent?.date)!
             deleteEventButton.isHidden = false
         }
-        
-        // Register keyboard notifications. This will be used later to move text fields when the keyboard is active.
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,32 +51,7 @@ class EventManagerViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        let newDate = Event(name: "New Event", date: dateTimeEntry.date, image: #imageLiteral(resourceName: "Logo"), completion: false, recurrenceFrequency: 0, originalIndex: 0)
-        let now = Event(name: "Now", date: Date(), image: #imageLiteral(resourceName: "Logo"), completion: false, recurrenceFrequency: 0, originalIndex: 0)
-        
-        // If event name entry is invalid, let the user know and prevent segue
-        if eventNameEntry.text == "" || (eventNameEntry.text?.count)! > 15 {
-            let alert = UIAlertController(title: "Invalid Event Name", message: "Please enter an event name that is 15 characters or less.", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(okButton)
-            self.present(alert, animated: true)
-            
-            return false
-        }
-            
-        // If entered date is in the past, let the user know and prevent segue
-        if newDate.date < now.date {
-            let alert = UIAlertController(title: "Invalid Event Date", message: "Please do not select a date and time in the past.", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(okButton)
-            self.present(alert, animated: true)
-            
-            return false
-        }
-        
-        else {
-            return true
-        }
+        return validateInput()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -121,6 +92,14 @@ class EventManagerViewController: UIViewController {
         super.touchesBegan(touches, with: event)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if validateInput() == true {
+            performSegue(withIdentifier: "AddEventToEventDetails", sender: self)
+        }
+        
+        return true
+    }
+    
     
     
     // MARK: - Action Functions
@@ -140,29 +119,39 @@ class EventManagerViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    @objc func keyboardWillShow(notification: NSNotification) {
-        guard let userInfo = notification.userInfo
-            
-            else {
-                return
-        }
-        
-        guard let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue
-            
-            else {
-                return
-        }
-        
-        let keyboardFrame = keyboardSize.cgRectValue
-        
-        if self.view.frame.origin.y == 0{
-            self.view.frame.origin.y -= keyboardFrame.height
-        }
-    }
     
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if self.view.frame.origin.y != 0{
-            self.view.frame.origin.y = 0
+    
+    // MARK: - Custom Functions
+    func validateInput() -> Bool {
+        var validInput = false
+        
+        let newDate = Event(name: "New Event", date: dateTimeEntry.date, image: #imageLiteral(resourceName: "Logo"), completion: false, recurrenceFrequency: 0, originalIndex: 0)
+        let now = Event(name: "Now", date: Date(), image: #imageLiteral(resourceName: "Logo"), completion: false, recurrenceFrequency: 0, originalIndex: 0)
+        
+        // If event name entry is invalid, let the user know and prevent segue
+        if eventNameEntry.text == "" || (eventNameEntry.text?.count)! > 15 {
+            let alert = UIAlertController(title: "Invalid Event Name", message: "Please enter an event name that is 15 characters or less.", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true)
+            
+            validInput = false
         }
+        
+        // If entered date is in the past, let the user know and prevent segue
+        if newDate.date < now.date {
+            let alert = UIAlertController(title: "Invalid Event Date", message: "Please do not select a date and time in the past.", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true)
+            
+            validInput = false
+        }
+            
+        else {
+            validInput = true
+        }
+        
+        return validInput
     }
 }
