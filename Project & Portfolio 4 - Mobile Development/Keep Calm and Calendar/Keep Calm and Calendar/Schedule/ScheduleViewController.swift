@@ -19,6 +19,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     
     
@@ -56,7 +57,10 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
                 self.userID = user?.uid
                 
                 if self.newUser != false {
+                    self.loadingIndicator.isHidden = true
+                    
                     database.collection("users").document(self.userEmail!).setData([
+                        
                         "userEmail" : self.userEmail!,
                         "userID" : self.userID!,
                         "parentCode" : self.parentCode!]) { err in
@@ -81,6 +85,9 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
                     
                 // If user is not new, load user data and stored event data
                 else {
+                    self.loadingIndicator.isHidden = false
+                    self.loadingIndicator.startAnimating()
+                    
                     let docRef = database.collection("users").document(self.userEmail!)
                     
                     docRef.getDocument { (document, error) in
@@ -123,9 +130,6 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
                                                 
                                                 self.events.append(newEvent)
                                                 self.currentUser?.events.append(newEvent)
-                                                
-                                                self.filterEvents()
-                                                self.tableView.reloadData()
                                             }
                                             
                                             else {
@@ -135,9 +139,6 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
                                                 
                                                 self.events.append(newEvent)
                                                 self.currentUser?.events.append(newEvent)
-                                                
-                                                self.filterEvents()
-                                                self.tableView.reloadData()
                                             }
                                         }
                                     }
@@ -160,10 +161,11 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "header_01")
         
         // Call custom function to filter existing events
-        filterEvents()
-        
-        // Reload tableview
-        tableView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 15) {
+            self.filterEvents()
+            self.tableView.reloadData()
+            self.loadingIndicator.isHidden = true
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -508,6 +508,11 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="BZY-Ft-scj">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.57647058819999997" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g6Q-56-oHR">
                                 <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -757,6 +762,7 @@
                     </view>
                     <connections>
                         <outlet property="editButton" destination="r8t-TH-5QP" id="v5T-hB-aSA"/>
+                        <outlet property="loadingIndicator" destination="BZY-Ft-scj" id="LqC-Ga-yeu"/>
                         <outlet property="navigationBar" destination="I5g-h6-WcT" id="7IL-T7-NcR"/>
                         <outlet property="tableView" destination="g6Q-56-oHR" id="HXX-Qr-qCm"/>
                     </connections>

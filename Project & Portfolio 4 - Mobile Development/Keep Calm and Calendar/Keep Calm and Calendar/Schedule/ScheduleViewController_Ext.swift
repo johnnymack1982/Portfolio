@@ -24,15 +24,6 @@ extension ScheduleViewController {
             currentIndex += 1
         }
         
-        // Clear all relevant arrays to prevent duplication
-        filteredEvents = []
-        tempEvents = []
-        dates = []
-        dateComponents = []
-        
-        // Call custom functions to remove old events, generate recurring events, and extract dates needed for filtering
-        removeOldEvents()
-        
         // Write newly generated data to user's database entry
         let database = Firestore.firestore()
         for event in events {
@@ -62,6 +53,27 @@ extension ScheduleViewController {
             }
         }
         
+        tempEvents = events
+        
+        print(events.count)
+        print(tempEvents.count)
+        
+        for event in events {
+            tempEvents[event.originalIndex] = event
+        }
+        
+        events = tempEvents
+        currentUser?.events = tempEvents
+        
+        // Clear all relevant arrays to prevent duplication
+        filteredEvents = []
+        tempEvents = []
+        dates = []
+        dateComponents = []
+        
+        // Call custom functions to remove old events, generate recurring events, and extract dates needed for filtering
+        removeOldEvents()
+        
         generateRecurrances()
         extractDates()
         
@@ -69,7 +81,7 @@ extension ScheduleViewController {
         
         // Filter events using extracted dates to make sure they are displayed in the correct cells
         for date in dateComponents {
-
+            
             
             if filteredEvents.count == 0 {
                 filteredEvents.append([])
@@ -438,8 +450,8 @@ extension ScheduleViewController {
                     self.parentMode = true
                 }
                     
-                // If Parent Mode is on, turn it off
-                // Does not require Parent Code entry
+                    // If Parent Mode is on, turn it off
+                    // Does not require Parent Code entry
                 else {
                     let alert = UIAlertController(title: "Invalid Code", message: "Oops! The code you entered was not correct.", preferredStyle: .alert)
                     
@@ -483,7 +495,7 @@ extension ScheduleViewController {
     func deleteCloudEvents() {
         let database = Firestore.firestore()
         
-        for currentIndex in 0...self.events.count {
+        for currentIndex in 0...self.events.count + 5 {
             database.collection("users").document(self.userEmail!).collection("events").document(currentIndex.description).delete() { err in
                 if let err = err {
                     print("Error deleting document: \(err)")
@@ -491,6 +503,10 @@ extension ScheduleViewController {
                     print("Document successfully deleted!")
                 }
             }
+            
+            let storage = Storage.storage()
+            let imageReference = storage.reference(withPath: (currentUser?.userID)! + "-" + currentIndex.description + ".jpg")
+            imageReference.delete(completion: nil)
         }
     }
 }
