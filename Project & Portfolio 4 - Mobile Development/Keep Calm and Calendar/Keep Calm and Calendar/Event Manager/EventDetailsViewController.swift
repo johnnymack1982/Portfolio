@@ -145,6 +145,8 @@ class EventDetailsViewController: UIViewController {
         toggleOneTimeEvent()
     }
     
+    // Prompt user to make sure they want to delete this event
+    // If so, remove the event and return to the Parent Mode screen
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
         let alert = UIAlertController(title: "Delete Event?", message: "Are you sure you want to permanently remove this event? All events in the series will also be removed.", preferredStyle: .alert)
         

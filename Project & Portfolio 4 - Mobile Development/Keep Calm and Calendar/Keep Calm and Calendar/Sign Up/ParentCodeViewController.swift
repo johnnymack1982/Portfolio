@@ -22,7 +22,7 @@ class ParentCodeViewController: UIViewController {
     // MARK: - Class Properties
     var userEmail: String?
     var userPassword: String?
-    var parentCode: Int?
+    var parentCode: String?
     
     
     
@@ -59,7 +59,7 @@ class ParentCodeViewController: UIViewController {
                 guard (authResult?.user) != nil else { return }
             }
             
-            parentCode = Int((parentCodeEntry.text?.trimmingCharacters(in: .whitespaces))!)
+            parentCode = (parentCodeEntry.text?.trimmingCharacters(in: .whitespaces))!
             
             return true
         }
@@ -69,7 +69,10 @@ class ParentCodeViewController: UIViewController {
         
         // Reference destination view controller and pass necessary information
         if let destination = segue.destination as? ScheduleViewController {
+            destination.userEmail = userEmail
+            destination.userPassword = userPassword
             destination.parentCode = parentCode
+            destination.newUser = true
         }
     }
     
@@ -83,7 +86,9 @@ class ParentCodeViewController: UIViewController {
     
     
     
-    // MARK: - Action Functioncs
+    // MARK: - Action Functions
+    
+    // Move text fields up when keyboard is active
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo
             
@@ -104,6 +109,7 @@ class ParentCodeViewController: UIViewController {
         }
     }
     
+    // Move text fields down when keyboard is hidden
     @objc func keyboardWillHide(notification: NSNotification) {
         if self.view.frame.origin.y != 0{
             self.view.frame.origin.y = 0

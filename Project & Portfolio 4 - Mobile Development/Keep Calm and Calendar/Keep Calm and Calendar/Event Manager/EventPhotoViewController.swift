@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class EventPhotoViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -32,12 +34,15 @@ class EventPhotoViewController: UIViewController, UINavigationControllerDelegate
     var selectedEvent: Event?
     var parentMode = false
     var deleteEvent = false
+    var databaseReference: DatabaseReference?
     
     
     
     // MARK: - System Generated Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        databaseReference = Database.database().reference()
         
         // Populate header with new event name
         eventNameLabel.text = eventName
@@ -79,17 +84,18 @@ class EventPhotoViewController: UIViewController, UINavigationControllerDelegate
         
         // If user supplied a photo, attach it to the event
         if let image = eventPhoto {
-            newEvent = Event(name: eventName!, date: dateTime!, image: image, completion: requiresCompletion, recurrenceFrequency: recurrenceFrequency!, originalIndex: 0)
+            newEvent = Event(name: eventName!, date: dateTime!, image: image, requiresCompletion: requiresCompletion, recurrenceFrequency: recurrenceFrequency!, originalIndex: 0, isComplete: false)
         }
         
         // If user did not supply a photo, attach default image
         else {
-            newEvent = Event(name: eventName!, date: dateTime!, image: #imageLiteral(resourceName: "Logo"), completion: requiresCompletion, recurrenceFrequency: recurrenceFrequency!, originalIndex: 0)
+            newEvent = Event(name: eventName!, date: dateTime!, image: #imageLiteral(resourceName: "Logo"), requiresCompletion: requiresCompletion, recurrenceFrequency: recurrenceFrequency!, originalIndex: 0, isComplete: false)
         }
         
         return true
     }
     
+    // Allow user to take a photo to attach to the event
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         picker.dismiss(animated: true, completion: nil)
         
@@ -133,6 +139,8 @@ class EventPhotoViewController: UIViewController, UINavigationControllerDelegate
         self.present(alert, animated: true)*/
     }
     
+    // Prompt user to make sure they want to delete this event
+    // If so, remove the event and return to the Parent Mode screen
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
         let alert = UIAlertController(title: "Delete Event?", message: "Are you sure you want to permanently remove this event? All events in the series will also be removed.", preferredStyle: .alert)
         

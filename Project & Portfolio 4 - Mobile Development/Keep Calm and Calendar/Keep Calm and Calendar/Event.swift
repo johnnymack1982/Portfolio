@@ -19,6 +19,7 @@ class Event {
     var requiresCompletion: Bool
     var recurrenceFrequency: Int
     var originalIndex: Int
+    var isComplete: Bool
     
     
     
@@ -27,13 +28,14 @@ class Event {
     
     
     // MARK: - Initializers
-    init(name: String, date: Date, image: UIImage, completion: Bool, recurrenceFrequency: Int, originalIndex: Int) {
+    init(name: String, date: Date, image: UIImage, requiresCompletion: Bool, recurrenceFrequency: Int, originalIndex: Int, isComplete: Bool) {
         self.name = name
         self.date = date
         self.image = image
-        self.requiresCompletion = completion
+        self.requiresCompletion = requiresCompletion
         self.recurrenceFrequency = recurrenceFrequency
         self.originalIndex = originalIndex
+        self.isComplete = isComplete
     }
     
     

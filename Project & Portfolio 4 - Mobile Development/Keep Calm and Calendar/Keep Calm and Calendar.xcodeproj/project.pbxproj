@@ -18,6 +18,7 @@
 		F250D921216709D1001288EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F250D920216709D1001288EE /* GoogleService-Info.plist */; };
 		F261F2E22168E76500F697A6 /* EventManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F261F2E12168E76500F697A6 /* EventManagerViewController.swift */; };
 		F261F2E52168FFBE00F697A6 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F261F2E42168FFBE00F697A6 /* EventDetailsViewController.swift */; };
+		F26A77342175FBF50032B7B6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26A77332175FBF50032B7B6 /* User.swift */; };
 		F2D31943216902B500E64876 /* EventPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D31942216902B500E64876 /* EventPhotoViewController.swift */; };
 		F2D31945216A42B400E64876 /* Array_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D31944216A42B400E64876 /* Array_EXT.swift */; };
 		F2E5DE5C2163102500325D95 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5DE5B2163102500325D95 /* SignUpViewController.swift */; };
@@ -47,6 +48,8 @@
 		F250D920216709D1001288EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F261F2E12168E76500F697A6 /* EventManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagerViewController.swift; sourceTree = "<group>"; };
 		F261F2E42168FFBE00F697A6 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
+		F26A77332175FBF50032B7B6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F26A773521769E2A0032B7B6 /* Keep Calm and Calendar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Keep Calm and Calendar.entitlements"; sourceTree = "<group>"; };
 		F2D31942216902B500E64876 /* EventPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPhotoViewController.swift; sourceTree = "<group>"; };
 		F2D31944216A42B400E64876 /* Array_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array_EXT.swift; sourceTree = "<group>"; };
 		F2E5DE5B2163102500325D95 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -110,10 +113,12 @@
 		F213348C216302D10077DD97 /* Keep Calm and Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				F26A773521769E2A0032B7B6 /* Keep Calm and Calendar.entitlements */,
 				F21F97B62168214F0023487A /* String_EXT.swift */,
 				F2D31944216A42B400E64876 /* Array_EXT.swift */,
 				F213348D216302D20077DD97 /* AppDelegate.swift */,
 				F2E5DE6D216431FE00325D95 /* Event.swift */,
+				F26A77332175FBF50032B7B6 /* User.swift */,
 				F2E5DE612163902900325D95 /* Welcome Screen */,
 				F2E5DE622163904100325D95 /* Sign Up */,
 				F2E5DE632163904A00325D95 /* Log In */,
@@ -210,6 +215,11 @@
 				TargetAttributes = {
 					F2133489216302D10077DD97 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -272,14 +282,30 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Keep Calm and Calendar/Pods-Keep Calm and Calendar-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,6 +327,7 @@
 				F2E5DE6C21642EB600325D95 /* EventCell.swift in Sources */,
 				F2133490216302D20077DD97 /* ViewController.swift in Sources */,
 				F2E5DE6021638F6900325D95 /* LogInViewController.swift in Sources */,
+				F26A77342175FBF50032B7B6 /* User.swift in Sources */,
 				F2E5DE6E216431FE00325D95 /* Event.swift in Sources */,
 				F21F97B72168214F0023487A /* String_EXT.swift in Sources */,
 				F2D31945216A42B400E64876 /* Array_EXT.swift in Sources */,
@@ -454,6 +481,7 @@
 			baseConfigurationReference = 2241E786FA4F1340CDDFBC38 /* Pods-Keep Calm and Calendar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Keep Calm and Calendar/Keep Calm and Calendar.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B32R58BVV5;
 				INFOPLIST_FILE = "Keep Calm and Calendar/Info.plist";
@@ -473,6 +501,7 @@
 			baseConfigurationReference = 5E9DA46173D6759DFE6B44A4 /* Pods-Keep Calm and Calendar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Keep Calm and Calendar/Keep Calm and Calendar.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B32R58BVV5;
 				INFOPLIST_FILE = "Keep Calm and Calendar/Info.plist";

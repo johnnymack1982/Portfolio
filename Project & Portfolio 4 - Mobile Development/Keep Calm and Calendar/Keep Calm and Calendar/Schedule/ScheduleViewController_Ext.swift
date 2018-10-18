@@ -8,6 +8,9 @@
 
 import Foundation
 import UIKit
+import Firebase
+import FirebaseFirestore
+import FirebaseStorage
 
 extension ScheduleViewController {
     
@@ -29,6 +32,36 @@ extension ScheduleViewController {
         
         // Call custom functions to remove old events, generate recurring events, and extract dates needed for filtering
         removeOldEvents()
+        
+        // Write newly generated data to user's database entry
+        let database = Firestore.firestore()
+        for event in events {
+            database.collection("users").document(self.userEmail!).collection("events").document(event.originalIndex.description).setData([
+                "name" : event.name,
+                "date" : event.date,
+                "imageRef" : (currentUser?.userID)! + "-" + event.originalIndex.description+".jpg",
+                "requiresCompletion" : event.requiresCompletion,
+                "recurrenceFrequency" : event.recurrenceFrequency,
+                "originalIndex" : event.originalIndex,
+                "isComplete" : event.isComplete]) { err in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Document successfully written!")
+                    }
+            }
+            
+            let storage = Storage.storage()
+            let storageRef = storage.reference()
+            let imageRef = storageRef.child((currentUser?.userID)! + "-" + event.originalIndex.description+".jpg")
+            
+            if event.image != #imageLiteral(resourceName: "Logo") {
+                let data: Data = UIImageJPEGRepresentation(event.image, 0.25)!
+                let uploadTask = imageRef.putData(data)
+                uploadTask.resume()
+            }
+        }
+        
         generateRecurrances()
         extractDates()
         
@@ -36,6 +69,8 @@ extension ScheduleViewController {
         
         // Filter events using extracted dates to make sure they are displayed in the correct cells
         for date in dateComponents {
+
+            
             if filteredEvents.count == 0 {
                 filteredEvents.append([])
             }
@@ -57,6 +92,8 @@ extension ScheduleViewController {
         for event in tempEvents {
             dates.append(event.date)
         }
+        
+        dates = dates.sorted()
         
         var currentIndex = 0
         
@@ -106,13 +143,13 @@ extension ScheduleViewController {
                     
                     let newDate = Calendar.current.date(byAdding: dateComponent, to: event.date)
                     
-                    tempEvents.append(Event(name: event.name, date: newDate!, image: event.image, completion: event.requiresCompletion, recurrenceFrequency: event.recurrenceFrequency, originalIndex: event.originalIndex))
+                    tempEvents.append(Event(name: event.name, date: newDate!, image: event.image, requiresCompletion: event.requiresCompletion, recurrenceFrequency: event.recurrenceFrequency, originalIndex: event.originalIndex, isComplete: false))
                     
                     daysToAdd += 1
                 }
             }
                 
-            // If user selected weekly recurrince, generate recurring events two weeks out
+                // If user selected weekly recurrince, generate recurring events two weeks out
             else if event.recurrenceFrequency == 2 {
                 for _ in 1...8 {
                     dateComponent.day = weeksToAdd
@@ -121,13 +158,13 @@ extension ScheduleViewController {
                     
                     let newDate = Calendar.current.date(byAdding: dateComponent, to: event.date)
                     
-                    tempEvents.append(Event(name: event.name, date: newDate!, image: event.image, completion: event.requiresCompletion, recurrenceFrequency: event.recurrenceFrequency, originalIndex: event.originalIndex))
+                    tempEvents.append(Event(name: event.name, date: newDate!, image: event.image, requiresCompletion: event.requiresCompletion, recurrenceFrequency: event.recurrenceFrequency, originalIndex: event.originalIndex, isComplete: false))
                     
                     weeksToAdd += 7
                 }
             }
                 
-            // If user selected monthly, generate recurring events two months out
+                // If user selected monthly, generate recurring events two months out
             else if event.recurrenceFrequency == 3 {
                 for _ in 1...2 {
                     dateComponent.day = 0
@@ -136,13 +173,13 @@ extension ScheduleViewController {
                     
                     let newDate = Calendar.current.date(byAdding: dateComponent, to: event.date)
                     
-                    tempEvents.append(Event(name: event.name, date: newDate!, image: event.image, completion: event.requiresCompletion, recurrenceFrequency: event.recurrenceFrequency, originalIndex: event.originalIndex))
+                    tempEvents.append(Event(name: event.name, date: newDate!, image: event.image, requiresCompletion: event.requiresCompletion, recurrenceFrequency: event.recurrenceFrequency, originalIndex: event.originalIndex, isComplete: false))
                     
                     monthsToAdd += 1
                 }
             }
                 
-            // If user selected yearly recurrance, generate recurring events two years out
+                // If user selected yearly recurrance, generate recurring events two years out
             else if event.recurrenceFrequency == 4 {
                 for _ in 1...2 {
                     dateComponent.day = 0
@@ -151,13 +188,13 @@ extension ScheduleViewController {
                     
                     let newDate = Calendar.current.date(byAdding: dateComponent, to: event.date)
                     
-                    tempEvents.append(Event(name: event.name, date: newDate!, image: event.image, completion: event.requiresCompletion, recurrenceFrequency: event.recurrenceFrequency, originalIndex: event.originalIndex))
+                    tempEvents.append(Event(name: event.name, date: newDate!, image: event.image, requiresCompletion: event.requiresCompletion, recurrenceFrequency: event.recurrenceFrequency, originalIndex: event.originalIndex, isComplete: false))
                     
                     yearsToAdd += 1
                 }
             }
                 
-            // If user selected a one time event, do not generate recurring events
+                // If user selected a one time event, do not generate recurring events
             else if event.recurrenceFrequency == 0 {
                 tempEvents.append(event)
             }
@@ -175,7 +212,7 @@ extension ScheduleViewController {
         var currentIndex = 0
         
         // Used solely to compare event date to the current date
-        let now = Event(name: "Now", date: Date(), image: #imageLiteral(resourceName: "Logo"), completion: false, recurrenceFrequency: 0, originalIndex: 0)
+        let now = Event(name: "Now", date: Date(), image: #imageLiteral(resourceName: "Logo"), requiresCompletion: false, recurrenceFrequency: 0, originalIndex: 0, isComplete: false)
         
         // Cycle throughh events and remove past items
         for event in events {
@@ -203,39 +240,42 @@ extension ScheduleViewController {
                     if event.recurrenceFrequency == 0 {
                         events.remove(at: currentIndex)
                     }
-                    
-                    // If event is daily, remove past events while continuing daily recurrence
+                        
+                        // If event is daily, remove past events while continuing daily recurrence
                     else if event.recurrenceFrequency == 1 {
                         dateComponent.month = now.month() - event.month()
                         dateComponent.day = now.day() - event.day()
                         dateComponent.year = now.year() - event.year()
                         
                         event.date = Calendar.current.date(byAdding: dateComponent, to: event.date)!
+                        event.isComplete = false
                     }
                         
-                    // If event is monthly, remove past events while continuing monthly recurrence
+                        // If event is monthly, remove past events while continuing monthly recurrence
                     else if event.recurrenceFrequency == 3 {
                         dateComponent.month = 1
                         dateComponent.day = 0
                         dateComponent.year = 1
                         
                         event.date = Calendar.current.date(byAdding: dateComponent, to: event.date)!
+                        event.isComplete = false
                     }
-                    
-                    // If event is yearly, remove past events while continuing yearly recurrence
+                        
+                        // If event is yearly, remove past events while continuing yearly recurrence
                     else if event.recurrenceFrequency == 4 {
                         dateComponent.month = 0
                         dateComponent.day = 0
                         dateComponent.year = 1
                         
                         event.date = Calendar.current.date(byAdding: dateComponent, to: event.date)!
+                        event.isComplete = false
                     }
                     
                     currentIndex -= 1
                 }
             }
                 
-            // If event takes place in the same year but a past month...
+                // If event takes place in the same year but a past month...
             else if event.month() < now.month() {
                 
                 // If event is more than a month old, remove it
@@ -243,22 +283,23 @@ extension ScheduleViewController {
                     events.remove(at: currentIndex)
                 }
                     
-                // If event is a one time item, remove it
+                    // If event is a one time item, remove it
                 else {
                     if event.recurrenceFrequency == 0 {
                         events.remove(at: currentIndex)
                     }
                         
-                    // If event is daily, remove old events while continuing daily recurrence
+                        // If event is daily, remove old events while continuing daily recurrence
                     else if event.recurrenceFrequency == 1 {
                         dateComponent.month = now.month() - event.month()
                         dateComponent.day = now.day() - event.day()
                         dateComponent.year = 0
                         
                         event.date = Calendar.current.date(byAdding: dateComponent, to: event.date)!
+                        event.isComplete = false
                     }
                         
-                    // If devent is weekly, remove old events while continuing weekly recurrence
+                        // If devent is weekly, remove old events while continuing weekly recurrence
                     else if event.recurrenceFrequency == 2 {
                         dateComponent.month = now.month() - event.month()
                         
@@ -289,31 +330,34 @@ extension ScheduleViewController {
                         dateComponent.year = 0
                         
                         event.date = Calendar.current.date(byAdding: dateComponent, to: event.date)!
+                        event.isComplete = false
                     }
                         
-                    // If event is monthly, remove old events while continuing monthly recurrence
+                        // If event is monthly, remove old events while continuing monthly recurrence
                     else if event.recurrenceFrequency == 3 {
                         dateComponent.day = 0
                         dateComponent.month = 1
                         dateComponent.year = 0
                         
                         event.date = Calendar.current.date(byAdding: dateComponent, to: event.date)!
+                        event.isComplete = false
                     }
                         
-                    // If event is yearly, remove old events while continueing yearly recurrence
+                        // If event is yearly, remove old events while continueing yearly recurrence
                     else if event.recurrenceFrequency == 4 {
                         dateComponent.day = 0
                         dateComponent.month = 0
                         dateComponent.year = 1
                         
                         event.date = Calendar.current.date(byAdding: dateComponent, to: event.date)!
+                        event.isComplete = false
                     }
                     
                     currentIndex -= 1
                 }
             }
                 
-            // If event takes place in the current month and year but is on a past day...
+                // If event takes place in the current month and year but is on a past day...
             else if event.day() < now.day() {
                 
                 // If event is more than a day old, remove it
@@ -328,40 +372,44 @@ extension ScheduleViewController {
                         events.remove(at: currentIndex)
                     }
                         
-                    // If event is daily, remove old events while continuing recurrence
+                        // If event is daily, remove old events while continuing recurrence
                     else if event.recurrenceFrequency == 1 {
                         dateComponent.month = 0
                         dateComponent.day = now.day() - event.day()
                         dateComponent.year = 0
                         
                         event.date = Calendar.current.date(byAdding: dateComponent, to: event.date)!
+                        event.isComplete = false
                     }
                         
-                    // If event is weekly, remove old events while continuing recurrence
+                        // If event is weekly, remove old events while continuing recurrence
                     else if event.recurrenceFrequency == 2 {
                         dateComponent.month = 0
                         dateComponent.day = 7
                         dateComponent.year = 0
                         
                         event.date = Calendar.current.date(byAdding: dateComponent, to: event.date)!
+                        event.isComplete = false
                     }
                         
-                    // If event is monthly, remove old events while continuing recurrence
+                        // If event is monthly, remove old events while continuing recurrence
                     else if event.recurrenceFrequency == 3 {
                         dateComponent.month = 1
                         dateComponent.day = 0
                         dateComponent.year = 0
                         
                         event.date = Calendar.current.date(byAdding: dateComponent, to: event.date)!
+                        event.isComplete = false
                     }
                         
-                    // If event is yearly, remove old events while continuing recurrence
+                        // If event is yearly, remove old events while continuing recurrence
                     else if event.recurrenceFrequency == 4 {
                         dateComponent.month = 0
                         dateComponent.day = 0
                         dateComponent.year = 1
                         
                         event.date = Calendar.current.date(byAdding: dateComponent, to: event.date)!
+                        event.isComplete = false
                     }
                     
                     currentIndex -= 1
@@ -372,14 +420,48 @@ extension ScheduleViewController {
         }
     }
     
+    // Custom function to toggle Parent Mode on and off
     func toggleParentMode() {
-        if parentMode == false {
-            editButton.title = "Back"
-            navigationBar.topItem?.title = "Parent Mode"
-            
-            parentMode = true
-        }
         
+        // If Parent Mode is off, prompt for Parent Code
+        // Enter Parent Mode upon valid entry of Parent Code
+        if parentMode == false {
+            let alert = UIAlertController(title: "Parent Code Required", message: "Please enter your 4-digit Parent Code to continue.", preferredStyle: .alert)
+            
+            let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let okButton = UIAlertAction(title: "OK", style: .default) { (parentCode) in
+                let parentCodeEntry = alert.textFields![0] as UITextField
+                
+                if parentCodeEntry.text! == self.parentCode {
+                    self.editButton.title = "Back"
+                    self.navigationBar.topItem?.title = "Parent Mode"
+                    self.parentMode = true
+                }
+                    
+                // If Parent Mode is on, turn it off
+                // Does not require Parent Code entry
+                else {
+                    let alert = UIAlertController(title: "Invalid Code", message: "Oops! The code you entered was not correct.", preferredStyle: .alert)
+                    
+                    let okButton = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alert.addAction(okButton)
+                    
+                    self.present(alert, animated: true)
+                    
+                    self.parentMode = false
+                }
+            }
+            
+            alert.addAction(cancelButton)
+            alert.addAction(okButton)
+            alert.addTextField { (textField) in
+                textField.placeholder = "Enter Parent Code..."
+                textField.textAlignment = .center
+            }
+            
+            self.present(alert, animated: true)
+        }
+            
         else {
             editButton.title = "Edit"
             navigationBar.topItem?.title = "My Schedule"
@@ -388,9 +470,27 @@ extension ScheduleViewController {
         }
     }
     
+    // Custom function to delete selected event while in Parent Mode
     func deleteSelectedEvent() {
+        deleteCloudEvents()
+        
         events.remove(at: (selectedEvent?.originalIndex)!)
         filterEvents()
         UIView.transition(with: tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+    }
+    
+    // Custom function to clear all cloud-stored events to prevent duplication while application is running
+    func deleteCloudEvents() {
+        let database = Firestore.firestore()
+        
+        for currentIndex in 0...self.events.count {
+            database.collection("users").document(self.userEmail!).collection("events").document(currentIndex.description).delete() { err in
+                if let err = err {
+                    print("Error deleting document: \(err)")
+                } else {
+                    print("Document successfully deleted!")
+                }
+            }
+        }
     }
 }

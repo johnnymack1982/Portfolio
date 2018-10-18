@@ -103,6 +103,9 @@ class EventManagerViewController: UIViewController, UITextFieldDelegate {
     
     
     // MARK: - Action Functions
+    
+    // Prompt user to make sure they want to delete this event
+    // If so, remove the event and return to the Parent Mode screen
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
         let alert = UIAlertController(title: "Delete Event?", message: "Are you sure you want to permanently remove this event? All events in the series will also be removed.", preferredStyle: .alert)
         
@@ -125,8 +128,8 @@ class EventManagerViewController: UIViewController, UITextFieldDelegate {
     func validateInput() -> Bool {
         var validInput = false
         
-        let newDate = Event(name: "New Event", date: dateTimeEntry.date, image: #imageLiteral(resourceName: "Logo"), completion: false, recurrenceFrequency: 0, originalIndex: 0)
-        let now = Event(name: "Now", date: Date(), image: #imageLiteral(resourceName: "Logo"), completion: false, recurrenceFrequency: 0, originalIndex: 0)
+        let newDate = Event(name: "New Event", date: dateTimeEntry.date, image: #imageLiteral(resourceName: "Logo"), requiresCompletion: false, recurrenceFrequency: 0, originalIndex: 0, isComplete: false)
+        let now = Event(name: "Now", date: Date(), image: #imageLiteral(resourceName: "Logo"), requiresCompletion: false, recurrenceFrequency: 0, originalIndex: 0, isComplete: false)
         
         // If event name entry is invalid, let the user know and prevent segue
         if eventNameEntry.text == "" || (eventNameEntry.text?.count)! > 15 {

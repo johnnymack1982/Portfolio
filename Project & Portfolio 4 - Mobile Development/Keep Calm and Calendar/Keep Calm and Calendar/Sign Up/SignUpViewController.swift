@@ -45,6 +45,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        
+        // Call custom function to validate input and determine if segue should perform
         return validateInput()
     }
     
@@ -77,6 +79,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         super.touchesBegan(touches, with: event)
     }
     
+    // Determine what should happen when the 'return' key is tapped
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case emailEntry:
@@ -102,6 +105,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     
     // MARK: - Action Functions
+    
+    // Move text fields up when keyboard is active
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo
             
@@ -122,6 +127,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // Move text fields down when keyboard is hidden
     @objc func keyboardWillHide(notification: NSNotification) {
         if self.view.frame.origin.y != 0{
             self.view.frame.origin.y = 0
@@ -131,6 +137,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     
     // MARK: - Custom Functions
+    
+    // Custom function to validate input and determine if segue should perform
     func validateInput() -> Bool {
         var validInput = false
         

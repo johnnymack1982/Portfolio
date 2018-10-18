@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "359DE88D9CF0D430B037FB288185082A"
+               BlueprintIdentifier = "CD0F6ABCC869A2A0169DE6C6017286EB"
                BuildableName = "Pods_Keep_Calm_and_Calendar.framework"
                BlueprintName = "Pods-Keep Calm and Calendar"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "359DE88D9CF0D430B037FB288185082A"
+            BlueprintIdentifier = "CD0F6ABCC869A2A0169DE6C6017286EB"
             BuildableName = "Pods_Keep_Calm_and_Calendar.framework"
             BlueprintName = "Pods-Keep Calm and Calendar"
             ReferencedContainer = "container:Pods.xcodeproj">

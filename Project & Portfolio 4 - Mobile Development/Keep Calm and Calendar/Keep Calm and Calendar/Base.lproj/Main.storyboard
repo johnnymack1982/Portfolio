@@ -512,7 +512,7 @@
                                 <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_01" rowHeight="75" id="9w7-vj-8OH" customClass="EventCell" customModule="Keep_Calm_and_Calendar" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_01" rowHeight="75" id="9w7-vj-8OH" customClass="EventCell" customModule="Keep_Calm_and_Calendar" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9w7-vj-8OH" id="YPm-l6-8aG">
@@ -527,6 +527,7 @@
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Incomplete" translatesAutoresizingMaskIntoConstraints="NO" id="fui-HL-kX6" userLabel="Task Completion">
                                                     <rect key="frame" x="300" y="0.0" width="75" height="75"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="fui-HL-kX6" secondAttribute="height" multiplier="1:1" id="ekz-DH-dNl"/>
                                                     </constraints>
@@ -567,7 +568,7 @@
                                             <outlet property="taskCompletionIndicator" destination="fui-HL-kX6" id="Or4-cb-k2O"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_02" rowHeight="75" id="vvW-Sc-OXF" customClass="EventCell" customModule="Keep_Calm_and_Calendar" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_02" rowHeight="75" id="vvW-Sc-OXF" customClass="EventCell" customModule="Keep_Calm_and_Calendar" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="103" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vvW-Sc-OXF" id="Z1J-89-X4W">
@@ -582,6 +583,7 @@
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Incomplete" translatesAutoresizingMaskIntoConstraints="NO" id="Tko-cd-Vlm" userLabel="Task Completion">
                                                     <rect key="frame" x="300" y="0.0" width="75" height="75"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Tko-cd-Vlm" secondAttribute="height" multiplier="1:1" id="JoK-sO-ZOO"/>
                                                     </constraints>
@@ -622,7 +624,7 @@
                                             <outlet property="taskCompletionIndicator" destination="Tko-cd-Vlm" id="E3E-Rm-19a"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_03" rowHeight="75" id="Wzb-BP-qs5" customClass="EventCell" customModule="Keep_Calm_and_Calendar" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_03" rowHeight="75" id="Wzb-BP-qs5" customClass="EventCell" customModule="Keep_Calm_and_Calendar" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="178" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wzb-BP-qs5" id="L0G-Z1-VBh">
@@ -637,6 +639,7 @@
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Incomplete" translatesAutoresizingMaskIntoConstraints="NO" id="2TK-Ue-58A" userLabel="Task Completion">
                                                     <rect key="frame" x="300" y="0.0" width="75" height="75"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="2TK-Ue-58A" secondAttribute="height" multiplier="1:1" id="lX1-4v-wMA"/>
                                                     </constraints>
@@ -677,7 +680,7 @@
                                             <outlet property="taskCompletionIndicator" destination="2TK-Ue-58A" id="c8P-xQ-KOd"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_04" rowHeight="75" id="voi-Aw-5CN" customClass="EventCell" customModule="Keep_Calm_and_Calendar" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_04" rowHeight="75" id="voi-Aw-5CN" customClass="EventCell" customModule="Keep_Calm_and_Calendar" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="253" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="voi-Aw-5CN" id="DI6-B7-VF5">
@@ -692,6 +695,7 @@
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Incomplete" translatesAutoresizingMaskIntoConstraints="NO" id="U1G-GH-26S" userLabel="Task Completion">
                                                     <rect key="frame" x="300" y="0.0" width="75" height="75"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="U1G-GH-26S" secondAttribute="height" multiplier="1:1" id="e1c-2f-9RZ"/>
                                                     </constraints>
@@ -1278,7 +1282,7 @@
                                     <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="zwr-86-GlI" kind="show" id="LRY-Am-Zab"/>
+                                    <segue destination="zwr-86-GlI" kind="show" id="ycV-fe-xh9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1379,6 +1383,6 @@
         <image name="Logo" width="335" height="258"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="L87-T2-26O"/>
+        <segue reference="ycV-fe-xh9"/>
     </inferredMetricsTieBreakers>
 </document>

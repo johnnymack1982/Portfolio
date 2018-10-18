@@ -26,6 +26,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     var userEmail: String?
     var userPassword: String?
     var validUser = false
+    var databaseReference: DatabaseReference?
     
     
     
@@ -34,6 +35,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
         loadingIndicator.isHidden = true
+        
+        databaseReference = Database.database().reference()
         
         // Register keyboard notifications. This will be used later to move text fields when the keyboard is active.
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -46,7 +49,19 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        
+        // Call custom function to validate input and determine if segue should perform
         return validateInput()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Reference destination view and pass required data
+        if let destination = segue.destination as? ScheduleViewController {
+            destination.userEmail = userEmail
+            destination.userPassword = userPassword
+            destination.newUser = false
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -57,6 +72,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         super.touchesBegan(touches, with: event)
     }
     
+    // Determine what should happen when the 'return' key is tapped
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case emailEntry:
@@ -77,6 +93,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    // Custom function to validate input and determine if segue should perform
     func validateInput() -> Bool {
         var validInput = false
         
@@ -149,6 +166,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     
     // MARK: - Action Functions
+    
+    // Move text fields up when keyboard is active
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo
             
@@ -169,6 +188,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // Move text fields down when keyboard is hidden
     @objc func keyboardWillHide(notification: NSNotification) {
         if self.view.frame.origin.y != 0{
             self.view.frame.origin.y = 0
