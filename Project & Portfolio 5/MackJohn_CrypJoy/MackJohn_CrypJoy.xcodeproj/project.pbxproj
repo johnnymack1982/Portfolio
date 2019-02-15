@@ -1,0 +1,622 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F2CFDFE322165A3300F50919 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CFDFE222165A3300F50919 /* AppDelegate.swift */; };
+		F2CFDFE522165A3300F50919 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CFDFE422165A3300F50919 /* ViewController.swift */; };
+		F2CFDFE822165A3300F50919 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2CFDFE622165A3300F50919 /* Main.storyboard */; };
+		F2CFDFEA22165A3400F50919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2CFDFE922165A3400F50919 /* Assets.xcassets */; };
+		F2CFDFED22165A3400F50919 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2CFDFEB22165A3400F50919 /* LaunchScreen.storyboard */; };
+		F2CFDFF222165A3400F50919 /* MackJohn_CrypJoy WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F2CFDFF122165A3400F50919 /* MackJohn_CrypJoy WatchKit App.app */; };
+		F2CFDFF822165A3400F50919 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2CFDFF622165A3400F50919 /* Interface.storyboard */; };
+		F2CFDFFA22165A3500F50919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2CFDFF922165A3500F50919 /* Assets.xcassets */; };
+		F2CFE00122165A3500F50919 /* MackJohn_CrypJoy WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F2CFE00022165A3500F50919 /* MackJohn_CrypJoy WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F2CFE00622165A3500F50919 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CFE00522165A3500F50919 /* InterfaceController.swift */; };
+		F2CFE00822165A3500F50919 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CFE00722165A3500F50919 /* ExtensionDelegate.swift */; };
+		F2CFE00A22165A3600F50919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2CFE00922165A3600F50919 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F2CFDFF322165A3400F50919 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2CFDFD722165A3300F50919 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F2CFDFF022165A3400F50919;
+			remoteInfo = "MackJohn_CrypJoy WatchKit App";
+		};
+		F2CFE00222165A3500F50919 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2CFDFD722165A3300F50919 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F2CFDFFF22165A3500F50919;
+			remoteInfo = "MackJohn_CrypJoy WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F2CFE01122165A3600F50919 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F2CFE00122165A3500F50919 /* MackJohn_CrypJoy WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2CFE01522165A3600F50919 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				F2CFDFF222165A3400F50919 /* MackJohn_CrypJoy WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		F2CFDFDF22165A3300F50919 /* MackJohn_CrypJoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MackJohn_CrypJoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2CFDFE222165A3300F50919 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F2CFDFE422165A3300F50919 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F2CFDFE722165A3300F50919 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F2CFDFE922165A3400F50919 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F2CFDFEC22165A3400F50919 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F2CFDFEE22165A3400F50919 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2CFDFF122165A3400F50919 /* MackJohn_CrypJoy WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MackJohn_CrypJoy WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2CFDFF722165A3400F50919 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		F2CFDFF922165A3500F50919 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F2CFDFFB22165A3500F50919 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2CFE00022165A3500F50919 /* MackJohn_CrypJoy WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MackJohn_CrypJoy WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2CFE00522165A3500F50919 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		F2CFE00722165A3500F50919 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		F2CFE00922165A3600F50919 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F2CFE00B22165A3600F50919 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F2CFDFDC22165A3300F50919 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2CFDFFD22165A3500F50919 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F2CFDFD622165A3300F50919 = {
+			isa = PBXGroup;
+			children = (
+				F2CFDFE122165A3300F50919 /* MackJohn_CrypJoy */,
+				F2CFDFF522165A3400F50919 /* MackJohn_CrypJoy WatchKit App */,
+				F2CFE00422165A3500F50919 /* MackJohn_CrypJoy WatchKit Extension */,
+				F2CFDFE022165A3300F50919 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F2CFDFE022165A3300F50919 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F2CFDFDF22165A3300F50919 /* MackJohn_CrypJoy.app */,
+				F2CFDFF122165A3400F50919 /* MackJohn_CrypJoy WatchKit App.app */,
+				F2CFE00022165A3500F50919 /* MackJohn_CrypJoy WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F2CFDFE122165A3300F50919 /* MackJohn_CrypJoy */ = {
+			isa = PBXGroup;
+			children = (
+				F2CFDFE222165A3300F50919 /* AppDelegate.swift */,
+				F2CFDFE422165A3300F50919 /* ViewController.swift */,
+				F2CFDFE622165A3300F50919 /* Main.storyboard */,
+				F2CFDFE922165A3400F50919 /* Assets.xcassets */,
+				F2CFDFEB22165A3400F50919 /* LaunchScreen.storyboard */,
+				F2CFDFEE22165A3400F50919 /* Info.plist */,
+			);
+			path = MackJohn_CrypJoy;
+			sourceTree = "<group>";
+		};
+		F2CFDFF522165A3400F50919 /* MackJohn_CrypJoy WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				F2CFDFF622165A3400F50919 /* Interface.storyboard */,
+				F2CFDFF922165A3500F50919 /* Assets.xcassets */,
+				F2CFDFFB22165A3500F50919 /* Info.plist */,
+			);
+			path = "MackJohn_CrypJoy WatchKit App";
+			sourceTree = "<group>";
+		};
+		F2CFE00422165A3500F50919 /* MackJohn_CrypJoy WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F2CFE00522165A3500F50919 /* InterfaceController.swift */,
+				F2CFE00722165A3500F50919 /* ExtensionDelegate.swift */,
+				F2CFE00922165A3600F50919 /* Assets.xcassets */,
+				F2CFE00B22165A3600F50919 /* Info.plist */,
+			);
+			path = "MackJohn_CrypJoy WatchKit Extension";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F2CFDFDE22165A3300F50919 /* MackJohn_CrypJoy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2CFE01622165A3600F50919 /* Build configuration list for PBXNativeTarget "MackJohn_CrypJoy" */;
+			buildPhases = (
+				F2CFDFDB22165A3300F50919 /* Sources */,
+				F2CFDFDC22165A3300F50919 /* Frameworks */,
+				F2CFDFDD22165A3300F50919 /* Resources */,
+				F2CFE01522165A3600F50919 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F2CFDFF422165A3400F50919 /* PBXTargetDependency */,
+			);
+			name = MackJohn_CrypJoy;
+			productName = MackJohn_CrypJoy;
+			productReference = F2CFDFDF22165A3300F50919 /* MackJohn_CrypJoy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F2CFDFF022165A3400F50919 /* MackJohn_CrypJoy WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2CFE01222165A3600F50919 /* Build configuration list for PBXNativeTarget "MackJohn_CrypJoy WatchKit App" */;
+			buildPhases = (
+				F2CFDFEF22165A3400F50919 /* Resources */,
+				F2CFE01122165A3600F50919 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F2CFE00322165A3500F50919 /* PBXTargetDependency */,
+			);
+			name = "MackJohn_CrypJoy WatchKit App";
+			productName = "MackJohn_CrypJoy WatchKit App";
+			productReference = F2CFDFF122165A3400F50919 /* MackJohn_CrypJoy WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		F2CFDFFF22165A3500F50919 /* MackJohn_CrypJoy WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2CFE00E22165A3600F50919 /* Build configuration list for PBXNativeTarget "MackJohn_CrypJoy WatchKit Extension" */;
+			buildPhases = (
+				F2CFDFFC22165A3500F50919 /* Sources */,
+				F2CFDFFD22165A3500F50919 /* Frameworks */,
+				F2CFDFFE22165A3500F50919 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MackJohn_CrypJoy WatchKit Extension";
+			productName = "MackJohn_CrypJoy WatchKit Extension";
+			productReference = F2CFE00022165A3500F50919 /* MackJohn_CrypJoy WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F2CFDFD722165A3300F50919 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "John Mack";
+				TargetAttributes = {
+					F2CFDFDE22165A3300F50919 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					F2CFDFF022165A3400F50919 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					F2CFDFFF22165A3500F50919 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = F2CFDFDA22165A3300F50919 /* Build configuration list for PBXProject "MackJohn_CrypJoy" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F2CFDFD622165A3300F50919;
+			productRefGroup = F2CFDFE022165A3300F50919 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F2CFDFDE22165A3300F50919 /* MackJohn_CrypJoy */,
+				F2CFDFF022165A3400F50919 /* MackJohn_CrypJoy WatchKit App */,
+				F2CFDFFF22165A3500F50919 /* MackJohn_CrypJoy WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F2CFDFDD22165A3300F50919 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2CFDFED22165A3400F50919 /* LaunchScreen.storyboard in Resources */,
+				F2CFDFEA22165A3400F50919 /* Assets.xcassets in Resources */,
+				F2CFDFE822165A3300F50919 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2CFDFEF22165A3400F50919 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2CFDFFA22165A3500F50919 /* Assets.xcassets in Resources */,
+				F2CFDFF822165A3400F50919 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2CFDFFE22165A3500F50919 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2CFE00A22165A3600F50919 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F2CFDFDB22165A3300F50919 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2CFDFE522165A3300F50919 /* ViewController.swift in Sources */,
+				F2CFDFE322165A3300F50919 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2CFDFFC22165A3500F50919 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2CFE00822165A3500F50919 /* ExtensionDelegate.swift in Sources */,
+				F2CFE00622165A3500F50919 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F2CFDFF422165A3400F50919 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F2CFDFF022165A3400F50919 /* MackJohn_CrypJoy WatchKit App */;
+			targetProxy = F2CFDFF322165A3400F50919 /* PBXContainerItemProxy */;
+		};
+		F2CFE00322165A3500F50919 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F2CFDFFF22165A3500F50919 /* MackJohn_CrypJoy WatchKit Extension */;
+			targetProxy = F2CFE00222165A3500F50919 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F2CFDFE622165A3300F50919 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2CFDFE722165A3300F50919 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F2CFDFEB22165A3400F50919 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2CFDFEC22165A3400F50919 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F2CFDFF622165A3400F50919 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2CFDFF722165A3400F50919 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F2CFE00C22165A3600F50919 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F2CFE00D22165A3600F50919 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F2CFE00F22165A3600F50919 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B32R58BVV5;
+				INFOPLIST_FILE = "MackJohn_CrypJoy WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MackJohn.MackJohn-CrypJoy.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		F2CFE01022165A3600F50919 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B32R58BVV5;
+				INFOPLIST_FILE = "MackJohn_CrypJoy WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MackJohn.MackJohn-CrypJoy.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Release;
+		};
+		F2CFE01322165A3600F50919 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B32R58BVV5;
+				IBSC_MODULE = MackJohn_CrypJoy_WatchKit_Extension;
+				INFOPLIST_FILE = "MackJohn_CrypJoy WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MackJohn.MackJohn-CrypJoy.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		F2CFE01422165A3600F50919 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B32R58BVV5;
+				IBSC_MODULE = MackJohn_CrypJoy_WatchKit_Extension;
+				INFOPLIST_FILE = "MackJohn_CrypJoy WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MackJohn.MackJohn-CrypJoy.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Release;
+		};
+		F2CFE01722165A3600F50919 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B32R58BVV5;
+				INFOPLIST_FILE = MackJohn_CrypJoy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MackJohn.MackJohn-CrypJoy";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F2CFE01822165A3600F50919 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B32R58BVV5;
+				INFOPLIST_FILE = MackJohn_CrypJoy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MackJohn.MackJohn-CrypJoy";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F2CFDFDA22165A3300F50919 /* Build configuration list for PBXProject "MackJohn_CrypJoy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2CFE00C22165A3600F50919 /* Debug */,
+				F2CFE00D22165A3600F50919 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2CFE00E22165A3600F50919 /* Build configuration list for PBXNativeTarget "MackJohn_CrypJoy WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2CFE00F22165A3600F50919 /* Debug */,
+				F2CFE01022165A3600F50919 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2CFE01222165A3600F50919 /* Build configuration list for PBXNativeTarget "MackJohn_CrypJoy WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2CFE01322165A3600F50919 /* Debug */,
+				F2CFE01422165A3600F50919 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2CFE01622165A3600F50919 /* Build configuration list for PBXNativeTarget "MackJohn_CrypJoy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2CFE01722165A3600F50919 /* Debug */,
+				F2CFE01822165A3600F50919 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F2CFDFD722165A3300F50919 /* Project object */;
+}
