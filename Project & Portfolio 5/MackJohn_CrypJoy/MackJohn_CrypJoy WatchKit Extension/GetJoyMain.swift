@@ -30,9 +30,10 @@ class GetJoyMain: WKInterfaceController {
         
         if let context: Joy = context as? Joy {
             self.joy = context
-            print(self.joy?.displayReceived())
             updateDisplay()
         }
+        
+        setTitle("")
     }
 
     override func willActivate() {
@@ -41,8 +42,7 @@ class GetJoyMain: WKInterfaceController {
         
         joy = globalJoy
         
-        print(joy?.displayGiven())
-        print(joy?.displayReceived())
+        checkProgress()
         updateDisplay()
     }
 
@@ -61,6 +61,18 @@ class GetJoyMain: WKInterfaceController {
     func updateDisplay() {
         if let joy = joy {
             getJoyDisplay.setTitle(joy.displayReceived())
+        }
+    }
+    
+    func checkProgress() {
+        let giveGoal = joy!.readGiveGoal()
+        
+        if giveGoal < 9 {
+            getJoyDisplay.setEnabled(true)
+        }
+            
+        else {
+            getJoyDisplay.setEnabled(false)
         }
     }
 }

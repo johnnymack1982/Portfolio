@@ -25,9 +25,6 @@ class ActionConfirmed: WKInterfaceController {
         
         if let context: Joy = context as? Joy {
             self.joy = context
-            print(self.joy?.displayGiven().description)
-            print(self.joy?.displayReceived().description)
-            print(self.joy?.displayPayItForward())
         }
         
         setTitle("")

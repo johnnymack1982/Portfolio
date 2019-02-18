@@ -49,7 +49,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         if let context: Joy = context as? Joy {
             self.joy = context
             globalJoy = self.joy
-            print(self.joy?.displayGiven())
         }
         
         if let globalJoy = globalJoy {
@@ -61,6 +60,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         }
         
         updateDisplay()
+        checkProgress()
+        
         setTitle("")
     }
     
@@ -96,13 +97,18 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             
             if let jsonData = jsonString.data(using: .utf8)
             {
-                let joyObject = try? JSONDecoder().decode(Joy.self, from: jsonData)
+                var joyObject = try? JSONDecoder().decode(Joy.self, from: jsonData)
                 let currentDate = NSDate.init(timeIntervalSinceNow: 0) as Date
                 let calendar = Calendar.current
                 let createdComponents = calendar.dateComponents([.year, .month, .day], from: (joyObject?.readDateStamp())!)
                 let currentComponents = calendar.dateComponents([.year, .month, .day], from: (currentDate))
                 
                 if createdComponents.day == currentComponents.day {
+                    
+                    // USE THIS LINE TO RESET JOY OBJECT DURING TESTING
+                    // WHEN NOT IN USE, THIS LINE SHOULD BE COMMENTED OUT
+//                    joyObject = Joy(giveGoal: 3, giveProgress: 0, getProgress: 0, payItForwardGoal: 0, payItForwardProgress: 0)
+                    
                     joy = joyObject
                 }
                 
@@ -152,5 +158,18 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
+    }
+    
+    func checkProgress() {
+        let giveProgress = joy!.readGiveProgress()
+        let giveGoal = joy!.readGiveGoal()
+        
+        if giveProgress < giveGoal && giveProgress < 9 {
+            giveJoyDisplay.setEnabled(true)
+        }
+        
+        else {
+            giveJoyDisplay.setEnabled(false)
+        }
     }
 }

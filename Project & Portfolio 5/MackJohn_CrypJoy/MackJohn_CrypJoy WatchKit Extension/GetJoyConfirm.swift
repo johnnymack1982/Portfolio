@@ -25,7 +25,6 @@ class GetJoyConfirm: WKInterfaceController {
         
         if let context: Joy = context as? Joy {
             self.joy = context
-            print(self.joy?.displayReceived().description)
         }
     }
 

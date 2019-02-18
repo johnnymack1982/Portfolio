@@ -10,11 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MackJohn_CrypJoy WatchKit Extension/ActionConfirmed.swift"
-            timestampString = "572154170.970255"
+            timestampString = "572186445.738534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50">
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "buttonTapped()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
