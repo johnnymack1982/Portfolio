@@ -18,6 +18,7 @@ class Joy: NSObject, NSCoding, Codable {
     var getProgress: Int?
     var payItForwardGoal: Int?
     var payItForwardProgress: Int?
+    var dateCreated: Date?
     
     
     
@@ -28,6 +29,7 @@ class Joy: NSObject, NSCoding, Codable {
         self.getProgress = getProgress
         self.payItForwardGoal = payItForwardGoal
         self.payItForwardProgress = payItForwardProgress
+        dateCreated = NSDate.init(timeIntervalSinceNow: 0) as Date
     }
     
     
@@ -101,6 +103,10 @@ class Joy: NSObject, NSCoding, Codable {
     
     func readPayItForwardProgress() -> Int {
         return payItForwardProgress!
+    }
+    
+    func readDateStamp() -> Date {
+        return dateCreated!
     }
     
     

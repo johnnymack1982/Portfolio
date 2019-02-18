@@ -56,6 +56,10 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             joy = globalJoy
         }
         
+        else {
+            getData()
+        }
+        
         updateDisplay()
         setTitle("")
     }
@@ -75,9 +79,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     @available(watchOS 2.2, *)
-    public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {        
-        // Call custom method to get list of games to be populated
-        getData()
+    public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
     }
     
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
@@ -88,56 +90,67 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     // MARK: - Custom Functions
     func getData() {
-        // Build message to send to iOS portion
-        let joyValues: [String:Any] = ["updateData":true]
-        
-        // If a session is available, continue
-        if let session = session, session.isReachable {
+        let filename = getDocumentsDirectory().appendingPathComponent("joy.json")
+        do {
+            let jsonString = try String(contentsOf: filename)
             
-            // Send the message and handle reply from iOS portion
-            session.sendMessage(joyValues, replyHandler: {
-                replyData in
+            if let jsonData = jsonString.data(using: .utf8)
+            {
+                let joyObject = try? JSONDecoder().decode(Joy.self, from: jsonData)
+                let currentDate = NSDate.init(timeIntervalSinceNow: 0) as Date
+                let calendar = Calendar.current
+                let createdComponents = calendar.dateComponents([.year, .month, .day], from: (joyObject?.readDateStamp())!)
+                let currentComponents = calendar.dateComponents([.year, .month, .day], from: (currentDate))
                 
-                print(replyData)
-                
-                DispatchQueue.main.async {
-                    // If data is received from iOS portion, begin to decode
-                    if let data = replyData["updatedData"] as? Data {
-                        NSKeyedUnarchiver.setClass(Joy.self, forClassName: "Joy")
-                        
-                        do {
-                            // Attempt to decode list of games
-                            guard let joyObject = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Joy
-                                
-                                else {
-                                    print("GIVEJOYMAIN: Error getting data from phone. Creating dummy data")
-                                    
-                                    self.joy = Joy(giveGoal: 3, giveProgress: 0, getProgress: 0, payItForwardGoal: 0, payItForwardProgress: 0)
-                                    globalJoy = self.joy
-                                    
-                                    self.updateDisplay()
-                                    
-                                    return
-                            }
-                            
-                            // Reference decoded game list
-                            self.joy = joyObject
-                        }
-                            
-                        catch {
-                            fatalError("Can't unarchive data: \(error)")
-                        }
-                    }
+                if createdComponents.day == currentComponents.day {
+                    joy = joyObject
                 }
-            }) { (error) in
-                print(error.localizedDescription)
+                
+                else {
+                    joy = Joy(giveGoal: 3, giveProgress: 0, getProgress: 0, payItForwardGoal: 0, payItForwardProgress: 0)
+                }
+                
+                globalJoy = joy
+                updateDisplay()
             }
+        }
+        
+        catch {
+            print("Error reading data from file")
+            
+            joy = Joy(giveGoal: 3, giveProgress: 0, getProgress: 0, payItForwardGoal: 0, payItForwardProgress: 0)
+            
+            globalJoy = joy
+            updateDisplay()
         }
     }
     
     func updateDisplay() {
         if let joy = joy {
             giveJoyDisplay.setTitle(joy.displayGiven())
+            saveData()
         }
+    }
+    
+    func saveData() {
+        let encodedObject = try? JSONEncoder().encode(joy)
+        if let encodedObjectJsonString = String(data: encodedObject!, encoding: .utf8) {
+            print(encodedObjectJsonString)
+            
+            let fileName = getDocumentsDirectory().appendingPathComponent("joy.json")
+            
+            do {
+                try encodedObjectJsonString.write(to: fileName, atomically: true, encoding: String.Encoding.utf8)
+            }
+            
+            catch {
+                print("Failed to write data to file")
+            }
+        }
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
     }
 }
