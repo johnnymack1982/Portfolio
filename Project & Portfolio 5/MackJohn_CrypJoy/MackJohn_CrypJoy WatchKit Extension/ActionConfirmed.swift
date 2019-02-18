@@ -11,11 +11,26 @@ import Foundation
 
 
 class ActionConfirmed: WKInterfaceController {
-
+    
+    
+    
+    // MARK: - Class Properties
+    var joy: Joy?
+    
+    
+    
+    // MARK: - System Generated Functions
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        // Configure interface objects here.
+        if let context: Joy = context as? Joy {
+            self.joy = context
+            print(self.joy?.displayGiven().description)
+            print(self.joy?.displayReceived().description)
+            print(self.joy?.displayPayItForward())
+        }
+        
+        setTitle("")
     }
 
     override func willActivate() {
@@ -27,5 +42,11 @@ class ActionConfirmed: WKInterfaceController {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
-
+    
+    
+    
+    // MARK: - Action Functions
+    @IBAction func buttonTapped() {
+        globalJoy = joy
+    }
 }

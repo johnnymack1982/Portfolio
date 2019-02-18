@@ -11,11 +11,22 @@ import Foundation
 
 
 class GiveJoyConfirm: WKInterfaceController {
-
+    
+    
+    
+    // MARK: - Class Properties
+    public var joy: Joy?
+    
+    
+    
+    // MARK: - System Generated Functions
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        // Configure interface objects here.
+        if let context: Joy = context as? Joy {
+            self.joy = context
+            print(self.joy?.displayGiven().description)
+        }
     }
 
     override func willActivate() {
@@ -27,5 +38,15 @@ class GiveJoyConfirm: WKInterfaceController {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
-
+    
+    override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
+        if segueIdentifier == "GiveJoyConfirm" {
+            self.joy?.joyGiven()
+            return self.joy
+        }
+            
+        else {
+            return nil
+        }
+    }
 }

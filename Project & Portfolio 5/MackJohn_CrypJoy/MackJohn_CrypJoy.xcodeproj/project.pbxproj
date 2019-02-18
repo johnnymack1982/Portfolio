@@ -19,6 +19,12 @@
 		F2CFE00622165A3500F50919 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CFE00522165A3500F50919 /* InterfaceController.swift */; };
 		F2CFE00822165A3500F50919 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CFE00722165A3500F50919 /* ExtensionDelegate.swift */; };
 		F2CFE00A22165A3600F50919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2CFE00922165A3600F50919 /* Assets.xcassets */; };
+		F2CFE0232219BFFA00F50919 /* Joy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CFE0222219BFFA00F50919 /* Joy.swift */; };
+		F2CFE0242219BFFA00F50919 /* Joy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CFE0222219BFFA00F50919 /* Joy.swift */; };
+		F2CFE026221A332400F50919 /* GiveJoyConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CFE025221A332300F50919 /* GiveJoyConfirm.swift */; };
+		F2CFE028221A3B3800F50919 /* ActionConfirmed.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CFE027221A3B3800F50919 /* ActionConfirmed.swift */; };
+		F2CFE02A221A443C00F50919 /* GetJoyMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CFE029221A443C00F50919 /* GetJoyMain.swift */; };
+		F2CFE02C221A4B5500F50919 /* GetJoyConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CFE02B221A4B5500F50919 /* GetJoyConfirm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +86,11 @@
 		F2CFE00722165A3500F50919 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		F2CFE00922165A3600F50919 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F2CFE00B22165A3600F50919 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2CFE0222219BFFA00F50919 /* Joy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joy.swift; sourceTree = "<group>"; };
+		F2CFE025221A332300F50919 /* GiveJoyConfirm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveJoyConfirm.swift; sourceTree = "<group>"; };
+		F2CFE027221A3B3800F50919 /* ActionConfirmed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionConfirmed.swift; sourceTree = "<group>"; };
+		F2CFE029221A443C00F50919 /* GetJoyMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetJoyMain.swift; sourceTree = "<group>"; };
+		F2CFE02B221A4B5500F50919 /* GetJoyConfirm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetJoyConfirm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +140,7 @@
 				F2CFDFE922165A3400F50919 /* Assets.xcassets */,
 				F2CFDFEB22165A3400F50919 /* LaunchScreen.storyboard */,
 				F2CFDFEE22165A3400F50919 /* Info.plist */,
+				F2CFE0222219BFFA00F50919 /* Joy.swift */,
 			);
 			path = MackJohn_CrypJoy;
 			sourceTree = "<group>";
@@ -150,6 +162,10 @@
 				F2CFE00722165A3500F50919 /* ExtensionDelegate.swift */,
 				F2CFE00922165A3600F50919 /* Assets.xcassets */,
 				F2CFE00B22165A3600F50919 /* Info.plist */,
+				F2CFE025221A332300F50919 /* GiveJoyConfirm.swift */,
+				F2CFE027221A3B3800F50919 /* ActionConfirmed.swift */,
+				F2CFE029221A443C00F50919 /* GetJoyMain.swift */,
+				F2CFE02B221A4B5500F50919 /* GetJoyConfirm.swift */,
 			);
 			path = "MackJohn_CrypJoy WatchKit Extension";
 			sourceTree = "<group>";
@@ -287,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2CFDFE522165A3300F50919 /* ViewController.swift in Sources */,
+				F2CFE0232219BFFA00F50919 /* Joy.swift in Sources */,
 				F2CFDFE322165A3300F50919 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +313,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2CFE00822165A3500F50919 /* ExtensionDelegate.swift in Sources */,
+				F2CFE0242219BFFA00F50919 /* Joy.swift in Sources */,
+				F2CFE02A221A443C00F50919 /* GetJoyMain.swift in Sources */,
+				F2CFE02C221A4B5500F50919 /* GetJoyConfirm.swift in Sources */,
+				F2CFE028221A3B3800F50919 /* ActionConfirmed.swift in Sources */,
+				F2CFE026221A332400F50919 /* GiveJoyConfirm.swift in Sources */,
 				F2CFE00622165A3500F50919 /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,15 +1,156 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11134" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11055"/>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--GiveJoyMain-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="target"/>
+                <controller identifier="GiveJoyMain" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="MackJohn_CrypJoy_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <group width="1" height="1" alignment="left" layout="overlap" id="ift-ED-MoL">
+                            <items>
+                                <imageView alignment="center" verticalAlignment="center" image="counter_background" id="NGZ-Dw-hc1"/>
+                                <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="Omt-hf-Riz">
+                                    <items>
+                                        <label alignment="center" verticalAlignment="bottom" text="GIVE JOY" id="YNx-nd-6Il">
+                                            <fontDescription key="font" type="system" pointSize="10"/>
+                                        </label>
+                                        <button width="1" alignment="center" verticalAlignment="center" title="0/0" id="WQb-vJ-LIj">
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="font" type="boldSystem" pointSize="48"/>
+                                            <connections>
+                                                <segue destination="NNA-Zh-sP6" kind="modal" identifier="GiveJoySegue" id="Zhp-0f-Eu8"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="giveJoyDisplay" destination="WQb-vJ-LIj" id="oLU-xP-R8L"/>
+                        <segue destination="n58-1H-ubK" kind="relationship" relationship="nextPage" id="zlo-ov-qfN"/>
+                    </connections>
+                </controller>
             </objects>
+            <point key="canvasLocation" x="55" y="41"/>
+        </scene>
+        <!--GetJoyMain-->
+        <scene sceneID="6V4-m3-pBZ">
+            <objects>
+                <controller identifier="GetJoyMain" id="n58-1H-ubK" customClass="GetJoyMain" customModule="MackJohn_CrypJoy_WatchKit_Extension">
+                    <items>
+                        <group width="1" height="1" alignment="left" layout="overlap" id="RNm-kL-9Ha">
+                            <items>
+                                <imageView alignment="center" verticalAlignment="center" image="counter_background" id="D4H-CC-U2P"/>
+                                <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="HqT-Zd-nfB">
+                                    <items>
+                                        <label alignment="center" verticalAlignment="bottom" text="GET JOY" id="xIb-Tc-qyA">
+                                            <fontDescription key="font" type="system" pointSize="10"/>
+                                        </label>
+                                        <button width="1" alignment="center" verticalAlignment="center" title="0" id="eMn-Xz-2g1">
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="font" type="boldSystem" pointSize="48"/>
+                                            <connections>
+                                                <segue destination="ZWE-4W-tVW" kind="modal" identifier="GetJoySegue" id="fRW-OO-bbZ"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="getJoyDisplay" destination="eMn-Xz-2g1" id="gR9-Jc-WhW"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="423" y="41"/>
+        </scene>
+        <!--Cancel-->
+        <scene sceneID="8aA-Jr-Gzc">
+            <objects>
+                <controller identifier="GetJoyConfirm" title="Cancel" id="ZWE-4W-tVW" customClass="GetJoyConfirm" customModule="MackJohn_CrypJoy_WatchKit_Extension">
+                    <items>
+                        <group width="1" height="1" alignment="left" layout="overlap" id="LaW-Qm-B6X">
+                            <items>
+                                <imageView alignment="center" verticalAlignment="center" image="counter_background" id="eDc-hA-GPU"/>
+                                <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="mol-la-e8T">
+                                    <items>
+                                        <button width="87" alignment="center" verticalAlignment="center" title="GET JOY" id="dqi-ZP-YJE">
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="font" type="system" pointSize="30"/>
+                                            <connections>
+                                                <segue destination="r9e-pF-4lL" kind="modal" identifier="GetJoyConfirm" id="23R-LG-8nz"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="423" y="393"/>
+        </scene>
+        <!--Cancel-->
+        <scene sceneID="jcP-rg-3ah">
+            <objects>
+                <controller identifier="GiveJoyConfirm" title="Cancel" id="NNA-Zh-sP6" customClass="GiveJoyConfirm" customModule="MackJohn_CrypJoy_WatchKit_Extension">
+                    <items>
+                        <group width="1" height="1" alignment="left" layout="overlap" id="rbY-yz-iD9">
+                            <items>
+                                <imageView alignment="center" verticalAlignment="center" image="counter_background" id="gmf-H7-HPk"/>
+                                <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="gld-d4-FF7">
+                                    <items>
+                                        <button width="87" alignment="center" verticalAlignment="center" title="GIVE JOY" id="np4-FM-2mn">
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="font" type="system" pointSize="30"/>
+                                            <connections>
+                                                <segue destination="r9e-pF-4lL" kind="modal" identifier="GiveJoyConfirm" id="BpN-qL-nNe"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="55" y="393"/>
+        </scene>
+        <!--ActionConfirmed-->
+        <scene sceneID="5M9-yy-Va6">
+            <objects>
+                <controller identifier="ActionConfirmed" id="r9e-pF-4lL" customClass="ActionConfirmed" customModule="MackJohn_CrypJoy_WatchKit_Extension">
+                    <items>
+                        <group width="1" height="1" alignment="left" layout="overlap" id="gMn-mF-YfB">
+                            <items>
+                                <imageView alignment="center" verticalAlignment="center" image="counter_background" id="Gmv-9Z-z3d"/>
+                                <button alignment="center" verticalAlignment="center" backgroundImage="heart_icon" id="wlk-QK-AKy">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <connections>
+                                        <action selector="buttonTapped" destination="r9e-pF-4lL" id="r3B-1K-QXa"/>
+                                        <segue destination="AgC-eL-Hgc" kind="modal" identifier="ReturnToMain" id="gUw-wm-dOf"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="55" y="797"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="23R-LG-8nz"/>
+    </inferredMetricsTieBreakers>
 </document>
