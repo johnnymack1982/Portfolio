@@ -135,6 +135,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         if let joy = joy {
             giveJoyDisplay.setTitle(joy.displayGiven())
             saveData()
+            sendData()
         }
     }
     
@@ -152,6 +153,24 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             catch {
                 print("Failed to write data to file")
             }
+        }
+    }
+    
+    func sendData() {
+        DispatchQueue.main.async {
+            NSKeyedArchiver.setClassName("Joy", for: Joy.self)
+            
+            guard let data = try? NSKeyedArchiver.archivedData(withRootObject: self.joy!, requiringSecureCoding: false)
+                else {
+                    print("Error encoding Joy data")
+                    return
+            }
+            
+//            let messageValues: [String:Any] = ["updatedData":data]
+            
+            self.session?.sendMessageData(data, replyHandler: nil, errorHandler: { (error) in
+                print("Error sending data to phone: \(error)")
+            })
         }
     }
     

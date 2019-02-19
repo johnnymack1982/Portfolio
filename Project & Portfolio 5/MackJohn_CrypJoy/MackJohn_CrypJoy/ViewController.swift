@@ -29,7 +29,23 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        testDisplay()
+//        testDisplay()
+        
+        if let globalJoy = globalJoy {
+            joy = globalJoy
+        }
+        
+        if joy != nil {
+            updateDisplay()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("View Appeared")
+        
+        if let globalJoy = globalJoy {
+            joy = globalJoy
+        }
         
         if joy != nil {
             updateDisplay()

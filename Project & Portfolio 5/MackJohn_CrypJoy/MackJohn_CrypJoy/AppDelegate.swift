@@ -9,6 +9,8 @@
 import UIKit
 import WatchConnectivity
 
+var globalJoy: Joy?
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -53,23 +55,29 @@ extension AppDelegate: WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {}
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+    }
+    
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
+        print(messageData)
+        
         DispatchQueue.main.async {
-            // If message is received from watch, continue
-            if(message["updateData"] as? Bool) != nil {
-                // Reference class to be shared across devices
-                NSKeyedArchiver.setClassName("Joy", for: Joy.self)
-                
-                // Reference main view controller and get current Joy data
-                let viewController = ViewController()
-                let joy = viewController.joy
-                
-                // Attempt to encode Joy data and send to watch
-                guard let data = try? NSKeyedArchiver.archivedData(withRootObject: joy as Any, requiringSecureCoding: false)
+            print("Message received")
+            
+            NSKeyedUnarchiver.setClass(Joy.self, forClassName: "Joy")
+            
+            do {
+                guard let joyObject = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(messageData) as? Joy
                     else {
-                        fatalError("Error")
+                        print("Unable to decode Joy object received from watch")
+                        return
                 }
                 
-                replyHandler(["updatedData": data])
+                globalJoy = joyObject
+                print(globalJoy?.displayGiven())
+            }
+            
+            catch {
+                print("Error unarchiving data: \(error)")
             }
         }
     }
