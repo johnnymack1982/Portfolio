@@ -112,20 +112,31 @@ class Joy: NSObject, NSCoding, Codable {
     
     
     // MARK: - Custom Functions
+    // Custom function to be called when user logs that they have completed a random act of kindess
     public func joyGiven() {
+        // Increase Give Joy progress by one
         giveProgress! += 1
         
+        // Increase Pay It Forward progress by one, only if the new value will not exceed
+        // the current Pay It Forward goal
         if payItForwardProgress! + 1 <= payItForwardGoal! {
             payItForwardProgress! += 1
         }
     }
     
+    // Custom function to be called when user logs that they have received a random act of kindness
     public func joyReceived() {
+        // Increase Get Joy progress by one
         getProgress! += 1
+        
+        // Increase Pay It Forward progress by one
         payItForwardGoal! += 1
+        
+        // Calculate new Give Joy goal
         giveGoal! = 3 + payItForwardGoal!
     }
     
+    // Custom function to be called when the UI needs to display the user's current Give Joy progress
     public func displayGiven() -> String {
         let goalString = String(giveGoal!)
         let progressString = String(giveProgress!)
@@ -133,12 +144,14 @@ class Joy: NSObject, NSCoding, Codable {
         return "\(progressString)/\(goalString)"
     }
     
+    // Custom function to be called when the UI needs to display the user's current Get Joy progress
     public func displayReceived() -> String {
         let progressString = String(getProgress!)
         
         return progressString
     }
     
+    // Custom function to be called when the UI needs to display the user's current Pay It Forward progress
     public func displayPayItForward() -> String {
         let goalString = String(payItForwardGoal!)
         let progressString = String(payItForwardProgress!)

@@ -28,11 +28,15 @@ class GetJoyMain: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
+        // Reference Joy object from sending controller
         if let context: Joy = context as? Joy {
             self.joy = context
+            
+            // Call custom function to update UI with current values
             updateDisplay()
         }
         
+        // Clear navigation item
         setTitle("")
     }
 
@@ -40,9 +44,13 @@ class GetJoyMain: WKInterfaceController {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
+        // Reference current value of global Joy object
         joy = globalJoy
         
+        // Call custom function to check the users progress and enable/disable buttons as necessary
         checkProgress()
+        
+        // Call custom function to update UI with current values
         updateDisplay()
     }
 
@@ -52,25 +60,33 @@ class GetJoyMain: WKInterfaceController {
     }
     
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
+        // Send current Joy values to next controller
         return self.joy
     }
     
     
     
     // MARK: - Custom Functions
+    // Custom function to update UI with current values
     func updateDisplay() {
         if let joy = joy {
             getJoyDisplay.setTitle(joy.displayReceived())
         }
     }
     
+    // Custom function to check the users progress and enable/disable buttons as necessary
     func checkProgress() {
+        // Reference current Give Joy goal
         let giveGoal = joy!.readGiveGoal()
         
+        // If the current goal is less than 9, allow user to log more
         if giveGoal < 9 {
             getJoyDisplay.setEnabled(true)
         }
             
+        // Otherwise, disable the button
+        // This prevents values from becoming too large to fit on the screen
+        // This will also provide users with a consistent maximum goal to strive for on a daily basis
         else {
             getJoyDisplay.setEnabled(false)
         }

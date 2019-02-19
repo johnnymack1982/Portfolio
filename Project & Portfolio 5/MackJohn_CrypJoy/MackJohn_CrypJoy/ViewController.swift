@@ -27,14 +27,15 @@ class ViewController: UIViewController {
     // MARK: - System Generated Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
+        // This line is for testing purposes only and should be commented out during normal use
 //        testDisplay()
         
+        // If the global Joy object is not nil, set the class property to match
         if let globalJoy = globalJoy {
             joy = globalJoy
         }
         
+        // If the class Joy property is not nil, call custom function to update display with current values
         if joy != nil {
             updateDisplay()
         }
@@ -43,10 +44,12 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         print("View Appeared")
         
+        // If the global Joy object is not nil, set the class property to match
         if let globalJoy = globalJoy {
             joy = globalJoy
         }
         
+        // If the class property is not nil, call custom function to update display with current values
         if joy != nil {
             updateDisplay()
         }
@@ -55,6 +58,8 @@ class ViewController: UIViewController {
     
     
     // MARK: - Custom Functions
+    // Custom function to populate Joy object with dummy data
+    // This should be used for test purposes only
     func testDisplay() {
         joy = Joy(giveGoal: 3, giveProgress: 0, getProgress: 0, payItForwardGoal: 0, payItForwardProgress: 0)
         
@@ -77,6 +82,7 @@ class ViewController: UIViewController {
         updateDisplay()
     }
     
+    // Custom function to update display with current values
     func updateDisplay() {
         giveJoyDisplay.text = joy?.displayGiven()
         getJoyDisplay.text = joy?.displayReceived()

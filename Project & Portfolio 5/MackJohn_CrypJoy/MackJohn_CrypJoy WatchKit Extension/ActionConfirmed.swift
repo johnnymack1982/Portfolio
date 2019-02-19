@@ -23,6 +23,7 @@ class ActionConfirmed: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
+        // Reference Joy object received from sending controller
         if let context: Joy = context as? Joy {
             self.joy = context
         }
@@ -44,6 +45,8 @@ class ActionConfirmed: WKInterfaceController {
     
     // MARK: - Action Functions
     @IBAction func buttonTapped() {
+        // Send current Joy values to global variable.
+        // This will be referenced to update the class property in the main controller
         globalJoy = joy
     }
 }

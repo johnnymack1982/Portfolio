@@ -57,23 +57,28 @@ extension AppDelegate: WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
     }
     
+    // TODO: - This callback is currently not firing
+    // This will require additional debugging to address
     func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
+        // Print data received from watch for logging
         print(messageData)
         
         DispatchQueue.main.async {
             print("Message received")
             
+            // Set class to decode received data
             NSKeyedUnarchiver.setClass(Joy.self, forClassName: "Joy")
             
             do {
+                // Attempt to decode data into readable Joy object
                 guard let joyObject = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(messageData) as? Joy
                     else {
                         print("Unable to decode Joy object received from watch")
                         return
                 }
                 
+                // Send decoded object to main view controller
                 globalJoy = joyObject
-                print(globalJoy?.displayGiven())
             }
             
             catch {
