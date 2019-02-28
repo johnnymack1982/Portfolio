@@ -9,6 +9,8 @@
 import UIKit
 import WatchConnectivity
 
+var viewController: ViewController?
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -56,8 +58,6 @@ extension AppDelegate: WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
     }
     
-    // TODO: - This callback is currently not firing
-    // This will require additional debugging to address
     func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
         // Print data received from watch for logging
         print(messageData)
@@ -79,6 +79,10 @@ extension AppDelegate: WCSessionDelegate {
                 // Send decoded object to main view controller
                 self.joy = joyObject
                 self.saveData()
+                
+                if viewController == nil {
+                    viewController = ViewController()
+                }
             }
             
             catch {
@@ -103,9 +107,11 @@ extension AppDelegate: WCSessionDelegate {
                 // Attempt to save JSON string to file
                 try encodedObjectJsonString.write(to: fileName, atomically: true, encoding: String.Encoding.utf8)
                 
-                let viewController = ViewController()
+                if viewController == nil {
+                    viewController = ViewController()
+                }
                 
-                viewController.getData()
+                viewController!.getData()
             }
                 
             catch {

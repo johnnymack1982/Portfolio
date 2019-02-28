@@ -33,6 +33,10 @@ class ViewController: UIViewController {
         // This line is for testing purposes only and should be commented out during normal use
 //        testDisplay()
         
+        if viewController == nil {
+            viewController = self
+        }
+        
         getData()
     }
     
