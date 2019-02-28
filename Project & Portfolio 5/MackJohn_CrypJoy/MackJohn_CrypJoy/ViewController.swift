@@ -140,28 +140,34 @@ class ViewController: UIViewController {
     
     // Custom function to display progress ring
     func setupGiveRing() {
+        // Initialize scene and options. Set background color to clear
         let scene = SKScene(size: CGSize(width: 145, height: 145))
         scene.scaleMode = .aspectFit
         scene.backgroundColor = .clear
         
+        // Declare fraction that will be used to determine how much of the ring to fill up
         var fraction: CGFloat = 0
         
         if joy != nil {
+            // Calculate fraction that will be used to determine how much of the ring to fill up
             let giveProgress = CGFloat((joy?.giveProgress)!)
             let giveGoal = CGFloat((joy?.giveGoal)!)
-            
             let displayValue = giveProgress / giveGoal
-            
             fraction = displayValue
         }
         
+        // Generate path that will populate the progress ring
         let path = UIBezierPath(arcCenter: .zero, radius: 50, startAngle: 0, endAngle: 2 * .pi * fraction, clockwise: true)
         let shapeNode = SKShapeNode(path: path.cgPath)
+        
+        // Set color and appearance of ring
         shapeNode.strokeColor = hexStringToUIColor(hex: "#FFBF46")
         shapeNode.fillColor = .clear
         shapeNode.lineWidth = 7
         shapeNode.lineCap = .round
         shapeNode.position = CGPoint(x: scene.size.width / 2, y: scene.size.height / 2)
+        
+        // Add progress ring to the scene
         scene.addChild(shapeNode)
         
         giveJoyIndicator.allowsTransparency = true
@@ -169,48 +175,58 @@ class ViewController: UIViewController {
     }
     
     func setupPayItForwardRing() {
+        // Initialize scene and options. Set background color to clear
         let scene = SKScene(size: CGSize(width: 145, height: 145))
         scene.scaleMode = .aspectFit
         scene.backgroundColor = .clear
         
+        // Declare fraction that will be used to determine how much of the ring to fill up
         var fraction: CGFloat = 0
         
         if joy != nil {
+            // Calculate fraction that will be used to determine how much of the ring to fill up
             let giveProgress = CGFloat((joy?.payItForwardProgress)!)
             let giveGoal = CGFloat((joy?.payItForwardGoal)!)
-            
             let displayValue = giveProgress / giveGoal
-            
             fraction = displayValue
         }
         
+        // Generate path that will populate the progress ring
         let path = UIBezierPath(arcCenter: .zero, radius: 50, startAngle: 0, endAngle: 2 * .pi * fraction, clockwise: true)
         let shapeNode = SKShapeNode(path: path.cgPath)
+        
+        // Set color and appearance of ring
         shapeNode.strokeColor = hexStringToUIColor(hex: "#FFBF46")
         shapeNode.fillColor = .clear
         shapeNode.lineWidth = 7
         shapeNode.lineCap = .round
         shapeNode.position = CGPoint(x: scene.size.width / 2, y: scene.size.height / 2)
+        
+        // Add progress ring to the scene
         scene.addChild(shapeNode)
         
         payItForwardIndicator.allowsTransparency = true
         payItForwardIndicator.presentScene(scene)
     }
     
+    // Custom function to generate UI Color from hex value
     func hexStringToUIColor (hex:String) -> UIColor {
+        // Make sure hex string is properly formatted
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
+        // If string has '#' at the beginning, remove it
         if (cString.hasPrefix("#")) {
             cString.remove(at: cString.startIndex)
         }
         
+        // If string is not the correct length, return default color
         if ((cString.count) != 6) {
             return UIColor.gray
         }
         
+        // Extract color values and return new UI Color
         var rgbValue:UInt32 = 0
         Scanner(string: cString).scanHexInt32(&rgbValue)
-        
         return UIColor(
             red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
             green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,

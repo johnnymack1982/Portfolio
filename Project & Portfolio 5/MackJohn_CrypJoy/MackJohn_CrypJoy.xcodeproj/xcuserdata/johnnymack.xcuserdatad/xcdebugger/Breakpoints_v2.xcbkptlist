@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MackJohn_CrypJoy WatchKit Extension/InterfaceController.swift"
-            timestampString = "573009264.6624711"
+            timestampString = "573087574.461663"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "setupProgressRing()"
             landmarkType = "7">
          </BreakpointContent>
