@@ -61,35 +61,44 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOY GIVEN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="19g-Mv-HAA">
-                                        <rect key="frame" x="147" y="201" width="81.5" height="19.5"/>
+                                        <rect key="frame" x="147" y="209" width="81.5" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOY RECEIVED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Uq-oZ-ahU">
-                                        <rect key="frame" x="133" y="386" width="109" height="19.5"/>
+                                        <rect key="frame" x="133" y="394" width="109" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PAY IT FORWARD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzd-Eb-xBe">
-                                        <rect key="frame" x="123.5" y="571" width="128" height="19.5"/>
+                                        <rect key="frame" x="123.5" y="579" width="128" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <skView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vPA-r7-c77">
+                                        <rect key="frame" x="97.5" y="50.5" width="180" height="180"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </skView>
+                                    <skView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aAe-AK-HPj">
+                                        <rect key="frame" x="97.5" y="420.5" width="180" height="180"/>
+                                    </skView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.96078431372549022" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="XDM-XC-E8F" firstAttribute="width" secondItem="dZi-ny-brO" secondAttribute="width" id="17O-74-XZN"/>
                                     <constraint firstItem="7t8-eM-BuF" firstAttribute="centerX" secondItem="lwi-NJ-bv8" secondAttribute="centerX" id="1Fa-47-r1D"/>
                                     <constraint firstItem="vzd-Eb-xBe" firstAttribute="centerX" secondItem="lwi-NJ-bv8" secondAttribute="centerX" id="1n7-KB-i7q"/>
-                                    <constraint firstItem="4Uq-oZ-ahU" firstAttribute="top" secondItem="AeA-QV-cCE" secondAttribute="bottom" constant="8" id="31v-51-t6M"/>
+                                    <constraint firstItem="4Uq-oZ-ahU" firstAttribute="top" secondItem="AeA-QV-cCE" secondAttribute="bottom" constant="16" id="31v-51-t6M"/>
                                     <constraint firstItem="19g-Mv-HAA" firstAttribute="centerX" secondItem="lwi-NJ-bv8" secondAttribute="centerX" id="5Cc-OX-PWm"/>
                                     <constraint firstItem="dZi-ny-brO" firstAttribute="centerX" secondItem="lwi-NJ-bv8" secondAttribute="centerX" id="9Yl-4w-mLD"/>
+                                    <constraint firstItem="vPA-r7-c77" firstAttribute="height" secondItem="XDM-XC-E8F" secondAttribute="height" constant="75" id="BUt-ez-Kle"/>
                                     <constraint firstItem="3Bx-Rt-nEi" firstAttribute="height" secondItem="AeA-QV-cCE" secondAttribute="height" id="BzB-NV-dMH"/>
                                     <constraint firstItem="XDM-XC-E8F" firstAttribute="height" secondItem="dZi-ny-brO" secondAttribute="height" id="GBt-pU-QuP"/>
-                                    <constraint firstItem="19g-Mv-HAA" firstAttribute="top" secondItem="dZi-ny-brO" secondAttribute="bottom" constant="8" id="HJW-s5-SMk"/>
+                                    <constraint firstItem="19g-Mv-HAA" firstAttribute="top" secondItem="dZi-ny-brO" secondAttribute="bottom" constant="16" id="HJW-s5-SMk"/>
                                     <constraint firstItem="4Uq-oZ-ahU" firstAttribute="centerX" secondItem="lwi-NJ-bv8" secondAttribute="centerX" id="I0t-WJ-bgU"/>
                                     <constraint firstItem="oIM-n5-erT" firstAttribute="height" secondItem="7t8-eM-BuF" secondAttribute="height" id="KT0-lo-9fh"/>
                                     <constraint firstItem="3Bx-Rt-nEi" firstAttribute="centerY" secondItem="AeA-QV-cCE" secondAttribute="centerY" id="Mim-it-gGN"/>
@@ -97,13 +106,20 @@
                                     <constraint firstItem="3Bx-Rt-nEi" firstAttribute="centerX" secondItem="AeA-QV-cCE" secondAttribute="centerX" id="V0G-ud-xTE"/>
                                     <constraint firstItem="oIM-n5-erT" firstAttribute="centerX" secondItem="7t8-eM-BuF" secondAttribute="centerX" id="V76-EY-bG2"/>
                                     <constraint firstItem="3Bx-Rt-nEi" firstAttribute="width" secondItem="AeA-QV-cCE" secondAttribute="width" id="Y5O-uK-u0X"/>
-                                    <constraint firstItem="vzd-Eb-xBe" firstAttribute="top" secondItem="7t8-eM-BuF" secondAttribute="bottom" constant="8" id="dkL-WI-sJ2"/>
+                                    <constraint firstItem="aAe-AK-HPj" firstAttribute="width" secondItem="oIM-n5-erT" secondAttribute="width" constant="75" id="YLs-Ca-Shd"/>
+                                    <constraint firstItem="vzd-Eb-xBe" firstAttribute="top" secondItem="7t8-eM-BuF" secondAttribute="bottom" constant="16" id="dkL-WI-sJ2"/>
                                     <constraint firstItem="AeA-QV-cCE" firstAttribute="centerX" secondItem="lwi-NJ-bv8" secondAttribute="centerX" id="jC3-CP-9Dt"/>
                                     <constraint firstItem="oIM-n5-erT" firstAttribute="width" secondItem="7t8-eM-BuF" secondAttribute="width" id="jwT-Rv-GP5"/>
+                                    <constraint firstItem="aAe-AK-HPj" firstAttribute="centerY" secondItem="oIM-n5-erT" secondAttribute="centerY" id="knM-qp-GZj"/>
+                                    <constraint firstItem="aAe-AK-HPj" firstAttribute="centerX" secondItem="oIM-n5-erT" secondAttribute="centerX" id="qF4-DA-crj"/>
                                     <constraint firstItem="XDM-XC-E8F" firstAttribute="centerX" secondItem="dZi-ny-brO" secondAttribute="centerX" id="sIG-FQ-bgw"/>
+                                    <constraint firstItem="aAe-AK-HPj" firstAttribute="height" secondItem="oIM-n5-erT" secondAttribute="height" constant="75" id="u5T-NS-qfi"/>
+                                    <constraint firstItem="vPA-r7-c77" firstAttribute="width" secondItem="XDM-XC-E8F" secondAttribute="width" constant="75" id="w7z-Qo-yey"/>
+                                    <constraint firstItem="vPA-r7-c77" firstAttribute="centerX" secondItem="XDM-XC-E8F" secondAttribute="centerX" id="wlJ-Mb-Vjt"/>
                                     <constraint firstItem="AeA-QV-cCE" firstAttribute="centerY" secondItem="lwi-NJ-bv8" secondAttribute="centerY" constant="-8" id="wxf-8N-eCr"/>
                                     <constraint firstItem="AeA-QV-cCE" firstAttribute="top" secondItem="dZi-ny-brO" secondAttribute="bottom" constant="80" id="xSw-IO-2R6"/>
                                     <constraint firstItem="XDM-XC-E8F" firstAttribute="centerY" secondItem="dZi-ny-brO" secondAttribute="centerY" id="y3D-3d-fLH"/>
+                                    <constraint firstItem="vPA-r7-c77" firstAttribute="centerY" secondItem="XDM-XC-E8F" secondAttribute="centerY" id="yNp-tP-XJI"/>
                                     <constraint firstItem="7t8-eM-BuF" firstAttribute="top" secondItem="AeA-QV-cCE" secondAttribute="bottom" constant="80" id="yS3-be-aUd"/>
                                 </constraints>
                             </view>
@@ -120,11 +136,14 @@
                     <connections>
                         <outlet property="getJoyDisplay" destination="3Bx-Rt-nEi" id="MeJ-k4-bRC"/>
                         <outlet property="giveJoyDisplay" destination="XDM-XC-E8F" id="JIh-q4-JQG"/>
+                        <outlet property="giveJoyIndicator" destination="vPA-r7-c77" id="ZH4-P5-zJI"/>
                         <outlet property="payItForwardDisplay" destination="oIM-n5-erT" id="6sk-DP-lN8"/>
+                        <outlet property="payItForwardIndicator" destination="aAe-AK-HPj" id="J5U-LC-ijP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
         </scene>
     </scenes>
     <resources>

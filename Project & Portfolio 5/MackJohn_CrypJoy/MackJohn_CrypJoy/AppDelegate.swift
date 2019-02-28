@@ -9,14 +9,13 @@
 import UIKit
 import WatchConnectivity
 
-var globalJoy: Joy?
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     
     // MARK: - Class Properties
+    var joy: Joy?
     var window: UIWindow?
     var session: WCSession? {
         didSet {
@@ -78,12 +77,46 @@ extension AppDelegate: WCSessionDelegate {
                 }
                 
                 // Send decoded object to main view controller
-                globalJoy = joyObject
+                self.joy = joyObject
+                self.saveData()
             }
             
             catch {
                 print("Error unarchiving data: \(error)")
             }
         }
+    }
+    
+    // Custom function to save current values to file
+    func saveData() {
+        // Encode current values to JSON
+        let encodedObject = try? JSONEncoder().encode(joy)
+        
+        // Attempt to convert JSON to JSON string
+        if let encodedObjectJsonString = String(data: encodedObject!, encoding: .utf8) {
+            print(encodedObjectJsonString)
+            
+            // Reference file path
+            let fileName = getDocumentsDirectory().appendingPathComponent("joy.json")
+            
+            do {
+                // Attempt to save JSON string to file
+                try encodedObjectJsonString.write(to: fileName, atomically: true, encoding: String.Encoding.utf8)
+                
+                let viewController = ViewController()
+                
+                viewController.getData()
+            }
+                
+            catch {
+                print("Failed to write data to file")
+            }
+        }
+    }
+    
+    // Custom helper function to build file path for saving and loading
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
     }
 }

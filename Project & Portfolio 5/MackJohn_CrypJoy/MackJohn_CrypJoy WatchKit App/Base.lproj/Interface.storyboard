@@ -17,6 +17,7 @@
                         <group width="1" height="1" alignment="left" layout="overlap" id="ift-ED-MoL">
                             <items>
                                 <imageView alignment="center" verticalAlignment="center" image="counter_background" id="NGZ-Dw-hc1"/>
+                                <spriteKitScene width="1" height="1" alignment="left" scene="GiveProgress" id="3sS-Kr-9UX"/>
                                 <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="Omt-hf-Riz">
                                     <items>
                                         <label alignment="center" verticalAlignment="bottom" text="GIVE JOY" id="YNx-nd-6Il">
@@ -36,6 +37,7 @@
                     </items>
                     <connections>
                         <outlet property="giveJoyDisplay" destination="WQb-vJ-LIj" id="oLU-xP-R8L"/>
+                        <outlet property="progressDisplay" destination="3sS-Kr-9UX" id="YYq-yy-zKs"/>
                         <segue destination="n58-1H-ubK" kind="relationship" relationship="nextPage" id="zlo-ov-qfN"/>
                     </connections>
                 </controller>

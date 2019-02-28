@@ -9,6 +9,7 @@
 import WatchKit
 import Foundation
 import WatchConnectivity
+import SpriteKit
 
 
 
@@ -22,6 +23,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     // MARK: - UI Outlets
     @IBOutlet weak var giveJoyDisplay: WKInterfaceButton!
+    @IBOutlet weak var progressDisplay: WKInterfaceSKScene!
     
     
     
@@ -129,7 +131,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                     
                     // USE THIS LINE TO RESET JOY OBJECT DURING TESTING
                     // WHEN NOT IN USE, THIS LINE SHOULD BE COMMENTED OUT
-//                    joyObject = Joy(giveGoal: 3, giveProgress: 0, getProgress: 0, payItForwardGoal: 0, payItForwardProgress: 0)
+//                    let joyObject = Joy(giveGoal: 3, giveProgress: 0, getProgress: 0, payItForwardGoal: 0, payItForwardProgress: 0)
                     
                     joy = joyObject
                 }
@@ -169,7 +171,61 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             
             // Call custom function to send current values to iOS portion
             sendData()
+            
+            // Call custom function to display progress ring
+            setupProgressRing()
         }
+    }
+    
+    // Custom function to display progress ring
+    func setupProgressRing() {
+        let scene = SKScene(size: CGSize(width: 115, height: 115))
+        scene.scaleMode = .aspectFit
+        scene.backgroundColor = .clear
+        
+        var fraction: CGFloat = 0
+        
+        if joy != nil {
+            let giveProgress = CGFloat((joy?.giveProgress)!)
+            let giveGoal = CGFloat((joy?.giveGoal)!)
+            
+            let displayValue = giveProgress / giveGoal
+            
+            fraction = displayValue
+        }
+        
+        let path = UIBezierPath(arcCenter: .zero, radius: 50, startAngle: 0, endAngle: 2 * .pi * fraction, clockwise: true)
+        let shapeNode = SKShapeNode(path: path.cgPath)
+        shapeNode.strokeColor = hexStringToUIColor(hex: "#FFBF46")
+        shapeNode.fillColor = .clear
+        shapeNode.lineWidth = 7
+        shapeNode.lineCap = .round
+        shapeNode.position = CGPoint(x: scene.size.width / 2, y: scene.size.height / 2)
+        scene.addChild(shapeNode)
+        
+        progressDisplay.presentScene(scene)
+    }
+    
+    func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+        
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+        
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
     }
     
     // Custom function to save current values to file
