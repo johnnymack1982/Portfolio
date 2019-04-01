@@ -65,7 +65,7 @@
 * ** Matchly ** _A simple matching game, complete with animations, sound effects, and theme music. This application includes the game, which supports different grid sizes for different devices (iPhone, iPad, etc.), and a leaderboard that tracks high scores. This applications is a good showcase of visual and user experience design skills._
 	
 ######
-* **Keep Calm and Calendar ** _This marks the first fully functional iOS application developed for the purposes of this portfolio. This is also an ongoing passion project that is being developed with parents of children with Autism in mind. When complete, this application will provide users with a platorm to provide children with Autism with a visual representation of their daily activities._
+* **Keep Calm and Calendar** - _This marks the first fully functional iOS application developed for the purposes of this portfolio. This is also an ongoing passion project that is being developed with parents of children with Autism in mind. When complete, this application will provide users with a platorm to provide children with Autism with a visual representation of their daily activities._
 
 	######
 	### Installation Instructions: ###
@@ -97,7 +97,7 @@
 	Calendar items sync out of original order when downloading from Firestore. This will require further research to correct.
 	
 ######
-* **CrypJoy - Apple Watch Edition** _This is a "passion project" and a simple "pay it forward" application that provides users with the simple goal of committing a set number of random acts of kindness throughout the day. As users log acts of kindness, their daily score is tallied and visualized on the watch and on a paired iPhone device. In addition, users can record acts of kindness that others have performed for them, increasing their daily goal up to a set daily maximum._
+* **CrypJoy - Apple Watch Edition** - _This is a "passion project" and a simple "pay it forward" application that provides users with the simple goal of committing a set number of random acts of kindness throughout the day. As users log acts of kindness, their daily score is tallied and visualized on the watch and on a paired iPhone device. In addition, users can record acts of kindness that others have performed for them, increasing their daily goal up to a set daily maximum._
 
 	######
 	### Installation Instructions: ###
@@ -122,3 +122,6 @@
 	######
 	### Tested Devices: ###
 	Primary testing of this application has been performed on a combination of iPhone XS and Apple Watch Series 4.
+	
+######
+* **CrypJoy - Android Edition** - _This project builds upon CrypJoy - Apple Watch Edition and will feature a fully functional interface for Android mobile devices, including cloud storage, user profile information, and the ability to track acts of kindness in a built-in map view._
