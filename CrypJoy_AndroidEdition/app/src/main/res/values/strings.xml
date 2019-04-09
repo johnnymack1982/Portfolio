@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CrypJoy - Android Edition</string>
+    <string name="kindness_makes_the_world_a_better_place">Kindness makes the world a better place!</string>
+    <string name="are_you_doing_something_nice_for_somebody_or_did_they_do_something_nice_for_you">Are you doing something nice for somebody or did they do something nice for you?</string>
+    <string name="give_joy">GIVE JOY</string>
+    <string name="get_joy">GET JOY</string>
+    <string name="heart_icon">Heart Icon</string>
 </resources>
