@@ -5,4 +5,12 @@
     <string name="give_joy">GIVE JOY</string>
     <string name="get_joy">GET JOY</string>
     <string name="heart_icon">Heart Icon</string>
+    <string name="yes">YES!</string>
+    <string name="nope">Nope</string>
+    <string name="give_joy_dialog">Give Joy</string>
+    <string name="give_joy_dialog_body">Did you do something nice for somebody?</string>
+    <string name="joy_given_confirm">JOY GIVEN!</string>
+    <string name="joy_received_confirm">JOY RECEIVED!</string>
+    <string name="get_joy_dialog">Get Joy</string>
+    <string name="get_joy_dialog_body">Did somebody do something nice for you?</string>
 </resources>
