@@ -13,11 +13,12 @@ public class Joy implements Serializable {
     int getProgress;
     int payItForwardGoal;
     int payItForwardProgress;
+    Date dateCreated;
 
 
 
     // Constructor
-    public Joy() {
+    public Joy(Date dateCreated) {
         this.giveGoal = 3;
         this.giveProgress = 0;
 
@@ -25,6 +26,8 @@ public class Joy implements Serializable {
 
         this.payItForwardGoal = 0;
         this.payItForwardProgress = 0;
+
+        this.dateCreated = dateCreated;
     }
 
 
@@ -69,6 +72,15 @@ public class Joy implements Serializable {
     public void setPayItForwardProgress(int payItForwardProgress) {
         this.payItForwardProgress = payItForwardProgress;
     }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
 
 
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CrypJoy - Android Edition</string>
+    <string name="app_name">CrypJoy</string>
     <string name="kindness_makes_the_world_a_better_place">Kindness makes the world a better place!</string>
     <string name="are_you_doing_something_nice_for_somebody_or_did_they_do_something_nice_for_you">Are you doing something nice for somebody or did they do something nice for you?</string>
     <string name="give_joy">GIVE JOY</string>
@@ -13,4 +13,9 @@
     <string name="joy_received_confirm">JOY RECEIVED!</string>
     <string name="get_joy_dialog">Get Joy</string>
     <string name="get_joy_dialog_body">Did somebody do something nice for you?</string>
+    <string name="joy_given_small">Joy Given</string>
+    <string name="joy_received_small">Joy Received</string>
+    <string name="give_disabled_get_enabled">You\'ve reached your Give goal for now. Great job! You can do more if somebody does something nice for you.</string>
+    <string name="give_enabled_get_disabled">Looks like you\'ve got some catching up to do!</string>
+    <string name="give_disabled_get_disabled">Looks like you\'ve done all you can to make the world a better place today. You\'re awesome!</string>
 </resources>
