@@ -10,13 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.mack.john.crypjoy_androidedition.R;
-import com.mack.john.crypjoy_androidedition.objects.Get;
-import com.mack.john.crypjoy_androidedition.objects.Give;
-import com.mack.john.crypjoy_androidedition.objects.Joy;
-import com.mack.john.crypjoy_androidedition.utilities.LoggingUtils;
-
-import java.util.ArrayList;
-import java.util.Date;
+import com.mack.john.crypjoy_androidedition.utilities.JoyUtils;
 
 public class LoggingFragment extends Fragment implements View.OnClickListener {
 
@@ -26,7 +20,7 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
     public static final String TAG = "LoggingFragment";
 
     View mView;
-    LoggingUtils mLoggingUtils;
+    JoyUtils mJoyUtils;
 
 
 
@@ -51,11 +45,11 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
 
         mView = view;
 
-        mLoggingUtils = new LoggingUtils(getActivity(), mView);
+        mJoyUtils = new JoyUtils(getActivity(), mView);
 
         setClickListener();
 
-        mLoggingUtils.checkProgress();
+        mJoyUtils.checkProgress();
 
         return view;
     }
@@ -63,11 +57,11 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.button_give) {
-            mLoggingUtils.giveJoy();
+            mJoyUtils.giveJoy();
         }
 
         else if (view.getId() == R.id.button_get) {
-            mLoggingUtils.getJoy();
+            mJoyUtils.getJoy();
         }
     }
 

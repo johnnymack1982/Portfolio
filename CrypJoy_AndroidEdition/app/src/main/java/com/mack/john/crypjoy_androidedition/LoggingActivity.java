@@ -22,12 +22,14 @@ public class LoggingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logging);
 
+        // Call custom function to inflate Logging Fragment
         displayFragment();
     }
 
 
 
     // Custom methods
+    // Custom method to inflate Logging Fragment
     private void displayFragment() {
         getSupportFragmentManager()
                 .beginTransaction()

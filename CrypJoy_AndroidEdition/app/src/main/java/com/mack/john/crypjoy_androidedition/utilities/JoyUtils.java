@@ -3,8 +3,13 @@ package com.mack.john.crypjoy_androidedition.utilities;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.RotateDrawable;
+import android.os.Build;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,14 +28,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class LoggingUtils {
+public class JoyUtils {
 
 
 
     // Class properties
-    public static final String TAG = "LoggingUtils";
+    public static final String TAG = "JoyUtils";
 
     private static final String JOY_DATA = "joy.joy";
+    private static final String LIFETIME_JOY_DATA = "lifetimejoy.joy";
     private static final String WEEKLY_GIVEN_DATA = "weeklygiven.joy";
     private static final String WEEKLY_RECEIVED_DATA = "weeklyreceived.joy";
 
@@ -38,13 +44,14 @@ public class LoggingUtils {
     private View mView;
 
     private Joy mJoy;
+    private Joy mLifetimeJoy;
     private ArrayList<Give> mWeeklyGiven;
     private ArrayList<Get> mWeeklyReceived;
 
 
 
     // Constructor
-    public LoggingUtils(Context context, View view) {
+    public JoyUtils(Context context, View view) {
         this.mContext = context;
         this.mView = view;
 
@@ -125,6 +132,12 @@ public class LoggingUtils {
         else if(!giveButton.isEnabled() && !getButton.isEnabled()) {
             progressMessage.setText(mContext.getString(R.string.give_disabled_get_disabled));
         }
+
+        // For testing purposes only
+        // This code should be removed once data visualization has been implemented on main screen
+        ProgressBar progressBar = mView.findViewById(R.id.progressbar);
+        progressBar.setMax(mJoy.getGiveGoal());
+        progressBar.setProgress(mJoy.getGiveProgress());
     }
 
     public void saveProgress() {
@@ -136,6 +149,22 @@ public class LoggingUtils {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
             objectOutputStream.writeObject(mJoy);
+
+            objectOutputStream.close();
+            fileOutputStream.close();
+        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        File lifetimeJoyFile = new File(targetDir + LIFETIME_JOY_DATA);
+
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(lifetimeJoyFile);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+            objectOutputStream.writeObject(mLifetimeJoy);
 
             objectOutputStream.close();
             fileOutputStream.close();
@@ -199,6 +228,25 @@ public class LoggingUtils {
             mJoy = new Joy(date);
         }
 
+        File lifetimeJoyFile = new File(targetDir + LIFETIME_JOY_DATA);
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream(lifetimeJoyFile);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            mLifetimeJoy = (Joy) objectInputStream.readObject();
+
+            objectInputStream.close();
+            fileInputStream.close();
+        }
+
+        catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+
+            Date date = new Date();
+            mLifetimeJoy = new Joy(date);
+        }
+
         File weeklyGivenFile = new File(targetDir + WEEKLY_GIVEN_DATA);
 
         try {
@@ -235,10 +283,10 @@ public class LoggingUtils {
 
         // This is for testing purposes only
         // When you don't need to reset daily progress, these lines should be commented out
-        Date date = new Date();
-        this.mJoy = new Joy(date);
-        mWeeklyGiven = new ArrayList<>();
-        mWeeklyReceived = new ArrayList<>();
+//        Date date = new Date();
+//        this.mJoy = new Joy(date);
+//        mWeeklyGiven = new ArrayList<>();
+//        mWeeklyReceived = new ArrayList<>();
 
         checkDataValidity();
     }
@@ -295,6 +343,7 @@ public class LoggingUtils {
         public void onClick(DialogInterface dialog, int which) {
             if(which == -1) {
                 mJoy.joyGiven();
+                mLifetimeJoy.joyGiven();
 
                 Date date = new Date();
 
@@ -314,6 +363,7 @@ public class LoggingUtils {
         public void onClick(DialogInterface dialog, int which) {
             if(which == -1) {
                 mJoy.joyReceived();
+                mLifetimeJoy.joyReceived();
 
                 Date date = new Date();
 
