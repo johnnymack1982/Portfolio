@@ -8,12 +8,12 @@ public class Joy implements Serializable {
 
 
     // Class properties
-    int giveGoal;
-    int giveProgress;
-    int getProgress;
-    int payItForwardGoal;
-    int payItForwardProgress;
-    Date dateCreated;
+    private int giveGoal;
+    private int giveProgress;
+    private int getProgress;
+    private int payItForwardGoal;
+    private int payItForwardProgress;
+    private final Date dateCreated;
 
 
 
@@ -37,51 +37,17 @@ public class Joy implements Serializable {
         return giveGoal;
     }
 
-    public void setGiveGoal(int giveGoal) {
-        this.giveGoal = giveGoal;
-    }
-
     public int getGiveProgress() {
         return giveProgress;
-    }
-
-    public void setGiveProgress(int giveProgress) {
-        this.giveProgress = giveProgress;
     }
 
     public int getGetProgress() {
         return getProgress;
     }
 
-    public void setGetProgress(int getProgress) {
-        this.getProgress = getProgress;
-    }
-
-    public int getPayItForwardGoal() {
-        return payItForwardGoal;
-    }
-
-    public void setPayItForwardGoal(int payItForwardGoal) {
-        this.payItForwardGoal = payItForwardGoal;
-    }
-
-    public int getPayItForwardProgress() {
-        return payItForwardProgress;
-    }
-
-    public void setPayItForwardProgress(int payItForwardProgress) {
-        this.payItForwardProgress = payItForwardProgress;
-    }
-
     public Date getDateCreated() {
         return dateCreated;
     }
-
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-
-
 
 
     // Custom methods

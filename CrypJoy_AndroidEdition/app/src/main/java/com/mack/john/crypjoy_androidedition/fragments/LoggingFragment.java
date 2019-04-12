@@ -19,8 +19,8 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
     // Class properties
     public static final String TAG = "LoggingFragment";
 
-    View mView;
-    JoyUtils mJoyUtils;
+    private View mView;
+    private JoyUtils mJoyUtils;
 
 
 
@@ -41,14 +41,22 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate fragment layout
         View view = inflater.inflate(R.layout.fragment_logging, container, false);
 
+        // Set the class View property to match this view
         mView = view;
 
-        mJoyUtils = new JoyUtils(getActivity(), mView);
+        // Create new JoyUtils object and pass layout view to allow it to reference UI and make
+        // any necessary changes
+        mJoyUtils = new JoyUtils(getActivity(), view);
 
+        // Call custom method to set click listener for "Give Joy" and "Get Joy" buttons
         setClickListener();
 
+        // Call custom utility method to check current progress
+        // This will cause the UI to react accordingly, altering the progress message and
+        // enabling or disabling the buttons depending on the user's current progress
         mJoyUtils.checkProgress();
 
         return view;
@@ -56,10 +64,12 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        // If user clicked "Give Joy," call custom utility method to react accordingly
         if (view.getId() == R.id.button_give) {
             mJoyUtils.giveJoy();
         }
 
+        // If user clicked "Get Joy," call custom utility method to react accordingly
         else if (view.getId() == R.id.button_get) {
             mJoyUtils.getJoy();
         }
@@ -68,7 +78,9 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
 
 
     // Custom methods
+    // Custom method to set click listeners for Give and Get buttons
     private void setClickListener() {
+        // Reference Give and Get buttons and set their click listeners
         Button giveButton = mView.findViewById(R.id.button_give);
         giveButton.setOnClickListener(this);
 

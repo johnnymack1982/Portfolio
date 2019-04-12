@@ -18,4 +18,5 @@
     <string name="give_disabled_get_enabled">You\'ve reached your Give goal for now. Great job! You can do more if somebody does something nice for you.</string>
     <string name="give_enabled_get_disabled">Looks like you\'ve got some catching up to do!</string>
     <string name="give_disabled_get_disabled">Looks like you\'ve done all you can to make the world a better place today. You\'re awesome!</string>
+    <string name="background_image">Background Image</string>
 </resources>

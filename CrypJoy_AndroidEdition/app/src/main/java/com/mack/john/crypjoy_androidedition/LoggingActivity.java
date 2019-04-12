@@ -2,18 +2,11 @@ package com.mack.john.crypjoy_androidedition;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import com.mack.john.crypjoy_androidedition.fragments.LoggingFragment;
 
 public class LoggingActivity extends AppCompatActivity {
-
-
-
-    // Class properties
-    public static final String TAG = "LoggingActivity";
-
 
 
     // System generated methods

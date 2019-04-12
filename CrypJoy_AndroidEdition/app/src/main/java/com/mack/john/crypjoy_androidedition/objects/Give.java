@@ -11,7 +11,7 @@ public class Give extends JoyAction {
     
     
     // Class properties
-    String actionName;
+    private final String actionName;
     
     
     
@@ -28,7 +28,4 @@ public class Give extends JoyAction {
         return actionName;
     }
 
-    public void setActionName(String actionName) {
-        this.actionName = actionName;
-    }
 }
