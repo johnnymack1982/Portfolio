@@ -28,4 +28,12 @@
     <string name="joyReceived_display_placeholder">0</string>
     <string name="joyGiven_display_placeholder">2/3</string>
     <string name="lifetime">LIFETIME</string>
+    <string name="lifetime_header">Here’s a look at how’ve you done overall. Great job!</string>
+    <string name="lifetime_joy_received">Lifetime Joy Received</string>
+    <string name="display_lifetime_received_placeholder">22</string>
+    <string name="display_lifetime_given_placeholder">37</string>
+    <string name="lifetime_joy_given">Lifetime Joy Given</string>
+    <string name="lifetime_joy_paid_forward">Lifetime Joy Paid Forward</string>
+    <string name="display_lifetime_payItForward_placeholder">17</string>
+    <string name="daily">DAILY</string>
 </resources>

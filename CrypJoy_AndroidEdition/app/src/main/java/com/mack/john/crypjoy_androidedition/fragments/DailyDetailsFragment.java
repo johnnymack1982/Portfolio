@@ -9,9 +9,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.mack.john.crypjoy_androidedition.LifetimeDetailsActivity;
 import com.mack.john.crypjoy_androidedition.LoggingActivity;
 import com.mack.john.crypjoy_androidedition.R;
 import com.mack.john.crypjoy_androidedition.objects.Joy;
@@ -63,6 +65,12 @@ public class DailyDetailsFragment extends Fragment implements View.OnClickListen
             Intent addIntent = new Intent(getActivity(), LoggingActivity.class);
             startActivity(addIntent);
         }
+
+        else if(view.getId() == R.id.button_lifetime) {
+            Intent lifetimeDetailsIntent = new Intent(getActivity(), LifetimeDetailsActivity.class);
+            startActivity(lifetimeDetailsIntent);
+            getActivity().overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
+        }
     }
 
 
@@ -71,6 +79,9 @@ public class DailyDetailsFragment extends Fragment implements View.OnClickListen
     private void setClickListener(View view) {
         FloatingActionButton addButton = view.findViewById(R.id.button_add);
         addButton.setOnClickListener(this);
+
+        Button lifetimeButton = view.findViewById(R.id.button_lifetime);
+        lifetimeButton.setOnClickListener(this);
     }
 
     private void displayProgress(View view, Joy joy) {
