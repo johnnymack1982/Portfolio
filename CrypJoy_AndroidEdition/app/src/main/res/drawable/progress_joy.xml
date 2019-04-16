@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <item android:id="@android:id/background">
+        <rotate
+            android:pivotX="50%"
+            android:pivotY="50%"
+            android:fromDegrees="-90"
+            android:toDegrees="-90">
+            <shape
+                android:innerRadiusRatio="2.3"
+                android:shape="ring"
+                android:useLevel="false"
+                android:type="sweep"
+                android:thicknessRatio="15.0">
+                <gradient
+                    android:startColor="@android:color/transparent"
+                    android:endColor="@color/colorTextSecondary" />
+            </shape>
+        </rotate>
+    </item>
+
     <item android:id="@android:id/progress">
         <rotate
             android:pivotX="50%"
@@ -11,7 +31,7 @@
                 android:shape="ring"
                 android:angle="0"
                 android:type="sweep"
-                android:thicknessRatio="25.0">
+                android:thicknessRatio="15.0">
                 <solid android:color="@color/colorAccent"/>
             </shape>
         </rotate>

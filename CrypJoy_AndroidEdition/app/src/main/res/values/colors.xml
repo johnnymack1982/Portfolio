@@ -6,6 +6,4 @@
 
     <color name="colorTextPrimary">#FFFFFF</color>
     <color name="colorTextSecondary">#B1B09D</color>
-
-    <color name="colorTransparent">#80000000</color>
 </resources>

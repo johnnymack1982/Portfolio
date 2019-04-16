@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Temporarily launch into currently developed portions of the application
         // This code will be replaced further along in the development cycle
-        Intent intent = new Intent(this, LoggingActivity.class);
+        Intent intent = new Intent(this, DailyDetailsActivity.class);
         startActivity(intent);
     }
 }

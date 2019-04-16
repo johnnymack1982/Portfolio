@@ -19,4 +19,13 @@
     <string name="give_enabled_get_disabled">Looks like you\'ve got some catching up to do!</string>
     <string name="give_disabled_get_disabled">Looks like you\'ve done all you can to make the world a better place today. You\'re awesome!</string>
     <string name="background_image">Background Image</string>
+    <string name="welcome_filler">Welcome back, John! Let\'s see how we\'re doing today.</string>
+    <string name="pay_it_forward_label">PAY IT FORWARD</string>
+    <string name="progress_background">Progress Background</string>
+    <string name="joy_given_label">JOY GIVEN</string>
+    <string name="joy_received">JOY RECEIVED</string>
+    <string name="payItForward_display_placeholder">0/0</string>
+    <string name="joyReceived_display_placeholder">0</string>
+    <string name="joyGiven_display_placeholder">2/3</string>
+    <string name="lifetime">LIFETIME</string>
 </resources>

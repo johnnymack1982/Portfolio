@@ -49,6 +49,24 @@ public class Joy implements Serializable {
         return dateCreated;
     }
 
+    public int getPayItForwardGoal() {
+        return payItForwardGoal;
+    }
+
+    public void setPayItForwardGoal(int payItForwardGoal) {
+        this.payItForwardGoal = payItForwardGoal;
+    }
+
+    public int getPayItForwardProgress() {
+        return payItForwardProgress;
+    }
+
+    public void setPayItForwardProgress(int payItForwardProgress) {
+        this.payItForwardProgress = payItForwardProgress;
+    }
+
+
+
 
     // Custom methods
     // Custom method to be called when the user logs that they have completed a random act of kindness

@@ -5,30 +5,34 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.mack.john.crypjoy_androidedition.fragments.LoggingFragment;
+import com.mack.john.crypjoy_androidedition.fragments.DailyDetailsFragment;
 
-public class LoggingActivity extends AppCompatActivity {
+public class DailyDetailsActivity extends AppCompatActivity {
+
 
 
     // System generated methods
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_logging);
+        setContentView(R.layout.activity_daily_details);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        // Call custom function to inflate Logging Fragment
         displayFragment();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        displayFragment();
+    }
 
-    // Custom methods
-    // Custom method to inflate Logging Fragment
+    // Custome methods
     private void displayFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.frame_fragment_logging, LoggingFragment.newInstance(), LoggingFragment.TAG)
+                .replace(R.id.frame_fragment_daily_details, DailyDetailsFragment.newInstance(), DailyDetailsFragment.TAG)
                 .commit();
     }
 }

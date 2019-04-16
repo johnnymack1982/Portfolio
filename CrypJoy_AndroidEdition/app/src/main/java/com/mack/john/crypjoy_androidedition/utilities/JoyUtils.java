@@ -3,12 +3,14 @@ package com.mack.john.crypjoy_androidedition.utilities;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mack.john.crypjoy_androidedition.DailyDetailsActivity;
 import com.mack.john.crypjoy_androidedition.R;
 import com.mack.john.crypjoy_androidedition.objects.Get;
 import com.mack.john.crypjoy_androidedition.objects.Give;
@@ -33,7 +35,6 @@ public class JoyUtils {
     private static final String WEEKLY_RECEIVED_DATA = "weeklyreceived.joy";
 
     private final Context mContext;
-    private final View mView;
 
     private Joy mJoy;
     private Joy mLifetimeJoy;
@@ -43,10 +44,9 @@ public class JoyUtils {
 
 
     // Constructor
-    public JoyUtils(Context context, View view) {
+    public JoyUtils(Context context) {
         // Reference context and view from sending activity
         this.mContext = context;
-        this.mView = view;
 
         // Call custom method to load current user progress
         loadProgress();
@@ -56,124 +56,9 @@ public class JoyUtils {
 
 
     // Custom methods
-    // ** JOY LOGGING METHODS **
-    // Custom method to log joy given
-    public void giveJoy() {
-        // Create new dialog builder
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-
-        // Set positive and negative buttons
-        builder.setPositiveButton(mContext.getString(R.string.yes), giveJoyListener);
-        builder.setNegativeButton(mContext.getString(R.string.nope), giveJoyListener);
-
-        // Set title and message
-        builder.setTitle(mContext.getString(R.string.give_joy_dialog));
-        builder.setMessage(mContext.getString(R.string.give_joy_dialog_body));
-
-        // Build and show dialog
-        AlertDialog giveJoyDialog = builder.create();
-        giveJoyDialog.show();
-
-        // NOTE: Please see the "Dialog Listeners" section at the end of this class to follow the
-        // rest of this data trail. These listeners will trigger appropriate actions based on user
-        // selection
-    }
-
-    // Custom method to log joy received
-    public void getJoy() {
-        // Create new dialog builder
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-
-        // Set positive and negative buttons
-        builder.setPositiveButton(mContext.getString(R.string.yes), getJoyListener);
-        builder.setNegativeButton(mContext.getString(R.string.nope), getJoyListener);
-
-        // Set title and message
-        builder.setTitle(mContext.getString(R.string.get_joy_dialog));
-        builder.setMessage(mContext.getString(R.string.get_joy_dialog_body));
-
-        // Build and show dialog
-        AlertDialog getJoyDialog = builder.create();
-        getJoyDialog.show();
-
-        // NOTE: Please see the "Dialog Listeners" section at the end of this class to follow the
-        // rest of this data trail. These listeners will trigger appropriate actions based on user
-        // selection
-    }
-
-    // Custom method to check user's current progress and react accordingly
-    public void checkProgress() {
-        // Reference Give and Get buttons from Logging Screen
-        // NOTE: It may become necessary to check that these views actually exist
-        // once additional activities begin to make use of this class
-        Button giveButton = mView.findViewById(R.id.button_give);
-        Button getButton = mView.findViewById(R.id.button_get);
-
-
-        // If the user has reached their current Give goal, disable the Give button
-        if(mJoy.getGiveProgress() == mJoy.getGiveGoal()) {
-            giveButton.setEnabled(false);
-            giveButton.setBackgroundTintList(mContext.getResources().getColorStateList(R.color.colorTextSecondary));
-        }
-
-        // Otherwise, enable the Give button
-        else {
-            giveButton.setEnabled(true);
-            giveButton.setBackgroundTintList(mContext.getResources().getColorStateList(R.color.colorAccent));
-        }
-
-
-        // If the user has reached the maximum for Get actions, disable the Get button
-        if(mJoy.getGetProgress() == 6) {
-            getButton.setEnabled(false);
-            getButton.setBackgroundTintList(mContext.getResources().getColorStateList(R.color.colorTextSecondary));
-        }
-
-        // Otherwise, enable the Get button
-        else {
-            getButton.setEnabled(true);
-            getButton.setBackgroundTintList(mContext.getResources().getColorStateList(R.color.colorAccent));
-        }
-
-
-        // Reference progress message text view
-        TextView progressMessage = mView.findViewById(R.id.text_progress_message);
-
-
-        // If neither Give or Get goals are met, ask the user what action they'd like to perform
-        if(giveButton.isEnabled() && getButton.isEnabled()) {
-            progressMessage.setText(mContext.getString(R.string.are_you_doing_something_nice_for_somebody_or_did_they_do_something_nice_for_you));
-        }
-
-        // If Give goal is reached but Get limit is not reached, let the user know they can
-        // still log Get actions but cannot log more Give actions until their goal increases
-        else if(!giveButton.isEnabled() && getButton.isEnabled()) {
-            progressMessage.setText(mContext.getString(R.string.give_disabled_get_enabled));
-        }
-
-        // If the Get limit is reached but the Give goal is not, let the user know they might
-        // want to think about catching up!
-        else if(giveButton.isEnabled() && !getButton.isEnabled()) {
-            progressMessage.setText(mContext.getString(R.string.give_enabled_get_disabled));
-        }
-
-        // If both limits have been reached for the day, congratulate the user
-        else if(!giveButton.isEnabled() && !getButton.isEnabled()) {
-            progressMessage.setText(mContext.getString(R.string.give_disabled_get_disabled));
-        }
-
-        // For testing purposes only
-        // This code should be removed once data visualization has been implemented on main screen
-        ProgressBar progressBar = mView.findViewById(R.id.progressbar);
-        progressBar.setMax(mJoy.getGiveGoal());
-        progressBar.setProgress(mJoy.getGiveProgress());
-    }
-
-
-
     // ** DATA STORAGE METHODS **
     // Custom method to save current progress
-    private void saveProgress() {
+    public void saveProgress() {
         // Reference private storage and target file name for daily progress data
         File targetDir = mContext.getFilesDir();
         File joyFile = new File(targetDir + JOY_DATA);
@@ -428,65 +313,20 @@ public class JoyUtils {
     }
 
 
+    // **DETAIL METHODS**
+    public Joy getDailyJoy() {
+        return mJoy;
+    }
 
-    // Dialog Listeners
-    // Click listener for dialog that appears when user clicks the "Give Joy" button
-    private final DialogInterface.OnClickListener giveJoyListener = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            // Only perform an action if the user confirms they wish to proceed
-            if(which == -1) {
-                // Call custom method to calculate effects of a new Give action being performed
-                // This is called on both the daily and lifetime Joy objects
-                mJoy.joyGiven();
-                mLifetimeJoy.joyGiven();
+    public Joy getLifetimeJoy() {
+        return mLifetimeJoy;
+    }
 
-                // Reference current date
-                Date date = new Date();
+    public ArrayList<Give> getWeeklyGiven() {
+        return mWeeklyGiven;
+    }
 
-                // Create new Give object and add it to the current list of Joy Given actions
-                Give give = new Give(date, mContext);
-                mWeeklyGiven.add(give);
-
-                // Call custom method to check current progress
-                checkProgress();
-
-                // Call custom method to save current progress
-                saveProgress();
-
-                // Let the user know their action has been successfully logged by the app
-                Toast.makeText(mContext, mContext.getString(R.string.joy_given_confirm), Toast.LENGTH_SHORT).show();
-            }
-        }
-    };
-
-    // Click listener for dialog that appears when the user clicks the "Get Joy" button
-    private final DialogInterface.OnClickListener getJoyListener = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            // Only perform an action of the user confirms they wish to proceed
-            if(which == -1) {
-                // Call custom method to calculate effects of a new Get action being performed
-                // This is called on both the daily and lifetime Joy objects
-                mJoy.joyReceived();
-                mLifetimeJoy.joyReceived();
-
-                // Reference current date
-                Date date = new Date();
-
-                // Create new Receive object and add it to the current list of Joy Received actions
-                Get get = new Get(date, mContext);
-                mWeeklyReceived.add(get);
-
-                // Call custom method to check current progress
-                checkProgress();
-
-                // Call custom method to save current progress
-                saveProgress();
-
-                // Let the user know their action has been successfully logged by the app
-                Toast.makeText(mContext, mContext.getString(R.string.joy_received_confirm), Toast.LENGTH_SHORT).show();
-            }
-        }
-    };
+    public ArrayList<Get> getWeeklyReceived() {
+        return mWeeklyReceived;
+    }
 }
