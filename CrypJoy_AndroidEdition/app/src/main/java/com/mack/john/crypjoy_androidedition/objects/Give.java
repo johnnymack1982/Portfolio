@@ -16,10 +16,11 @@ public class Give extends JoyAction {
     
     
     // Constructor
-    public Give(Date dateCreated, Context context) {
-        super(dateCreated);
+    public Give(Date dateCreated, double latitude, double longitude, Context context) {
+        super(dateCreated, latitude, longitude);
         this.actionName = context.getString(R.string.joy_given_small);
     }
+
 
 
 

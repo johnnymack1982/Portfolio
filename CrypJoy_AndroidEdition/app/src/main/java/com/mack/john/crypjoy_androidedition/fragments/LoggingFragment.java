@@ -20,6 +20,7 @@ import com.mack.john.crypjoy_androidedition.objects.Get;
 import com.mack.john.crypjoy_androidedition.objects.Give;
 import com.mack.john.crypjoy_androidedition.objects.Joy;
 import com.mack.john.crypjoy_androidedition.utilities.JoyUtils;
+import com.mack.john.crypjoy_androidedition.utilities.LocationUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -233,8 +234,10 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
                 // Reference current date
                 Date date = new Date();
 
+                LocationUtils locationUtils = new LocationUtils(getActivity());
+
                 // Create new Give object and add it to the current list of Joy Given actions
-                Give give = new Give(date, getActivity());
+                Give give = new Give(date, locationUtils.getLatitude(), locationUtils.getLongitude(), getActivity());
                 mWeeklyGiven.add(give);
 
                 // Call custom method to save current progress
@@ -262,8 +265,10 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
                 // Reference current date
                 Date date = new Date();
 
+                LocationUtils locationUtils = new LocationUtils(getActivity());
+
                 // Create new Receive object and add it to the current list of Joy Received actions
-                Get get = new Get(date, getActivity());
+                Get get = new Get(date, locationUtils.getLatitude(), locationUtils.getLongitude(), getActivity());
                 mWeeklyReceived.add(get);
 
                 // Call custom method to save current progress

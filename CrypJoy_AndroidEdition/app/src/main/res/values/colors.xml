@@ -6,4 +6,6 @@
 
     <color name="colorTextPrimary">#FFFFFF</color>
     <color name="colorTextSecondary">#B1B09D</color>
+
+    <color name="colorInfoWindow">#848D7F</color>
 </resources>

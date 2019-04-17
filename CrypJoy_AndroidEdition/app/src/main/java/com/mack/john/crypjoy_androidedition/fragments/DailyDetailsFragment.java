@@ -1,30 +1,45 @@
 package com.mack.john.crypjoy_androidedition.fragments;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mack.john.crypjoy_androidedition.LifetimeDetailsActivity;
 import com.mack.john.crypjoy_androidedition.LoggingActivity;
+import com.mack.john.crypjoy_androidedition.MapActivity;
 import com.mack.john.crypjoy_androidedition.R;
 import com.mack.john.crypjoy_androidedition.objects.Joy;
 import com.mack.john.crypjoy_androidedition.utilities.JoyUtils;
 
-public class DailyDetailsFragment extends Fragment implements View.OnClickListener {
+public class DailyDetailsFragment extends Fragment implements View.OnClickListener, Dialog.OnClickListener {
 
 
 
     // Class properties
     public static final String TAG = "DailyDetailsFragment";
+
+    public static final int REQUEST_LOCATION_PERMISSIONS = 0x01001;
 
     Joy mDailyJoy;
 
@@ -49,6 +64,13 @@ public class DailyDetailsFragment extends Fragment implements View.OnClickListen
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_daily_details, container, false);
 
+        if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_LOCATION_PERMISSIONS);
+        }
+
+        setHasOptionsMenu(true);
+
         setClickListener(view);
 
         JoyUtils joyUtils = new JoyUtils(getActivity());
@@ -72,6 +94,48 @@ public class DailyDetailsFragment extends Fragment implements View.OnClickListen
             getActivity().overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
         }
     }
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        System.exit(0);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        inflater.inflate(R.menu.menu_map, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.action_map) {
+            Intent mapIntent = new Intent(getActivity(), MapActivity.class);
+            startActivity(mapIntent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // Create new dialog builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        // Set positive and negative buttons
+        builder.setPositiveButton(getString(R.string.ok), this);
+
+        // Set title and message
+        builder.setTitle(getString(R.string.location_permissions_required));
+        builder.setMessage("Unfortunately, this application requires the use of location permissions.");
+
+        // Build and show dialog
+        AlertDialog getJoyDialog = builder.create();
+        getJoyDialog.show();
+    }
+
 
 
 

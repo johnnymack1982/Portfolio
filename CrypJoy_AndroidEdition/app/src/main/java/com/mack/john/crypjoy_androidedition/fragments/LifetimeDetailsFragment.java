@@ -7,13 +7,18 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mack.john.crypjoy_androidedition.DailyDetailsActivity;
 import com.mack.john.crypjoy_androidedition.LoggingActivity;
+import com.mack.john.crypjoy_androidedition.MapActivity;
 import com.mack.john.crypjoy_androidedition.R;
 import com.mack.john.crypjoy_androidedition.objects.Joy;
 import com.mack.john.crypjoy_androidedition.utilities.JoyUtils;
@@ -48,6 +53,8 @@ public class LifetimeDetailsFragment extends Fragment implements View.OnClickLis
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lifetime_details, container, false);
 
+        setHasOptionsMenu(true);
+
         setClickListener(view);
 
         JoyUtils joyUtils = new JoyUtils(getActivity());
@@ -73,6 +80,23 @@ public class LifetimeDetailsFragment extends Fragment implements View.OnClickLis
             startActivity(dailyDetailsIntent);
             getActivity().overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        inflater.inflate(R.menu.menu_map, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.action_map) {
+            Intent mapIntent = new Intent(getActivity(), MapActivity.class);
+            startActivity(mapIntent);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 

@@ -16,10 +16,11 @@ public class Get extends JoyAction {
     
     
     // Constructor
-    public Get(Date dateCreated, Context context) {
-        super(dateCreated);
+    public Get(Date dateCreated, double latitude, double longitude, Context context) {
+        super(dateCreated, latitude, longitude);
         this.actionName = context.getString(R.string.joy_received_small);
     }
+
 
 
 
