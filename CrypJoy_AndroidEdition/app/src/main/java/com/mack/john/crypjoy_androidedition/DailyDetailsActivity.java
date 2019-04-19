@@ -19,6 +19,7 @@ public class DailyDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_daily_details);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        // Call custom method to display daily details fragment
         displayFragment();
     }
 
@@ -26,10 +27,12 @@ public class DailyDetailsActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        // Call custom method to display daily details fragment
         displayFragment();
     }
 
-    // Custome methods
+    // Custom methods
+    // Custom method to display daily details fragment
     private void displayFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
@@ -41,10 +44,11 @@ public class DailyDetailsActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
+        // Check to see if previous screen was the lifetime details activity
         Intent sendingIntent = getIntent();
-
         String sending = sendingIntent.getStringExtra("SENDING");
 
+        // If previous screen was the lifetime details activity, override transition animation
         if(sending != null && sending.equals("lifetime")) {
             overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
         }

@@ -43,7 +43,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:maxLines="2"
+        android:maxLines="3"
         android:text="@string/are_you_doing_something_nice_for_somebody_or_did_they_do_something_nice_for_you"
         android:textAlignment="center"
         android:textColor="@color/colorTextSecondary"

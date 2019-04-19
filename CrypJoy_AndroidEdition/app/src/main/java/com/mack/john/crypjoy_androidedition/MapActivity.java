@@ -8,9 +8,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.mack.john.crypjoy_androidedition.fragments.JoyMapFragment;
-import com.mack.john.crypjoy_androidedition.fragments.LoggingFragment;
-
 public class MapActivity extends AppCompatActivity implements View.OnClickListener {
 
 
@@ -22,6 +19,7 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_map);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        // Call custom method to set click listener for Add button
         setClickListener();
     }
 
@@ -34,6 +32,7 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
     }
 
     // Custom methods
+    // Custom method to set click listener for Add button
     private void setClickListener() {
         FloatingActionButton addButton = findViewById(R.id.button_add);
         addButton.setOnClickListener(this);

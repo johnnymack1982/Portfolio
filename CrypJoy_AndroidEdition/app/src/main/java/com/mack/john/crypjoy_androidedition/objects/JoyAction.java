@@ -1,7 +1,5 @@
 package com.mack.john.crypjoy_androidedition.objects;
 
-import com.google.android.gms.maps.model.LatLng;
-
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -39,6 +37,9 @@ public class JoyAction implements Serializable {
     public double getLongitude() {
         return longitude;
     }
+
+
+
 
     // Custom methods
     // Custom method to format and display creation date for current object

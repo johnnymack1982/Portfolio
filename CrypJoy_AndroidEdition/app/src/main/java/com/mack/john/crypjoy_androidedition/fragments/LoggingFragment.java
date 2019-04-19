@@ -2,7 +2,6 @@ package com.mack.john.crypjoy_androidedition.fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,7 +13,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mack.john.crypjoy_androidedition.DailyDetailsActivity;
 import com.mack.john.crypjoy_androidedition.R;
 import com.mack.john.crypjoy_androidedition.objects.Get;
 import com.mack.john.crypjoy_androidedition.objects.Give;
@@ -24,6 +22,7 @@ import com.mack.john.crypjoy_androidedition.utilities.LocationUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 public class LoggingFragment extends Fragment implements View.OnClickListener {
 
@@ -35,11 +34,11 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
     private View mView;
     private JoyUtils mJoyUtils;
 
-    Joy mJoy;
-    Joy mLifetimeJoy;
+    private Joy mJoy;
+    private Joy mLifetimeJoy;
 
-    ArrayList<Give> mWeeklyGiven;
-    ArrayList<Get> mWeeklyReceived;
+    private ArrayList<Give> mWeeklyGiven;
+    private ArrayList<Get> mWeeklyReceived;
 
 
 
@@ -79,7 +78,7 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
         // Call custom method to set click listener for "Give Joy" and "Get Joy" buttons
         setClickListener();
 
-        // Call custom utility method to check current progress
+        // Call custom method to check current progress
         // This will cause the UI to react accordingly, altering the progress message and
         // enabling or disabling the buttons depending on the user's current progress
         checkProgress();
@@ -114,12 +113,12 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
     }
 
     // Custom method to log joy given
-    public void giveJoy() {
+    private void giveJoy() {
         // Create new dialog builder
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         // Set positive and negative buttons
-        builder.setPositiveButton(getActivity().getString(R.string.yes), giveJoyListener);
+        builder.setPositiveButton(Objects.requireNonNull(getActivity()).getString(R.string.yes), giveJoyListener);
         builder.setNegativeButton(getActivity().getString(R.string.nope), giveJoyListener);
 
         // Set title and message
@@ -136,12 +135,12 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
     }
 
     // Custom method to log joy received
-    public void getJoy() {
+    private void getJoy() {
         // Create new dialog builder
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         // Set positive and negative buttons
-        builder.setPositiveButton(getActivity().getString(R.string.yes), getJoyListener);
+        builder.setPositiveButton(Objects.requireNonNull(getActivity()).getString(R.string.yes), getJoyListener);
         builder.setNegativeButton(getActivity().getString(R.string.nope), getJoyListener);
 
         // Set title and message
@@ -158,7 +157,7 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
     }
 
     // Custom method to check user's current progress and react accordingly
-    public void checkProgress() {
+    private void checkProgress() {
         // Reference Give and Get buttons from Logging Screen
         Button giveButton = mView.findViewById(R.id.button_give);
         Button getButton = mView.findViewById(R.id.button_get);
@@ -167,13 +166,13 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
         // If the user has reached their current Give goal, disable the Give button
         if(mJoy.getGiveProgress() == mJoy.getGiveGoal()) {
             giveButton.setEnabled(false);
-            giveButton.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorTextSecondary));
+            giveButton.setBackgroundTintList(Objects.requireNonNull(getActivity()).getResources().getColorStateList(R.color.colorTextSecondary));
         }
 
         // Otherwise, enable the Give button
         else {
             giveButton.setEnabled(true);
-            giveButton.setBackgroundTintList(getActivity().getResources().getColorStateList(R.color.colorAccent));
+            giveButton.setBackgroundTintList(Objects.requireNonNull(getActivity()).getResources().getColorStateList(R.color.colorAccent));
         }
 
 
@@ -234,7 +233,7 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
                 // Reference current date
                 Date date = new Date();
 
-                LocationUtils locationUtils = new LocationUtils(getActivity());
+                LocationUtils locationUtils = new LocationUtils(Objects.requireNonNull(getActivity()));
 
                 // Create new Give object and add it to the current list of Joy Given actions
                 Give give = new Give(date, locationUtils.getLatitude(), locationUtils.getLongitude(), getActivity());
@@ -265,7 +264,7 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
                 // Reference current date
                 Date date = new Date();
 
-                LocationUtils locationUtils = new LocationUtils(getActivity());
+                LocationUtils locationUtils = new LocationUtils(Objects.requireNonNull(getActivity()));
 
                 // Create new Receive object and add it to the current list of Joy Received actions
                 Get get = new Get(date, locationUtils.getLatitude(), locationUtils.getLongitude(), getActivity());

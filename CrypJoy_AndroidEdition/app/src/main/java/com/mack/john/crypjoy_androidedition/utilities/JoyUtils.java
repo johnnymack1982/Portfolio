@@ -1,17 +1,7 @@
 package com.mack.john.crypjoy_androidedition.utilities;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.mack.john.crypjoy_androidedition.DailyDetailsActivity;
-import com.mack.john.crypjoy_androidedition.R;
 import com.mack.john.crypjoy_androidedition.objects.Get;
 import com.mack.john.crypjoy_androidedition.objects.Give;
 import com.mack.john.crypjoy_androidedition.objects.Joy;
@@ -47,9 +37,6 @@ public class JoyUtils {
     public JoyUtils(Context context) {
         // Reference context and view from sending activity
         this.mContext = context;
-
-        // Call custom method to load current user progress
-        loadProgress();
     }
 
 
@@ -141,8 +128,8 @@ public class JoyUtils {
         }
     }
 
-    // Custom method to load current progress
-    private void loadProgress() {
+    // Custom method to load daily joy data
+    private void loadDailyJoy() {
         // Reference private storage and file name for daily progress data
         File targetDir = mContext.getFilesDir();
         File joyFile = new File(targetDir + JOY_DATA);
@@ -158,6 +145,9 @@ public class JoyUtils {
             // Close input streams
             objectInputStream.close();
             fileInputStream.close();
+
+            // Call custom method to check validity of loaded daily joy data
+            checkDailyJoyValidity();
         }
 
         catch (IOException | ClassNotFoundException e) {
@@ -167,8 +157,40 @@ public class JoyUtils {
             Date date = new Date();
             mJoy = new Joy(date);
         }
+    }
 
-        // Reference file name for lifetime progress data
+    // Custom method to check validity of loaded daily joy data
+    private void checkDailyJoyValidity() {
+        // Create calendar item to reference current date elements
+        Calendar currentCalendar = Calendar.getInstance();
+
+        // Extract current day, month, and year
+        int currentDay = currentCalendar.get(Calendar.DATE);
+        int currentMonth = currentCalendar.get(Calendar.MONTH);
+        int currentYear = currentCalendar.get(Calendar.YEAR);
+
+        // Create calendar item to reference date elements for date/time stamp of object being checked
+        Calendar createdCalendar = Calendar.getInstance();
+
+        createdCalendar.setTime(mJoy.getDateCreated());
+
+        // Extract day, month, and year from date/time stamp of object being checked
+        int createdDay = createdCalendar.get(Calendar.DATE);
+        int createdMonth = createdCalendar.get(Calendar.MONTH);
+        int createdYear = createdCalendar.get(Calendar.YEAR);
+
+        // If data for daily progress is not from today, it is invalid and should be discarded
+        // Create a new daily Joy object to begin tracking progress for the day
+        if (currentDay != createdDay || currentMonth != createdMonth || currentYear != createdYear) {
+            Date date = new Date();
+            mJoy = new Joy(date);
+        }
+    }
+
+    // Custom method to load lifetime joy data
+    private void loadLifetimeJoy() {
+        // Reference private storage and file name for lifetime progress data
+        File targetDir = mContext.getFilesDir();
         File lifetimeJoyFile = new File(targetDir + LIFETIME_JOY_DATA);
 
         try {
@@ -191,8 +213,12 @@ public class JoyUtils {
             Date date = new Date();
             mLifetimeJoy = new Joy(date);
         }
+    }
 
-        // Reference file name for list of Joy Given for the week
+    // Custom method to load individual Give actions for the week
+    private void loadWeeklyGiven() {
+        // Reference private storage and file name for Daily Given progress data
+        File targetDir = mContext.getFilesDir();
         File weeklyGivenFile = new File(targetDir + WEEKLY_GIVEN_DATA);
 
         try {
@@ -207,6 +233,9 @@ public class JoyUtils {
             // Close input streams
             objectInputStream.close();
             fileInputStream.close();
+
+            // Call custom method to check validity of loaded weekly Give data
+            checkWeeklyGivenValidity();
         }
 
         catch (IOException | ClassNotFoundException e) {
@@ -215,8 +244,43 @@ public class JoyUtils {
             // If no data was loaded, create a new list of Joy Given for the week to begin tracking progress
             mWeeklyGiven = new ArrayList<>();
         }
+    }
 
-        // Reference file name for list of Joy Received for the week
+    // Custom method to check validity of loaded weekly Give data
+    private void checkWeeklyGivenValidity() {
+        // Create calendar item to reference current date elements
+        Calendar currentCalendar = Calendar.getInstance();
+
+        // Extract current day, month, and year
+        int currentDay = currentCalendar.get(Calendar.DATE);
+        int currentMonth = currentCalendar.get(Calendar.MONTH);
+        int currentYear = currentCalendar.get(Calendar.YEAR);
+
+        // Create calendar item to reference date elements for date/time stamp of object being checked
+        Calendar createdCalendar = Calendar.getInstance();
+
+        // Loop through list of Joy Given objects that have been loaded
+        for(Give given : mWeeklyGiven) {
+            // Pull date/time stamp for current Give object
+            createdCalendar.setTime(given.getDateCreated());
+
+            // Extract day, month, and year from date/time stamp of current object
+            int createdDay = createdCalendar.get(Calendar.DATE);
+            int createdMonth = createdCalendar.get(Calendar.MONTH);
+            int createdYear = createdCalendar.get(Calendar.YEAR);
+
+            // If the current Give object is more than 7 days old, it should be discarded
+            // Remove it from the list. When the list is saved again, the object will no longer exist
+            if(createdDay < currentDay - 7 || createdMonth < currentMonth || createdYear < currentYear) {
+                mWeeklyGiven.remove(given);
+            }
+        }
+    }
+
+    // Custom method to load individual Get actions for the week
+    private void loadWeeklyReceived() {
+        // Reference private storage and file name for Weekly Given progress data
+        File targetDir = mContext.getFilesDir();
         File weeklyReceivedFile = new File(targetDir + WEEKLY_RECEIVED_DATA);
 
         try {
@@ -231,6 +295,9 @@ public class JoyUtils {
             // Close input streams
             objectInputStream.close();
             fileInputStream.close();
+
+            // Call custom method to check validity of loaded weekly Get data
+            checkWeeklyReceivedValidity();
         }
 
         catch (IOException | ClassNotFoundException e) {
@@ -239,20 +306,9 @@ public class JoyUtils {
             // If no data was loaded, create a new list of Joy Received for the week to begin tracking progress
             mWeeklyReceived = new ArrayList<>();
         }
-
-        // This is for testing purposes only
-        // When you don't need to reset daily progress, these lines should be commented out
-//        Date date = new Date();
-//        this.mJoy = new Joy(date);
-//        mWeeklyGiven = new ArrayList<>();
-//        mWeeklyReceived = new ArrayList<>();
-
-        // Call custom method to check validity of loaded data
-        checkDataValidity();
     }
 
-    // Custom method to check validity of loaded data
-    private void checkDataValidity() {
+    private void checkWeeklyReceivedValidity() {
         // Create calendar item to reference current date elements
         Calendar currentCalendar = Calendar.getInstance();
 
@@ -263,36 +319,6 @@ public class JoyUtils {
 
         // Create calendar item to reference date elements for date/time stamp of object being checked
         Calendar createdCalendar = Calendar.getInstance();
-        createdCalendar.setTime(mJoy.getDateCreated());
-
-        // Extract day, month, and year from date/time stamp of object being checked
-        int createdDay = createdCalendar.get(Calendar.DATE);
-        int createdMonth = createdCalendar.get(Calendar.MONTH);
-        int createdYear = createdCalendar.get(Calendar.YEAR);
-
-        // If data for daily progress is not from today, it is invalid and should be discarded
-        // Create a new daily Joy object to begin tracking progress for the day
-        if(currentDay != createdDay || currentMonth != createdMonth || currentYear != createdYear) {
-            Date date = new Date();
-            mJoy = new Joy(date);
-        }
-
-        // Loop through list of Joy Given objects that have been loaded
-        for(Give given : mWeeklyGiven) {
-            // Pull date/time stamp for current Give object
-            createdCalendar.setTime(given.getDateCreated());
-
-            // Extract day, month, and year from date/time stamp of current object
-            createdDay = createdCalendar.get(Calendar.DATE);
-            createdMonth = createdCalendar.get(Calendar.MONTH);
-            createdYear = createdCalendar.get(Calendar.YEAR);
-
-            // If the current Give object is more than 7 days old, it should be discarded
-            // Remove it from the list. When the list is saved again, the object will no longer exist
-            if(createdDay < currentDay - 7 || createdMonth < currentMonth || createdYear < currentYear) {
-                mWeeklyGiven.remove(given);
-            }
-        }
 
         // Loop through list of Joy Received objects that have been loaded
         for (Get received : mWeeklyReceived) {
@@ -300,9 +326,9 @@ public class JoyUtils {
             createdCalendar.setTime(received.getDateCreated());
 
             // Extract day, month, and year from date/time stamp of current object
-            createdDay = createdCalendar.get(Calendar.DATE);
-            createdMonth = createdCalendar.get(Calendar.MONTH);
-            createdYear = createdCalendar.get(Calendar.YEAR);
+            int createdDay = createdCalendar.get(Calendar.DATE);
+            int createdMonth = createdCalendar.get(Calendar.MONTH);
+            int createdYear = createdCalendar.get(Calendar.YEAR);
 
             // If the current Receive object is more than 7 days old, it should be discarded
             // Remove it from the list. When the list is saved again, the object will no longer exist
@@ -314,19 +340,31 @@ public class JoyUtils {
 
 
     // **DETAIL METHODS**
+    // Custom method to load and return daily joy
     public Joy getDailyJoy() {
+        loadDailyJoy();
+
         return mJoy;
     }
 
+    // Custom method to load and return lifetime joy
     public Joy getLifetimeJoy() {
+        loadLifetimeJoy();
+
         return mLifetimeJoy;
     }
 
+    // Custom method to load and return weekly Give data
     public ArrayList<Give> getWeeklyGiven() {
+        loadWeeklyGiven();
+
         return mWeeklyGiven;
     }
 
+    // Custom method to load and return weekly Get data
     public ArrayList<Get> getWeeklyReceived() {
+        loadWeeklyReceived();
+
         return mWeeklyReceived;
     }
 }

@@ -1,7 +1,6 @@
 package com.mack.john.crypjoy_androidedition.fragments;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -23,7 +22,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mack.john.crypjoy_androidedition.LifetimeDetailsActivity;
 import com.mack.john.crypjoy_androidedition.LoggingActivity;
@@ -32,6 +30,8 @@ import com.mack.john.crypjoy_androidedition.R;
 import com.mack.john.crypjoy_androidedition.objects.Joy;
 import com.mack.john.crypjoy_androidedition.utilities.JoyUtils;
 
+import java.util.Objects;
+
 public class DailyDetailsFragment extends Fragment implements View.OnClickListener, Dialog.OnClickListener {
 
 
@@ -39,9 +39,9 @@ public class DailyDetailsFragment extends Fragment implements View.OnClickListen
     // Class properties
     public static final String TAG = "DailyDetailsFragment";
 
-    public static final int REQUEST_LOCATION_PERMISSIONS = 0x01001;
+    private static final int REQUEST_LOCATION_PERMISSIONS = 0x01001;
 
-    Joy mDailyJoy;
+    private Joy mDailyJoy;
 
 
 
@@ -62,36 +62,44 @@ public class DailyDetailsFragment extends Fragment implements View.OnClickListen
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate fragment layout
         View view = inflater.inflate(R.layout.fragment_daily_details, container, false);
 
-        if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        // Check for location permissions. If they don't exist, request them
+        if(ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
                     REQUEST_LOCATION_PERMISSIONS);
         }
 
+        // Indicate that the current activity should display an options menu
         setHasOptionsMenu(true);
 
+        // Call custom method to set button click listener
         setClickListener(view);
 
+        // Load progress for the current day
         JoyUtils joyUtils = new JoyUtils(getActivity());
         mDailyJoy = joyUtils.getDailyJoy();
 
-        displayProgress(view, mDailyJoy);
+        // Call custom method to display progress for the current day
+        displayProgress(view);
 
         return view;
     }
 
     @Override
     public void onClick(View view) {
+        // If user clicked the Add button, launch the Logging activity
         if(view.getId() == R.id.button_add) {
             Intent addIntent = new Intent(getActivity(), LoggingActivity.class);
             startActivity(addIntent);
         }
 
+        // If user clicked the Lifetime button, load the lifetime progress activity
         else if(view.getId() == R.id.button_lifetime) {
             Intent lifetimeDetailsIntent = new Intent(getActivity(), LifetimeDetailsActivity.class);
             startActivity(lifetimeDetailsIntent);
-            getActivity().overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
+            Objects.requireNonNull(getActivity()).overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
         }
     }
 
@@ -104,11 +112,13 @@ public class DailyDetailsFragment extends Fragment implements View.OnClickListen
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
+        // Inflate options menu
         inflater.inflate(R.menu.menu_map, menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // If user clicked the map button, launch the map activity
         if(item.getItemId() == R.id.action_map) {
             Intent mapIntent = new Intent(getActivity(), MapActivity.class);
             startActivity(mapIntent);
@@ -140,30 +150,39 @@ public class DailyDetailsFragment extends Fragment implements View.OnClickListen
 
 
     // Custom methods
+    // Custom method to set button click listener
     private void setClickListener(View view) {
+        // Set Add button click listener
         FloatingActionButton addButton = view.findViewById(R.id.button_add);
         addButton.setOnClickListener(this);
 
+        // Set Lifetime button click listener
         Button lifetimeButton = view.findViewById(R.id.button_lifetime);
         lifetimeButton.setOnClickListener(this);
     }
 
-    private void displayProgress(View view, Joy joy) {
+    // Call custom method to display progress for the current day
+    private void displayProgress(View view) {
+        // Update Joy Given progress bar
         ProgressBar joyGivenProgressBar = view.findViewById(R.id.progressBar_joyGiven);
-        joyGivenProgressBar.setMax(joy.getGiveGoal());
-        joyGivenProgressBar.setProgress(joy.getGiveProgress());
+        joyGivenProgressBar.setMax(mDailyJoy.getGiveGoal());
+        joyGivenProgressBar.setProgress(mDailyJoy.getGiveProgress());
 
+        // Update Joy Given text display
         TextView joyGivenDisplay = view.findViewById(R.id.display_joyGiven);
-        joyGivenDisplay.setText(joy.displayGiven());
+        joyGivenDisplay.setText(mDailyJoy.displayGiven());
 
+        // Update Joy Received text display
         TextView joyReceivedDisplay = view.findViewById(R.id.display_joyReceived);
-        joyReceivedDisplay.setText(joy.displayReceived());
+        joyReceivedDisplay.setText(mDailyJoy.displayReceived());
 
+        // Update Pay It Forward progress bar
         ProgressBar payItForwardProgressBar = view.findViewById(R.id.progressbar_payItForward);
-        payItForwardProgressBar.setMax(joy.getPayItForwardGoal());
-        payItForwardProgressBar.setProgress(joy.getPayItForwardProgress());
+        payItForwardProgressBar.setMax(mDailyJoy.getPayItForwardGoal());
+        payItForwardProgressBar.setProgress(mDailyJoy.getPayItForwardProgress());
 
+        // Update Pay It Forward text display
         TextView payItForwardDisplay = view.findViewById(R.id.display_payItForward);
-        payItForwardDisplay.setText(joy.displayPayItForward());
+        payItForwardDisplay.setText(mDailyJoy.displayPayItForward());
     }
 }

@@ -2,9 +2,27 @@
   <dictionary name="johnnymack">
     <words>
       <w>androidedition</w>
+      <w>ansicpg</w>
+      <w>cocoartf</w>
+      <w>cocoasubrtf</w>
+      <w>colortbl</w>
       <w>cryp</w>
       <w>crypjoy</w>
+      <w>expandedcolortbl</w>
+      <w>fcharset</w>
+      <w>fonttbl</w>
+      <w>fswiss</w>
       <w>lifetimejoy</w>
+      <w>margl</w>
+      <w>margr</w>
+      <w>pard</w>
+      <w>pardirnatural</w>
+      <w>partightenfactor</w>
+      <w>stylers</w>
+      <w>unaw</w>
+      <w>viewh</w>
+      <w>viewkind</w>
+      <w>vieww</w>
       <w>weeklygiven</w>
       <w>weeklyreceived</w>
     </words>

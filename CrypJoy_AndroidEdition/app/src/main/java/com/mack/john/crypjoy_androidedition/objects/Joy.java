@@ -53,19 +53,9 @@ public class Joy implements Serializable {
         return payItForwardGoal;
     }
 
-    public void setPayItForwardGoal(int payItForwardGoal) {
-        this.payItForwardGoal = payItForwardGoal;
-    }
-
     public int getPayItForwardProgress() {
         return payItForwardProgress;
     }
-
-    public void setPayItForwardProgress(int payItForwardProgress) {
-        this.payItForwardProgress = payItForwardProgress;
-    }
-
-
 
 
     // Custom methods
