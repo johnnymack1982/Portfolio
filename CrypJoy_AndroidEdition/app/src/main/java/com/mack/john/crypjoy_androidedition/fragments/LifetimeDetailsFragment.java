@@ -12,6 +12,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -20,6 +22,7 @@ import com.mack.john.crypjoy_androidedition.LoggingActivity;
 import com.mack.john.crypjoy_androidedition.MapActivity;
 import com.mack.john.crypjoy_androidedition.R;
 import com.mack.john.crypjoy_androidedition.objects.Joy;
+import com.mack.john.crypjoy_androidedition.utilities.AddButtonUtils;
 import com.mack.john.crypjoy_androidedition.utilities.JoyUtils;
 
 import java.text.DecimalFormat;
@@ -31,6 +34,9 @@ public class LifetimeDetailsFragment extends Fragment implements View.OnClickLis
 
     // Class properties
     public static final String TAG = "LifetimeDetailsFragment";
+
+    private FloatingActionButton mAddButton;
+    private AddButtonUtils mAddButtonUtils;
 
 
 
@@ -56,6 +62,9 @@ public class LifetimeDetailsFragment extends Fragment implements View.OnClickLis
         // Indicate that screen should so an options menu
         setHasOptionsMenu(true);
 
+        // Instantiate Add button utilities
+        mAddButtonUtils = new AddButtonUtils();
+
         // Call custom method to set button click listener
         setClickListener(view);
 
@@ -71,6 +80,9 @@ public class LifetimeDetailsFragment extends Fragment implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
+        // Hide Add button with animation
+        mAddButtonUtils.hide(mAddButton);
+
         // If user clicked Add button, launch the Logging Activity
         if(view.getId() == R.id.button_add) {
             Intent addIntent = new Intent(getActivity(), LoggingActivity.class);
@@ -119,10 +131,23 @@ public class LifetimeDetailsFragment extends Fragment implements View.OnClickLis
         // Set click listener for Daily button
         Button dailyButton = view.findViewById(R.id.button_daily);
         dailyButton.setOnClickListener(this);
+
+        mAddButton = addButton;
+
+        // Show Add button with animation
+        mAddButtonUtils.show(mAddButton);
     }
 
     // Custom method to display lifetime progress
     private void displayLifetimeProgress(View view, Joy joy) {
+        // Define entry animation for view header
+        Animation welcomeTextAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in_text);
+        welcomeTextAnimation.reset();
+
+        // Animate view header entry
+        TextView welcomeText = view.findViewById(R.id.text_welcome);
+        welcomeText.startAnimation(welcomeTextAnimation);
+
         // Create string formatter to make scores easier to read
         DecimalFormat formatter = new DecimalFormat("#,###,###");
         String displayText;
@@ -132,14 +157,32 @@ public class LifetimeDetailsFragment extends Fragment implements View.OnClickLis
         displayText = formatter.format(joy.getGiveProgress());
         lifetimeGiven.setText(displayText);
 
+        // Define and start entry animation for Lifetime Given progress display
+        Animation lifetimeGivenAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in_score);
+        lifetimeGivenAnimation.setStartOffset(500);
+        lifetimeGivenAnimation.reset();
+        lifetimeGiven.startAnimation(lifetimeGivenAnimation);
+
         // Display lifetime Joy Received
         TextView lifetimeReceived = view.findViewById(R.id.display_lifetime_received);
         displayText = formatter.format(joy.getGetProgress());
         lifetimeReceived.setText(displayText);
 
+        // Define and start animation for Lifetime Received progress display
+        Animation lifetimeReceivedAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in_score);
+        lifetimeReceivedAnimation.setStartOffset(1000);
+        lifetimeReceivedAnimation.reset();
+        lifetimeReceived.startAnimation(lifetimeReceivedAnimation);
+
         // Display lifetime Pay It Forward progress
         TextView lifetimePaidForward = view.findViewById(R.id.display_lifetime_payItForward);
         displayText = formatter.format(joy.getPayItForwardProgress());
         lifetimePaidForward.setText(displayText);
+
+        // Define and start animation for Lifetime Pay It Forward progress display
+        Animation lifetimePayItForwardAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in_score);
+        lifetimePayItForwardAnimation.setStartOffset(1500);
+        lifetimePayItForwardAnimation.reset();
+        lifetimePaidForward.startAnimation(lifetimePayItForwardAnimation);
     }
 }

@@ -1,5 +1,6 @@
 package com.mack.john.crypjoy_androidedition.fragments;
 
+import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -9,7 +10,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.BounceInterpolator;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,9 +74,11 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
         // any necessary changes
         mJoyUtils = new JoyUtils(getActivity());
 
+        // Reference Joy utilities class
         mJoy = mJoyUtils.getDailyJoy();
-        mLifetimeJoy = mJoyUtils.getLifetimeJoy();
 
+        // Load relevant data
+        mLifetimeJoy = mJoyUtils.getLifetimeJoy();
         mWeeklyGiven = mJoyUtils.getWeeklyGiven();
         mWeeklyReceived = mJoyUtils.getWeeklyReceived();
 
@@ -190,7 +197,18 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
 
 
         // Reference progress message text view
+        TextView headerMessage = mView.findViewById(R.id.header);
         TextView progressMessage = mView.findViewById(R.id.text_progress_message);
+
+        // Define entry animation for view header and start
+        Animation headerTextAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in_text);
+        headerTextAnimation.reset();
+        headerMessage.startAnimation(headerTextAnimation);
+
+        // Define entry animation for progress message
+        Animation progressTextAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in_score);
+        progressTextAnimation.setStartOffset(500);
+        progressTextAnimation.reset();
 
 
         // If neither Give or Get goals are met, ask the user what action they'd like to perform
@@ -214,6 +232,28 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
         else if(!giveButton.isEnabled() && !getButton.isEnabled()) {
             progressMessage.setText(getActivity().getString(R.string.give_disabled_get_disabled));
         }
+
+        // Start progress message animation
+        progressMessage.startAnimation(progressTextAnimation);
+
+        // Reference heart icon and make sure it starts invisible
+        ImageView heartIcon = mView.findViewById(R.id.image_heart);
+        heartIcon.setScaleX(0.0f);
+        heartIcon.setScaleY(0.0f);
+
+        // Define entry animation parameters for heart icon X axis and start animation
+        ObjectAnimator heartIconAnimator1 = ObjectAnimator.ofFloat(heartIcon, "scaleX", 1.0f);
+        heartIconAnimator1.setStartDelay(1000);
+        heartIconAnimator1.setInterpolator(new BounceInterpolator());
+        heartIconAnimator1.setDuration(500);
+        heartIconAnimator1.start();
+
+        // Define entry animation parameters for heart icon Y axis and start animation
+        ObjectAnimator heartIconAnimator2 = ObjectAnimator.ofFloat(heartIcon, "scaleY", 1.0f);
+        heartIconAnimator2.setStartDelay(1000);
+        heartIconAnimator2.setInterpolator(new BounceInterpolator());
+        heartIconAnimator2.setDuration(500);
+        heartIconAnimator2.start();
     }
 
 

@@ -8,7 +8,15 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.mack.john.crypjoy_androidedition.utilities.AddButtonUtils;
+
 public class MapActivity extends AppCompatActivity implements View.OnClickListener {
+
+
+
+    // Class properties
+    private FloatingActionButton mAddButton;
+    private AddButtonUtils mAddButtonUtils;
 
 
 
@@ -19,16 +27,36 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_map);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        mAddButtonUtils = new AddButtonUtils();
+
         // Call custom method to set click listener for Add button
         setClickListener();
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        mAddButtonUtils.show(mAddButton);
+    }
+
+    @Override
     public void onClick(View view) {
+        mAddButtonUtils.hide(mAddButton);
+
+        // If user clicked the Add button, launch the Logging activity
         if(view.getId() == R.id.button_add) {
             Intent addIntent = new Intent(this, LoggingActivity.class);
             startActivity(addIntent);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        // Hide Add button with animation
+        mAddButtonUtils.hide(mAddButton);
     }
 
     // Custom methods
@@ -36,5 +64,9 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
     private void setClickListener() {
         FloatingActionButton addButton = findViewById(R.id.button_add);
         addButton.setOnClickListener(this);
+
+        // Show Add button with animation
+        mAddButton = addButton;
+        mAddButtonUtils.show(mAddButton);
     }
 }
