@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.mack.john.crypjoy_androidedition.fragments.LoginFragment;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -18,9 +20,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Temporarily launch into currently developed portions of the application
-        // This code will be replaced further along in the development cycle
-        Intent intent = new Intent(this, DailyDetailsActivity.class);
-        startActivity(intent);
+        displayFragment();
+    }
+
+
+
+    // Custom methods
+    // Custom method to inflate Login Fragment
+    private void displayFragment() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frame_fragment_login, LoginFragment.newInstance(), LoginFragment.TAG)
+                .commit();
     }
 }

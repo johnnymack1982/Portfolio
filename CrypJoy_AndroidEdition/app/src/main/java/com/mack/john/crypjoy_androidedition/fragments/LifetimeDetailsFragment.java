@@ -38,6 +38,8 @@ public class LifetimeDetailsFragment extends Fragment implements View.OnClickLis
     private FloatingActionButton mAddButton;
     private AddButtonUtils mAddButtonUtils;
 
+    private ViewGroup mContainer;
+
 
 
     // Constructor
@@ -104,7 +106,7 @@ public class LifetimeDetailsFragment extends Fragment implements View.OnClickLis
         super.onCreateOptionsMenu(menu, inflater);
 
         // Inflate options menu layout
-        inflater.inflate(R.menu.menu_map, menu);
+        inflater.inflate(R.menu.menu_main, menu);
     }
 
     @Override

@@ -3,7 +3,10 @@ package com.mack.john.crypjoy_androidedition.fragments;
 import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.jinatonic.confetti.CommonConfetti;
 import com.mack.john.crypjoy_androidedition.R;
 import com.mack.john.crypjoy_androidedition.objects.Get;
 import com.mack.john.crypjoy_androidedition.objects.Give;
@@ -28,6 +32,10 @@ import com.mack.john.crypjoy_androidedition.utilities.LocationUtils;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
+
+import nl.dionsegijn.konfetti.KonfettiView;
+import nl.dionsegijn.konfetti.models.Shape;
+import nl.dionsegijn.konfetti.models.Size;
 
 public class LoggingFragment extends Fragment implements View.OnClickListener {
 
@@ -256,6 +264,13 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
         heartIconAnimator2.start();
     }
 
+    private void showConfetti() {
+        CommonConfetti.explosion((ViewGroup) mView.findViewById(R.id.confettiView), 500, 500,
+                new int[] {getActivity().getResources().getColor(R.color.colorPrimary),
+                            getActivity().getResources().getColor(R.color.colorAccent),
+                            getActivity().getResources().getColor(R.color.colorTextSecondary)}).oneShot();
+    }
+
 
 
     // Dialog Listeners
@@ -285,7 +300,14 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
                 // Let the user know their action has been successfully logged by the app
                 Toast.makeText(getActivity(), getActivity().getString(R.string.joy_given_confirm), Toast.LENGTH_SHORT).show();
 
-                getActivity().finish();
+                showConfetti();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getActivity().finish();
+                    }
+                }, 1500);
             }
         }
     };
@@ -316,7 +338,14 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
                 // Let the user know their action has been successfully logged by the app
                 Toast.makeText(getActivity(), getActivity().getString(R.string.joy_received_confirm), Toast.LENGTH_SHORT).show();
 
-                getActivity().finish();
+                showConfetti();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getActivity().finish();
+                    }
+                }, 1500);
             }
         }
     };

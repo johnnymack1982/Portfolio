@@ -41,4 +41,22 @@
     <string name="time_placeholder">8:07 AM</string>
     <string name="ok">Ok</string>
     <string name="location_permissions_required">Location Permissions Required</string>
+    <string name="cryp">Cryp</string>
+    <string name="joy">Joy</string>
+    <string name="e_mail_address">E-mail Address</string>
+    <string name="password">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="don_t_have_an_account_yet">Don\'t have an account yet?</string>
+    <string name="let_s_make_one">LET\'S MAKE ONE!</string>
+    <string name="hey_there_let_s_start_with_some_basic_information">Hey there! Let’s start with some basic information.</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="cancel">CANCEL</string>
+    <string name="next">NEXT</string>
+    <string name="hey_john_now_let_s_finish_up_easy_right">Hey, John! Now, let’s finish up. Easy, right?</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password_instructions">Your password should start with a capital letter. It should also contain at least one number and one special character and be at least six characters long.</string>
+    <string name="finish">FINISH</string>
+    <string name="password_rules">6 characters, 1 Capital, 1 number, and 1 special character</string>
+    <string name="invalid_input">Hmmm. Something doesn\'t look right...</string>
 </resources>

@@ -103,4 +103,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/heart_icon" />
 
+    <FrameLayout
+        android:id="@+id/confettiView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_heart" />
+
 </android.support.constraint.ConstraintLayout>

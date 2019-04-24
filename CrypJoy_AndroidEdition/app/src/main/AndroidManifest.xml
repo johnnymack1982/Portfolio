@@ -46,6 +46,18 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".CreateAccountActivity1">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".CreateAccountActivity2">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.mack.john.crypjoy_androidedition.fragments.LoggingFragment;
+import com.mack.john.crypjoy_androidedition.fragments.LoginFragment;
 
 public class LoggingActivity extends AppCompatActivity {
 
@@ -28,7 +29,7 @@ public class LoggingActivity extends AppCompatActivity {
     private void displayFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.frame_fragment_logging, LoggingFragment.newInstance(), LoggingFragment.TAG)
+                .replace(R.id.frame_fragment_logging, LoginFragment.newInstance(), LoginFragment.TAG)
                 .commit();
     }
 }

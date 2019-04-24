@@ -8,4 +8,8 @@
     <color name="colorTextSecondary">#B1B09D</color>
 
     <color name="colorInfoWindow">#848D7F</color>
+
+    <color name="colorInputInvalid">#D59096</color>
+    <color name="colorInputValid">#90D5A5</color>
+    <color name="colorInputNotFocused">#BF9647</color>
 </resources>

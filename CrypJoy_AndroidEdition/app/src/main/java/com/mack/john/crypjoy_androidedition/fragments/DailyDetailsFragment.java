@@ -128,7 +128,7 @@ public class DailyDetailsFragment extends Fragment implements View.OnClickListen
         super.onCreateOptionsMenu(menu, inflater);
 
         // Inflate options menu
-        inflater.inflate(R.menu.menu_map, menu);
+        inflater.inflate(R.menu.menu_main, menu);
     }
 
     @Override
