@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1015769680349",
+    "firebase_url": "https://crypjoy-android-edition.firebaseio.com",
+    "project_id": "crypjoy-android-edition",
+    "storage_bucket": "crypjoy-android-edition.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015769680349:android:4637cb8427f45b20",
+        "android_client_info": {
+          "package_name": "com.mack.john.crypjoy_androidedition"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015769680349-hm31h4blc5nbq8mc39jq8a3f6ntn1j4a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mack.john.crypjoy_androidedition",
+            "certificate_hash": "6b9c374bccbbaee9fcd1470d662dc7b2e132ae3e"
+          }
+        },
+        {
+          "client_id": "1015769680349-tm7cnvr9gpdn38i8gg7kg2bdnukqe3um.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcxU2YMg6WzI21tYCFYeD_COSww4EexOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015769680349-tm7cnvr9gpdn38i8gg7kg2bdnukqe3um.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

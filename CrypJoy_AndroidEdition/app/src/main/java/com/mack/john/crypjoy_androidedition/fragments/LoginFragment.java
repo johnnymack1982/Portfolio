@@ -8,12 +8,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,12 +22,17 @@ import com.mack.john.crypjoy_androidedition.DailyDetailsActivity;
 import com.mack.john.crypjoy_androidedition.R;
 import com.mack.john.crypjoy_androidedition.utilities.InputUtils;
 
-public class LoginFragment extends Fragment implements View.OnClickListener {
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
+
+public class LoginFragment extends Fragment implements View.OnClickListener, View.OnFocusChangeListener {
 
 
 
     // Class properties
     public static final String TAG = "LoginFragment";
+
+    View mView;
 
     private boolean mValidEmail = false;
     private boolean mValidPassword = false;
@@ -49,8 +54,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
+        mView = view;
+
         setClickListener(view);
-        setOnKeyListener(view);
+        setTextChangeListener(view);
+        setKeyboardListener(view);
 
         return view;
     }
@@ -76,6 +84,28 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    @Override
+    public void onFocusChange(View view, boolean hasFocus) {
+        TextView header1 = mView.findViewById(R.id.header1);
+        TextView header2 = mView.findViewById(R.id.header2);
+        ImageView heartIcon = mView.findViewById(R.id.heart_icon);
+        ImageView background = mView.findViewById(R.id.background);
+
+        if((view.getId() == R.id.input_email && hasFocus) || (view.getId() == R.id.input_password && hasFocus)) {
+            header1.setVisibility(View.GONE);
+            header2.setVisibility(View.GONE);
+            heartIcon.setVisibility(View.GONE);
+            background.setVisibility(View.INVISIBLE);
+        }
+
+        else {
+            header1.setVisibility(View.VISIBLE);
+            header2.setVisibility(View.VISIBLE);
+            heartIcon.setVisibility(View.VISIBLE);
+            background.setVisibility(View.VISIBLE);
+        }
+    }
+
 
 
 
@@ -88,8 +118,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         createAccountButton.setOnClickListener(this);
     }
 
-    private void setOnKeyListener(final View view) {
+    private void setTextChangeListener(final View view) {
         final EditText emailInput = view.findViewById(R.id.input_email);
+        emailInput.setOnFocusChangeListener(this);
         emailInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int arg1, int arg2, int arg3) {
@@ -118,6 +149,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         passwordRules.setVisibility(View.GONE);
 
         final EditText passwordInput = view.findViewById(R.id.input_password);
+        passwordInput.setOnFocusChangeListener(this);
         passwordInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -142,5 +174,22 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             @Override
             public void afterTextChanged(Editable s) {}
         });
+    }
+
+    private void setKeyboardListener(View v) {
+        final View view = v;
+
+        KeyboardVisibilityEvent.setEventListener(getActivity(), new KeyboardVisibilityEventListener() {
+                    @Override
+                    public void onVisibilityChanged(boolean isOpen) {
+                        if(!isOpen) {
+                            EditText emailInput = view.findViewById(R.id.input_email);
+                            EditText passwordInput = view.findViewById(R.id.input_password);
+
+                            passwordInput.clearFocus();
+                            emailInput.clearFocus();
+                        }
+                    }
+                });
     }
 }

@@ -59,4 +59,5 @@
     <string name="finish">FINISH</string>
     <string name="password_rules">6 characters, 1 Capital, 1 number, and 1 special character</string>
     <string name="invalid_input">Hmmm. Something doesn\'t look right...</string>
+    <string name="password_match_rules">Your passwords don\'t match</string>
 </resources>

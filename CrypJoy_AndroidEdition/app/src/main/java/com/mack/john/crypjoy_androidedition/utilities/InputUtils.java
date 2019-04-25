@@ -13,7 +13,7 @@ public class InputUtils {
 
     // Custom methods
     public static boolean validEmail(String email) {
-        if (email == null) {
+        if (email == null || email.trim().equals("")) {
             return false;
         }
 
@@ -23,7 +23,7 @@ public class InputUtils {
     }
 
     public static boolean validPassword(String password) {
-        if(password == null) {
+        if(password == null || password.trim().equals("")) {
             return false;
         }
 
@@ -42,6 +42,30 @@ public class InputUtils {
             Matcher matcher = pattern.matcher(password.trim());
 
             return matcher.matches();
+        }
+    }
+
+    public static boolean validName(String name) {
+        if(name == null || name.trim().equals("")) {
+            return false;
+        }
+
+        else {
+            return true;
+        }
+    }
+
+    public static boolean passwordsMatch(String password, String passwordConfirm) {
+        if(password == null || password.equals("") || passwordConfirm == null || passwordConfirm.equals("")) {
+            return false;
+        }
+
+        else if(!passwordConfirm.equals(password)) {
+            return false;
+        }
+
+        else {
+            return true;
         }
     }
 }

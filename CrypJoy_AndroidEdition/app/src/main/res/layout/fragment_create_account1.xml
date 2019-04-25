@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorPrimaryDark"
+    android:focusableInTouchMode="true">
 
 
     <ImageView
@@ -98,7 +99,7 @@
         android:ems="10"
         android:hint="@string/first_name"
         android:importantForAutofill="no"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         android:textColor="@color/colorTextPrimary"
         android:textColorHint="@color/colorTextSecondary"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
@@ -117,7 +118,7 @@
         android:ems="10"
         android:hint="@string/last_name"
         android:importantForAutofill="no"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         android:textColor="@color/colorTextPrimary"
         android:textColorHint="@color/colorTextSecondary"
         app:layout_constraintEnd_toEndOf="parent"
