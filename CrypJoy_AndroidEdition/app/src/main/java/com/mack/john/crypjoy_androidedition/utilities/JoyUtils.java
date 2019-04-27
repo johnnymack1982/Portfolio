@@ -1,7 +1,11 @@
 package com.mack.john.crypjoy_androidedition.utilities;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 
+import com.mack.john.crypjoy_androidedition.DailyDetailsActivity;
+import com.mack.john.crypjoy_androidedition.MainActivity;
 import com.mack.john.crypjoy_androidedition.objects.Get;
 import com.mack.john.crypjoy_androidedition.objects.Give;
 import com.mack.john.crypjoy_androidedition.objects.Joy;
@@ -35,7 +39,7 @@ public class JoyUtils {
 
     // Constructor
     public JoyUtils(Context context) {
-        // Reference context and view from sending activity
+        // Reference context from sending activity
         this.mContext = context;
     }
 
@@ -45,7 +49,14 @@ public class JoyUtils {
     // Custom methods
     // ** DATA STORAGE METHODS **
     // Custom method to save current progress
-    public void saveProgress() {
+    public void saveProgress(Joy dailyJoy, Joy lifetimeJoy, ArrayList<Give> weeklyGiven, ArrayList<Get> weeklyReceived) {
+        if(dailyJoy != null && lifetimeJoy != null && weeklyGiven != null && weeklyReceived != null) {
+            mJoy = dailyJoy;
+            mLifetimeJoy = lifetimeJoy;
+            mWeeklyGiven = weeklyGiven;
+            mWeeklyReceived = weeklyReceived;
+        }
+
         // Reference private storage and target file name for daily progress data
         File targetDir = mContext.getFilesDir();
         File joyFile = new File(targetDir + JOY_DATA);
@@ -61,6 +72,8 @@ public class JoyUtils {
             // Close output streams
             objectOutputStream.close();
             fileOutputStream.close();
+
+            FirebaseUtils.saveDailyProgress(mJoy);
         }
 
         catch (IOException e) {
@@ -81,6 +94,8 @@ public class JoyUtils {
             // Close output streams
             objectOutputStream.close();
             fileOutputStream.close();
+
+            FirebaseUtils.saveLifetimeProgress(mLifetimeJoy);
         }
 
         catch (IOException e) {
@@ -101,6 +116,8 @@ public class JoyUtils {
             // Close output streams
             objectOutputStream.close();
             fileOutputStream.close();
+
+            FirebaseUtils.saveWeeklyGiveActions(mWeeklyGiven);
         }
 
         catch (IOException e) {
@@ -121,6 +138,8 @@ public class JoyUtils {
             // Close output streams
             objectOutputStream.close();
             fileOutputStream.close();
+
+            FirebaseUtils.saveWeeklyReceivedActions(mWeeklyReceived);
         }
 
         catch (IOException e) {
@@ -147,6 +166,11 @@ public class JoyUtils {
             fileInputStream.close();
 
             // Call custom method to check validity of loaded daily joy data
+            if(mJoy == null) {
+                Date date = new Date();
+                mJoy = new Joy(date);
+            }
+
             checkDailyJoyValidity();
         }
 
@@ -201,6 +225,11 @@ public class JoyUtils {
             // Read lifetime progress from file
             mLifetimeJoy = (Joy) objectInputStream.readObject();
 
+            if(mLifetimeJoy == null) {
+                Date date = new Date();
+                mLifetimeJoy = new Joy(date);
+            }
+
             // Close input streams
             objectInputStream.close();
             fileInputStream.close();
@@ -229,6 +258,10 @@ public class JoyUtils {
             // Read list of Joy Given for the week from file
             //noinspection unchecked
             mWeeklyGiven = (ArrayList<Give>) objectInputStream.readObject();
+
+            if(mWeeklyGiven == null) {
+                mWeeklyGiven = new ArrayList<>();
+            }
 
             // Close input streams
             objectInputStream.close();
@@ -292,6 +325,10 @@ public class JoyUtils {
             //noinspection unchecked
             mWeeklyReceived = (ArrayList<Get>) objectInputStream.readObject();
 
+            if(mWeeklyReceived == null) {
+                mWeeklyReceived = new ArrayList<>();
+            }
+
             // Close input streams
             objectInputStream.close();
             fileInputStream.close();
@@ -336,6 +373,26 @@ public class JoyUtils {
                 mWeeklyReceived.remove(received);
             }
         }
+    }
+
+    public void clearCache() {
+        File targetDir = mContext.getFilesDir();
+
+        File dailyJoyFile = new File(targetDir, JOY_DATA);
+        File lifetimeJoyFile = new File(targetDir, LIFETIME_JOY_DATA);
+        File weeklyGivenData = new File(targetDir, WEEKLY_GIVEN_DATA);
+        File weeklyReceivedData = new File(targetDir, WEEKLY_RECEIVED_DATA);
+        File userData = new File(targetDir, FirebaseUtils.FILE_USER);
+
+        dailyJoyFile.delete();
+        lifetimeJoyFile.delete();
+        weeklyGivenData.delete();
+        weeklyReceivedData.delete();
+        userData.delete();
+
+        Intent restartIntent = new Intent(mContext, MainActivity.class);
+        mContext.startActivity(restartIntent);
+        ((Activity) mContext).finish();
     }
 
 

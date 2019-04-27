@@ -23,6 +23,7 @@ import com.mack.john.crypjoy_androidedition.MapActivity;
 import com.mack.john.crypjoy_androidedition.R;
 import com.mack.john.crypjoy_androidedition.objects.Joy;
 import com.mack.john.crypjoy_androidedition.utilities.AddButtonUtils;
+import com.mack.john.crypjoy_androidedition.utilities.FirebaseUtils;
 import com.mack.john.crypjoy_androidedition.utilities.JoyUtils;
 
 import java.text.DecimalFormat;
@@ -115,6 +116,10 @@ public class LifetimeDetailsFragment extends Fragment implements View.OnClickLis
         if(item.getItemId() == R.id.action_map) {
             Intent mapIntent = new Intent(getActivity(), MapActivity.class);
             startActivity(mapIntent);
+        }
+
+        else if(item.getItemId() == R.id.action_logout) {
+            FirebaseUtils.logout(getActivity());
         }
 
         return super.onOptionsItemSelected(item);

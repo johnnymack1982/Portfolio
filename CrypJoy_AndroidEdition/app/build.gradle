@@ -31,7 +31,10 @@ dependencies {
     implementation 'com.github.jinatonic.confetti:confetti:1.1.2'
     implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.3.0'
     implementation 'com.google.firebase:firebase-core:16.0.8'
+    implementation 'com.google.firebase:firebase-auth:16.2.1'
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
+    implementation 'com.google.firebase:firebase-firestore:18.2.0'
+    implementation 'org.kie.modules:org-joda-time-main:6.5.0.Final'
 }
 
 apply plugin: 'com.google.gms.google-services'

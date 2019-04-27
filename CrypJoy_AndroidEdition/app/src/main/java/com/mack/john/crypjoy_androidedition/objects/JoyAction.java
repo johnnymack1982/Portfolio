@@ -23,6 +23,12 @@ public class JoyAction implements Serializable {
         this.longitude = longitude;
     }
 
+    JoyAction() {
+        this.dateCreated = new Date();
+        this.latitude = 0;
+        this.longitude= 0;
+    }
+
 
 
     // Getters / Setters

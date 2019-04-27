@@ -97,23 +97,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         android:maxLines="2"
         android:text="@string/hey_john_now_let_s_finish_up_easy_right"
         android:textAlignment="center"
         android:textColor="@color/colorTextPrimary"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/input_email"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heart_icon" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline10"
+        android:id="@+id/guideline_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.40" />
+        app:layout_constraintGuide_percent="0.50" />
 
     <EditText
         android:id="@+id/input_email"
@@ -128,7 +128,7 @@
         android:textColor="@color/colorTextPrimary"
         android:backgroundTint="@color/colorInputNotFocused"
         android:textColorHint="@color/colorTextSecondary"
-        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:importantForAutofill="no"
@@ -139,18 +139,18 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="48dp"
+        android:backgroundTint="@color/colorInputNotFocused"
         android:ems="10"
         android:hint="@string/password"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
         android:textColor="@color/colorTextPrimary"
-        android:backgroundTint="@color/colorInputNotFocused"
         android:textColorHint="@color/colorTextSecondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline10"
-        android:importantForAutofill="no"
+        app:layout_constraintTop_toBottomOf="@+id/input_email"
         tools:targetApi="o" />
 
     <EditText
@@ -209,5 +209,18 @@
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progress_create_user"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_password_match_rules" />
 
 </android.support.constraint.ConstraintLayout>

@@ -21,6 +21,10 @@ public class Get extends JoyAction {
         this.actionName = context.getString(R.string.joy_received_small);
     }
 
+    public Get() {
+        this.actionName = "";
+    }
+
 
 
 

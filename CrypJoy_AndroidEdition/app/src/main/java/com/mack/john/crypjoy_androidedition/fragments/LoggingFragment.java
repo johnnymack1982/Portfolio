@@ -3,14 +3,15 @@ package com.mack.john.crypjoy_androidedition.fragments;
 import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -26,16 +27,13 @@ import com.mack.john.crypjoy_androidedition.R;
 import com.mack.john.crypjoy_androidedition.objects.Get;
 import com.mack.john.crypjoy_androidedition.objects.Give;
 import com.mack.john.crypjoy_androidedition.objects.Joy;
+import com.mack.john.crypjoy_androidedition.utilities.FirebaseUtils;
 import com.mack.john.crypjoy_androidedition.utilities.JoyUtils;
 import com.mack.john.crypjoy_androidedition.utilities.LocationUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
-
-import nl.dionsegijn.konfetti.KonfettiView;
-import nl.dionsegijn.konfetti.models.Shape;
-import nl.dionsegijn.konfetti.models.Size;
 
 public class LoggingFragment extends Fragment implements View.OnClickListener {
 
@@ -75,6 +73,8 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
         // Inflate fragment layout
         View view = inflater.inflate(R.layout.fragment_logging, container, false);
 
+        setHasOptionsMenu(true);
+
         // Set the class View property to match this view
         mView = view;
 
@@ -102,6 +102,13 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        inflater.inflate(R.menu.menu_secondary, menu);
+    }
+
+    @Override
     public void onClick(View view) {
         // If user clicked "Give Joy," call custom utility method to react accordingly
         if (view.getId() == R.id.button_give) {
@@ -114,7 +121,14 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.action_logout) {
+            FirebaseUtils.logout(getActivity());
+        }
 
+        return super.onOptionsItemSelected(item);
+    }
 
     // Custom methods
     // Custom method to set click listeners for Give and Get buttons
@@ -205,7 +219,7 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
 
 
         // Reference progress message text view
-        TextView headerMessage = mView.findViewById(R.id.header);
+        TextView headerMessage = mView.findViewById(R.id.header1);
         TextView progressMessage = mView.findViewById(R.id.text_progress_message);
 
         // Define entry animation for view header and start
@@ -295,7 +309,7 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
                 mWeeklyGiven.add(give);
 
                 // Call custom method to save current progress
-                mJoyUtils.saveProgress();
+                mJoyUtils.saveProgress(null, null, null, null);
 
                 // Let the user know their action has been successfully logged by the app
                 Toast.makeText(getActivity(), getActivity().getString(R.string.joy_given_confirm), Toast.LENGTH_SHORT).show();
@@ -333,7 +347,7 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
                 mWeeklyReceived.add(get);
 
                 // Call custom method to save current progress
-                mJoyUtils.saveProgress();
+                mJoyUtils.saveProgress(null, null, null, null);
 
                 // Let the user know their action has been successfully logged by the app
                 Toast.makeText(getActivity(), getActivity().getString(R.string.joy_received_confirm), Toast.LENGTH_SHORT).show();

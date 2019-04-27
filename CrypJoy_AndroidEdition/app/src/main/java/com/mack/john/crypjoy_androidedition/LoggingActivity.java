@@ -29,7 +29,7 @@ public class LoggingActivity extends AppCompatActivity {
     private void displayFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.frame_fragment_logging, LoginFragment.newInstance(), LoginFragment.TAG)
+                .replace(R.id.frame_fragment_logging, LoggingFragment.newInstance(), LoggingFragment.TAG)
                 .commit();
     }
 }

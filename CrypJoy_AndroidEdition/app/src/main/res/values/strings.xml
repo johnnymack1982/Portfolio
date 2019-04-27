@@ -60,4 +60,9 @@
     <string name="password_rules">6 characters, 1 Capital, 1 number, and 1 special character</string>
     <string name="invalid_input">Hmmm. Something doesn\'t look right...</string>
     <string name="password_match_rules">Your passwords don\'t match</string>
+    <string name="invalid_user">Looks like you might need to check your e-mail or password and try again...</string>
+    <string name="account_create_fail">There was a bit of trouble creating your account. Can we try again later?</string>
+    <string name="logout">Logout</string>
+    <string name="welcome_back1">Welcome back,</string>
+    <string name="welcome_back2">! Let\'s see how we\'re doing today.</string>
 </resources>

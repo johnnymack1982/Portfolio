@@ -21,6 +21,10 @@ public class Give extends JoyAction {
         this.actionName = context.getString(R.string.joy_given_small);
     }
 
+    public Give() {
+        this.actionName = "";
+    }
+
 
 
 

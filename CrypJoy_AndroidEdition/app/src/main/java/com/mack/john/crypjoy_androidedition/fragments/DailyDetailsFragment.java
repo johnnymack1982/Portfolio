@@ -32,9 +32,15 @@ import com.mack.john.crypjoy_androidedition.LoggingActivity;
 import com.mack.john.crypjoy_androidedition.MapActivity;
 import com.mack.john.crypjoy_androidedition.R;
 import com.mack.john.crypjoy_androidedition.objects.Joy;
+import com.mack.john.crypjoy_androidedition.objects.User;
 import com.mack.john.crypjoy_androidedition.utilities.AddButtonUtils;
+import com.mack.john.crypjoy_androidedition.utilities.FirebaseUtils;
 import com.mack.john.crypjoy_androidedition.utilities.JoyUtils;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Objects;
 
 public class DailyDetailsFragment extends Fragment implements View.OnClickListener, Dialog.OnClickListener {
@@ -139,6 +145,10 @@ public class DailyDetailsFragment extends Fragment implements View.OnClickListen
             startActivity(mapIntent);
         }
 
+        else if(item.getItemId() == R.id.action_logout) {
+            FirebaseUtils.logout(getActivity());
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -183,10 +193,33 @@ public class DailyDetailsFragment extends Fragment implements View.OnClickListen
 
     // Call custom method to display progress for the current day
     private void displayProgress(View view) {
+        File targetDir = getActivity().getFilesDir();
+        File userFile = new File(targetDir + FirebaseUtils.FILE_USER);
+        User user = null;
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream(userFile);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            user = (User) objectInputStream.readObject();
+
+            objectInputStream.close();
+            fileInputStream.close();
+        }
+
+        catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         // Define and start view header animation
+        String firstName = user.getFirstName();
+        String welcome1 = getString(R.string.welcome_back1);
+        String welcome2 = getString(R.string.welcome_back2);
+
         Animation welcomeTextAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in_text);
         welcomeTextAnimation.reset();
         TextView welcomeText = view.findViewById(R.id.text_welcome);
+        welcomeText.setText(welcome1 + " " + firstName + welcome2);
         welcomeText.startAnimation(welcomeTextAnimation);
 
         // Update Joy Given progress bar

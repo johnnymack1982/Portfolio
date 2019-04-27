@@ -30,6 +30,18 @@ public class Joy implements Serializable {
         this.dateCreated = dateCreated;
     }
 
+    public Joy() {
+        this.giveGoal = 3;
+        this.giveProgress = 0;
+
+        this.getProgress = 0;
+
+        this.payItForwardGoal = 0;
+        this.payItForwardProgress = 0;
+
+        this.dateCreated = new Date();
+    }
+
 
 
     // Getters / Setters

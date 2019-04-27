@@ -7,4 +7,8 @@
         android:icon="@android:drawable/ic_dialog_map"
         android:title="@string/map"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_logout"
+        android:title="@string/logout"/>
 </menu>

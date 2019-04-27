@@ -10,17 +10,23 @@ public class User implements Serializable {
     String firstName;
     String lastName;
     String email;
-    String password;
     String uID;
 
 
 
     // Constructor
-    public User(String firstName, String lastName, String email, String password) {
+    public User(String firstName, String lastName, String email, String uID) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+        this.uID = uID;
+    }
+
+    public User() {
+        this.firstName = "";
+        this.lastName = "";
+        this.email = "";
+        this.uID = "";
     }
 
 
@@ -48,14 +54,6 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getuID() {

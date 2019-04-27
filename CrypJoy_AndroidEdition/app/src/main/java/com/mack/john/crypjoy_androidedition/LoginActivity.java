@@ -1,13 +1,12 @@
 package com.mack.john.crypjoy_androidedition;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.mack.john.crypjoy_androidedition.fragments.LoadingFragment;
 import com.mack.john.crypjoy_androidedition.fragments.LoginFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
 
 
@@ -19,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         displayFragment();
     }
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.frame_fragment_loading, LoadingFragment.newInstance(), LoadingFragment.TAG)
+                .replace(R.id.frame_fragment_login, LoginFragment.newInstance(), LoginFragment.TAG)
                 .commit();
     }
 }
