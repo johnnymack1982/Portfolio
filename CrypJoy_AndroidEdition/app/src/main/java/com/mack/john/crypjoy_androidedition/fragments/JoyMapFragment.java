@@ -30,6 +30,8 @@ import java.util.ArrayList;
 public class JoyMapFragment extends MapFragment implements OnMapReadyCallback, GoogleMap.InfoWindowAdapter {
 
 
+
+    // Class properties
     private GoogleMap mMap;
 
     private double mLatitude;
@@ -95,7 +97,7 @@ public class JoyMapFragment extends MapFragment implements OnMapReadyCallback, G
         Get getAction = null;
         Give giveAction = null;
 
-        // ** NOTE: This method will attempt to case the marker tag as either a Get or Give action.
+        // ** NOTE: This method will attempt to cast the marker tag as either a Get or Give action.
         // It should never be possible for the marker to be cast to any type other than these two options.
         // If the marker cannot be case to a Get object it MUST be possible for it to cast to a Give object
 

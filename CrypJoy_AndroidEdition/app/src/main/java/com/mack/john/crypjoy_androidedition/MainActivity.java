@@ -1,17 +1,11 @@
 package com.mack.john.crypjoy_androidedition;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.mack.john.crypjoy_androidedition.fragments.LoadingFragment;
-import com.mack.john.crypjoy_androidedition.fragments.LoginFragment;
 
 public class MainActivity extends AppCompatActivity {
-
-
-
-    // Class properties
 
 
 
@@ -21,13 +15,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Call custom method to inflate Loading fragment
         displayFragment();
     }
 
 
 
     // Custom methods
-    // Custom method to inflate Login Fragment
+    // Custom method to inflate Loading Fragment
     private void displayFragment() {
         getSupportFragmentManager()
                 .beginTransaction()

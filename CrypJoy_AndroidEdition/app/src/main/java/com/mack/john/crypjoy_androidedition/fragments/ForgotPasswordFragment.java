@@ -21,9 +21,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mack.john.crypjoy_androidedition.CreateAccountActivity2;
-import com.mack.john.crypjoy_androidedition.MainActivity;
+import com.mack.john.crypjoy_androidedition.LoginActivity;
 import com.mack.john.crypjoy_androidedition.R;
+import com.mack.john.crypjoy_androidedition.utilities.FirebaseUtils;
 import com.mack.john.crypjoy_androidedition.utilities.InputUtils;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
@@ -31,31 +31,26 @@ import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventList
 
 import java.util.Objects;
 
-public class CreateAccountFragment1 extends Fragment implements View.OnClickListener, View.OnFocusChangeListener {
+public class ForgotPasswordFragment extends Fragment implements View.OnClickListener, View.OnFocusChangeListener {
 
 
 
     // Class properties
-    public static final String TAG = "CreateAccountFragment1";
-
-    public static final String EXTRA_FIRST_NAME = "FIRST_NAME";
-    public static final String EXTRA_LAST_NAME = "LAST_NAME";
-
-    private String mFirstName;
-    private String mLastName;
-
-    private boolean mValidFirstName = false;
-    private boolean mValidLastName = false;
+    public static final String TAG = "ForgotPasswordFragment";
 
     private View mView;
+
+    private String mEmail = "";
+
+    private boolean mValidEmail = false;
 
 
 
     // System generated methods
-    public static CreateAccountFragment1 newInstance() {
+    public static ForgotPasswordFragment newInstance() {
         Bundle args = new Bundle();
 
-        CreateAccountFragment1 fragment = new CreateAccountFragment1();
+        ForgotPasswordFragment fragment = new ForgotPasswordFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -65,7 +60,7 @@ public class CreateAccountFragment1 extends Fragment implements View.OnClickList
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         // Inflate layout
-        View view = inflater.inflate(R.layout.fragment_create_account1, container, false);
+        View view = inflater.inflate(R.layout.fragment_forgot_password, container, false);
 
         // Reference layout in class properties
         mView = view;
@@ -84,21 +79,21 @@ public class CreateAccountFragment1 extends Fragment implements View.OnClickList
     @Override
     public void onClick(View view) {
 
-        // If user clicked the Next button...
-        if(view.getId() == R.id.button_next) {
+        // If the user clicked the Send button...
+        if(view.getId() == R.id.button_send) {
 
-            // If first name and last name input are both valid...
-            if(mValidFirstName && mValidLastName) {
+            // If email input is valid...
+            if(mValidEmail) {
 
-                // Create intent to launch Create Account 2 activity
-                Intent nextIntent = new Intent(getActivity(), CreateAccountActivity2.class);
+                // Let them know a password reset email will be sent
+                Toast.makeText(getContext(), getString(R.string.reset_email_sent), Toast.LENGTH_LONG).show();
 
-                // Pass first and last name into sending intent
-                nextIntent.putExtra(EXTRA_FIRST_NAME, mFirstName);
-                nextIntent.putExtra(EXTRA_LAST_NAME, mLastName);
+                // Call Firebase method to send password reset email
+                FirebaseUtils.forgotPassword(mEmail);
 
-                // Launch Create Account 2 activity
-                startActivity(nextIntent);
+                // Launch Login activity
+                Intent loginIntent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(loginIntent);
                 Objects.requireNonNull(getActivity()).finish();
             }
 
@@ -108,10 +103,10 @@ public class CreateAccountFragment1 extends Fragment implements View.OnClickList
             }
         }
 
-        // If user clicked the Cancel button launch the Login activity
+        // If the user clicked the Cancel button, launch the Login activity
         else if(view.getId() == R.id.button_cancel) {
-            Intent cancelIntent = new Intent(getActivity(), MainActivity.class);
-            startActivity(cancelIntent);
+            Intent loginIntent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(loginIntent);
             Objects.requireNonNull(getActivity()).finish();
         }
     }
@@ -119,17 +114,19 @@ public class CreateAccountFragment1 extends Fragment implements View.OnClickList
     @Override
     public void onFocusChange(View view, boolean hasFocus) {
 
-        // Reference all unnecessary UI elements
+        // Reference unnecessary UI elements
         TextView header1 = mView.findViewById(R.id.header1);
         TextView header2 = mView.findViewById(R.id.header2);
         ImageView heartIcon = mView.findViewById(R.id.heart_icon);
+        TextView welcomeText = mView.findViewById(R.id.text_welcome);
         ImageView background = mView.findViewById(R.id.background);
 
-        // If any input field has focus, hide all unnecessary UI elements
-        if((view.getId() == R.id.input_firstName && hasFocus) || (view.getId() == R.id.input_lastName && hasFocus)) {
+        // If an input field is in focus, hide all unnecessary UI elements
+        if((view.getId() == R.id.input_email && hasFocus) || (view.getId() == R.id.input_password && hasFocus)) {
             header1.setVisibility(View.GONE);
             header2.setVisibility(View.GONE);
             heartIcon.setVisibility(View.GONE);
+            welcomeText.setVisibility(View.GONE);
             background.setVisibility(View.INVISIBLE);
         }
 
@@ -138,12 +135,10 @@ public class CreateAccountFragment1 extends Fragment implements View.OnClickList
             header1.setVisibility(View.VISIBLE);
             header2.setVisibility(View.VISIBLE);
             heartIcon.setVisibility(View.VISIBLE);
+            welcomeText.setVisibility(View.VISIBLE);
             background.setVisibility(View.VISIBLE);
         }
     }
-
-
-
 
     // Custom methods
     // Custom method to animate header
@@ -183,92 +178,55 @@ public class CreateAccountFragment1 extends Fragment implements View.OnClickList
 
     // Custom method to set click listener
     private void setClickListener(View view) {
+        // Set Send button listener
+        Button sendButton = view.findViewById(R.id.button_send);
+        sendButton.setOnClickListener(this);
 
         // Set Cancel button listener
         Button cancelButton = view.findViewById(R.id.button_cancel);
         cancelButton.setOnClickListener(this);
-
-        // Set Next button listener
-        Button nextButton = view.findViewById(R.id.button_next);
-        nextButton.setOnClickListener(this);
     }
 
-    // Custom method to set text change listener
+    // Custom method to set text changed listener
     private void setTextChangeListener(View view) {
-        // Set First Name input field listener
-        final EditText firstNameInput = view.findViewById(R.id.input_firstName);
-        firstNameInput.setOnFocusChangeListener(this);
-        firstNameInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
+        // Set Email input listener
+        final EditText emailInput = view.findViewById(R.id.input_email);
+        emailInput.setOnFocusChangeListener(this);
+        emailInput.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public void onTextChanged(CharSequence s, int arg1, int arg2, int arg3) {
 
-                // If input is valid...
-                if(InputUtils.validName(firstNameInput.getText().toString())) {
+                // If input is a valid email address...
+                if(InputUtils.validEmail(emailInput.getText().toString())) {
 
                     // Turn input field green
-                    firstNameInput.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorInputValid)));
+                    emailInput.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorInputValid)));
 
                     // Reference input in class properties
-                    mFirstName = firstNameInput.getText().toString().trim();
+                    mEmail = emailInput.getText().toString();
 
                     // Indicate input is valid
-                    mValidFirstName = true;
+                    mValidEmail = true;
                 }
 
                 // If input is invalid...
                 else {
 
                     // Turn input field red
-                    firstNameInput.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorInputInvalid)));
+                    emailInput.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorInputInvalid)));
 
                     // Indicate input is invalid
-                    mValidFirstName = false;
+                    mValidEmail = false;
                 }
             }
 
             @Override
-            public void afterTextChanged(Editable s) {}
-        });
-
-        // Set last name input field listener
-        final EditText lastNameInput = view.findViewById(R.id.input_lastName);
-        lastNameInput.setOnFocusChangeListener(this);
-        lastNameInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public void afterTextChanged(Editable arg0) {}
 
-                // If input is valid...
-                if(InputUtils.validName(lastNameInput.getText().toString())) {
-
-                    // Turn input field green
-                    lastNameInput.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorInputValid)));
-
-                    // Reference input in class properties
-                    mLastName = lastNameInput.getText().toString().trim();
-
-                    // Indicate input is valid
-                    mValidLastName = true;
-                }
-
-                // If input is invalid...
-                else {
-
-                    // Turn input field red
-                    lastNameInput.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorInputInvalid)));
-
-                    // Indicate input is invalid
-                    mValidLastName = false;
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {}
         });
     }
 
@@ -282,12 +240,10 @@ public class CreateAccountFragment1 extends Fragment implements View.OnClickList
             public void onVisibilityChanged(boolean isOpen) {
 
                 // If keyboard is not open, clear focus on all input fields
-                if(!isOpen) {
-                    EditText firstNameInput = view.findViewById(R.id.input_firstName);
-                    EditText lastNameInput = view.findViewById(R.id.input_lastName);
+                if (!isOpen) {
+                    EditText emailInput = view.findViewById(R.id.input_email);
 
-                    firstNameInput.clearFocus();
-                    lastNameInput.clearFocus();
+                    emailInput.clearFocus();
                 }
             }
         });

@@ -39,8 +39,10 @@ public class LoadingFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate layout
         View view = inflater.inflate(R.layout.fragment_loading, container, false);
 
+        // Call custom methods to animate header and check existing user
         animateHeader(view);
         checkExistingUser();
 
@@ -50,13 +52,16 @@ public class LoadingFragment extends Fragment {
 
 
     // Custom methods
-    // Custom methods
+    // Custom method to animate header
     private void animateHeader(View view) {
+
+        // Animate left side of header
         TextView header1 = view.findViewById(R.id.header1);
         Animation header1TextAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left);
         header1TextAnimation.reset();
         header1.startAnimation(header1TextAnimation);
 
+        // Animate right side of header
         TextView header2 = view.findViewById(R.id.header2);
         Animation header2TextAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_right);
         header2TextAnimation.reset();
@@ -87,7 +92,10 @@ public class LoadingFragment extends Fragment {
         loadingProgress.startAnimation(progressAnimation);
     }
 
+    // Custom method to check existing user
     private void checkExistingUser() {
+
+        // Check for existing user
         FirebaseUtils.checkForAuth(getActivity());
     }
 }

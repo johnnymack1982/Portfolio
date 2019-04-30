@@ -3,14 +3,9 @@ package com.mack.john.crypjoy_androidedition;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.mack.john.crypjoy_androidedition.fragments.LoadingFragment;
 import com.mack.john.crypjoy_androidedition.fragments.LoginFragment;
 
 public class LoginActivity extends AppCompatActivity {
-
-
-
-    // Class properties
 
 
 
@@ -20,6 +15,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Call custom method to inflate Login fragment
         displayFragment();
     }
 

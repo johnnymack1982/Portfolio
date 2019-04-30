@@ -280,7 +280,7 @@ public class LoggingFragment extends Fragment implements View.OnClickListener {
 
     private void showConfetti() {
         CommonConfetti.explosion((ViewGroup) mView.findViewById(R.id.confettiView), 500, 500,
-                new int[] {getActivity().getResources().getColor(R.color.colorPrimary),
+                new int[] {Objects.requireNonNull(getActivity()).getResources().getColor(R.color.colorPrimary),
                             getActivity().getResources().getColor(R.color.colorAccent),
                             getActivity().getResources().getColor(R.color.colorTextSecondary)}).oneShot();
     }

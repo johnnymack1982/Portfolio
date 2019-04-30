@@ -193,7 +193,7 @@ public class DailyDetailsFragment extends Fragment implements View.OnClickListen
 
     // Call custom method to display progress for the current day
     private void displayProgress(View view) {
-        File targetDir = getActivity().getFilesDir();
+        File targetDir = Objects.requireNonNull(getActivity()).getFilesDir();
         File userFile = new File(targetDir + FirebaseUtils.FILE_USER);
         User user = null;
 
@@ -212,7 +212,7 @@ public class DailyDetailsFragment extends Fragment implements View.OnClickListen
         }
 
         // Define and start view header animation
-        String firstName = user.getFirstName();
+        String firstName = Objects.requireNonNull(user).getFirstName();
         String welcome1 = getString(R.string.welcome_back1);
         String welcome2 = getString(R.string.welcome_back2);
 

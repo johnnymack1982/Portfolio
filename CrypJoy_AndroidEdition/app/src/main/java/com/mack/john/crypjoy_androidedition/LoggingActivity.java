@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.mack.john.crypjoy_androidedition.fragments.LoggingFragment;
-import com.mack.john.crypjoy_androidedition.fragments.LoginFragment;
 
 public class LoggingActivity extends AppCompatActivity {
 

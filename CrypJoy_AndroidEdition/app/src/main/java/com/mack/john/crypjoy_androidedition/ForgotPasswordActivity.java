@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.mack.john.crypjoy_androidedition.fragments.CreateAccountFragment2;
+import com.mack.john.crypjoy_androidedition.fragments.ForgotPasswordFragment;
 
-public class CreateAccountActivity2 extends AppCompatActivity {
+public class ForgotPasswordActivity extends AppCompatActivity {
 
 
 
@@ -18,8 +18,9 @@ public class CreateAccountActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_account2);
+        setContentView(R.layout.activity_forgot_password);
 
+        // Call custom method to inflate Forgot Password Activity
         displayFragment();
     }
 
@@ -28,17 +29,19 @@ public class CreateAccountActivity2 extends AppCompatActivity {
         super.onBackPressed();
 
         // Return to Login activity
-        Intent backIntent = new Intent(this, LoginActivity.class);
-        startActivity(backIntent);
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        startActivity(loginIntent);
         finish();
     }
 
+
+
     // Custom methods
-    // Custom method to inflate Login Fragment
+    // Custom method to inflate Forgot Password Fragment
     private void displayFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.frame_fragment_create2, CreateAccountFragment2.newInstance(), CreateAccountFragment2.TAG)
+                .replace(R.id.frame_fragment_forgot_password, ForgotPasswordFragment.newInstance(), ForgotPasswordFragment.TAG)
                 .commit();
     }
 }

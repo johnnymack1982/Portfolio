@@ -39,9 +39,6 @@ public class LifetimeDetailsFragment extends Fragment implements View.OnClickLis
     private FloatingActionButton mAddButton;
     private AddButtonUtils mAddButtonUtils;
 
-    private ViewGroup mContainer;
-
-
 
     // Constructor
     public LifetimeDetailsFragment() {}
@@ -118,6 +115,7 @@ public class LifetimeDetailsFragment extends Fragment implements View.OnClickLis
             startActivity(mapIntent);
         }
 
+        // If user clicked Logout button, log them out
         else if(item.getItemId() == R.id.action_logout) {
             FirebaseUtils.logout(getActivity());
         }

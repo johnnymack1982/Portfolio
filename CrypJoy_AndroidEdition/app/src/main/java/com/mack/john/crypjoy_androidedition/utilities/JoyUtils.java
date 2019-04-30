@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.mack.john.crypjoy_androidedition.DailyDetailsActivity;
 import com.mack.john.crypjoy_androidedition.MainActivity;
 import com.mack.john.crypjoy_androidedition.objects.Get;
 import com.mack.john.crypjoy_androidedition.objects.Give;
@@ -73,6 +72,7 @@ public class JoyUtils {
             objectOutputStream.close();
             fileOutputStream.close();
 
+            // Save to cloud storage
             FirebaseUtils.saveDailyProgress(mJoy);
         }
 
@@ -95,6 +95,7 @@ public class JoyUtils {
             objectOutputStream.close();
             fileOutputStream.close();
 
+            // Save to cloud storage
             FirebaseUtils.saveLifetimeProgress(mLifetimeJoy);
         }
 
@@ -117,6 +118,7 @@ public class JoyUtils {
             objectOutputStream.close();
             fileOutputStream.close();
 
+            // Save to cloud storage
             FirebaseUtils.saveWeeklyGiveActions(mWeeklyGiven);
         }
 
@@ -139,6 +141,7 @@ public class JoyUtils {
             objectOutputStream.close();
             fileOutputStream.close();
 
+            // Save to cloud storage
             FirebaseUtils.saveWeeklyReceivedActions(mWeeklyReceived);
         }
 
@@ -171,6 +174,7 @@ public class JoyUtils {
                 mJoy = new Joy(date);
             }
 
+            // Call custom method to check validity of loaded daily joy data
             checkDailyJoyValidity();
         }
 
@@ -375,21 +379,16 @@ public class JoyUtils {
         }
     }
 
+    // Custom method to clear all cached data
     public void clearCache() {
-        File targetDir = mContext.getFilesDir();
+        // Delete files
+        mContext.deleteFile(JOY_DATA);
+        mContext.deleteFile(LIFETIME_JOY_DATA);
+        mContext.deleteFile(WEEKLY_GIVEN_DATA);
+        mContext.deleteFile(WEEKLY_RECEIVED_DATA);
+        mContext.deleteFile(FirebaseUtils.FILE_USER);
 
-        File dailyJoyFile = new File(targetDir, JOY_DATA);
-        File lifetimeJoyFile = new File(targetDir, LIFETIME_JOY_DATA);
-        File weeklyGivenData = new File(targetDir, WEEKLY_GIVEN_DATA);
-        File weeklyReceivedData = new File(targetDir, WEEKLY_RECEIVED_DATA);
-        File userData = new File(targetDir, FirebaseUtils.FILE_USER);
-
-        dailyJoyFile.delete();
-        lifetimeJoyFile.delete();
-        weeklyGivenData.delete();
-        weeklyReceivedData.delete();
-        userData.delete();
-
+        // Restart application
         Intent restartIntent = new Intent(mContext, MainActivity.class);
         mContext.startActivity(restartIntent);
         ((Activity) mContext).finish();

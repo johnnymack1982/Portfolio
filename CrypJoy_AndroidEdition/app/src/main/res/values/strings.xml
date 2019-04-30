@@ -55,9 +55,9 @@
     <string name="next">NEXT</string>
     <string name="hey_john_now_let_s_finish_up_easy_right">Hey, John! Now, let’s finish up. Easy, right?</string>
     <string name="confirm_password">Confirm Password</string>
-    <string name="password_instructions">Your password should start with a capital letter. It should also contain at least one number and one special character and be at least six characters long.</string>
+    <string name="password_instructions">Your password should be at least 6 characters long and contain a mix of letters and numbers</string>
     <string name="finish">FINISH</string>
-    <string name="password_rules">6 characters, 1 Capital, 1 number, and 1 special character</string>
+    <string name="password_rules">At least 6 characters, mix of letters and numbers</string>
     <string name="invalid_input">Hmmm. Something doesn\'t look right...</string>
     <string name="password_match_rules">Your passwords don\'t match</string>
     <string name="invalid_user">Looks like you might need to check your e-mail or password and try again...</string>
@@ -65,4 +65,10 @@
     <string name="logout">Logout</string>
     <string name="welcome_back1">Welcome back,</string>
     <string name="welcome_back2">! Let\'s see how we\'re doing today.</string>
+    <string name="forgot_password">forgot password?</string>
+    <string name="forgot_password_instructions">Forgot your password, huh? Not a problem. Enter your e-mail and we\'ll send you a reset link. :-)</string>
+    <string name="send">SEND</string>
+    <string name="reset_email_sent">If an account exists for this e-mail address, you\'ll receive a reset link shortly</string>
+    <string name="welcome1">Hey,</string>
+    <string name="welcome2">! Now, let\'s finish up. Easy right?</string>
 </resources>

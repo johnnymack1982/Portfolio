@@ -2,11 +2,9 @@ package com.mack.john.crypjoy_androidedition;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.mack.john.crypjoy_androidedition.fragments.CreateAccountFragment1;
-import com.mack.john.crypjoy_androidedition.fragments.LoginFragment;
 
 public class CreateAccountActivity1 extends AppCompatActivity {
 
@@ -29,7 +27,8 @@ public class CreateAccountActivity1 extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        Intent backIntent = new Intent(this, MainActivity.class);
+        // Return to login activity
+        Intent backIntent = new Intent(this, LoginActivity.class);
         startActivity(backIntent);
         finish();
     }
