@@ -62,7 +62,7 @@
 	* TicTacToe - _Simulates a basic Tic Tac Toe game, which allows users to take turns placing their move on the play surface._
     
 ######
-* ** Matchly ** _A simple matching game, complete with animations, sound effects, and theme music. This application includes the game, which supports different grid sizes for different devices (iPhone, iPad, etc.), and a leaderboard that tracks high scores. This applications is a good showcase of visual and user experience design skills._
+* **Matchly** _A simple matching game, complete with animations, sound effects, and theme music. This application includes the game, which supports different grid sizes for different devices (iPhone, iPad, etc.), and a leaderboard that tracks high scores. This applications is a good showcase of visual and user experience design skills._
 	
 ######
 * **Keep Calm and Calendar** - _This marks the first fully functional iOS application developed for the purposes of this portfolio. This is also an ongoing passion project that is being developed with parents of children with Autism in mind. When complete, this application will provide users with a platorm to provide children with Autism with a visual representation of their daily activities._
