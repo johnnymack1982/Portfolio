@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">Fam.ly - Android Edition</string>
+    <string name="logo">Logo</string>
+    <string name="master_e_mail">Master E-mail</string>
+    <string name="master_password">Master Password</string>
+    <string name="login">LOGIN</string>
+    <string name="forgot_password">FORGOT PASSWORD?</string>
+    <string name="don_t_have_an_account_yet">Don\'t have an account yet?</string>
+    <string name="let_s_make_one">LET\'S MAKE ONE!</string>
+    <string name="first_name">First Name</string>
+    <string name="profile_pin_4_digits">Profile Pin (4 Digits)</string>
+    <string name="continue_text">CONTINUE</string>
+    <string name="forgot_instructions">Forgot our password? No problem!\nEnter your Master E-mail and we\'ll send you a reset link.</string>
+    <string name="send">SEND</string>
+    <string name="family_name_last_name">Family Name (Last Name)</string>
+    <string name="street_address">Street Address</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="confirm_master_password">Confirm Master Password</string>
+    <string name="family_photo">Family Photo</string>
+    <string name="add_family_photo">ADD FAMILY PHOTO</string>
+    <string name="would_you_like_to_add_additional_family_members_you_can_always_add_more_later">Would you like to add additional family members?\nYou can always add more later.</string>
+    <string name="add_parent">ADD PARENT</string>
+    <string name="add_child">ADD CHILD</string>
+    <string name="finish">FINISH</string>
+    <string name="family_role">Family Role</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="calendar_icon">Calendar Icon</string>
+    <string name="gender">Gender</string>
+    <string name="confirm_profile_pin">Confirm Profile Pin</string>
+    <string name="profile_photo">Profile Photo</string>
+    <string name="add_photo">ADD PHOTO</string>
+    <string name="create">CREATE</string>
+    <string name="newsfeed">NewsFeed</string>
+    <string name="permission_request">Permission Request</string>
+    <string name="check_in">Check-In</string>
+    <string name="profile">Profile</string>
+    <string name="permission">Permission</string>
+    <string name="what_s_going_on">What\'s going on?</string>
+    <string name="camera_button">Camera Button</string>
+    <string name="update">UPDATE</string>
+    <string name="request_permission">Request Permission</string>
+    <string name="request">REQUEST</string>
+    <string name="what_s_happening_where_you_are">What\'s happening where you are?</string>
+    <string name="map">Map</string>
+    <string name="find_family_member">FIND FAMILY MEMBER</string>
+    <string name="brelynn_mack">Brelynn Mack</string>
+    <string name="may_14_2019_9_59_pm">May 14, 2019 @ 9:59 PM</string>
+    <string name="_8741_grouse_run_lane_28314">8741 Grouse Run Lane, 28314</string>
+    <string name="trash_button">Trash Button</string>
+    <string name="edit_button">Edit Button</string>
+    <string name="family_button">Family Button</string>
+    <string name="looking_for_someone">Looking for someone?</string>
+    <string name="mack_family">Mack Family</string>
+
+    <array name="family_roles">
+        <item>Mother</item>
+        <item>Father</item>
+        <item>Grandmother</item>
+        <item>Grandfather</item>
+        <item>Aunt</item>
+        <item>Uncle</item>
+    </array>
+
+    <array name="genders">
+        <item>Female</item>
+        <item>Male</item>
+    </array>
+</resources>

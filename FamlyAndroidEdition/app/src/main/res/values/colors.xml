@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffa669</color>
+    <color name="colorPrimaryDark">#ffa600</color>
+    <color name="colorAccent">#447E4B</color>
+
+    <color name="colorSunPrimary">#ffa669</color>
+    <color name="colorSunLight">#ffccb8</color>
+    <color name="colorSunDark">#ffa600</color>
+
+    <color name="colorSkyPrimary">#ccf0ff</color>
+    <color name="colorSkyMedium">#a6f0ff</color>
+    <color name="colorSkyDark">#73F0FF</color>
+
+    <color name="colorGrassPrimary">#447E4B</color>
+    <color name="colorGrassLight">#b1f099</color>
+    <color name="colorGrassMedium">#48f07d</color>
+
+    <color name="colorTextPrimary">#697e85</color>
+    <color name="colorTextDark">#303a3d</color>
+    <color name="colorTextLight">#a1c2cc</color>
+    <color name="colorButtonText">#F9F9F9</color>
+
+</resources>

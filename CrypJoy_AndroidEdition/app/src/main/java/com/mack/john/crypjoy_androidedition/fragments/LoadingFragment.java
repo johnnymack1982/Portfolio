@@ -95,7 +95,7 @@ public class LoadingFragment extends Fragment {
     // Custom method to check existing user
     private void checkExistingUser() {
 
-        // Check for existing user
+        // Check for existing usero
         FirebaseUtils.checkForAuth(getActivity());
     }
 }

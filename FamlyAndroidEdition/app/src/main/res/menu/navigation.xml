@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_newsfeed"
+        android:icon="@drawable/newsfeed_icon"
+        android:title="@string/newsfeed" />
+
+    <item
+        android:id="@+id/navigation_permission"
+        android:icon="@drawable/permission_icon"
+        android:title="@string/permission"/>
+
+    <item
+        android:id="@+id/navigation_checkin"
+        android:icon="@drawable/checkin_icon"
+        android:title="@string/check_in" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/profile_icon"
+        android:title="@string/profile" />
+
+</menu>

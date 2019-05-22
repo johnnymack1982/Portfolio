@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSkyPrimary">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:elevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/family_photo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:contentDescription="@string/add_family_photo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/family_icon_large" />
+
+        <TextView
+            android:id="@+id/display_family_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/mack_family"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorTextDark"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/button_edit_family"
+            app:layout_constraintStart_toEndOf="@+id/family_photo"
+            app:layout_constraintTop_toTopOf="@+id/family_photo" />
+
+        <TextView
+            android:id="@+id/display_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/_8741_grouse_run_lane_28314"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/family_photo"
+            app:layout_constraintTop_toBottomOf="@+id/display_family_name" />
+
+        <ImageButton
+            android:id="@+id/button_edit_family"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:background="@android:color/white"
+            android:contentDescription="@string/edit_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/display_family_name"
+            app:srcCompat="@drawable/edit_icon" />
+
+        <ImageButton
+            android:id="@+id/button_delete_family"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/white"
+            android:contentDescription="@string/trash_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/trash_icon" />
+
+        <ImageButton
+            android:id="@+id/button_edit_family_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/white"
+            android:contentDescription="@string/edit_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/family_photo"
+            app:layout_constraintStart_toStartOf="@+id/family_photo"
+            app:layout_constraintTop_toBottomOf="@+id/family_photo"
+            app:srcCompat="@drawable/edit_icon" />
+    </android.support.constraint.ConstraintLayout>
+
+    <GridView
+        android:id="@+id/grid_family"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
+</android.support.constraint.ConstraintLayout>
