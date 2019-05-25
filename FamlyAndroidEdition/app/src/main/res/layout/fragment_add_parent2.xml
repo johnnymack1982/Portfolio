@@ -27,31 +27,27 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.60" />
 
-    <ImageView
-        android:id="@+id/profile_photo"
+    <ImageButton
+        android:id="@+id/button_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="@string/profile_photo"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/guideline10"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="110dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/camera_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/male_icon_large" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_photo"
+        app:srcCompat="@drawable/camera_icon_large" />
 
-    <Button
-        android:id="@+id/button_add_photo"
-        style="@style/Widget.AppCompat.Button.Borderless"
+    <ImageButton
+        android:id="@+id/button_gallery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/add_photo"
-        android:textColor="@color/colorGrassPrimary"
+        android:layout_marginEnd="110dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/gallery_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_photo" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_photo"
+        app:srcCompat="@drawable/gallery_icon" />
 
     <Button
         android:id="@+id/button_cancel"
@@ -66,7 +62,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button_create"
+        android:id="@+id/button_continue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -76,4 +72,19 @@
         android:textColor="@color/colorButtonText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_photo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/male_icon_large"
+        app:civ_border_color="@android:color/transparent"
+        app:civ_border_width="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 </android.support.constraint.ConstraintLayout>

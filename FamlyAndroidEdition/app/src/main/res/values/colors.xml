@@ -21,4 +21,7 @@
     <color name="colorTextLight">#a1c2cc</color>
     <color name="colorButtonText">#F9F9F9</color>
 
+    <color name="colorInputInvalid">#D59096</color>
+    <color name="colorInputValid">#90D5A5</color>
+
 </resources>

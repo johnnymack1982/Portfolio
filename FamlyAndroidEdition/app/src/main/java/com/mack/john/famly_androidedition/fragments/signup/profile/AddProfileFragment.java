@@ -12,8 +12,13 @@ import android.widget.Button;
 
 import com.mack.john.famly_androidedition.R;
 import com.mack.john.famly_androidedition.NavigationActivity;
+import com.mack.john.famly_androidedition.objects.account.Account;
+import com.mack.john.famly_androidedition.objects.account.profile.Parent;
+import com.mack.john.famly_androidedition.objects.account.profile.Profile;
 import com.mack.john.famly_androidedition.signup.profile.child.AddChild1Activity;
 import com.mack.john.famly_androidedition.signup.profile.parent.AddParent1Activity;
+import com.mack.john.famly_androidedition.utils.AccountUtils;
+import com.mack.john.famly_androidedition.utils.ButtonUtils;
 
 public class AddProfileFragment extends Fragment implements View.OnClickListener {
 
@@ -21,6 +26,8 @@ public class AddProfileFragment extends Fragment implements View.OnClickListener
 
     // Class properties
     public static final String TAG = "AddProfileFragment";
+
+    Account mAccount;
 
 
 
@@ -38,7 +45,10 @@ public class AddProfileFragment extends Fragment implements View.OnClickListener
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_profile, container, false);
 
+        mAccount = AccountUtils.loadAccount(getActivity());
+
         setClickListener(view);
+        toggleParentButton(view);
 
         return view;
     }
@@ -72,5 +82,25 @@ public class AddProfileFragment extends Fragment implements View.OnClickListener
         addParentButton.setOnClickListener(this);
         addChildButton.setOnClickListener(this);
         finishButton.setOnClickListener(this);
+    }
+
+    private void toggleParentButton(View view) {
+        Button addParentButton = view.findViewById(R.id.button_add_parent);
+        int parentCount = 0;
+
+        for(Profile profile : mAccount.getProfiles()) {
+            if(profile instanceof Parent) {
+                parentCount += 1;
+
+                if(parentCount == 2) {
+                    ButtonUtils.disableParentButton(getActivity(), view);
+                    break;
+                }
+
+                else {
+                    ButtonUtils.enableParentButton(getActivity(), view);
+                }
+            }
+        }
     }
 }

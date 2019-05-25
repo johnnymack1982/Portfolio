@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/family_photo"
+            android:id="@+id/profile_photo"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="32dp"
@@ -39,8 +39,8 @@
             android:textColor="@color/colorTextDark"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/button_edit_family"
-            app:layout_constraintStart_toEndOf="@+id/family_photo"
-            app:layout_constraintTop_toTopOf="@+id/family_photo" />
+            app:layout_constraintStart_toEndOf="@+id/profile_photo"
+            app:layout_constraintTop_toTopOf="@+id/profile_photo" />
 
         <TextView
             android:id="@+id/display_address"
@@ -51,7 +51,7 @@
             android:text="@string/_8741_grouse_run_lane_28314"
             android:textColor="@color/colorTextPrimary"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/family_photo"
+            app:layout_constraintStart_toEndOf="@+id/profile_photo"
             app:layout_constraintTop_toBottomOf="@+id/display_family_name" />
 
         <ImageButton
@@ -86,9 +86,9 @@
             android:background="@android:color/white"
             android:contentDescription="@string/edit_button"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/family_photo"
-            app:layout_constraintStart_toStartOf="@+id/family_photo"
-            app:layout_constraintTop_toBottomOf="@+id/family_photo"
+            app:layout_constraintEnd_toEndOf="@+id/profile_photo"
+            app:layout_constraintStart_toStartOf="@+id/profile_photo"
+            app:layout_constraintTop_toBottomOf="@+id/profile_photo"
             app:srcCompat="@drawable/edit_icon" />
     </android.support.constraint.ConstraintLayout>
 

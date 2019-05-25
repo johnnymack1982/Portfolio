@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1063906005694",
+    "firebase_url": "https://famly-2eae0.firebaseio.com",
+    "project_id": "famly-2eae0",
+    "storage_bucket": "famly-2eae0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063906005694:android:3b211ceb9fe1e689",
+        "android_client_info": {
+          "package_name": "com.mack.john.famly_androidedition"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1063906005694-aoar1eernuhp3jodqijmojam1h435at1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mack.john.famly_androidedition",
+            "certificate_hash": "6b9c374bccbbaee9fcd1470d662dc7b2e132ae3e"
+          }
+        },
+        {
+          "client_id": "1063906005694-bfoknh8k1ifp8h9fmbao4chu6i0rcnlo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp1tj8xamjAAAmZ1WxIPB0ycC245l75xg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1063906005694-bfoknh8k1ifp8h9fmbao4chu6i0rcnlo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

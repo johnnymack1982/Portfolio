@@ -36,7 +36,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button_create"
+        android:id="@+id/button_continue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -135,12 +135,14 @@
         android:layout_marginBottom="8dp"
         android:backgroundTint="@color/colorSkyPrimary"
         android:ems="10"
+        android:focusable="false"
         android:hint="@string/date_of_birth"
+        android:importantForAutofill="no"
         android:inputType="date"
         app:layout_constraintBottom_toTopOf="@+id/guideline12"
         app:layout_constraintEnd_toStartOf="@+id/guideline13"
         app:layout_constraintStart_toStartOf="parent"
-        android:importantForAutofill="no" tools:targetApi="o" />
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/input_profile_pin"

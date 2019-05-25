@@ -67,6 +67,7 @@
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/colorSkyPrimary"
         android:ems="10"
+        android:focusable="false"
         android:hint="@string/date_of_birth"
         android:importantForAutofill="no"
         android:inputType="date"
@@ -103,7 +104,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/colorButtonText"
+        android:backgroundTint="@android:color/transparent"
         android:contentDescription="@string/calendar_icon"
         android:tint="@color/colorSunDark"
         app:layout_constraintBottom_toBottomOf="@+id/input_dob"
@@ -120,7 +121,7 @@
         android:backgroundTint="@color/colorSkyPrimary"
         android:ems="10"
         android:hint="@string/first_name"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         app:layout_constraintBottom_toTopOf="@+id/input_dob"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -171,7 +172,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button_create"
+        android:id="@+id/button_continue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

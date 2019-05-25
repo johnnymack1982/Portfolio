@@ -37,11 +37,12 @@
         android:backgroundTint="@color/colorSkyPrimary"
         android:ems="10"
         android:hint="@string/family_name_last_name"
-        android:inputType="textPersonName"
+        android:importantForAutofill="no"
+        android:inputType="textCapWords"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:importantForAutofill="no" tools:targetApi="o" />
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/input_address"
@@ -54,7 +55,7 @@
         android:ems="10"
         android:hint="@string/street_address"
         android:importantForAutofill="no"
-        android:inputType="textPostalAddress"
+        android:inputType="textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
@@ -89,7 +90,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button_create"
+        android:id="@+id/button_continue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
