@@ -1,0 +1,6 @@
+framework module Pods_Fam_ly___iOS_Edition {
+  umbrella header "Pods-Fam.ly - iOS Edition-umbrella.h"
+
+  export *
+  module * { export * }
+}

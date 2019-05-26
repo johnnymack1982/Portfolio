@@ -260,29 +260,6 @@ public class AccountUtils {
                 });
     }
 
-//    public static Account loadAccount(Context context) {
-//        Account account = new Account(null, null, 0, null, null);
-//
-//        File targetDir = context.getFilesDir();
-//        File accountFile = new File(targetDir + ACCOUNT_DATA);
-//
-//        try {
-//            FileInputStream fileInputStream = new FileInputStream(accountFile);
-//            ObjectInputStream objectOutputStream = new ObjectInputStream(fileInputStream);
-//
-//            account = (Account) objectOutputStream.readObject();
-//
-//            objectOutputStream.close();
-//            fileInputStream.close();
-//        }
-//
-//        catch (IOException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return account;
-//    }
-
     public static Bitmap loadAccountPhoto(Context context) {
         Bitmap photo = null;
 

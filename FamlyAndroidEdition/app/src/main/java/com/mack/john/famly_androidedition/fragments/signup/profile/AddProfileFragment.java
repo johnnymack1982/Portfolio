@@ -85,7 +85,6 @@ public class AddProfileFragment extends Fragment implements View.OnClickListener
     }
 
     private void toggleParentButton(View view) {
-        Button addParentButton = view.findViewById(R.id.button_add_parent);
         int parentCount = 0;
 
         for(Profile profile : mAccount.getProfiles()) {
