@@ -38,22 +38,6 @@ class MasterSignup1Controller: UIViewController {
         ButtonUtils.disableButton(button: continueButton)
     }
     
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        var shouldContinue = false
-        
-        if identifier == "Master1ToMaster2" {
-            if mValidFamilyName && mValidStreetAddress && mValidPostalCode {
-                shouldContinue = true
-            }
-            
-            else {
-                shouldContinue = false
-            }
-        }
-        
-        return shouldContinue
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is MasterSignup2Controller {
             let destination = segue.destination as? MasterSignup2Controller

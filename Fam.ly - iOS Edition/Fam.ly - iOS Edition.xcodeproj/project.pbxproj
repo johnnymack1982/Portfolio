@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E4C0A3226044D002583A7646 /* Pods_Fam_ly___iOS_Edition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD84FAA39690810BEBF502B /* Pods_Fam_ly___iOS_Edition.framework */; };
+		F23C9749229C51B3006D46CD /* ProfileLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C9748229C51B3006D46CD /* ProfileLoginController.swift */; };
+		F23C974B229C7831006D46CD /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C974A229C7831006D46CD /* ForgotPasswordController.swift */; };
+		F2C68BE9229CAFB80069E001 /* EditFamilyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C68BE8229CAFB80069E001 /* EditFamilyController.swift */; };
 		F2F5FDAC22962EF3002A5513 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F5FDAB22962EF3002A5513 /* TabBarController.swift */; };
 		F2F5FDB222963B14002A5513 /* NewsfeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F5FDB122963B14002A5513 /* NewsfeedController.swift */; };
 		F2F5FDB42296406F002A5513 /* PermissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F5FDB32296406F002A5513 /* PermissionController.swift */; };
@@ -59,6 +62,9 @@
 		3BD84FAA39690810BEBF502B /* Pods_Fam_ly___iOS_Edition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_Fam_ly___iOS_Edition.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D898B32D629CC2B57EC5735 /* Pods-Fam.ly - iOS Edition.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fam.ly - iOS Edition.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fam.ly - iOS Edition/Pods-Fam.ly - iOS Edition.debug.xcconfig"; sourceTree = "<group>"; };
 		9AFE2D9965DBB8EA4AEC0B74 /* Pods-Fam.ly - iOS Edition.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fam.ly - iOS Edition.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fam.ly - iOS Edition/Pods-Fam.ly - iOS Edition.release.xcconfig"; sourceTree = "<group>"; };
+		F23C9748229C51B3006D46CD /* ProfileLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLoginController.swift; sourceTree = "<group>"; };
+		F23C974A229C7831006D46CD /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
+		F2C68BE8229CAFB80069E001 /* EditFamilyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFamilyController.swift; sourceTree = "<group>"; };
 		F2F5FDAB22962EF3002A5513 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		F2F5FDB122963B14002A5513 /* NewsfeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedController.swift; sourceTree = "<group>"; };
 		F2F5FDB32296406F002A5513 /* PermissionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionController.swift; sourceTree = "<group>"; };
@@ -137,6 +143,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F2C68BE7229CAF9A0069E001 /* Family Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F2C68BE8229CAFB80069E001 /* EditFamilyController.swift */,
+			);
+			path = "Family Profile";
+			sourceTree = "<group>";
+		};
 		F2F5FDAD22963A72002A5513 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				F2F639222295643D00AA7826 /* ViewController.swift */,
+				F23C9748229C51B3006D46CD /* ProfileLoginController.swift */,
+				F23C974A229C7831006D46CD /* ForgotPasswordController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -242,6 +258,7 @@
 				F2F5FDAF22963ABD002A5513 /* Login */,
 				F2F5FDAD22963A72002A5513 /* Signup */,
 				F2F5FDAE22963A9A002A5513 /* Navigation */,
+				F2C68BE7229CAF9A0069E001 /* Family Profile */,
 				F2F5FDBA2299666C002A5513 /* Objects */,
 				F2F5FDD62299FF96002A5513 /* Images */,
 				F2F5FDC72299AF21002A5513 /* Utils */,
@@ -441,6 +458,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2F639232295643D00AA7826 /* ViewController.swift in Sources */,
+				F23C974B229C7831006D46CD /* ForgotPasswordController.swift in Sources */,
+				F2C68BE9229CAFB80069E001 /* EditFamilyController.swift in Sources */,
+				F23C9749229C51B3006D46CD /* ProfileLoginController.swift in Sources */,
 				F2F5FDC92299AF43002A5513 /* ButtonUtils.swift in Sources */,
 				F2F5FDE1229A52D7002A5513 /* ProfileSignup2.swift in Sources */,
 				F2F639212295643D00AA7826 /* AppDelegate.swift in Sources */,

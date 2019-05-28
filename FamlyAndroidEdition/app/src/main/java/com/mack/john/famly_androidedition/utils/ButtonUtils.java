@@ -35,4 +35,40 @@ public class ButtonUtils {
         addParentButton.setEnabled(false);
         addParentButton.setBackgroundTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.colorTextLight)));
     }
+
+    public static void enableLoginButton(Context context, View view) {
+        Button addParentButton = view.findViewById(R.id.button_login);
+        addParentButton.setEnabled(true);
+        addParentButton.setBackgroundTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.colorGrassPrimary)));
+    }
+
+    public static void disableLoginButton(Context context, View view) {
+        Button addParentButton = view.findViewById(R.id.button_login);
+        addParentButton.setEnabled(false);
+        addParentButton.setBackgroundTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.colorTextLight)));
+    }
+
+    public static void enableSendButton(Context context, View view) {
+        Button addParentButton = view.findViewById(R.id.button_send);
+        addParentButton.setEnabled(true);
+        addParentButton.setBackgroundTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.colorGrassPrimary)));
+    }
+
+    public static void disableSendButton(Context context, View view) {
+        Button addParentButton = view.findViewById(R.id.button_send);
+        addParentButton.setEnabled(false);
+        addParentButton.setBackgroundTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.colorTextLight)));
+    }
+
+    public static void enableSaveButton(Context context, View view) {
+        Button addParentButton = view.findViewById(R.id.button_save);
+        addParentButton.setEnabled(true);
+        addParentButton.setBackgroundTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.colorGrassPrimary)));
+    }
+
+    public static void disableSaveButton(Context context, View view) {
+        Button addParentButton = view.findViewById(R.id.button_save);
+        addParentButton.setEnabled(false);
+        addParentButton.setBackgroundTintList(ColorStateList.valueOf(context.getResources().getColor(R.color.colorTextLight)));
+    }
 }

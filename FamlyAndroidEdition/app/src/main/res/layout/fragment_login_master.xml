@@ -7,6 +7,21 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
+    <TextView
+        android:id="@+id/display_password_rules"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/at_least_6_characters_mix_of_letters_and_numbers"
+        android:textAlignment="center"
+        android:textColor="@color/colorInputInvalid"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_master_password"
+        tools:visibility="gone" />
+
     <ImageView
         android:id="@+id/logo"
         android:layout_width="268dp"

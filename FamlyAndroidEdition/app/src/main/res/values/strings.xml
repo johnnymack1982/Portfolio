@@ -55,6 +55,11 @@
     <string name="your_passwords_don_t_match">Your passwords don\'t match</string>
     <string name="gallery_button">Gallery Button</string>
     <string name="signup_unsuccessful">Looks like there was a problem signing up</string>
+    <string name="sending_reset_email">Sending reset link. Please check your email.</string>
+    <string name="no_account">It doesn\'t look like there\'s an account associated with this email</string>
+    <string name="login_unsuccessful">Couldn\'t sign you in. Please check your info and try again</string>
+    <string name="save">SAVE</string>
+    <string name="invalid_password">Invalid password</string>
 
     <array name="family_roles">
         <item>Mother</item>

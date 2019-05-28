@@ -64,6 +64,6 @@ public class Profile implements Serializable {
 
     // Custom methods
     public String getProfileId() {
-        return firstName + dateOfBirth + profilePIN;
+        return firstName + profilePIN;
     }
 }

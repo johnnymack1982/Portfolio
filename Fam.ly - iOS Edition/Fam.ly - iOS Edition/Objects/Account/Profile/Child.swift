@@ -67,9 +67,6 @@ public class Child: Codable {
     
     // Custom methods
     func getProfileId() -> String {
-        let interval = dateOfBirth.timeIntervalSince1970
-        let date = Int(interval)
-        
-        return firstName + String(date) + String(profilePin)
+        return firstName + String(profilePin)
     }
 }

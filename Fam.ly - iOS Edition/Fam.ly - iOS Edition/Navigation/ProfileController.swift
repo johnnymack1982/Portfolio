@@ -21,6 +21,6 @@ class ProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        familyButton.isHidden = true
+        familyButton.isHidden = false
     }
 }
