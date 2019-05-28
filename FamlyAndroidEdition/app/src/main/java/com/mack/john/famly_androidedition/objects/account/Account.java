@@ -90,4 +90,8 @@ public class Account implements Serializable {
     public void addProfile(Profile profile) {
         this.profiles.add(profile);
     }
+
+    public String getFullAddress() {
+        return getStreetAddress() + ", " + getPostalCode();
+    }
 }

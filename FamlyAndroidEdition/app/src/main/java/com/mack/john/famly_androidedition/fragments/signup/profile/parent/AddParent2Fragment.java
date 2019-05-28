@@ -25,7 +25,6 @@ import android.widget.ImageView;
 
 import com.mack.john.famly_androidedition.BuildConfig;
 import com.mack.john.famly_androidedition.R;
-import com.mack.john.famly_androidedition.objects.account.Account;
 import com.mack.john.famly_androidedition.objects.account.profile.Parent;
 import com.mack.john.famly_androidedition.signup.profile.AddProfileActivity;
 import com.mack.john.famly_androidedition.utils.AccountUtils;
@@ -75,7 +74,7 @@ public class AddParent2Fragment extends Fragment implements View.OnClickListener
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_parent2, container, false);
 
-        mPhotoView = view.findViewById(R.id.profile_photo);
+        mPhotoView = view.findViewById(R.id.family_photo);
 
         Intent sendingIntent = getActivity().getIntent();
 

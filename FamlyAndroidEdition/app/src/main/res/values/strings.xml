@@ -60,6 +60,12 @@
     <string name="login_unsuccessful">Couldn\'t sign you in. Please check your info and try again</string>
     <string name="save">SAVE</string>
     <string name="invalid_password">Invalid password</string>
+    <string name="change_password">Change Password</string>
+    <string name="confirm_new_master_password">Confirm New Master Password</string>
+    <string name="new_master_password">New Master Password</string>
+    <string name="old_master_pssword">Old Master Pssword</string>
+    <string name="password_updated">Password Updated</string>
+    <string name="family">Family</string>
 
     <array name="family_roles">
         <item>Mother</item>

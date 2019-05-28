@@ -35,7 +35,7 @@
         android:background="@android:color/transparent"
         android:contentDescription="@string/camera_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_photo"
+        app:layout_constraintTop_toBottomOf="@+id/family_photo"
         app:srcCompat="@drawable/camera_icon_large" />
 
     <ImageButton
@@ -46,7 +46,7 @@
         android:background="@android:color/transparent"
         android:contentDescription="@string/gallery_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_photo"
+        app:layout_constraintTop_toBottomOf="@+id/family_photo"
         app:srcCompat="@drawable/gallery_icon" />
 
     <Button
@@ -74,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_photo"
+        android:id="@+id/family_photo"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"

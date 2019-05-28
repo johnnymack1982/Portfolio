@@ -11,6 +11,8 @@
 		F23C9749229C51B3006D46CD /* ProfileLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C9748229C51B3006D46CD /* ProfileLoginController.swift */; };
 		F23C974B229C7831006D46CD /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C974A229C7831006D46CD /* ForgotPasswordController.swift */; };
 		F2C68BE9229CAFB80069E001 /* EditFamilyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C68BE8229CAFB80069E001 /* EditFamilyController.swift */; };
+		F2C68BEB229DC2140069E001 /* EditPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C68BEA229DC2140069E001 /* EditPasswordController.swift */; };
+		F2C68BED229DEF080069E001 /* FamilyProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C68BEC229DEF080069E001 /* FamilyProfileController.swift */; };
 		F2F5FDAC22962EF3002A5513 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F5FDAB22962EF3002A5513 /* TabBarController.swift */; };
 		F2F5FDB222963B14002A5513 /* NewsfeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F5FDB122963B14002A5513 /* NewsfeedController.swift */; };
 		F2F5FDB42296406F002A5513 /* PermissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F5FDB32296406F002A5513 /* PermissionController.swift */; };
@@ -65,6 +67,8 @@
 		F23C9748229C51B3006D46CD /* ProfileLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLoginController.swift; sourceTree = "<group>"; };
 		F23C974A229C7831006D46CD /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		F2C68BE8229CAFB80069E001 /* EditFamilyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFamilyController.swift; sourceTree = "<group>"; };
+		F2C68BEA229DC2140069E001 /* EditPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordController.swift; sourceTree = "<group>"; };
+		F2C68BEC229DEF080069E001 /* FamilyProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyProfileController.swift; sourceTree = "<group>"; };
 		F2F5FDAB22962EF3002A5513 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		F2F5FDB122963B14002A5513 /* NewsfeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedController.swift; sourceTree = "<group>"; };
 		F2F5FDB32296406F002A5513 /* PermissionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionController.swift; sourceTree = "<group>"; };
@@ -147,6 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				F2C68BE8229CAFB80069E001 /* EditFamilyController.swift */,
+				F2C68BEA229DC2140069E001 /* EditPasswordController.swift */,
+				F2C68BEC229DEF080069E001 /* FamilyProfileController.swift */,
 			);
 			path = "Family Profile";
 			sourceTree = "<group>";
@@ -459,6 +465,7 @@
 			files = (
 				F2F639232295643D00AA7826 /* ViewController.swift in Sources */,
 				F23C974B229C7831006D46CD /* ForgotPasswordController.swift in Sources */,
+				F2C68BEB229DC2140069E001 /* EditPasswordController.swift in Sources */,
 				F2C68BE9229CAFB80069E001 /* EditFamilyController.swift in Sources */,
 				F23C9749229C51B3006D46CD /* ProfileLoginController.swift in Sources */,
 				F2F5FDC92299AF43002A5513 /* ButtonUtils.swift in Sources */,
@@ -478,6 +485,7 @@
 				F2F5FDD12299B4EE002A5513 /* Colors.swift in Sources */,
 				F2F5FDC02299674A002A5513 /* Child.swift in Sources */,
 				F2F5FDCB2299AF55002A5513 /* InputUtils.swift in Sources */,
+				F2C68BED229DEF080069E001 /* FamilyProfileController.swift in Sources */,
 				F2F5FDD32299BF38002A5513 /* MasterSignup2Controller.swift in Sources */,
 				F2F5FDC62299ABA0002A5513 /* MasterSignup1Controller.swift in Sources */,
 				F2F6395D229615A300AA7826 /* ProfileSignup1.swift in Sources */,

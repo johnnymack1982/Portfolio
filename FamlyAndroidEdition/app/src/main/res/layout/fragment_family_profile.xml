@@ -16,8 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/profile_photo"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/family_photo"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="32dp"
@@ -25,7 +25,7 @@
             android:contentDescription="@string/add_family_photo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/family_icon_large" />
+            android:src="@drawable/family_icon_large" />
 
         <TextView
             android:id="@+id/display_family_name"
@@ -39,8 +39,8 @@
             android:textColor="@color/colorTextDark"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/button_edit_family"
-            app:layout_constraintStart_toEndOf="@+id/profile_photo"
-            app:layout_constraintTop_toTopOf="@+id/profile_photo" />
+            app:layout_constraintStart_toEndOf="@+id/family_photo"
+            app:layout_constraintTop_toTopOf="@+id/family_photo" />
 
         <TextView
             android:id="@+id/display_address"
@@ -51,7 +51,7 @@
             android:text="@string/_8741_grouse_run_lane_28314"
             android:textColor="@color/colorTextPrimary"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/profile_photo"
+            app:layout_constraintStart_toEndOf="@+id/family_photo"
             app:layout_constraintTop_toBottomOf="@+id/display_family_name" />
 
         <ImageButton
@@ -78,18 +78,29 @@
             app:srcCompat="@drawable/trash_icon" />
 
         <ImageButton
-            android:id="@+id/button_edit_family_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:id="@+id/button_camera"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="8dp"
             android:layout_marginBottom="16dp"
-            android:background="@android:color/white"
-            android:contentDescription="@string/edit_button"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/camera_button"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/profile_photo"
-            app:layout_constraintStart_toStartOf="@+id/profile_photo"
-            app:layout_constraintTop_toBottomOf="@+id/profile_photo"
-            app:srcCompat="@drawable/edit_icon" />
+            app:layout_constraintStart_toStartOf="@+id/family_photo"
+            app:layout_constraintTop_toBottomOf="@+id/family_photo"
+            app:srcCompat="@drawable/camera_icon" />
+
+        <ImageButton
+            android:id="@+id/button_gallery"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="8dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/gallery_button"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="@+id/family_photo"
+            app:layout_constraintTop_toBottomOf="@+id/family_photo"
+            app:srcCompat="@drawable/gallery_icon" />
     </android.support.constraint.ConstraintLayout>
 
     <GridView

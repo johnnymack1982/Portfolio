@@ -366,5 +366,15 @@ public class AccountUtils {
             saveAccount(Account: account, Photo: photo!)
         }
     }
+    
+    public static func uploadFamilyPhoto(Photo photo: UIImage) {
+        let photoStorage = Storage.storage()
+        let storageReference = photoStorage.reference()
+        let photoReference = storageReference.child(PHOTOS_REFERENCE + Auth.auth().currentUser!.uid + ".jpg")
+        
+        let imageData = photo.jpegData(compressionQuality: 0.5)
+        
+        photoReference.putData(imageData!)
+    }
 }
 

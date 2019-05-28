@@ -1,5 +1,6 @@
 package com.mack.john.famly_androidedition.fragments.family_profile;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mack.john.famly_androidedition.R;
+import com.mack.john.famly_androidedition.family_profile.EditPasswordActivity;
 import com.mack.john.famly_androidedition.objects.account.Account;
 import com.mack.john.famly_androidedition.utils.AccountUtils;
 import com.mack.john.famly_androidedition.utils.ButtonUtils;
@@ -95,6 +97,11 @@ public class EditFamilyFragment extends Fragment implements View.OnClickListener
                 Toast.makeText(getActivity(), getActivity().getString(R.string.invalid_password), Toast.LENGTH_SHORT).show();
             }
         }
+
+        else if(view.getId() == R.id.button_change_password) {
+            Intent editPasswordIntent = new Intent(getActivity(), EditPasswordActivity.class);
+            startActivity(editPasswordIntent);
+        }
     }
 
 
@@ -104,9 +111,11 @@ public class EditFamilyFragment extends Fragment implements View.OnClickListener
     private void setClickListener(View view) {
         Button cancelButton = view.findViewById(R.id.button_cancel);
         Button saveButton = view.findViewById(R.id.button_save);
+        Button changePasswordButton = view.findViewById(R.id.button_change_password);
 
         cancelButton.setOnClickListener(this);
         saveButton.setOnClickListener(this);
+        changePasswordButton.setOnClickListener(this);
     }
 
     private void setTextListener(final View view) {

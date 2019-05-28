@@ -1,19 +1,21 @@
 //
-//  MasterSignup3Controller.swift
+//  FamilyProfileController.swift
 //  Fam.ly - iOS Edition
 //
-//  Created by Johnny Mack on 5/25/19.
+//  Created by Johnny Mack on 5/28/19.
 //  Copyright © 2019 John Mack. All rights reserved.
 //
 
 import UIKit
 
-class MasterSignup3Controller: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class FamilyProfileController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     
     
     // UI Outlets
     @IBOutlet weak var familyPhoto: UIImageView!
+    @IBOutlet weak var familyNameDisplay: UILabel!
+    @IBOutlet weak var addressDisplay: UILabel!
     
     
     
@@ -21,12 +23,7 @@ class MasterSignup3Controller: UIViewController, UINavigationControllerDelegate,
     var galleryPicker: ImagePicker!
     var cameraPicker: UIImagePickerController!
     
-    var mFamilyName: String?
-    var mStreetAddress: String?
-    var mPostalCode: Int?
-    
-    var mEmail: String?
-    var mPassword: String?
+    var mAccount: Account?
     
     
     
@@ -35,32 +32,27 @@ class MasterSignup3Controller: UIViewController, UINavigationControllerDelegate,
         super.viewDidLoad()
         
         galleryPicker = ImagePicker(presentationController: self, delegate: self)
+
+        mAccount = AccountUtils.loadAccount()
+        AccountUtils.loadAccountPhoto(FamilyPhoto: familyPhoto)
         roundImageView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController!.isNavigationBarHidden = false
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         cameraPicker.dismiss(animated: true, completion: nil)
         familyPhoto.image = info[.originalImage] as? UIImage
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let account = Account(FamilyName: mFamilyName!, StreetAddress: mStreetAddress!, PostalCode: mPostalCode!, MasterEmail: mEmail!, MasterPassword: mPassword!)
         
-        AccountUtils.saveAccount(Account: account, Photo: familyPhoto.image!)
-        AccountUtils.createAccount(Account: account, Photo: familyPhoto.image!)
+        AccountUtils.saveAccount(Account: mAccount!, Photo: familyPhoto.image!)
+        AccountUtils.uploadFamilyPhoto(Photo: familyPhoto.image!)
     }
     
     
     
     // Custom methods
-    func takePhoto() {
-        cameraPicker =  UIImagePickerController()
-        cameraPicker.delegate = self
-        cameraPicker.sourceType = .camera
-        
-        present(cameraPicker, animated: true, completion: nil)
-    }
-    
     func roundImageView() {
         familyPhoto.layer.borderWidth = 1.0
         familyPhoto.layer.masksToBounds = false
@@ -68,12 +60,20 @@ class MasterSignup3Controller: UIViewController, UINavigationControllerDelegate,
         familyPhoto.layer.cornerRadius = familyPhoto.frame.size.width / 2
         familyPhoto.clipsToBounds = true
     }
+    
+    func takePhoto() {
+        cameraPicker =  UIImagePickerController()
+        cameraPicker.delegate = self
+        cameraPicker.sourceType = .camera
+        
+        present(cameraPicker, animated: true, completion: nil)
+    }
 
     
     
     
     // Action methods
-    @IBAction func captureImage(_ sender: UIButton) {
+    @IBAction func buttonClicked(_ sender: UIButton) {
         switch sender.tag {
         case 0:
             takePhoto()
@@ -89,7 +89,7 @@ class MasterSignup3Controller: UIViewController, UINavigationControllerDelegate,
 
 
 
-extension MasterSignup3Controller : ImagePickerDelegate {
+extension FamilyProfileController : ImagePickerDelegate {
     
     func didSelect(image: UIImage?) {
         self.familyPhoto.image = image
@@ -97,5 +97,8 @@ extension MasterSignup3Controller : ImagePickerDelegate {
         if image == nil {
             self.familyPhoto.image = UIImage(named: "Family Icon Large")
         }
+        
+        AccountUtils.saveAccount(Account: mAccount!, Photo: familyPhoto.image!)
+        AccountUtils.uploadFamilyPhoto(Photo: familyPhoto.image!)
     }
 }

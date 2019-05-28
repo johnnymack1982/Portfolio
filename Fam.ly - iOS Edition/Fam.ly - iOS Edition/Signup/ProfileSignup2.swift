@@ -102,7 +102,7 @@ extension ProfileSignup2 : ImagePickerDelegate {
         self.profilePhoto.image = image
         
         if image == nil {
-            self.profilePhoto.image = UIImage(named: "Family Icon Large")
+            self.profilePhoto.image = UIImage(named: "Male Icon Large")
         }
     }
 }

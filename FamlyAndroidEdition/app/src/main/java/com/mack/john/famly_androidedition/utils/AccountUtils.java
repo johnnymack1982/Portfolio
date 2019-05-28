@@ -588,4 +588,59 @@ public class AccountUtils {
                     });
         }
     }
+
+    public static void updatePassword(final Context context, String oldPassword, final String newPassword, final Account account, final Bitmap photo) {
+        final FirebaseUser firebaseAccount = FirebaseAuth.getInstance().getCurrentUser();
+        AuthCredential credential = EmailAuthProvider.getCredential(firebaseAccount.getEmail(), oldPassword);
+
+        firebaseAccount.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()) {
+                    firebaseAccount.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()) {
+                                Toast.makeText(context, context.getString(R.string.password_updated), Toast.LENGTH_SHORT).show();
+
+                                account.setMasterPassword(newPassword);
+
+                                saveAccount(context, account, photo);
+
+                                Intent finishIntent = new Intent(context, FamilyProfileActivity.class);
+                                context.startActivity(finishIntent);
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    public static void uploadFamilyPhoto(Bitmap photo) {
+        FirebaseUser firebaseAccount = FirebaseAuth.getInstance().getCurrentUser();
+
+        if(photo != null) {
+            FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+            StorageReference storageReference = firebaseStorage.getReference();
+            StorageReference photoReference = storageReference.child(REFERENCE_PHOTOS + firebaseAccount.getUid() + ".jpg");
+
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            photo.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
+            byte[] data = byteArrayOutputStream.toByteArray();
+
+            UploadTask uploadTask = photoReference.putBytes(data);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e(TAG, "onFailure: ", e);
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Log.i(TAG, "onSuccess: Photo Uploaded");
+                }
+            });
+        }
+    }
 }
