@@ -39,9 +39,11 @@ public class AccountUtils {
             }
         }
         
-        if let imageData = photo!.jpegData(compressionQuality: 0.5) {
-            let fileName = getDocumentsDirectory().appendingPathComponent("family_photo.jpg")
-            try? imageData.write(to: fileName)
+        if photo != nil {
+            if let imageData = photo!.jpegData(compressionQuality: 0.5) {
+                let fileName = getDocumentsDirectory().appendingPathComponent("family_photo.jpg")
+                try? imageData.write(to: fileName)
+            }
         }
     }
     
@@ -62,7 +64,7 @@ public class AccountUtils {
                 }
             }
         }
-        
+            
         else if child != nil {
             let encodedObject = try? JSONEncoder().encode(child)
             
@@ -79,6 +81,48 @@ public class AccountUtils {
                 }
             }
         }
+    }
+    
+    public static func loadParent() -> Parent? {
+        let fileName = getDocumentsDirectory().appendingPathComponent("profile.fam")
+        
+        var parent: Parent?
+        
+        do {
+            let jsonString = try String(contentsOf: fileName)
+            
+            if let jsonData = jsonString.data(using: .utf8) {
+                
+                parent = try? JSONDecoder().decode(Parent.self, from: jsonData)
+            }
+        }
+            
+        catch {
+            print("Error loading parent from file")
+        }
+        
+        return parent
+    }
+    
+    public static func loadChild() -> Child? {
+        let fileName = getDocumentsDirectory().appendingPathComponent("profile.fam")
+        
+        var child: Child?
+        
+        do {
+            let jsonString = try String(contentsOf: fileName)
+            
+            if let jsonData = jsonString.data(using: .utf8) {
+                
+                child = try? JSONDecoder().decode(Child.self, from: jsonData)
+            }
+        }
+            
+        catch {
+            print("Error loading child from file")
+        }
+        
+        return child
     }
     
     public static func loadAccount() -> Account {
@@ -100,7 +144,7 @@ public class AccountUtils {
         }
         
         for _ in (account?.getParents())! {
-            print("Parent ffound")
+            print("Parent found")
         }
         
         for _ in (account?.getChildren())! {
@@ -124,11 +168,32 @@ public class AccountUtils {
                     familyPhoto.image = UIImage(named: "Family Icon Large")
                 }
             }
-
+                
             else {
-                // Data for "images/island.jpg" is returned
                 let image = UIImage(data: data!)
                 familyPhoto.image = image
+            }
+        }
+    }
+    
+    public static func loadProfilePhoto(ProfileId profileId: String, ProfilePhoto profilePhoto: UIImageView) {
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let photoReference = storageRef.child(PHOTOS_REFERENCE + Auth.auth().currentUser!.uid + profileId + ".jpg")
+        
+        photoReference.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            if error != nil {
+                let fileName = getDocumentsDirectory().appendingPathComponent("family_photo.jpg").absoluteString
+                profilePhoto.image = UIImage(contentsOfFile: fileName)
+                
+                if profilePhoto.image == nil {
+                    profilePhoto.image = UIImage(named: "Male Icon Large")
+                }
+            }
+                
+            else {
+                let image = UIImage(data: data!)
+                profilePhoto.image = image
             }
         }
     }
@@ -221,7 +286,7 @@ public class AccountUtils {
                 "firstName": parent.getFirstName(),
                 "dateOfBirth": parent.getDateOfBirth(),
                 "genderId": parent.getGenderId(),
-                "profilePIN": parent.getProfilePin(),
+                "profilePin": parent.getProfilePin(),
                 "roleId": parent.getRoleId()
             ]
             
@@ -307,7 +372,7 @@ public class AccountUtils {
                 "firstName": child.getFirstName(),
                 "dateOfBirth": child.getDateOfBirth(),
                 "genderId": child.getGenderId(),
-                "profilePIN": child.getProfilePin(),
+                "profilePin": child.getProfilePin(),
             ]
             
             let profileDoc: DocumentReference = profilesRef.document((Auth.auth().currentUser!.uid + child.getProfileId()))
@@ -368,13 +433,196 @@ public class AccountUtils {
     }
     
     public static func uploadFamilyPhoto(Photo photo: UIImage) {
+        if Auth.auth().currentUser != nil {
+            let photoStorage = Storage.storage()
+            let storageReference = photoStorage.reference()
+            let photoReference = storageReference.child(PHOTOS_REFERENCE + Auth.auth().currentUser!.uid + ".jpg")
+            
+            let imageData = photo.jpegData(compressionQuality: 0.5)
+            
+            photoReference.putData(imageData!)
+        }
+    }
+    
+    public static func uploadProfilePhoto(Parent parent: Parent?, Child child: Child?, Photo photo: UIImage) {
+        var profileId: String?
+        
+        if parent != nil {
+            profileId = parent?.getProfileId()
+        }
+            
+        else if child != nil {
+            profileId = child?.getProfileId()
+        }
+        
         let photoStorage = Storage.storage()
         let storageReference = photoStorage.reference()
-        let photoReference = storageReference.child(PHOTOS_REFERENCE + Auth.auth().currentUser!.uid + ".jpg")
+        let photoReference = storageReference.child(PHOTOS_REFERENCE + Auth.auth().currentUser!.uid + profileId! + ".jpg")
         
         let imageData = photo.jpegData(compressionQuality: 0.5)
         
         photoReference.putData(imageData!)
+    }
+    
+    public static func deleteProfile(ProfileId profileId: String) {
+        print(Auth.auth().currentUser!.uid + profileId)
+        
+        let database = Firestore.firestore()
+        database.collection("accounts").document(Auth.auth().currentUser!.uid).collection("profiles").document(Auth.auth().currentUser!.uid + profileId).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            }
+                
+            else {
+                let photoStorage = Storage.storage()
+                let storageReference = photoStorage.reference()
+                let photoReference = storageReference.child(PHOTOS_REFERENCE + Auth.auth().currentUser!.uid + profileId + ".jpg")
+                
+                photoReference.delete()
+            }
+        }
+    }
+    
+    public static func getUpdatedProfiles() {
+        let database = Firestore.firestore()
+        
+        let account = loadAccount()
+        account.setParents(parents: [Parent]())
+        account.setChildren(children: [Child]())
+        
+        database.collection("accounts").document(Auth.auth().currentUser!.uid).collection("profiles").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            }
+                
+            else {
+                for document in querySnapshot!.documents {
+                    if document.get("roleId") != nil {
+                        let dateOfBirth = document.get("dateOfBirth") as? Date
+                        let firstName = document.get("firstName") as? String
+                        let genderId = document.get("genderId") as? Int
+                        let profilePin = document.get("profilePin") as? Int
+                        let roleId = document.get("roleId") as? Int
+                        
+                        let parent = Parent(FirstName: firstName!, DateOfBirth: dateOfBirth!, GenderID: genderId!, ProfilePIN: profilePin!, RoleID: roleId!)
+                        
+                        account.addParent(parent: parent)
+                    }
+                        
+                    else  {
+                        let dateOfBirth = document.get("dateOfBirth") as? Date
+                        let firstName = document.get("firstName") as? String
+                        let genderId = document.get("genderId") as? Int
+                        let profilePin = document.get("profilePin") as? Int
+                        
+                        let child = Child(FirstName: firstName!, DateOfBirth: dateOfBirth!, GenderID: genderId!, ProfilePIN: profilePin!)
+                        
+                        account.addChild(child: child)
+                    }
+                }
+                
+                saveAccount(Account: account, Photo: nil)
+            }
+        }
+    }
+    
+    public static func getUpdatedFamily() {
+        let database = Firestore.firestore()
+        let account = loadAccount()
+        
+        database.collection("accounts").document(Auth.auth().currentUser!.uid).getDocument { (document, error) in
+            if let document = document, document.exists {
+                let familyName = document.get("familyName") as? String
+                let masterEmail = document.get("masterEmail") as? String
+                let masterPassword = document.get("masterPassword") as? String
+                let postalCode = document.get("postalCode") as? Int
+                let streetAddress = document.get("streetAddress") as? String
+                
+                account.setFamilyName(familyName: familyName!)
+                account.setMasterEmail(masterEmail: masterEmail!)
+                account.setMasterPassword(masterPassword: masterPassword!)
+                account.setPostalCode(postalCode: postalCode!)
+                account.setStreetAddress(streetAddress: streetAddress!)
+                
+                saveAccount(Account: account, Photo: nil)
+            }
+            
+            else {
+                print("Document does not exist")
+            }
+        }
+    }
+    
+    public static func listenForUpdates() {
+        let database = Firestore.firestore()
+        
+        database.collection("accounts").document(Auth.auth().currentUser!.uid).addSnapshotListener { documentSnapshot, error in
+            guard let document = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+                return
+            }
+            
+            if document.exists {
+                let account = loadAccount()
+                
+                let familyName = document.get("familyName") as? String
+                let masterEmail = document.get("masterEmail") as? String
+                let masterPassword = document.get("masterPassword") as? String
+                let postalCode = document.get("postalCode") as? Int
+                let streetAddress = document.get("streetAddress") as? String
+                
+                account.setFamilyName(familyName: familyName!)
+                account.setMasterEmail(masterEmail: masterEmail!)
+                account.setMasterPassword(masterPassword: masterPassword!)
+                account.setPostalCode(postalCode: postalCode!)
+                account.setStreetAddress(streetAddress: streetAddress!)
+                
+                saveAccount(Account: account, Photo: nil)
+            }
+                
+            else {
+                print("Document does not exist")
+            }
+        }
+        
+        database.collection("accounts").document(Auth.auth().currentUser!.uid).collection("profiles").addSnapshotListener { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            }
+                
+            else {
+                let account = loadAccount()
+                account.setParents(parents: [Parent]())
+                account.setChildren(children: [Child]())
+                
+                for document in querySnapshot!.documents {
+                    if document.get("roleId") != nil {
+                        let dateOfBirth = document.get("dateOfBirth") as? Date
+                        let firstName = document.get("firstName") as? String
+                        let genderId = document.get("genderId") as? Int
+                        let profilePin = document.get("profilePin") as? Int
+                        let roleId = document.get("roleId") as? Int
+                        
+                        let parent = Parent(FirstName: firstName!, DateOfBirth: dateOfBirth!, GenderID: genderId!, ProfilePIN: profilePin!, RoleID: roleId!)
+                        
+                        account.addParent(parent: parent)
+                    }
+                        
+                    else  {
+                        let dateOfBirth = document.get("dateOfBirth") as? Date
+                        let firstName = document.get("firstName") as? String
+                        let genderId = document.get("genderId") as? Int
+                        let profilePin = document.get("profilePin") as? Int
+                        
+                        let child = Child(FirstName: firstName!, DateOfBirth: dateOfBirth!, GenderID: genderId!, ProfilePIN: profilePin!)
+                        
+                        account.addChild(child: child)
+                    }
+                }
+                
+                saveAccount(Account: account, Photo: nil)
+            }
+        }
     }
 }
 

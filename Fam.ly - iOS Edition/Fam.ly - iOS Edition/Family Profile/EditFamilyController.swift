@@ -128,6 +128,7 @@ class EditFamilyController: UIViewController {
                         
                         Auth.auth().currentUser?.reauthenticateAndRetrieveData(with: credential, completion: { (result, error) in
                             if error == nil {
+                                
                                 Auth.auth().currentUser?.updateEmail(to: self.mNewEmail!)
                                 
                                 self.performSegue(withIdentifier: "EditToFamilyProfile", sender: nil)

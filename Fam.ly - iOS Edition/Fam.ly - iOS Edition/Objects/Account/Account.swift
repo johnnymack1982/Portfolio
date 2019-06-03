@@ -106,4 +106,8 @@ public class Account: Codable {
     func addChild(child: Child) {
         self.children.append(child)
     }
+    
+    func getFullAddress() -> String {
+        return getStreetAddress() + ", " + String(getPostalCode())
+    }
 }

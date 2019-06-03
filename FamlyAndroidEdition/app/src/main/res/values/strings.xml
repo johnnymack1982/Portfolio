@@ -66,6 +66,15 @@
     <string name="old_master_pssword">Old Master Pssword</string>
     <string name="password_updated">Password Updated</string>
     <string name="family">Family</string>
+    <string name="profile_name">Ashleigh Mack</string>
+    <string name="delete_profile">Delete Profile?</string>
+    <string name="confirm_delete_1">Are you sure you want to delete</string>
+    <string name="confirm_delete_2">\? You won\'t be able to undo this.</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_account">Delete account?</string>
+    <string name="delete_account_confirm">Are you sure you want to delete your account? All profiles and information will be lost forever.</string>
+    <string name="account_deleted">Account deleted</string>
 
     <array name="family_roles">
         <item>Mother</item>

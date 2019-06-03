@@ -60,7 +60,7 @@ public class EditPasswordFragment extends Fragment implements View.OnClickListen
 
         mAccount = AccountUtils.loadAccount(getActivity());
 
-        mFamilyPhoto = view.findViewById(R.id.family_photo);
+        mFamilyPhoto = view.findViewById(R.id.profile_photo);
         AccountUtils.loadAccountPhoto(getActivity(), view);
 
         setOnClickListener(view);

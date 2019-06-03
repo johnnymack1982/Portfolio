@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.mack.john.famly_androidedition.R;
+import com.mack.john.famly_androidedition.utils.AccountUtils;
 
 public class NewsFeedFragment extends Fragment implements View.OnFocusChangeListener, View.OnClickListener {
 
@@ -43,6 +44,8 @@ public class NewsFeedFragment extends Fragment implements View.OnFocusChangeList
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_newsfeed, container, false);
+
+        AccountUtils.listenForUpdates(getActivity());
 
         setClickListener(view);
         setFocusListener(view);

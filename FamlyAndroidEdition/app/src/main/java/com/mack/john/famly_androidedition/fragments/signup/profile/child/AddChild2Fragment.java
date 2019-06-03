@@ -73,7 +73,7 @@ public class AddChild2Fragment extends Fragment implements View.OnClickListener 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_child2, container, false);
 
-        mPhotoView = view.findViewById(R.id.family_photo);
+        mPhotoView = view.findViewById(R.id.profile_photo);
 
         Intent sendingIntent = getActivity().getIntent();
 

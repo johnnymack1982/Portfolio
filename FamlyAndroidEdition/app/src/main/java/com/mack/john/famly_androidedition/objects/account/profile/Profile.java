@@ -25,6 +25,9 @@ public class Profile implements Serializable {
         this.profilePIN = profilePIN;
     }
 
+    public Profile() {}
+
+
 
 
     // Getters / Setters

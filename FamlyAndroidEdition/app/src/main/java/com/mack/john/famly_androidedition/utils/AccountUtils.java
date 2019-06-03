@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.provider.DocumentsContract;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
@@ -20,10 +19,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -46,10 +46,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Nullable;
 
 public class AccountUtils {
 
@@ -312,7 +314,7 @@ public class AccountUtils {
     }
 
     public static void loadAccountPhoto(final Context context, View view) {
-        final ImageView familyPhoto = view.findViewById(R.id.family_photo);
+        final ImageView familyPhoto = view.findViewById(R.id.profile_photo);
 
         FirebaseAuth firebaseAccount = FirebaseAuth.getInstance();
 
@@ -374,7 +376,7 @@ public class AccountUtils {
                         e.printStackTrace();
                     }
 
-                    FirebaseFirestore database = FirebaseFirestore.getInstance();
+                    final FirebaseFirestore database = FirebaseFirestore.getInstance();
 
                     DocumentReference documentReference = database.collection(COLLECTION_ACCOUNTS).document(firebaseAuth.getUid());
                     documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -392,19 +394,48 @@ public class AccountUtils {
                                     mAccount.setPostalCode(document.getLong("postalCode").intValue());
                                     mAccount.setStreetAddress(document.getString("streetAddress"));
 
-                                    try {
-                                        FileOutputStream fileOutputStream = new FileOutputStream(accountFile);
-                                        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+                                    database.collection(COLLECTION_ACCOUNTS).document(firebaseAuth.getUid()).collection("profiles").get()
+                                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                    if(task.isSuccessful()) {
+                                                        for(QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                                            if(documentSnapshot.getLong("roleId") != null) {
+                                                                Date dateOfBirth = documentSnapshot.getDate("dateOfBirth");
+                                                                String firstName = documentSnapshot.getString("firstName");
+                                                                int genderId = documentSnapshot.getLong("genderId").intValue();
+                                                                int profilePin = documentSnapshot.getLong("profilePin").intValue();
+                                                                int roleId = documentSnapshot.getLong("roleId").intValue();
 
-                                        objectOutputStream.writeObject(mAccount);
+                                                                mAccount.addProfile(new Parent(firstName, dateOfBirth, genderId, profilePin, roleId));
+                                                            }
 
-                                        objectOutputStream.close();
-                                        fileOutputStream.close();
-                                    }
+                                                            else {
+                                                                Date dateOfBirth = documentSnapshot.getDate("dateOfBirth");
+                                                                String firstName = documentSnapshot.getString("firstName");
+                                                                int genderId = documentSnapshot.getLong("genderId").intValue();
+                                                                int profilePin = documentSnapshot.getLong("profilePin").intValue();
 
-                                    catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
+                                                                mAccount.addProfile(new Child(firstName, dateOfBirth, genderId, profilePin));
+                                                            }
+                                                        }
+
+                                                        try {
+                                                            FileOutputStream fileOutputStream = new FileOutputStream(accountFile);
+                                                            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+                                                            objectOutputStream.writeObject(mAccount);
+
+                                                            objectOutputStream.close();
+                                                            fileOutputStream.close();
+                                                        }
+
+                                                        catch (IOException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                    }
+                                                }
+                                            });
                                 }
                             }
                         }
@@ -642,5 +673,250 @@ public class AccountUtils {
                 }
             });
         }
+    }
+
+    public static void uploadProfilePhoto(Profile profile, Bitmap photo) {
+        FirebaseUser firebaseAccount = FirebaseAuth.getInstance().getCurrentUser();
+
+        if(photo != null) {
+            FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+            StorageReference storageReference = firebaseStorage.getReference();
+            StorageReference photoReference = storageReference.child(REFERENCE_PHOTOS + firebaseAccount.getUid() + profile.getProfileId() + ".jpg");
+
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            photo.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
+            byte[] data = byteArrayOutputStream.toByteArray();
+
+            UploadTask uploadTask = photoReference.putBytes(data);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e(TAG, "onFailure: ", e);
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Log.i(TAG, "onSuccess: Photo Uploaded");
+                }
+            });
+        }
+    }
+
+    public static void loadProfilePhoto(final Context context, View view, Profile profile) {
+        final ImageView profilePhoto = view.findViewById(R.id.profile_photo);
+
+        FirebaseAuth firebaseAccount = FirebaseAuth.getInstance();
+
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+        StorageReference storageReference = firebaseStorage.getReference();
+        StorageReference photoReference = storageReference.child(REFERENCE_PHOTOS + firebaseAccount.getUid() + profile.getProfileId() + ".jpg");
+
+        photoReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Bitmap photo = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+
+                profilePhoto.setImageBitmap(photo);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                try {
+                    FileInputStream fileInputStream = context.openFileInput(PHOTO_NAME_FAMILY);
+
+                    Bitmap photo = BitmapFactory.decodeStream(fileInputStream);
+
+                    profilePhoto.setImageBitmap(photo);
+
+                    fileInputStream.close();
+                }
+
+                catch (IOException ex) {
+                    ex.printStackTrace();
+
+                    profilePhoto.setImageDrawable(context.getDrawable(R.drawable.male_icon_large));
+                }
+            }
+        });
+    }
+
+    public static Profile loadProfile(Context context) {
+        Profile profile = new Profile("", new Date(), 0, 0);
+
+        File targetDir = context.getFilesDir();
+        File profileFile = new File(targetDir + PROFILE_DATA);
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream(profileFile);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            profile = (Profile) objectInputStream.readObject();
+
+            objectInputStream.close();
+            fileInputStream.close();
+        }
+
+        catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return profile;
+    }
+
+    public static void deleteProfile(final Context context, boolean deletingSelf, final Profile profile, Account account) {
+        ArrayList<Profile> profiles = account.getProfiles();
+
+        for(int i = 0; i < profiles.size(); i++) {
+            if(profile.getFirstName().equals(profiles.get(i).getFirstName())) {
+                profiles.remove(i);
+            }
+        }
+
+        account.setProfiles(profiles);
+
+        saveAccount(context, account, null);
+
+        final FirebaseUser firebaseAccount = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+
+        database.collection(COLLECTION_ACCOUNTS).document(firebaseAccount.getUid()).collection("profiles")
+                .document(firebaseAccount.getUid() + profile.getProfileId()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(context, profile.getFirstName() + " has been removed from the family.", Toast.LENGTH_SHORT).show();
+
+                FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+                StorageReference storageReference = firebaseStorage.getReference();
+                StorageReference photoReference = storageReference.child(REFERENCE_PHOTOS + firebaseAccount.getUid() + profile.getProfileId() + ".jpg");
+                photoReference.delete();
+            }
+        });
+
+        if(deletingSelf) {
+            FirebaseAuth.getInstance().signOut();
+
+            Intent signoutIntent = new Intent(context, MasterLoginActivity.class);
+            context.startActivity(signoutIntent);
+        }
+
+        else {
+            Intent continueIntent = new Intent(context, FamilyProfileActivity.class);
+            context.startActivity(continueIntent);
+        }
+    }
+
+    public static void deleteAccount(final Context context) {
+        final FirebaseUser firebaseAccount = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        database.collection(COLLECTION_ACCOUNTS).document(firebaseAccount.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if(document.exists()) {
+                        String password = document.getString("masterPassword");
+
+                        AuthCredential credential = EmailAuthProvider.getCredential(firebaseAccount.getEmail(), password);
+
+                        firebaseAccount.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()) {
+                                    firebaseAccount.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()) {
+                                                Toast.makeText(context, context.getString(R.string.account_deleted), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    }
+
+    public static void listenForUpdates(final Context context) {
+        FirebaseUser firebaseAccount = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        database.collection(COLLECTION_ACCOUNTS).document(firebaseAccount.getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e);
+                    return;
+                }
+
+                if (documentSnapshot != null && documentSnapshot.exists()) {
+                    String familyName = documentSnapshot.getString("familyName");
+                    String masterEmail = documentSnapshot.getString("masterEmail");
+                    String masterPassword = documentSnapshot.getString("masterPassword");
+                    int postalCode = documentSnapshot.getLong("postalCode").intValue();
+                    String streetAddress = documentSnapshot.getString("streetAddress");
+
+                    Account account = new Account(familyName, streetAddress, postalCode, masterEmail, masterPassword);
+
+                    saveAccount(context, account, null);
+                }
+
+                else {
+                    Log.d(TAG, "Current data: null");
+                }
+            }
+        });
+
+        database.collection(COLLECTION_ACCOUNTS).document(firebaseAccount.getUid()).collection("profiles").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value,
+                                @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e);
+                    return;
+                }
+
+                Account account = loadAccount(context);
+
+                for (QueryDocumentSnapshot documentSnapshot : value) {
+                    if (documentSnapshot.get("firstName") != null) {
+                        if (documentSnapshot.getLong("roleId") != null) {
+                            Date dateOfBirth = documentSnapshot.getDate("dateOfBirth");
+                            String firstName = documentSnapshot.getString("firstName");
+                            int genderId = documentSnapshot.getLong("genderId").intValue();
+                            int profilePin = documentSnapshot.getLong("profilePin").intValue();
+                            int roleId = documentSnapshot.getLong("roleId").intValue();
+
+                            account.addProfile(new Parent(firstName, dateOfBirth, genderId, profilePin, roleId));
+                        } else {
+                            Date dateOfBirth = documentSnapshot.getDate("dateOfBirth");
+                            String firstName = documentSnapshot.getString("firstName");
+                            int genderId = documentSnapshot.getLong("genderId").intValue();
+                            int profilePin = documentSnapshot.getLong("profilePin").intValue();
+
+                            account.addProfile(new Child(firstName, dateOfBirth, genderId, profilePin));
+                        }
+                    }
+
+                    File targetDir = context.getFilesDir();
+                    File accountFile = new File(targetDir + ACCOUNT_DATA);
+
+                    try {
+                        FileOutputStream fileOutputStream = new FileOutputStream(accountFile);
+                        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+                        objectOutputStream.writeObject(account);
+
+                        objectOutputStream.close();
+                        fileOutputStream.close();
+                    }
+
+                    catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 }

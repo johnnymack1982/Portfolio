@@ -8,6 +8,8 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
+import FirebaseStorage
 
 class ViewController: UIViewController {
     
@@ -28,6 +30,8 @@ class ViewController: UIViewController {
     var mValidEmail = false
     var mValidPassword = false
     
+    var mAccount: Account?
+    
     
     
     // System generated methods
@@ -38,9 +42,55 @@ class ViewController: UIViewController {
         
         let user = Auth.auth().currentUser
         
+        do {
+            try Auth.auth().signOut()
+        }
+
+        catch {
+
+        }
+        
         if user != nil {
             DispatchQueue.main.async(){
-                self.performSegue(withIdentifier: "AutoLogin", sender: self)
+                let database = Firestore.firestore()
+                let documentRef = database.collection("accounts").document(user!.uid)
+                documentRef.getDocument { (document, error) in
+                    if let document = document, document.exists {
+                        let familyName = document.get("familyName") as? String
+                        let masterEmail = document.get("masterEmail") as? String
+                        let masterPassword = document.get("masterPassword") as? String
+                        let postalCode = document.get("postalCode") as? Int
+                        let streetAddress = document.get("streetAddress") as? String
+                        
+                        let account = Account(FamilyName: familyName!, StreetAddress: streetAddress!, PostalCode: postalCode!, MasterEmail: masterEmail!, MasterPassword: masterPassword!)
+                        
+                        database.collection("accounts").document(user!.uid).collection("profiles").getDocuments() { (querySnapshot, err) in
+                            if let err = err {
+                                print("Error getting documents: \(err)")
+                            }
+                            
+                            else {
+                                AccountUtils.getUpdatedProfiles()
+                                
+                                let parent = AccountUtils.loadParent()
+                                let child = AccountUtils.loadChild()
+                                
+                                if parent == nil && child == nil {
+                                    self.performSegue(withIdentifier: "MasterToProfileLogin", sender: nil)
+                                }
+                                    
+                                else {
+                                    AccountUtils.saveProfile(Parent: parent, Child: child)
+                                    self.performSegue(withIdentifier: "AutoLogin", sender: nil)
+                                }
+                            }
+                        }
+                    }
+                    
+                    else {
+                        print("Document does not exist")
+                    }
+                }
             }
         }
     }
@@ -51,6 +101,75 @@ class ViewController: UIViewController {
     @IBAction func loginClicked(_ sender: UIButton) {
         Auth.auth().signIn(withEmail: mEmail!, password: mPassword!) { [weak self] user, error in
             if error == nil {
+                let database = Firestore.firestore()
+                let documentRef = database.collection("accounts").document(Auth.auth().currentUser!.uid)
+                documentRef.getDocument { (document, error) in
+                    if let document = document, document.exists {
+                        let familyName = document.get("familyName") as? String
+                        let masterEmail = document.get("masterEmail") as? String
+                        let masterPassword = document.get("masterPassword") as? String
+                        let postalCode = document.get("postalCode") as? Int
+                        let streetAddress = document.get("streetAddress") as? String
+                        
+                        let account = Account(FamilyName: familyName!, StreetAddress: streetAddress!, PostalCode: postalCode!, MasterEmail: masterEmail!, MasterPassword: masterPassword!)
+                        
+                        database.collection("accounts").document(Auth.auth().currentUser!.uid).collection("profiles").getDocuments() { (querySnapshot, err) in
+                            if let err = err {
+                                print("Error getting documents: \(err)")
+                            }
+                                
+                            else {
+                                for document in querySnapshot!.documents {
+                                    if document.get("roleId") != nil {
+                                        let dateOfBirth = document.get("dateOfBirth") as? Date
+                                        let firstName = document.get("firstName") as? String
+                                        let genderId = document.get("genderId") as? Int
+                                        let profilePin = document.get("profilePin") as? Int
+                                        let roleId = document.get("roleId") as? Int
+                                        
+                                        let parent = Parent(FirstName: firstName!, DateOfBirth: dateOfBirth!, GenderID: genderId!, ProfilePIN: profilePin!, RoleID: roleId!)
+                                        
+                                        account.addParent(parent: parent)
+                                    }
+                                    
+                                    else {
+                                        let dateOfBirth = document.get("dateOfBirth") as? Date
+                                        let firstName = document.get("firstName") as? String
+                                        let genderId = document.get("genderId") as? Int
+                                        let profilePin = document.get("profilePin") as? Int
+                                        
+                                        let child = Child(FirstName: firstName!, DateOfBirth: dateOfBirth!, GenderID: genderId!, ProfilePIN: profilePin!)
+                                        
+                                        account.addChild(child: child)
+                                        
+                                        let storage = Storage.storage()
+                                        let storageRef = storage.reference()
+                                        let photoReference = storageRef.child("photos/" + Auth.auth().currentUser!.uid + ".jpg")
+                                        
+                                        var photo: UIImage?
+                                        
+                                        photoReference.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                                            if error != nil {
+                                                print("Error downloading photo")
+                                            }
+                                                
+                                            else {
+                                                photo = UIImage(data: data!)
+                                                
+                                                AccountUtils.saveAccount(Account: account, Photo: photo!)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    else {
+                        print("Document does not exist")
+                    }
+                }
+                
                 self!.performSegue(withIdentifier: "MasterToProfileLogin", sender: nil)
             }
             

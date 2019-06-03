@@ -66,7 +66,7 @@ public class EditFamilyFragment extends Fragment implements View.OnClickListener
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_family, container, false);
 
-        mFamilyPhoto = view.findViewById(R.id.family_photo);
+        mFamilyPhoto = view.findViewById(R.id.profile_photo);
 
         ButtonUtils.disableSaveButton(getActivity(), view);
 
@@ -91,6 +91,8 @@ public class EditFamilyFragment extends Fragment implements View.OnClickListener
                 Bitmap photo = ((BitmapDrawable) mFamilyPhoto.getDrawable()).getBitmap();
 
                 AccountUtils.updateAccount(getActivity(), mFamilyName, mStreetAddress, mPostalCode, mNewEmail, mOldEmail, mPassword, photo);
+
+                getActivity().finish();
             }
 
             else {

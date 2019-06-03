@@ -21,6 +21,8 @@ class NewsfeedController: UIViewController {
     // System generated methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        AccountUtils.listenForUpdates()
 
         cancelButton.isHidden = true
         postButton.isHidden = true

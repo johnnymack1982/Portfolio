@@ -16,17 +16,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/family_photo"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_photo"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
-            android:contentDescription="@string/profile_photo"
-            android:scaleType="fitCenter"
+            android:src="@drawable/male_icon_large"
+            app:civ_border_color="@android:color/transparent"
+            app:civ_border_width="2dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/female_icon_large" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/display_name"
@@ -40,8 +40,8 @@
             android:textColor="@color/colorTextDark"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/button_delete_profile"
-            app:layout_constraintStart_toEndOf="@+id/family_photo"
-            app:layout_constraintTop_toTopOf="@+id/family_photo" />
+            app:layout_constraintStart_toEndOf="@+id/profile_photo"
+            app:layout_constraintTop_toTopOf="@+id/profile_photo" />
 
         <TextView
             android:id="@+id/display_timestamp"
@@ -54,7 +54,7 @@
             android:textColor="@color/colorTextLight"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/family_photo"
+            app:layout_constraintStart_toEndOf="@+id/profile_photo"
             app:layout_constraintTop_toBottomOf="@+id/display_name" />
 
         <TextView
@@ -69,7 +69,7 @@
             android:textColor="@color/colorTextPrimary"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/family_photo"
+            app:layout_constraintStart_toEndOf="@+id/profile_photo"
             app:layout_constraintTop_toBottomOf="@+id/display_timestamp" />
 
         <ImageButton
@@ -85,18 +85,17 @@
             app:srcCompat="@drawable/trash_icon" />
 
         <ImageButton
-            android:id="@+id/button_edit_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:id="@+id/button_camera"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="8dp"
             android:layout_marginBottom="16dp"
             android:background="@android:color/white"
-            android:contentDescription="@string/edit_button"
+            android:contentDescription="@string/camera_button"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/family_photo"
-            app:layout_constraintStart_toStartOf="@+id/family_photo"
-            app:layout_constraintTop_toBottomOf="@+id/family_photo"
-            app:srcCompat="@drawable/edit_icon" />
+            app:layout_constraintStart_toStartOf="@+id/profile_photo"
+            app:layout_constraintTop_toBottomOf="@+id/profile_photo"
+            app:srcCompat="@drawable/camera_icon" />
 
         <ImageButton
             android:id="@+id/button_family"
@@ -109,6 +108,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/family_icon_small" />
+
+        <ImageButton
+            android:id="@+id/button_gallery"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="8dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/gallery_button"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="@+id/profile_photo"
+            app:layout_constraintTop_toBottomOf="@+id/profile_photo"
+            app:srcCompat="@drawable/gallery_icon" />
     </android.support.constraint.ConstraintLayout>
 
     <ListView

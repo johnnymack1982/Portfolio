@@ -11,12 +11,14 @@ import com.mack.john.famly_androidedition.fragments.CheckinFragment;
 import com.mack.john.famly_androidedition.fragments.NewsFeedFragment;
 import com.mack.john.famly_androidedition.fragments.PermissionFragment;
 import com.mack.john.famly_androidedition.fragments.ProfileFragment;
+import com.mack.john.famly_androidedition.fragments.family_profile.FamilyProfileFragment;
 
 public class NavigationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
 
 
     // Class properties
+    public static final String ACTION_LEAVE_PROFILE = "action_leave_profile";
 
 
 
@@ -29,7 +31,19 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-        loadFragment(new NewsFeedFragment());
+        try {
+            if(getIntent().getAction().equals(FamilyProfileFragment.ACTION_EDIT_PROFILE)) {
+                loadFragment(new ProfileFragment());
+
+                bottomNavigationView.setSelectedItemId(R.id.navigation_profile);
+            }
+        }
+
+        catch (Exception e) {
+            e.printStackTrace();
+
+            loadFragment(new NewsFeedFragment());
+        }
     }
 
     @Override
@@ -38,16 +52,22 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
 
         switch (menuItem.getItemId()) {
             case R.id.navigation_newsfeed:
+                getIntent().setAction(ACTION_LEAVE_PROFILE);
+
                 fragment = new NewsFeedFragment();
                 loadFragment(fragment);
                 return true;
 
             case R.id.navigation_permission:
+                getIntent().setAction(ACTION_LEAVE_PROFILE);
+
                 fragment = new PermissionFragment();
                 loadFragment(fragment);
                 return true;
 
             case R.id.navigation_checkin:
+                getIntent().setAction(ACTION_LEAVE_PROFILE);
+
                 fragment = new CheckinFragment();
                 loadFragment(fragment);
                 return true;

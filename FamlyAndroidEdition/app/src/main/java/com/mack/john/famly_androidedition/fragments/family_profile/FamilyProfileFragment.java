@@ -2,6 +2,8 @@ package com.mack.john.famly_androidedition.fragments.family_profile;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -16,17 +18,24 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mack.john.famly_androidedition.BuildConfig;
+import com.mack.john.famly_androidedition.NavigationActivity;
 import com.mack.john.famly_androidedition.R;
+import com.mack.john.famly_androidedition.adapters.ProfilesAdapter;
 import com.mack.john.famly_androidedition.family_profile.EditFamilyActivity;
+import com.mack.john.famly_androidedition.login.MasterLoginActivity;
 import com.mack.john.famly_androidedition.objects.account.Account;
+import com.mack.john.famly_androidedition.objects.account.profile.Profile;
 import com.mack.john.famly_androidedition.utils.AccountUtils;
 
 import java.io.File;
@@ -47,6 +56,10 @@ public class FamilyProfileFragment extends Fragment implements View.OnClickListe
     private static final int CAMERA_REQUEST_CODE = 2;
 
     private static final int CAMERA_PERMISSION_REQUEST = 3;
+
+    public static final String ACTION_EDIT_PROFILE = "action_edit_profile";
+
+    public static final String EXTRA_PROFILE = "extra_profile";
 
     ImageView mPhotoView;
 
@@ -72,10 +85,11 @@ public class FamilyProfileFragment extends Fragment implements View.OnClickListe
 
         mAccount = AccountUtils.loadAccount(getActivity());
 
-        mPhotoView = view.findViewById(R.id.family_photo);
+        mPhotoView = view.findViewById(R.id.profile_photo);
 
         setClickListener(view);
         populateProfile(view);
+        populateGrid(view);
 
         return view;
     }
@@ -83,7 +97,28 @@ public class FamilyProfileFragment extends Fragment implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.button_delete_family) {
+            final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+            alertDialogBuilder.setTitle(getString(R.string.delete_account))
+                    .setMessage(getString(R.string.delete_account_confirm))
+                    .setCancelable(false)
+                    .setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            AccountUtils.deleteAccount(getActivity());
 
+                            Intent logoutIntent = new Intent(getActivity(), MasterLoginActivity.class);
+                            getActivity().startActivity(logoutIntent);
+                        }
+                    })
+                    .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog confirmDialog = alertDialogBuilder.create();
+            confirmDialog.show();
         }
 
         else if(view.getId() == R.id.button_edit_family){
@@ -146,11 +181,11 @@ public class FamilyProfileFragment extends Fragment implements View.OnClickListe
     }
 
     private void populateProfile(View view) {
-        ImageView familyPhoto = view.findViewById(R.id.family_photo);
+        ImageView familyPhoto = view.findViewById(R.id.profile_photo);
         TextView familyNameDisplay = view.findViewById(R.id.display_family_name);
         TextView addressDisplay = view.findViewById(R.id.display_address);
 
-        String familyName = mAccount.getFamilyName() + getString(R.string.family);
+        String familyName = mAccount.getFamilyName() + " " + getString(R.string.family);
 
         AccountUtils.loadAccountPhoto(getActivity(), familyPhoto);
         familyNameDisplay.setText(familyName);
@@ -203,5 +238,26 @@ public class FamilyProfileFragment extends Fragment implements View.OnClickListe
         // Save a file: path for using again
         mCameraFilePath = "file://" + image.getAbsolutePath();
         return image;
+    }
+
+    private void populateGrid(View view) {
+        final Profile[] profiles = mAccount.getProfiles().toArray(new Profile[mAccount.getProfiles().size()]);
+
+        GridView profileGrid = view.findViewById(R.id.grid_family);
+
+        ProfilesAdapter profilesAdapter = new ProfilesAdapter(getActivity(), profiles, mAccount);
+        profileGrid.setAdapter(profilesAdapter);
+        profileGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Profile profile = profiles[position];
+
+                Intent editIntent = new Intent(getActivity(), NavigationActivity.class);
+                editIntent.setAction(ACTION_EDIT_PROFILE);
+                editIntent.putExtra(EXTRA_PROFILE, profile);
+
+                getActivity().startActivity(editIntent);
+            }
+        });
     }
 }

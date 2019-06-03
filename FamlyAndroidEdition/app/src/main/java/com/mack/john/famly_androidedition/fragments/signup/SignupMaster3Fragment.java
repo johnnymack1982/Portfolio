@@ -76,7 +76,7 @@ public class SignupMaster3Fragment extends Fragment implements View.OnClickListe
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signup_master3, container, false);
 
-        mPhotoView = view.findViewById(R.id.family_photo);
+        mPhotoView = view.findViewById(R.id.profile_photo);
 
         setClickListener(view);
 
