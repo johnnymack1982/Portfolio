@@ -8,8 +8,9 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
-class ProfileController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class ProfileController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDataSource, UITableViewDelegate {
     
     
     
@@ -20,6 +21,7 @@ class ProfileController: UIViewController, UINavigationControllerDelegate, UIIma
     @IBOutlet weak var nameDisplay: UILabel!
     @IBOutlet weak var dateTimeDisplay: UILabel!
     @IBOutlet weak var lastKnownLocationDisplay: UILabel!
+    @IBOutlet weak var timeline: UITableView!
     
     
     
@@ -30,6 +32,8 @@ class ProfileController: UIViewController, UINavigationControllerDelegate, UIIma
     var mAccount: Account?
     var mParent: Parent?
     var mChild: Child?
+    
+    var mPosts: [Post] = [Post]()
     
     var mEditingSelf = true
     
@@ -42,11 +46,69 @@ class ProfileController: UIViewController, UINavigationControllerDelegate, UIIma
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        populate()
+        mPosts = [Post]()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         populate()
+        
+        timeline.delegate = self
+        timeline.dataSource = self
+        
+        mPosts = [Post]()
+        
+        let database = Firestore.firestore()
+        var profileId: String?
+        
+        if mParent != nil {
+            profileId = mParent?.getProfileId()
+        }
+            
+        else if mChild != nil {
+            profileId = mChild?.getProfileId()
+        }
+        
+        let sevenDaysAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date())
+        
+        database.collection("accounts").document(Auth.auth().currentUser!.uid).collection("profiles").document(Auth.auth().currentUser!.uid + profileId!).collection("posts").whereField("timeStamp", isGreaterThan: sevenDaysAgo!).addSnapshotListener { querySnapshot, error in
+            guard let documents = querySnapshot?.documents else {
+                print("Error fetching documents: \(error!)")
+                return
+            }
+            
+            for document in documents {
+                let postMessage = document.get("postMessage") as? String
+                let timeStamp = document.get("timeStamp") as? Date
+                let posterId = document.get("posterId") as? String
+                let posterName = document.get("posterName") as? String
+                let hasImage = document.get("hasImage") as? Bool
+                
+                let post = Post(PostMessage: postMessage!, TimeStamp: timeStamp!, PosterId: posterId!, PosterName: posterName!, HasImage: hasImage!)
+                
+                self.mPosts.append(post)
+                
+                self.timeline.reloadData()
+            }
+            
+            self.mPosts.reverse()
+            
+            let encodedObject = try? JSONEncoder().encode(self.mPosts)
+            
+            if let encodedObjectJsonString = String(data: encodedObject!, encoding: .utf8) {
+                
+                
+                let fileName = PostUtils.getDocumentsDirectory().appendingPathComponent("posts.fam")
+                
+                do {
+                    // Attempt to save JSON string to file
+                    try encodedObjectJsonString.write(to: fileName, atomically: true, encoding: String.Encoding.utf8)
+                }
+                    
+                catch {
+                    print("Failed to write data to file")
+                }
+            }
+        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -58,6 +120,80 @@ class ProfileController: UIViewController, UINavigationControllerDelegate, UIIma
         }
         
         AccountUtils.uploadProfilePhoto(Parent: mParent, Child: mChild, Photo: profilePhoto.image!)
+    }
+    
+    
+    
+    // Tableview methods
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return mPosts.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 600
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let post = mPosts[indexPath.row]
+        
+        var cell: NewsfeedCell?
+        
+        if post.hasImage {
+            cell = timeline.dequeueReusableCell(withIdentifier: "newsfeedCell") as? NewsfeedCell
+            
+            cell!.postImage.image = nil
+            PostUtils.loadPostImage(View: cell!.postImage, PostId: post.getPostId(), ImageHeight: cell!.postImageHeight)
+        }
+            
+        else {
+            cell = timeline.dequeueReusableCell(withIdentifier: "newsfeedCellNoImage") as? NewsfeedCell
+        }
+        
+        cell!.posterNameDisplay.text = post.getPosterName() + " " + (mAccount?.getFamilyName())!
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM dd, yyyy @ hh:mm a"
+        let dateString = dateFormatter.string(from: post.getTimeStamp())
+        cell!.timestampDisplay.text = dateString
+        
+        cell!.postMessageDisplay.text = post.getPostMessage()
+        
+        cell!.profilePhoto.image = nil
+        AccountUtils.loadProfilePhoto(ProfileId: post.getPosterId(), ProfilePhoto: cell!.profilePhoto)
+        cell!.profilePhoto.layer.borderWidth = 1.0
+        cell!.profilePhoto.layer.masksToBounds = false
+        cell!.profilePhoto.layer.borderColor = UIColor.white.cgColor
+        cell!.profilePhoto.layer.cornerRadius = cell!.profilePhoto.frame.size.width / 2
+        cell!.profilePhoto.clipsToBounds = true
+        
+        let twoMinutesAgo = Calendar.current.date(byAdding: .minute, value: -1, to: Date())
+        let fiveMinutesAgo = Calendar.current.date(byAdding: .minute, value: -5, to: Date())
+        
+        if post.getTimeStamp() < fiveMinutesAgo! {
+            cell?.editButton.isHidden = true
+        }
+            
+        else {
+            cell?.editButton.isHidden = false
+        }
+        
+        if post.getTimeStamp() < twoMinutesAgo! {
+            cell?.deleteButton.isHidden = true
+        }
+            
+        else {
+            cell?.deleteButton.isHidden = false
+        }
+        
+        return cell!
     }
     
     

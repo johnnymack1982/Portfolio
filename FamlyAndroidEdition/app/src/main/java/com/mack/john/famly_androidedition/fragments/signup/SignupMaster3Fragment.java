@@ -98,7 +98,7 @@ public class SignupMaster3Fragment extends Fragment implements View.OnClickListe
             addPhotoFromGallery();
         }
 
-        else if(view.getId() == R.id.button_camera) {
+        else if(view.getId() == R.id.button_photo) {
             addPhotoFromCamera();
         }
 
@@ -150,7 +150,7 @@ public class SignupMaster3Fragment extends Fragment implements View.OnClickListe
     // Custom methods
     private void setClickListener(View view) {
         ImageButton galleryButton = view.findViewById(R.id.button_gallery);
-        ImageButton cameraButton = view.findViewById(R.id.button_camera);
+        ImageButton cameraButton = view.findViewById(R.id.button_photo);
         Button cancelButton = view.findViewById(R.id.button_cancel);
         Button continueButton = view.findViewById(R.id.button_continue);
 

@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class ForgotPasswordController: UIViewController {
+class ForgotPasswordController: UIViewController, UITextFieldDelegate {
     
     
     
@@ -31,6 +31,18 @@ class ForgotPasswordController: UIViewController {
         super.viewDidLoad()
 
         ButtonUtils.disableButton(button: sendButton)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+        
+        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        
+        return true
     }
     
     

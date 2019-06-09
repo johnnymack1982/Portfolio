@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		E4C0A3226044D002583A7646 /* Pods_Fam_ly___iOS_Edition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD84FAA39690810BEBF502B /* Pods_Fam_ly___iOS_Edition.framework */; };
+		F22AA89D22AA8113000CD396 /* EditPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AA89C22AA8113000CD396 /* EditPostController.swift */; };
 		F23C9749229C51B3006D46CD /* ProfileLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C9748229C51B3006D46CD /* ProfileLoginController.swift */; };
 		F23C974B229C7831006D46CD /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C974A229C7831006D46CD /* ForgotPasswordController.swift */; };
+		F273F74122A5ED5F00C4F006 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F273F74022A5ED5F00C4F006 /* Post.swift */; };
+		F273F74322A5EF8C00C4F006 /* PostUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F273F74222A5EF8C00C4F006 /* PostUtils.swift */; };
 		F2C68BE9229CAFB80069E001 /* EditFamilyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C68BE8229CAFB80069E001 /* EditFamilyController.swift */; };
 		F2C68BEB229DC2140069E001 /* EditPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C68BEA229DC2140069E001 /* EditPasswordController.swift */; };
 		F2C68BED229DEF080069E001 /* FamilyProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C68BEC229DEF080069E001 /* FamilyProfileController.swift */; };
 		F2C68BF1229E58020069E001 /* ProfileListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C68BF0229E58020069E001 /* ProfileListCell.swift */; };
+		F2E4A00922A747EC00144680 /* NewsfeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E4A00822A747EC00144680 /* NewsfeedCell.swift */; };
 		F2F5FDAC22962EF3002A5513 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F5FDAB22962EF3002A5513 /* TabBarController.swift */; };
 		F2F5FDB222963B14002A5513 /* NewsfeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F5FDB122963B14002A5513 /* NewsfeedController.swift */; };
 		F2F5FDB42296406F002A5513 /* PermissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F5FDB32296406F002A5513 /* PermissionController.swift */; };
@@ -65,12 +69,16 @@
 		3BD84FAA39690810BEBF502B /* Pods_Fam_ly___iOS_Edition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_Fam_ly___iOS_Edition.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D898B32D629CC2B57EC5735 /* Pods-Fam.ly - iOS Edition.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fam.ly - iOS Edition.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fam.ly - iOS Edition/Pods-Fam.ly - iOS Edition.debug.xcconfig"; sourceTree = "<group>"; };
 		9AFE2D9965DBB8EA4AEC0B74 /* Pods-Fam.ly - iOS Edition.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fam.ly - iOS Edition.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fam.ly - iOS Edition/Pods-Fam.ly - iOS Edition.release.xcconfig"; sourceTree = "<group>"; };
+		F22AA89C22AA8113000CD396 /* EditPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostController.swift; sourceTree = "<group>"; };
 		F23C9748229C51B3006D46CD /* ProfileLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLoginController.swift; sourceTree = "<group>"; };
 		F23C974A229C7831006D46CD /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
+		F273F74022A5ED5F00C4F006 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		F273F74222A5EF8C00C4F006 /* PostUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUtils.swift; sourceTree = "<group>"; };
 		F2C68BE8229CAFB80069E001 /* EditFamilyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFamilyController.swift; sourceTree = "<group>"; };
 		F2C68BEA229DC2140069E001 /* EditPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordController.swift; sourceTree = "<group>"; };
 		F2C68BEC229DEF080069E001 /* FamilyProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyProfileController.swift; sourceTree = "<group>"; };
 		F2C68BF0229E58020069E001 /* ProfileListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileListCell.swift; sourceTree = "<group>"; };
+		F2E4A00822A747EC00144680 /* NewsfeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedCell.swift; sourceTree = "<group>"; };
 		F2F5FDAB22962EF3002A5513 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		F2F5FDB122963B14002A5513 /* NewsfeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedController.swift; sourceTree = "<group>"; };
 		F2F5FDB32296406F002A5513 /* PermissionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionController.swift; sourceTree = "<group>"; };
@@ -149,6 +157,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F22AA89B22AA80DE000CD396 /* Newsfeed */ = {
+			isa = PBXGroup;
+			children = (
+				F22AA89C22AA8113000CD396 /* EditPostController.swift */,
+			);
+			path = Newsfeed;
+			sourceTree = "<group>";
+		};
+		F273F73F22A5ED4B00C4F006 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				F273F74022A5ED5F00C4F006 /* Post.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
 		F2C68BE7229CAF9A0069E001 /* Family Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +205,7 @@
 				F2F5FDB32296406F002A5513 /* PermissionController.swift */,
 				F2F5FDB52296447D002A5513 /* CheckinController.swift */,
 				F2F5FDB72296BFD4002A5513 /* ProfileController.swift */,
+				F2E4A00822A747EC00144680 /* NewsfeedCell.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -198,6 +223,7 @@
 		F2F5FDBA2299666C002A5513 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				F273F73F22A5ED4B00C4F006 /* Post */,
 				F2F5FDBB22996687002A5513 /* Account */,
 			);
 			path = Objects;
@@ -229,6 +255,7 @@
 				F2F5FDCC2299AF62002A5513 /* TextFieldUtils.swift */,
 				F2F5FDCE2299AF6E002A5513 /* AccountUtils.swift */,
 				F2F5FDD02299B4EE002A5513 /* Colors.swift */,
+				F273F74222A5EF8C00C4F006 /* PostUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -266,6 +293,7 @@
 				F2F6392A2295644100AA7826 /* Assets.xcassets */,
 				F2F5FDAF22963ABD002A5513 /* Login */,
 				F2F5FDAD22963A72002A5513 /* Signup */,
+				F22AA89B22AA80DE000CD396 /* Newsfeed */,
 				F2F5FDAE22963A9A002A5513 /* Navigation */,
 				F2C68BE7229CAF9A0069E001 /* Family Profile */,
 				F2F5FDBA2299666C002A5513 /* Objects */,
@@ -469,8 +497,10 @@
 				F2F639232295643D00AA7826 /* ViewController.swift in Sources */,
 				F23C974B229C7831006D46CD /* ForgotPasswordController.swift in Sources */,
 				F2C68BEB229DC2140069E001 /* EditPasswordController.swift in Sources */,
+				F22AA89D22AA8113000CD396 /* EditPostController.swift in Sources */,
 				F2C68BE9229CAFB80069E001 /* EditFamilyController.swift in Sources */,
 				F23C9749229C51B3006D46CD /* ProfileLoginController.swift in Sources */,
+				F273F74122A5ED5F00C4F006 /* Post.swift in Sources */,
 				F2F5FDC92299AF43002A5513 /* ButtonUtils.swift in Sources */,
 				F2F5FDE1229A52D7002A5513 /* ProfileSignup2.swift in Sources */,
 				F2F639212295643D00AA7826 /* AppDelegate.swift in Sources */,
@@ -478,6 +508,7 @@
 				F2F5FDAC22962EF3002A5513 /* TabBarController.swift in Sources */,
 				F2F5FDC222996EE0002A5513 /* Parent.swift in Sources */,
 				F2F5FDD52299FC05002A5513 /* MasterSignup3Controller.swift in Sources */,
+				F2E4A00922A747EC00144680 /* NewsfeedCell.swift in Sources */,
 				F2F5FDCD2299AF62002A5513 /* TextFieldUtils.swift in Sources */,
 				F2F5FDD82299FFA9002A5513 /* ImagePicker.swift in Sources */,
 				F2F5FDBE229966AD002A5513 /* Account.swift in Sources */,
@@ -490,6 +521,7 @@
 				F2C68BF1229E58020069E001 /* ProfileListCell.swift in Sources */,
 				F2F5FDCB2299AF55002A5513 /* InputUtils.swift in Sources */,
 				F2C68BED229DEF080069E001 /* FamilyProfileController.swift in Sources */,
+				F273F74322A5EF8C00C4F006 /* PostUtils.swift in Sources */,
 				F2F5FDD32299BF38002A5513 /* MasterSignup2Controller.swift in Sources */,
 				F2F5FDC62299ABA0002A5513 /* MasterSignup1Controller.swift in Sources */,
 				F2F6395D229615A300AA7826 /* ProfileSignup1.swift in Sources */,

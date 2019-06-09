@@ -35,7 +35,6 @@ public class ProfilesAdapter extends BaseAdapter {
 
 
     // System generated methods
-
     @Override
     public int getCount() {
         return profiles.length;
@@ -62,7 +61,7 @@ public class ProfilesAdapter extends BaseAdapter {
 
         TextView profileNameButton = convertView.findViewById(R.id.profile_name);
 
-        AccountUtils.loadProfilePhoto(context, convertView, profile);
+        AccountUtils.loadProfilePhoto(context, convertView, profile.getProfileId());
 
         String name = profile.getFirstName() + " " + account.getFamilyName();
         profileNameButton.setText(name);

@@ -21,22 +21,30 @@ import android.support.v4.content.FileProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mack.john.famly_androidedition.BuildConfig;
 import com.mack.john.famly_androidedition.R;
+import com.mack.john.famly_androidedition.adapters.NewsfeedAdapter;
 import com.mack.john.famly_androidedition.family_profile.FamilyProfileActivity;
 import com.mack.john.famly_androidedition.fragments.family_profile.FamilyProfileFragment;
 import com.mack.john.famly_androidedition.objects.account.Account;
 import com.mack.john.famly_androidedition.objects.account.profile.Parent;
 import com.mack.john.famly_androidedition.objects.account.profile.Profile;
+import com.mack.john.famly_androidedition.objects.post.Post;
 import com.mack.john.famly_androidedition.utils.AccountUtils;
+import com.mack.john.famly_androidedition.utils.PostUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
@@ -66,9 +74,15 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
      Account mAccount;
      Profile mProfile;
 
+     ArrayList<Post> mPosts;
+
     ImageView mPhotoView;
 
     Bitmap mProfilePhoto = null;
+
+    NewsfeedAdapter mNewsfeedAdapter;
+
+    ListView mTimeline;
 
 
 
@@ -130,15 +144,24 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         }
 
         mAccount = AccountUtils.loadAccount(getActivity());
-        AccountUtils.loadProfilePhoto(getActivity(), view, mProfile);
+        AccountUtils.loadProfilePhoto(getActivity(), view, mProfile.getProfileId());
 
         mPhotoView = view.findViewById(R.id.profile_photo);
+
+        mTimeline = view.findViewById(R.id.list_newsfeed);
 
         setClickListener(view);
         setTextDisplay(view);
         populateProfile(view);
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        PostUtils.listenForTimeline(getActivity(), mProfile, mAccount, mTimeline);
     }
 
     @Override
@@ -165,7 +188,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             confirmDialog.show();
         }
 
-        else if(view.getId() == R.id.button_camera) {
+        else if(view.getId() == R.id.button_photo) {
             addPhotoFromCamera();
         }
 
@@ -217,7 +240,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private void setClickListener(View view) {
         mDeleteProfileButton = view.findViewById(R.id.button_delete_profile);
         mFamilyButton = view.findViewById(R.id.button_family);
-        ImageButton cameraButton = view.findViewById(R.id.button_camera);
+        ImageButton cameraButton = view.findViewById(R.id.button_photo);
         ImageButton galleryButton = view.findViewById(R.id.button_gallery);
 
 

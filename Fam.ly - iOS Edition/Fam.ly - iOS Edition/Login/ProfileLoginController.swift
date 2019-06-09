@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class ProfileLoginController: UIViewController {
+class ProfileLoginController: UIViewController, UITextFieldDelegate {
     
     
     
@@ -35,6 +35,18 @@ class ProfileLoginController: UIViewController {
         super.viewDidLoad()
 
         ButtonUtils.disableButton(button: continueButton)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+        
+        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        
+        return true
     }
     
     

@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fam.ly - iOS Edition/Signup/MasterSignup4Controller.swift"
-            timestampString = "580598575.547395"
+            timestampString = "581741809.49113"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fam.ly - iOS Edition/Signup/MasterSignup4Controller.swift"
-            timestampString = "580598575.547465"
+            timestampString = "581741809.491202"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
@@ -121,11 +121,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fam.ly - iOS Edition/Login/ViewController.swift"
-            timestampString = "581211675.841817"
+            timestampString = "581443736.20524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
             landmarkName = "textWatcher(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -136,28 +136,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Fam.ly - iOS Edition/Utils/AccountUtils.swift"
-            timestampString = "581211975.0717649"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "loadAccountPhoto(FamilyPhoto:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Fam.ly - iOS Edition/Family Profile/EditFamilyController.swift"
-            timestampString = "581211675.842651"
+            timestampString = "581427525.944198"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "saveButtonClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -169,11 +153,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fam.ly - iOS Edition/Family Profile/EditFamilyController.swift"
-            timestampString = "581211675.842762"
+            timestampString = "581427525.9442509"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "saveButtonClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -185,11 +169,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fam.ly - iOS Edition/Login/ViewController.swift"
-            timestampString = "581211675.842854"
+            timestampString = "581443736.205359"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "loginClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -201,11 +185,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fam.ly - iOS Edition/Login/ViewController.swift"
-            timestampString = "581211675.84297"
+            timestampString = "581443736.205413"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "loginClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -217,7 +201,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fam.ly - iOS Edition/Login/ViewController.swift"
-            timestampString = "581211675.8430949"
+            timestampString = "581443736.205464"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
@@ -233,7 +217,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fam.ly - iOS Edition/Login/ViewController.swift"
-            timestampString = "581211675.843207"
+            timestampString = "581443736.20551"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
@@ -249,7 +233,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fam.ly - iOS Edition/Login/ViewController.swift"
-            timestampString = "581211675.843317"
+            timestampString = "581443736.205554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
@@ -265,11 +249,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fam.ly - iOS Edition/Navigation/ProfileController.swift"
-            timestampString = "581211675.84342"
+            timestampString = "581741809.491446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
             landmarkName = "buttonClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -281,11 +265,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fam.ly - iOS Edition/Utils/AccountUtils.swift"
-            timestampString = "581211975.072336"
+            timestampString = "581741809.491861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "loadProfilePhoto(ProfileId:ProfilePhoto:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -296,13 +280,379 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Fam.ly - iOS Edition/Utils/AccountUtils.swift"
-            timestampString = "581211975.07256"
+            filePath = "Fam.ly - iOS Edition/Navigation/NewsfeedController.swift"
+            timestampString = "581741809.49192"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
-            landmarkName = "loadProfilePhoto(ProfileId:ProfilePhoto:)"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "textFieldDidEndEditing(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fam.ly - iOS Edition/Navigation/NewsfeedController.swift"
+            timestampString = "581741809.49198"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "textFieldDidBeginEditing(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fam.ly - iOS Edition/Utils/PostUtils.swift"
+            timestampString = "581741809.492039"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "createPost(Post:Controller:Photo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fam.ly - iOS Edition/Login/ViewController.swift"
+            timestampString = "581443736.206383"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "loginClicked(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fam.ly - iOS Edition/Utils/AccountUtils.swift"
+            timestampString = "581741809.492116"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "createAccount(Account:Photo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fam.ly - iOS Edition/Login/ViewController.swift"
+            timestampString = "581443736.206453"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fam.ly - iOS Edition/Navigation/NewsfeedController.swift"
+            timestampString = "581741809.492183"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
+            landmarkName = "postButtonClicked(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fam.ly - iOS Edition/Navigation/NewsfeedController.swift"
+            timestampString = "581741809.49224"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
+            landmarkName = "postButtonClicked(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fam_ly___iOS_Edition.NewsfeedController.postButtonClicked(__C.UIButton) -&gt; ()"
+                  moduleName = "Fam.ly - iOS Edition"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/johnnymack/Documents/School/Year%201/Project%20&amp;%20Portfolio%201/Fam.ly%20-%20iOS%20Edition/Fam.ly%20-%20iOS%20Edition/Navigation/NewsfeedController.swift"
+                  timestampString = "581443736.590349"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "168">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fam_ly___iOS_Edition.NewsfeedController.postButtonClicked(__C.UIButton) -&gt; ()"
+                  moduleName = "Fam.ly - iOS Edition"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/johnnymack/Documents/School/Year%201/Project%20&amp;%20Portfolio%201/Fam.ly%20-%20iOS%20Edition/Fam.ly%20-%20iOS%20Edition/Navigation/NewsfeedController.swift"
+                  timestampString = "581443736.592971"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "268">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fam_ly___iOS_Edition.NewsfeedController.postButtonClicked(__C.UIButton) -&gt; ()"
+                  moduleName = "Fam.ly - iOS Edition"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/johnnymack/Documents/School/Year%201/Project%20&amp;%20Portfolio%201/Fam.ly%20-%20iOS%20Edition/Fam.ly%20-%20iOS%20Edition/Navigation/NewsfeedController.swift"
+                  timestampString = "581443736.595387"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "1792">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fam.ly - iOS Edition/Navigation/NewsfeedController.swift"
+            timestampString = "581741809.492295"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "405"
+            endingLineNumber = "405"
+            landmarkName = "NewsfeedController"
+            landmarkType = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fam.ly - iOS Edition/Newsfeed/EditPostController.swift"
+            timestampString = "581741809.492393"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "buttonClicked(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fam_ly___iOS_Edition.EditPostController.buttonClicked(__C.UIButton) -&gt; ()"
+                  moduleName = "Fam.ly - iOS Edition"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/johnnymack/Documents/School/Year%201/Project%20&amp;%20Portfolio%201/Fam.ly%20-%20iOS%20Edition/Fam.ly%20-%20iOS%20Edition/Newsfeed/EditPostController.swift"
+                  timestampString = "581639750.585691"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fam_ly___iOS_Edition.EditPostController.buttonClicked(__C.UIButton) -&gt; ()"
+                  moduleName = "Fam.ly - iOS Edition"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/johnnymack/Documents/School/Year%201/Project%20&amp;%20Portfolio%201/Fam.ly%20-%20iOS%20Edition/Fam.ly%20-%20iOS%20Edition/Newsfeed/EditPostController.swift"
+                  timestampString = "581639750.587929"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fam_ly___iOS_Edition.EditPostController.buttonClicked(__C.UIButton) -&gt; ()"
+                  moduleName = "Fam.ly - iOS Edition"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/johnnymack/Documents/School/Year%201/Project%20&amp;%20Portfolio%201/Fam.ly%20-%20iOS%20Edition/Fam.ly%20-%20iOS%20Edition/Newsfeed/EditPostController.swift"
+                  timestampString = "581639750.590414"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "185">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fam.ly - iOS Edition/Utils/PostUtils.swift"
+            timestampString = "581741809.49245"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "updatePost(Post:Posts:Controller:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fam.ly - iOS Edition/Utils/PostUtils.swift"
+            timestampString = "581741809.492502"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "updatePost(Post:Posts:Controller:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fam.ly - iOS Edition/Utils/PostUtils.swift"
+            timestampString = "581741809.492553"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "updatePost(Post:Posts:Controller:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fam.ly - iOS Edition/Utils/PostUtils.swift"
+            timestampString = "581741809.4926029"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "updatePost(Post:Posts:Controller:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static Fam_ly___iOS_Edition.PostUtils.updatePost(Post: Fam_ly___iOS_Edition.Post, Posts: Swift.Array&lt;Fam_ly___iOS_Edition.Post&gt;, Controller: __C.UIViewController) -&gt; ()"
+                  moduleName = "Fam.ly - iOS Edition"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/johnnymack/Documents/School/Year%201/Project%20&amp;%20Portfolio%201/Fam.ly%20-%20iOS%20Edition/Fam.ly%20-%20iOS%20Edition/Utils/PostUtils.swift"
+                  timestampString = "581699339.465597"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "220"
+                  endingLineNumber = "220"
+                  offsetFromSymbolStart = "834">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static Fam_ly___iOS_Edition.PostUtils.updatePost(Post: Fam_ly___iOS_Edition.Post, Posts: Swift.Array&lt;Fam_ly___iOS_Edition.Post&gt;, Controller: __C.UIViewController) -&gt; ()"
+                  moduleName = "Fam.ly - iOS Edition"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/johnnymack/Documents/School/Year%201/Project%20&amp;%20Portfolio%201/Fam.ly%20-%20iOS%20Edition/Fam.ly%20-%20iOS%20Edition/Utils/PostUtils.swift"
+                  timestampString = "581699339.46924"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "221"
+                  endingLineNumber = "221"
+                  offsetFromSymbolStart = "139">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fam.ly - iOS Edition/Utils/AccountUtils.swift"
+            timestampString = "581741809.492653"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "loadAccount()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fam.ly - iOS Edition/Navigation/NewsfeedController.swift"
+            timestampString = "581741809.492704"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "viewDidAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

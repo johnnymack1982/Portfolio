@@ -125,7 +125,7 @@ public class AccountUtils {
         return child
     }
     
-    public static func loadAccount() -> Account {
+    public static func loadAccount() -> Account? {
         let fileName = getDocumentsDirectory().appendingPathComponent("account.fam")
         
         var account: Account?
@@ -141,17 +141,17 @@ public class AccountUtils {
             
         catch {
             print("Error loading account from file")
+            
+            do {
+                try Auth.auth().signOut()
+            }
+            
+            catch {
+                
+            }
         }
         
-        for _ in (account?.getParents())! {
-            print("Parent found")
-        }
-        
-        for _ in (account?.getChildren())! {
-            print("Child found")
-        }
-        
-        return account!
+        return account
     }
     
     public static func loadAccountPhoto(FamilyPhoto familyPhoto: UIImageView) {
@@ -487,8 +487,8 @@ public class AccountUtils {
         let database = Firestore.firestore()
         
         let account = loadAccount()
-        account.setParents(parents: [Parent]())
-        account.setChildren(children: [Child]())
+        account!.setParents(parents: [Parent]())
+        account!.setChildren(children: [Child]())
         
         database.collection("accounts").document(Auth.auth().currentUser!.uid).collection("profiles").getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -506,7 +506,7 @@ public class AccountUtils {
                         
                         let parent = Parent(FirstName: firstName!, DateOfBirth: dateOfBirth!, GenderID: genderId!, ProfilePIN: profilePin!, RoleID: roleId!)
                         
-                        account.addParent(parent: parent)
+                        account!.addParent(parent: parent)
                     }
                         
                     else  {
@@ -517,11 +517,11 @@ public class AccountUtils {
                         
                         let child = Child(FirstName: firstName!, DateOfBirth: dateOfBirth!, GenderID: genderId!, ProfilePIN: profilePin!)
                         
-                        account.addChild(child: child)
+                        account!.addChild(child: child)
                     }
                 }
                 
-                saveAccount(Account: account, Photo: nil)
+                saveAccount(Account: account!, Photo: nil)
             }
         }
     }
@@ -538,13 +538,13 @@ public class AccountUtils {
                 let postalCode = document.get("postalCode") as? Int
                 let streetAddress = document.get("streetAddress") as? String
                 
-                account.setFamilyName(familyName: familyName!)
-                account.setMasterEmail(masterEmail: masterEmail!)
-                account.setMasterPassword(masterPassword: masterPassword!)
-                account.setPostalCode(postalCode: postalCode!)
-                account.setStreetAddress(streetAddress: streetAddress!)
+                account!.setFamilyName(familyName: familyName!)
+                account!.setMasterEmail(masterEmail: masterEmail!)
+                account!.setMasterPassword(masterPassword: masterPassword!)
+                account!.setPostalCode(postalCode: postalCode!)
+                account!.setStreetAddress(streetAddress: streetAddress!)
                 
-                saveAccount(Account: account, Photo: nil)
+                saveAccount(Account: account!, Photo: nil)
             }
             
             else {
@@ -571,13 +571,13 @@ public class AccountUtils {
                 let postalCode = document.get("postalCode") as? Int
                 let streetAddress = document.get("streetAddress") as? String
                 
-                account.setFamilyName(familyName: familyName!)
-                account.setMasterEmail(masterEmail: masterEmail!)
-                account.setMasterPassword(masterPassword: masterPassword!)
-                account.setPostalCode(postalCode: postalCode!)
-                account.setStreetAddress(streetAddress: streetAddress!)
+                account!.setFamilyName(familyName: familyName!)
+                account!.setMasterEmail(masterEmail: masterEmail!)
+                account!.setMasterPassword(masterPassword: masterPassword!)
+                account!.setPostalCode(postalCode: postalCode!)
+                account!.setStreetAddress(streetAddress: streetAddress!)
                 
-                saveAccount(Account: account, Photo: nil)
+                saveAccount(Account: account!, Photo: nil)
             }
                 
             else {
@@ -592,8 +592,8 @@ public class AccountUtils {
                 
             else {
                 let account = loadAccount()
-                account.setParents(parents: [Parent]())
-                account.setChildren(children: [Child]())
+                account!.setParents(parents: [Parent]())
+                account!.setChildren(children: [Child]())
                 
                 for document in querySnapshot!.documents {
                     if document.get("roleId") != nil {
@@ -605,7 +605,7 @@ public class AccountUtils {
                         
                         let parent = Parent(FirstName: firstName!, DateOfBirth: dateOfBirth!, GenderID: genderId!, ProfilePIN: profilePin!, RoleID: roleId!)
                         
-                        account.addParent(parent: parent)
+                        account!.addParent(parent: parent)
                     }
                         
                     else  {
@@ -616,11 +616,11 @@ public class AccountUtils {
                         
                         let child = Child(FirstName: firstName!, DateOfBirth: dateOfBirth!, GenderID: genderId!, ProfilePIN: profilePin!)
                         
-                        account.addChild(child: child)
+                        account!.addChild(child: child)
                     }
                 }
                 
-                saveAccount(Account: account, Photo: nil)
+                saveAccount(Account: account!, Photo: nil)
             }
         }
     }

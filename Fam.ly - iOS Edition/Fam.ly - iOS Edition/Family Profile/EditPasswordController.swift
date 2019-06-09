@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class EditPasswordController: UIViewController {
+class EditPasswordController: UIViewController, UITextFieldDelegate {
     
     
     
@@ -43,6 +43,18 @@ class EditPasswordController: UIViewController {
         mAccount = AccountUtils.loadAccount()
         AccountUtils.loadAccountPhoto(FamilyPhoto: familyPhoto)
         roundImageView()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+        
+        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        
+        return true
     }
     
     

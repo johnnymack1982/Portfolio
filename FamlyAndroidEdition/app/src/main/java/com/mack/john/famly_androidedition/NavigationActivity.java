@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.mack.john.famly_androidedition.fragments.CheckinFragment;
-import com.mack.john.famly_androidedition.fragments.NewsFeedFragment;
+import com.mack.john.famly_androidedition.fragments.newsfeed.NewsFeedFragment;
 import com.mack.john.famly_androidedition.fragments.PermissionFragment;
 import com.mack.john.famly_androidedition.fragments.ProfileFragment;
 import com.mack.john.famly_androidedition.fragments.family_profile.FamilyProfileFragment;

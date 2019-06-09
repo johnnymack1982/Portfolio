@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MasterSignup2Controller: UIViewController {
+class MasterSignup2Controller: UIViewController, UITextFieldDelegate {
     
     
     
@@ -72,6 +72,18 @@ class MasterSignup2Controller: UIViewController {
             destination?.mEmail = mEmail
             destination?.mPassword = mPassword
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+        
+        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        
+        return true
     }
     
     

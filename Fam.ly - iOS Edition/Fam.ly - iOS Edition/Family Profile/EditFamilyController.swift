@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 
-class EditFamilyController: UIViewController {
+class EditFamilyController: UIViewController, UITextFieldDelegate {
     
     
     
@@ -66,6 +66,18 @@ class EditFamilyController: UIViewController {
         ButtonUtils.disableButton(button: saveButton)
         
         roundImageView()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+        
+        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        
+        return true
     }
     
     

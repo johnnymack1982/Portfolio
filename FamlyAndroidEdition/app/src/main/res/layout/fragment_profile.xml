@@ -85,7 +85,7 @@
             app:srcCompat="@drawable/trash_icon" />
 
         <ImageButton
-            android:id="@+id/button_camera"
+            android:id="@+id/button_photo"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginStart="8dp"
@@ -123,10 +123,10 @@
     </android.support.constraint.ConstraintLayout>
 
     <ListView
-        android:id="@+id/list_posts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:id="@+id/list_newsfeed"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />

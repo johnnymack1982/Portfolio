@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     
     
@@ -41,14 +41,14 @@ class ViewController: UIViewController {
         ButtonUtils.disableButton(button: loginButton)
         
         let user = Auth.auth().currentUser
-        
-        do {
-            try Auth.auth().signOut()
-        }
 
-        catch {
-
-        }
+//        do {
+//            try Auth.auth().signOut()
+//        }
+//
+//        catch {
+//
+//        }
         
         if user != nil {
             DispatchQueue.main.async(){
@@ -93,6 +93,18 @@ class ViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+        
+        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        
+        return true
     }
     
     
@@ -174,6 +186,8 @@ class ViewController: UIViewController {
             }
             
             else {
+                print(error)
+                
                 let alert = UIAlertController(title: "Couldn't Login", message: "Couldn\'t sign you in. Please check your info and try again", preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))

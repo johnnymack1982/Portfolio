@@ -78,7 +78,7 @@
             app:srcCompat="@drawable/trash_icon" />
 
         <ImageButton
-            android:id="@+id/button_camera"
+            android:id="@+id/button_photo"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginStart="8dp"

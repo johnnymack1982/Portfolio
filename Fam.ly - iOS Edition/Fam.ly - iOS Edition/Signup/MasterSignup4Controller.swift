@@ -43,7 +43,7 @@ class MasterSignup4Controller: UIViewController {
     private func toggleParentButton() {
         let account = AccountUtils.loadAccount()
         
-        if account.getParents().count == 2 {
+        if account!.getParents().count == 2 {
             ButtonUtils.disableButton(button: parentButton)
         }
         

@@ -18,7 +18,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,7 +125,7 @@ public class FamilyProfileFragment extends Fragment implements View.OnClickListe
             startActivity(editIntent);
         }
 
-        else if(view.getId() == R.id.button_camera) {
+        else if(view.getId() == R.id.button_photo) {
             addPhotoFromCamera();
         }
 
@@ -171,7 +170,7 @@ public class FamilyProfileFragment extends Fragment implements View.OnClickListe
     private void setClickListener(View view) {
         ImageButton deleteFamilyButton = view.findViewById(R.id.button_delete_family);
         ImageButton editFamilyButton = view.findViewById(R.id.button_edit_family);
-        ImageButton cameraButton = view.findViewById(R.id.button_camera);
+        ImageButton cameraButton = view.findViewById(R.id.button_photo);
         ImageButton galleryButton = view.findViewById(R.id.button_gallery);
 
         deleteFamilyButton.setOnClickListener(this);

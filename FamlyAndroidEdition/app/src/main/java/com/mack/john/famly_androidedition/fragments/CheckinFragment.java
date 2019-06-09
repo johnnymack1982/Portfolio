@@ -71,7 +71,7 @@ public class CheckinFragment extends Fragment implements View.OnFocusChangeListe
 
     // Custom methods
     private void  setClickListener(View view) {
-        mCameraButton = view.findViewById(R.id.button_camera);
+        mCameraButton = view.findViewById(R.id.button_photo);
         mCheckinButton = view.findViewById(R.id.button_checkin);
         mFindButton = view.findViewById(R.id.button_find);
 

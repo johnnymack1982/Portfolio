@@ -89,7 +89,7 @@ public class AddChild2Fragment extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == R.id.button_camera) {
+        if(view.getId() == R.id.button_photo) {
             addPhotoFromCamera();
         }
 
@@ -144,7 +144,7 @@ public class AddChild2Fragment extends Fragment implements View.OnClickListener 
 
     // Custom methods
     private void setClickListener(View view) {
-        ImageButton cameraButton = view.findViewById(R.id.button_camera);
+        ImageButton cameraButton = view.findViewById(R.id.button_photo);
         ImageButton galleryButton = view.findViewById(R.id.button_gallery);
         Button cancelButton = view.findViewById(R.id.button_cancel);
         Button createButton = view.findViewById(R.id.button_continue);

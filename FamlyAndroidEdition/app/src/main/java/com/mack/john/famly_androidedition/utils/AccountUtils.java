@@ -702,14 +702,14 @@ public class AccountUtils {
         }
     }
 
-    public static void loadProfilePhoto(final Context context, View view, Profile profile) {
+    public static void loadProfilePhoto(final Context context, View view, String profileId) {
         final ImageView profilePhoto = view.findViewById(R.id.profile_photo);
 
         FirebaseAuth firebaseAccount = FirebaseAuth.getInstance();
 
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         StorageReference storageReference = firebaseStorage.getReference();
-        StorageReference photoReference = storageReference.child(REFERENCE_PHOTOS + firebaseAccount.getUid() + profile.getProfileId() + ".jpg");
+        StorageReference photoReference = storageReference.child(REFERENCE_PHOTOS + firebaseAccount.getUid() + profileId + ".jpg");
 
         photoReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
@@ -878,6 +878,7 @@ public class AccountUtils {
                 }
 
                 Account account = loadAccount(context);
+                account.getProfiles().clear();
 
                 for (QueryDocumentSnapshot documentSnapshot : value) {
                     if (documentSnapshot.get("firstName") != null) {
