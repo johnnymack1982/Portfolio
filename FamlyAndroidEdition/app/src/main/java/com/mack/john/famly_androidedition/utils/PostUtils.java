@@ -158,6 +158,7 @@ public class PostUtils {
                     posts.add(post);
                 }
 
+                Collections.sort(posts);
                 Collections.reverse(posts);
 
                 File targetDir = context.getFilesDir();
@@ -211,6 +212,7 @@ public class PostUtils {
                     newsfeedAdapter.notifyDataSetChanged();
                 }
 
+                Collections.sort(posts);
                 Collections.reverse(posts);
 
                 File targetDir = context.getFilesDir();

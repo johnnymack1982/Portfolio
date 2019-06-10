@@ -33,7 +33,11 @@ class ProfileController: UIViewController, UINavigationControllerDelegate, UIIma
     var mParent: Parent?
     var mChild: Child?
     
-    var mPosts: [Post] = [Post]()
+    var mPosts = [Post]()
+    var mPost: Post?
+    var mIndexPath: IndexPath?
+    
+    var mPhoto: UIImage?
     
     var mEditingSelf = true
     
@@ -90,7 +94,7 @@ class ProfileController: UIViewController, UINavigationControllerDelegate, UIIma
                 self.timeline.reloadData()
             }
             
-            self.mPosts.reverse()
+            self.mPosts = self.mPosts.sorted(by: {$0.getTimeStamp().compare($1.getTimeStamp()) == .orderedDescending})
             
             let encodedObject = try? JSONEncoder().encode(self.mPosts)
             
@@ -120,6 +124,22 @@ class ProfileController: UIViewController, UINavigationControllerDelegate, UIIma
         }
         
         AccountUtils.uploadProfilePhoto(Parent: mParent, Child: mChild, Photo: profilePhoto.image!)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is EditPostController {
+            let destination = segue.destination as? EditPostController
+            
+            destination?.mPosts = mPosts
+            destination?.mPost = mPost
+            destination?.mIndexPath = mIndexPath
+        }
+        
+        else if segue.destination is FullScreenPhotoController {
+            let destination = segue.destination as? FullScreenPhotoController
+            
+            destination?.mPhoto = mPhoto
+        }
     }
     
     
@@ -194,6 +214,13 @@ class ProfileController: UIViewController, UINavigationControllerDelegate, UIIma
         }
         
         return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as? NewsfeedCell
+        mPhoto = cell?.postImage.image
+        
+        performSegue(withIdentifier: "ProfileToFullScreenPhoto", sender: self)
     }
     
     
@@ -363,6 +390,42 @@ class ProfileController: UIViewController, UINavigationControllerDelegate, UIIma
         default:
             print("Invalid option")
         }
+    }
+    
+    @IBAction func editButtonClicked(_ sender: UIButton) {
+        let cell = sender.superview?.superview as? NewsfeedCell
+        mIndexPath = timeline.indexPath(for: cell!)
+        mPost = mPosts[(mIndexPath?.row)!]
+        
+        switch sender.tag {
+        case 0:
+            let alert = UIAlertController(title: "Delete Post?", message: "Are you sure you want to delete this post?", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (UIAlertAction) in
+                PostUtils.deletePost(PostId: self.mPost!.getPostId(), PosterId: self.mPost!.getPosterId(), Controller: self)
+                
+                self.mPosts.remove(at: self.mIndexPath!.row)
+                self.timeline.reloadData()
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            self.present(alert, animated: true)
+            
+            
+        case 1:
+            performSegue(withIdentifier: "ProfileToEditPost", sender: nil)
+            
+            
+        default:
+            print("Invalid button")
+        }
+    }
+    
+    @IBAction func unwindToProfile(segue:UIStoryboardSegue) {
+        mPosts = PostUtils.loadNewsfeed()
+        
+        timeline.reloadData()
     }
 }
 

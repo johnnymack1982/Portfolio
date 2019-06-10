@@ -83,6 +83,7 @@
     <string name="delete_post">Delete Post?</string>
     <string name="delete_post_message">Are you sure you want to delete this post?</string>
     <string name="post_updated">Post Updated!</string>
+    <string name="post_photo">Post Photo</string>
 
     <array name="family_roles">
         <item>Mother</item>

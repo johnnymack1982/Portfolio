@@ -501,7 +501,7 @@
                                         <rect key="frame" x="165" y="53" width="202" height="94"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="May 14, 2019 @ 9:59 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hN3-gV-0qJ">
-                                                <rect key="frame" x="0.0" y="38.666666666666657" width="152.66666666666666" height="16.666666666666671"/>
+                                                <rect key="frame" x="0.0" y="38.666666666666657" width="152.33333333333334" height="16.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="14"/>
                                                 <color key="textColor" red="0.63137254901960782" green="0.76078431372549016" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -513,7 +513,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8741 Grouse Run Lane, 28314" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hF8-jy-OEz">
-                                                <rect key="frame" x="0.0" y="55.333333333333343" width="160" height="14"/>
+                                                <rect key="frame" x="0.0" y="55.333333333333343" width="159.66666666666666" height="14"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                                                 <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -648,6 +648,7 @@
                                                     <state key="normal" image="Edit"/>
                                                     <connections>
                                                         <action selector="editButtonClicked:" destination="1we-Dp-iDc" eventType="touchUpInside" id="LRk-pt-wSh"/>
+                                                        <action selector="editButtonClicked:" destination="l8N-Oa-vSn" eventType="touchUpInside" id="UJb-Aa-VTz"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HBs-gV-pJ3">
@@ -658,6 +659,7 @@
                                                     </constraints>
                                                     <state key="normal" image="Trash"/>
                                                     <connections>
+                                                        <action selector="editButtonClicked:" destination="l8N-Oa-vSn" eventType="touchUpInside" id="Kjd-P0-tIP"/>
                                                         <action selector="editButtonClicked:" destination="1we-Dp-iDc" eventType="touchUpInside" id="LVt-de-KYj"/>
                                                     </connections>
                                                 </button>
@@ -749,6 +751,7 @@
                                                     <state key="normal" image="Edit"/>
                                                     <connections>
                                                         <action selector="editButtonClicked:" destination="1we-Dp-iDc" eventType="touchUpInside" id="C9C-u8-JDH"/>
+                                                        <action selector="editButtonClicked:" destination="l8N-Oa-vSn" eventType="touchUpInside" id="jFR-la-S7g"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLp-4Q-hP2">
@@ -759,6 +762,7 @@
                                                     </constraints>
                                                     <state key="normal" image="Trash"/>
                                                     <connections>
+                                                        <action selector="editButtonClicked:" destination="l8N-Oa-vSn" eventType="touchUpInside" id="RQe-lV-qiM"/>
                                                         <action selector="editButtonClicked:" destination="1we-Dp-iDc" eventType="touchUpInside" id="TTa-o7-5vH"/>
                                                     </connections>
                                                 </button>
@@ -827,6 +831,8 @@
                         <outlet property="profilePhoto" destination="ZjS-gc-9eq" id="lL4-YT-IfZ"/>
                         <outlet property="timeline" destination="WJR-h7-wb0" id="AaJ-4p-XIc"/>
                         <segue destination="5UA-L6-Rt7" kind="show" identifier="ProfileToLogin" id="hlQ-c2-n0t"/>
+                        <segue destination="at4-zG-ioI" kind="show" identifier="ProfileToEditPost" id="GRH-VU-ReL"/>
+                        <segue destination="OdZ-3k-SV4" kind="show" identifier="ProfileToFullScreenPhoto" id="PBi-Dz-YiF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s28-d2-Azh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -872,7 +878,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8741 Grouse Run Lane, 28314" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eE-eW-5XY">
-                                                <rect key="frame" x="0.0" y="56" width="160" height="15"/>
+                                                <rect key="frame" x="0.0" y="56" width="159.66666666666666" height="15"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="Z0V-Vh-5Dt"/>
                                                 </constraints>
@@ -1275,7 +1281,7 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="At least 6 characters, mix of letters and numbers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfM-lA-04q">
-                                <rect key="frame" x="58.333333333333343" y="296" width="258.66666666666663" height="16"/>
+                                <rect key="frame" x="58.333333333333343" y="296" width="258.33333333333326" height="16"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                                 <color key="textColor" red="0.57647058819999997" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1426,8 +1432,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="463.66666666666669"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Family Icon Large" translatesAutoresizingMaskIntoConstraints="NO" id="8q6-rR-Ptk">
+                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Family Icon Large" translatesAutoresizingMaskIntoConstraints="NO" id="8q6-rR-Ptk">
                                                     <rect key="frame" x="0.0" y="155.66666666666663" width="375" height="300"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="300" id="9XZ-2h-op1"/>
                                                     </constraints>
@@ -1779,6 +1786,7 @@
                         <outlet property="postImageView" destination="fPC-1P-X7F" id="hWY-QJ-Ul8"/>
                         <outlet property="postInput" destination="BYv-dp-L5b" id="24x-pk-nbg"/>
                         <segue destination="at4-zG-ioI" kind="show" identifier="NewsfeedToEditPost" id="HuV-Gd-sNq"/>
+                        <segue destination="OdZ-3k-SV4" kind="show" identifier="NewsfeedToFullScreenImage" id="8SQ-5k-q7i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bwo-q8-uzT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1799,7 +1807,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cpa-zm-9oi" userLabel="Post View">
-                                <rect key="frame" x="0.0" y="88" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="What's going on?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dy8-MG-xM6">
                                         <rect key="frame" x="32" y="10" width="311" height="30"/>
@@ -1821,7 +1829,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wx3-GZ-w2C" userLabel="Post Buttons View">
-                                <rect key="frame" x="0.0" y="138" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="50"/>
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ja-qn-DN6">
                                         <rect key="frame" x="217" y="8" width="80" height="32"/>
@@ -1879,12 +1887,43 @@
                         <outlet property="postButtonsView" destination="wx3-GZ-w2C" id="LgK-hb-npb"/>
                         <outlet property="postInput" destination="dy8-MG-xM6" id="qvL-xA-mKH"/>
                         <segue destination="x5Q-6P-vgK" kind="unwind" identifier="unwindToNewsfeed" unwindAction="unwindToNewsfeedWithSegue:" id="976-jX-aZk"/>
+                        <segue destination="x5Q-6P-vgK" kind="unwind" identifier="unwindToProfile" unwindAction="unwindToProfileWithSegue:" id="qds-Of-m97"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="doX-jI-naa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="x5Q-6P-vgK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5460" y="-1029"/>
+        </scene>
+        <!--Full Screen Photo Controller-->
+        <scene sceneID="cxO-l2-v8x">
+            <objects>
+                <viewController id="OdZ-3k-SV4" customClass="FullScreenPhotoController" customModule="Fam_ly___iOS_Edition" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4JG-ir-UgB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pbJ-ii-0K2">
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.80000000000000004" green="0.94117647059999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="iKd-iE-7Hn" firstAttribute="trailing" secondItem="pbJ-ii-0K2" secondAttribute="trailing" id="7ZL-de-IZz"/>
+                            <constraint firstItem="iKd-iE-7Hn" firstAttribute="bottom" secondItem="pbJ-ii-0K2" secondAttribute="bottom" id="Mcy-VY-0YG"/>
+                            <constraint firstItem="pbJ-ii-0K2" firstAttribute="top" secondItem="iKd-iE-7Hn" secondAttribute="top" id="Thb-VE-Kq6"/>
+                            <constraint firstItem="pbJ-ii-0K2" firstAttribute="leading" secondItem="iKd-iE-7Hn" secondAttribute="leading" id="wYj-97-Mbz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iKd-iE-7Hn"/>
+                    </view>
+                    <connections>
+                        <outlet property="photoView" destination="pbJ-ii-0K2" id="WMY-ed-UNO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SrU-TV-nCb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6305" y="-1029"/>
         </scene>
         <!--Back-->
         <scene sceneID="NRu-LW-67O">
@@ -2563,6 +2602,8 @@ You can always add more later.</string>
     <inferredMetricsTieBreakers>
         <segue reference="hlQ-c2-n0t"/>
         <segue reference="Wys-Oq-CGL"/>
+        <segue reference="PBi-Dz-YiF"/>
+        <segue reference="GRH-VU-ReL"/>
         <segue reference="USl-G5-oml"/>
         <segue reference="C9y-7E-d2l"/>
         <segue reference="9TJ-vw-08T"/>

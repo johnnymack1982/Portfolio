@@ -41,6 +41,7 @@ class NewsfeedController: UIViewController, UITextFieldDelegate, UINavigationCon
     var mPosts: [Post]?
     var mPost: Post?
     var mIndexPath: IndexPath?
+    var mPhoto: UIImage?
     
     var mAccount: Account?
     
@@ -157,6 +158,12 @@ class NewsfeedController: UIViewController, UITextFieldDelegate, UINavigationCon
             destination?.mPost = mPost
             destination?.mIndexPath = mIndexPath
         }
+        
+        else if segue.destination is FullScreenPhotoController {
+            let destination = segue.destination as? FullScreenPhotoController
+            
+            destination?.mPhoto = mPhoto
+        }
     }
     
     
@@ -231,6 +238,13 @@ class NewsfeedController: UIViewController, UITextFieldDelegate, UINavigationCon
         }
         
         return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as? NewsfeedCell
+        mPhoto = cell?.postImage.image
+        
+        performSegue(withIdentifier: "NewsfeedToFullScreenImage", sender: self)
     }
     
     
@@ -396,6 +410,14 @@ class NewsfeedController: UIViewController, UITextFieldDelegate, UINavigationCon
         mPosts = PostUtils.loadNewsfeed()
         
         newsfeed.reloadData()
+    }
+    
+    @IBAction func imageClicked(_ sender: UITapGestureRecognizer) {
+        let photoView = sender.view as? UIImageView
+        
+        mPhoto = photoView?.image
+        
+        performSegue(withIdentifier: "NewsfeedToFullScreenImage", sender: self)
     }
 }
 

@@ -97,6 +97,7 @@
             android:layout_width="0dp"
             android:layout_height="500dp"
             android:layout_marginBottom="8dp"
+            android:clickable="true"
             android:contentDescription="@string/post_image"
             android:scaleType="centerCrop"
             android:visibility="visible"
@@ -105,6 +106,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             tools:srcCompat="@tools:sample/backgrounds/scenic"
-            tools:visibility="gone" />
+            tools:visibility="gone"
+            android:focusable="true" />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

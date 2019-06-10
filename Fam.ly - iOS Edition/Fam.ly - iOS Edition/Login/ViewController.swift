@@ -41,14 +41,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         ButtonUtils.disableButton(button: loginButton)
         
         let user = Auth.auth().currentUser
-
-//        do {
-//            try Auth.auth().signOut()
-//        }
-//
-//        catch {
-//
-//        }
         
         if user != nil {
             DispatchQueue.main.async(){
@@ -56,20 +48,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 let documentRef = database.collection("accounts").document(user!.uid)
                 documentRef.getDocument { (document, error) in
                     if let document = document, document.exists {
-                        let familyName = document.get("familyName") as? String
-                        let masterEmail = document.get("masterEmail") as? String
-                        let masterPassword = document.get("masterPassword") as? String
-                        let postalCode = document.get("postalCode") as? Int
-                        let streetAddress = document.get("streetAddress") as? String
-                        
-                        let account = Account(FamilyName: familyName!, StreetAddress: streetAddress!, PostalCode: postalCode!, MasterEmail: masterEmail!, MasterPassword: masterPassword!)
+//                        let familyName = document.get("familyName") as? String
+//                        let masterEmail = document.get("masterEmail") as? String
+//                        let masterPassword = document.get("masterPassword") as? String
+//                        let postalCode = document.get("postalCode") as? Int
+//                        let streetAddress = document.get("streetAddress") as? String
+//                        
+//                        let account = Account(FamilyName: familyName!, StreetAddress: streetAddress!, PostalCode: postalCode!, MasterEmail: masterEmail!, MasterPassword: masterPassword!)
                         
                         database.collection("accounts").document(user!.uid).collection("profiles").getDocuments() { (querySnapshot, err) in
                             if let err = err {
                                 print("Error getting documents: \(err)")
                             }
                             
-                            else {
+                            else if AccountUtils.loadAccount() != nil {
                                 AccountUtils.getUpdatedProfiles()
                                 
                                 let parent = AccountUtils.loadParent()
@@ -186,7 +178,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
             
             else {
-                print(error)
+                print(error!)
                 
                 let alert = UIAlertController(title: "Couldn't Login", message: "Couldn\'t sign you in. Please check your info and try again", preferredStyle: .alert)
                 

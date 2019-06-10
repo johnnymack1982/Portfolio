@@ -9,7 +9,7 @@ import com.mack.john.famly_androidedition.utils.AccountUtils;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Post implements Serializable {
+public class Post implements Serializable, Comparable<Post> {
 
 
 
@@ -30,6 +30,15 @@ public class Post implements Serializable {
         this.posterName = posterName;
         this.hasImage = hasImage;
     }
+
+
+
+    // System generated methods
+    @Override
+    public int compareTo(Post post) {
+        return getTimeStamp().compareTo(post.getTimeStamp());
+    }
+
 
 
 

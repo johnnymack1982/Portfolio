@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +17,13 @@ import android.widget.TextView;
 
 import com.mack.john.famly_androidedition.R;
 import com.mack.john.famly_androidedition.newsfeed.EditPostActivity;
+import com.mack.john.famly_androidedition.newsfeed.FullScreenPhotoActivity;
 import com.mack.john.famly_androidedition.objects.account.Account;
 import com.mack.john.famly_androidedition.objects.post.Post;
 import com.mack.john.famly_androidedition.utils.AccountUtils;
 import com.mack.john.famly_androidedition.utils.PostUtils;
 
+import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -33,6 +37,7 @@ public class NewsfeedAdapter extends BaseAdapter {
 
     public static final String EXTRA_POSTS = "extra_posts";
     public static final String EXTRA_POSITION = "extra_position";
+    public static final String EXTRA_PHOTO = "extra_photo";
     
     private final Context context;
     ArrayList<Post> posts;
@@ -137,6 +142,29 @@ public class NewsfeedAdapter extends BaseAdapter {
                 context.startActivity(editIntent);
             }
         });
+
+        try {
+            final ImageView postImageDisplay = convertView.findViewById(R.id.display_post_image);
+            BitmapDrawable drawable = (BitmapDrawable) postImageDisplay.getDrawable();
+            final Bitmap image = drawable.getBitmap();
+
+            final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            image.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
+
+            postImageDisplay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent fullScreenIntent = new Intent(context, FullScreenPhotoActivity.class);
+                    fullScreenIntent.putExtra(EXTRA_PHOTO, byteArrayOutputStream.toByteArray());
+
+                    context.startActivity(fullScreenIntent);
+                }
+            });
+        }
+
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return convertView;
     }

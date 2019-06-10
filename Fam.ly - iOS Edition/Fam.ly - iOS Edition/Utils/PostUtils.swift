@@ -82,8 +82,9 @@ public class PostUtils {
                 let post = Post(PostMessage: postMessage!, TimeStamp: timeStamp!, PosterId: posterId!, PosterName: posterName!, HasImage: hasImage!)
                 
                 posts.append(post)
-                posts.reverse()
             }
+            
+            posts = posts.sorted(by: {$0.getTimeStamp().compare($1.getTimeStamp()) == .orderedDescending})
             
             let encodedObject = try? JSONEncoder().encode(posts)
             

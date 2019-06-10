@@ -139,6 +139,13 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".newsfeed.FullScreenPhotoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"

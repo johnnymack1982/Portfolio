@@ -11,6 +11,7 @@
 		F22AA89D22AA8113000CD396 /* EditPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AA89C22AA8113000CD396 /* EditPostController.swift */; };
 		F23C9749229C51B3006D46CD /* ProfileLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C9748229C51B3006D46CD /* ProfileLoginController.swift */; };
 		F23C974B229C7831006D46CD /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C974A229C7831006D46CD /* ForgotPasswordController.swift */; };
+		F25CFAE822ADA97600FDC985 /* FullScreenPhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25CFAE722ADA97600FDC985 /* FullScreenPhotoController.swift */; };
 		F273F74122A5ED5F00C4F006 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F273F74022A5ED5F00C4F006 /* Post.swift */; };
 		F273F74322A5EF8C00C4F006 /* PostUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F273F74222A5EF8C00C4F006 /* PostUtils.swift */; };
 		F2C68BE9229CAFB80069E001 /* EditFamilyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C68BE8229CAFB80069E001 /* EditFamilyController.swift */; };
@@ -72,6 +73,7 @@
 		F22AA89C22AA8113000CD396 /* EditPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostController.swift; sourceTree = "<group>"; };
 		F23C9748229C51B3006D46CD /* ProfileLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLoginController.swift; sourceTree = "<group>"; };
 		F23C974A229C7831006D46CD /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
+		F25CFAE722ADA97600FDC985 /* FullScreenPhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenPhotoController.swift; sourceTree = "<group>"; };
 		F273F74022A5ED5F00C4F006 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F273F74222A5EF8C00C4F006 /* PostUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUtils.swift; sourceTree = "<group>"; };
 		F2C68BE8229CAFB80069E001 /* EditFamilyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFamilyController.swift; sourceTree = "<group>"; };
@@ -161,6 +163,8 @@
 			isa = PBXGroup;
 			children = (
 				F22AA89C22AA8113000CD396 /* EditPostController.swift */,
+				F25CFAE722ADA97600FDC985 /* FullScreenPhotoController.swift */,
+				F2E4A00822A747EC00144680 /* NewsfeedCell.swift */,
 			);
 			path = Newsfeed;
 			sourceTree = "<group>";
@@ -205,7 +209,6 @@
 				F2F5FDB32296406F002A5513 /* PermissionController.swift */,
 				F2F5FDB52296447D002A5513 /* CheckinController.swift */,
 				F2F5FDB72296BFD4002A5513 /* ProfileController.swift */,
-				F2E4A00822A747EC00144680 /* NewsfeedCell.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				F2F5FDCD2299AF62002A5513 /* TextFieldUtils.swift in Sources */,
 				F2F5FDD82299FFA9002A5513 /* ImagePicker.swift in Sources */,
 				F2F5FDBE229966AD002A5513 /* Account.swift in Sources */,
+				F25CFAE822ADA97600FDC985 /* FullScreenPhotoController.swift in Sources */,
 				F2F5FDB82296BFD4002A5513 /* ProfileController.swift in Sources */,
 				F2F5FDB222963B14002A5513 /* NewsfeedController.swift in Sources */,
 				F2F5FDCF2299AF6E002A5513 /* AccountUtils.swift in Sources */,
