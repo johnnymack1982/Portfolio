@@ -218,9 +218,12 @@ class ProfileController: UIViewController, UINavigationControllerDelegate, UIIma
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as? NewsfeedCell
-        mPhoto = cell?.postImage.image
         
-        performSegue(withIdentifier: "ProfileToFullScreenPhoto", sender: self)
+        if cell?.postImage != nil {
+            mPhoto = cell?.postImage.image
+            
+            performSegue(withIdentifier: "ProfileToFullScreenPhoto", sender: self)
+        }
     }
     
     
@@ -293,6 +296,9 @@ class ProfileController: UIViewController, UINavigationControllerDelegate, UIIma
             nameDisplay.text = (mChild?.getFirstName())! + " " + (mAccount?.getFamilyName())!
             
         }
+        
+        let locationUtils = LocationUtils(Location: nil)
+        locationUtils.updateLocationDisplay(Controller: self, TimeStampDisplay: dateTimeDisplay, LastKnowLocationDisplay: lastKnownLocationDisplay, Parent: mParent, Child: mChild)
     }
     
     

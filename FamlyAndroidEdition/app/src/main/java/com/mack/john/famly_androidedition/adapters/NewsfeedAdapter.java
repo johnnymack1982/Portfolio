@@ -92,8 +92,11 @@ public class NewsfeedAdapter extends BaseAdapter {
         TextView postMessageDisplay = convertView.findViewById(R.id.display_post_message);
         postMessageDisplay.setText(post.getPostMessage());
 
+        AccountUtils.loadProfilePhoto(context, convertView, post.getPosterId());
+
         if (post.getHasImage()) {
-            AccountUtils.loadProfilePhoto(context, convertView, post.getPosterId());
+            ImageView postImage = convertView.findViewById(R.id.display_post_image);
+            postImage.setVisibility(View.GONE);
         }
 
         else {

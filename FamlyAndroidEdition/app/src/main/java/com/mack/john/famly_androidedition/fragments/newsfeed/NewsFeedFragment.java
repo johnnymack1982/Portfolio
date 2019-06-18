@@ -30,9 +30,13 @@ import com.mack.john.famly_androidedition.BuildConfig;
 import com.mack.john.famly_androidedition.R;
 import com.mack.john.famly_androidedition.adapters.NewsfeedAdapter;
 import com.mack.john.famly_androidedition.objects.account.Account;
+import com.mack.john.famly_androidedition.objects.account.profile.Child;
+import com.mack.john.famly_androidedition.objects.account.profile.Parent;
 import com.mack.john.famly_androidedition.objects.account.profile.Profile;
 import com.mack.john.famly_androidedition.objects.post.Post;
 import com.mack.john.famly_androidedition.utils.AccountUtils;
+import com.mack.john.famly_androidedition.utils.LocationUtils;
+import com.mack.john.famly_androidedition.utils.PermissionRequestUtils;
 import com.mack.john.famly_androidedition.utils.PostUtils;
 
 import java.io.File;
@@ -97,6 +101,14 @@ public class NewsFeedFragment extends Fragment implements View.OnFocusChangeList
         mPhotoView = view.findViewById(R.id.post_image);
 
         AccountUtils.listenForUpdates(getActivity());
+
+        if(AccountUtils.loadProfile(getActivity()) instanceof Parent) {
+            PermissionRequestUtils.receiveRequests(getActivity(), AccountUtils.loadProfile(getActivity()));
+        }
+
+        else if(AccountUtils.loadProfile(getActivity()) instanceof Child) {
+            PermissionRequestUtils.receiveResponses(getActivity(), AccountUtils.loadProfile(getActivity()));
+        }
 
         setClickListener(view);
         setFocusListener(view);

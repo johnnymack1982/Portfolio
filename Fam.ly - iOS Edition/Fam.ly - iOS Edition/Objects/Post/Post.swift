@@ -93,5 +93,4 @@ extension Date {
         self = Date(timeIntervalSince1970: TimeInterval(millis / 1000))
         self.addTimeInterval(TimeInterval(Double(millis % 1000) / 1000 ))
     }
-    
 }

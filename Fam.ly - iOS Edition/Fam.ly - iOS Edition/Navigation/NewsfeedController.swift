@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsfeedController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDataSource, UITableViewDelegate {
+public class NewsfeedController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDataSource, UITableViewDelegate {
     
     
     
@@ -45,17 +45,32 @@ class NewsfeedController: UIViewController, UITextFieldDelegate, UINavigationCon
     
     var mAccount: Account?
     
+    var mChild: Child?
+    var mParent: Parent?
+    
     
     
     
     
     // System generated methods
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         mAccount = AccountUtils.loadAccount()
         
+        mChild = AccountUtils.loadChild()
+        mParent = AccountUtils.loadParent()
+        
         PostUtils.listenForNews()
+        
+        if mParent != nil {
+            PermissionRequestUtils.receiveRequests(Parent: mParent!)
+        }
+        
+        else if mChild != nil {
+            PermissionRequestUtils.receiveResponses(Child: mChild!)
+        }
+        
         mPosts = PostUtils.loadNewsfeed()
         
         newsfeed.dataSource = self
@@ -78,7 +93,7 @@ class NewsfeedController: UIViewController, UITextFieldDelegate, UINavigationCon
         postButton.isHidden = true
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override public func viewDidAppear(_ animated: Bool) {
         PostUtils.listenForNews()
         mPosts = PostUtils.loadNewsfeed()
         
@@ -93,7 +108,7 @@ class NewsfeedController: UIViewController, UITextFieldDelegate, UINavigationCon
         AccountUtils.listenForUpdates()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         postImageHeight.constant = 0
         postButtonsHeight.constant = 0
         photoPicker.isHidden = true
@@ -102,7 +117,7 @@ class NewsfeedController: UIViewController, UITextFieldDelegate, UINavigationCon
         postButton.isHidden = true
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         cameraPicker.dismiss(animated: true, completion: nil)
         postImage.image = info[.originalImage] as? UIImage
         
@@ -118,7 +133,7 @@ class NewsfeedController: UIViewController, UITextFieldDelegate, UINavigationCon
         }
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.tag == 0 {
             postButtonsHeight.constant = 50
             
@@ -127,7 +142,7 @@ class NewsfeedController: UIViewController, UITextFieldDelegate, UINavigationCon
         }
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    public func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.tag == 0 {
             postImageHeight.constant = 0
             postButtonsHeight.constant = 0
@@ -138,7 +153,7 @@ class NewsfeedController: UIViewController, UITextFieldDelegate, UINavigationCon
         }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let nextTag = textField.tag + 1
         
         if let nextResponder = textField.superview?.viewWithTag(nextTag) {
@@ -150,7 +165,7 @@ class NewsfeedController: UIViewController, UITextFieldDelegate, UINavigationCon
         return true
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is EditPostController {
             let destination = segue.destination as? EditPostController
             
@@ -169,23 +184,23 @@ class NewsfeedController: UIViewController, UITextFieldDelegate, UINavigationCon
     
     
     // Tableview methods
-    func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mPosts!.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 600
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let post = mPosts![indexPath.row]
         
         var cell: NewsfeedCell?
@@ -240,11 +255,13 @@ class NewsfeedController: UIViewController, UITextFieldDelegate, UINavigationCon
         return cell!
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as? NewsfeedCell
-        mPhoto = cell?.postImage.image
-        
-        performSegue(withIdentifier: "NewsfeedToFullScreenImage", sender: self)
+        if cell?.postImage != nil {
+            mPhoto = cell?.postImage.image
+            
+            performSegue(withIdentifier: "NewsfeedToFullScreenImage", sender: self)
+        }
     }
     
     
@@ -425,7 +442,7 @@ class NewsfeedController: UIViewController, UITextFieldDelegate, UINavigationCon
 
 extension NewsfeedController : ImagePickerDelegate {
     
-    func didSelect(image: UIImage?) {
+    public func didSelect(image: UIImage?) {
         self.postImage.image = image
         
         if image != nil {

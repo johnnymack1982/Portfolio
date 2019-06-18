@@ -8,10 +8,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
 
 import com.mack.john.famly_androidedition.NavigationActivity;
 import com.mack.john.famly_androidedition.R;
+import com.mack.john.famly_androidedition.adapters.ProfilesAdapter;
+import com.mack.john.famly_androidedition.locate.LocateProfileActivity;
+import com.mack.john.famly_androidedition.objects.account.Account;
+import com.mack.john.famly_androidedition.objects.account.profile.Profile;
+import com.mack.john.famly_androidedition.utils.AccountUtils;
 
 public class LocateSelectionFragment extends Fragment implements View.OnClickListener {
 
@@ -19,6 +26,8 @@ public class LocateSelectionFragment extends Fragment implements View.OnClickLis
 
     // Class properties
     public static final String TAG = "LocateSelectionFragment";
+
+    public static final String EXTRA_PROFILE = "extra_profile";
 
 
 
@@ -37,6 +46,7 @@ public class LocateSelectionFragment extends Fragment implements View.OnClickLis
         View view = inflater.inflate(R.layout.fragment_locate_selection, container, false);
 
         setClickListener(view);
+        populateGrid(view);
 
         return view;
     }
@@ -55,5 +65,27 @@ public class LocateSelectionFragment extends Fragment implements View.OnClickLis
         Button cancelButton = view.findViewById(R.id.button_cancel);
 
         cancelButton.setOnClickListener(this);
+    }
+
+    private void populateGrid(View view) {
+        Account account = AccountUtils.loadAccount(getActivity());
+
+        final Profile[] profiles = account.getProfiles().toArray(new Profile[account.getProfiles().size()]);
+
+        GridView profileGrid = view.findViewById(R.id.grid_family);
+
+        ProfilesAdapter profilesAdapter = new ProfilesAdapter(getActivity(), profiles, account);
+        profileGrid.setAdapter(profilesAdapter);
+        profileGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Profile profile = profiles[position];
+
+                Intent editIntent = new Intent(getActivity(), LocateProfileActivity.class);
+                editIntent.putExtra(EXTRA_PROFILE, profile);
+
+                getActivity().startActivity(editIntent);
+            }
+        });
     }
 }

@@ -241,7 +241,8 @@ public class AccountUtils {
         }
 
         else {
-
+            Intent intent = new Intent(context, MasterLoginActivity.class);
+            context.startActivity(intent);
         }
     }
 
@@ -471,6 +472,8 @@ public class AccountUtils {
                         int genderId = documentSnapshot.getLong("genderId").intValue();
                         int profilePin = Integer.valueOf(pin);
                         int roleId = documentSnapshot.getLong("roleId").intValue();
+
+
 
                         mProfile = new Parent(firstName, dateofBirth, genderId, profilePin, roleId);
                     }

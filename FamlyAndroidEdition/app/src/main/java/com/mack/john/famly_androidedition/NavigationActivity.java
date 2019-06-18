@@ -8,10 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.mack.john.famly_androidedition.fragments.CheckinFragment;
+import com.mack.john.famly_androidedition.fragments.ParentPermissionFragment;
 import com.mack.john.famly_androidedition.fragments.newsfeed.NewsFeedFragment;
-import com.mack.john.famly_androidedition.fragments.PermissionFragment;
+import com.mack.john.famly_androidedition.fragments.ChildPermissionFragment;
 import com.mack.john.famly_androidedition.fragments.ProfileFragment;
 import com.mack.john.famly_androidedition.fragments.family_profile.FamilyProfileFragment;
+import com.mack.john.famly_androidedition.objects.account.profile.Child;
+import com.mack.john.famly_androidedition.objects.account.profile.Parent;
+import com.mack.john.famly_androidedition.utils.AccountUtils;
 
 public class NavigationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -61,8 +65,16 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
             case R.id.navigation_permission:
                 getIntent().setAction(ACTION_LEAVE_PROFILE);
 
-                fragment = new PermissionFragment();
-                loadFragment(fragment);
+                if(AccountUtils.loadProfile(this) instanceof Child) {
+                    fragment = new ChildPermissionFragment();
+                    loadFragment(fragment);
+                }
+
+                else if(AccountUtils.loadProfile(this) instanceof Parent) {
+                    fragment = new ParentPermissionFragment();
+                    loadFragment(fragment);
+                }
+
                 return true;
 
             case R.id.navigation_checkin:

@@ -38,6 +38,7 @@ import com.mack.john.famly_androidedition.objects.account.profile.Parent;
 import com.mack.john.famly_androidedition.objects.account.profile.Profile;
 import com.mack.john.famly_androidedition.objects.post.Post;
 import com.mack.john.famly_androidedition.utils.AccountUtils;
+import com.mack.john.famly_androidedition.utils.LocationUtils;
 import com.mack.john.famly_androidedition.utils.PostUtils;
 
 import java.io.File;
@@ -60,6 +61,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private static final int CAMERA_REQUEST_CODE = 2;
 
     private static final int CAMERA_PERMISSION_REQUEST = 3;
+
+    View mView;
 
      ImageButton mDeleteProfileButton;
      ImageButton mFamilyButton;
@@ -99,6 +102,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        mView = view;
 
         try {
             if(getActivity().getIntent() != null && getActivity().getIntent().getAction().equals(FamilyProfileFragment.ACTION_EDIT_PROFILE)) {
@@ -162,6 +167,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         super.onResume();
 
         PostUtils.listenForTimeline(getActivity(), mProfile, mAccount, mTimeline);
+
+        LocationUtils locationUtils = new LocationUtils(getActivity());
+        locationUtils.updateLocationDisplay(getActivity(), mView, mProfile);
     }
 
     @Override
@@ -258,8 +266,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private void populateProfile(View view) {
         TextView profileName = view.findViewById(R.id.display_name);
-        TextView timeStamp = view.findViewById(R.id.display_timestamp);
-        TextView lastKnwonLocation = view.findViewById(R.id.display_last_location);
         ImageButton deleteProfileButton = view.findViewById(R.id.button_delete_profile);
         ImageButton familyButton = view.findViewById(R.id.button_family);
 
@@ -270,6 +276,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         String name = mProfile.getFirstName() + " " + mAccount.getFamilyName();
         profileName.setText(name);
+
+        LocationUtils locationUtils = new LocationUtils(getActivity());
+        locationUtils.updateLocationDisplay(getActivity(), view, mProfile);
     }
 
     private void addPhotoFromGallery() {

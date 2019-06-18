@@ -63,8 +63,6 @@ public class Profile implements Serializable {
         this.profilePIN = profilePIN;
     }
 
-
-
     // Custom methods
     public String getProfileId() {
         return firstName + profilePIN;
