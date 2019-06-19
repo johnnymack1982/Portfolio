@@ -48,6 +48,8 @@ public class NewsfeedController: UIViewController, UITextFieldDelegate, UINaviga
     var mChild: Child?
     var mParent: Parent?
     
+    @objc let refreshControl = UIRefreshControl()
+    
     
     
     
@@ -100,6 +102,16 @@ public class NewsfeedController: UIViewController, UITextFieldDelegate, UINaviga
         newsfeed.dataSource = self
         newsfeed.delegate = self
         newsfeed.reloadData()
+        
+        if #available(iOS 10.0, *) {
+            newsfeed.refreshControl = refreshControl
+        } else {
+            newsfeed.addSubview(refreshControl)
+        }
+        
+        refreshControl.tintColor = UIColor.orange
+        
+        refreshControl.addTarget(self, action: #selector(refreshNewsfeedData(_:)), for: .valueChanged)
         
         galleryPicker = ImagePicker(presentationController: self, delegate: self)
         
@@ -307,6 +319,13 @@ public class NewsfeedController: UIViewController, UITextFieldDelegate, UINaviga
         cameraPicker.sourceType = .camera
         
         present(cameraPicker, animated: true, completion: nil)
+    }
+    
+    @objc private func refreshNewsfeedData(_ sender: Any) {
+        mPosts = PostUtils.loadNewsfeed()
+        
+        newsfeed.reloadData()
+        refreshControl.endRefreshing()
     }
     
     

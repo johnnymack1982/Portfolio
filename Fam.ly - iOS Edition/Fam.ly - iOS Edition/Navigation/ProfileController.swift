@@ -22,6 +22,7 @@ class ProfileController: UIViewController, UINavigationControllerDelegate, UIIma
     @IBOutlet weak var dateTimeDisplay: UILabel!
     @IBOutlet weak var lastKnownLocationDisplay: UILabel!
     @IBOutlet weak var timeline: UITableView!
+    @IBOutlet weak var logoutButton: UIButton!
     
     
     
@@ -43,6 +44,8 @@ class ProfileController: UIViewController, UINavigationControllerDelegate, UIIma
     
     var mPosition: Int?
     
+    let refreshControl = UIRefreshControl()
+    
     
     
     
@@ -58,6 +61,16 @@ class ProfileController: UIViewController, UINavigationControllerDelegate, UIIma
         
         timeline.delegate = self
         timeline.dataSource = self
+        
+        if #available(iOS 10.0, *) {
+            timeline.refreshControl = refreshControl
+        } else {
+            timeline.addSubview(refreshControl)
+        }
+        
+        refreshControl.tintColor = UIColor.orange
+        
+        refreshControl.addTarget(self, action: #selector(refreshTimeline(_:)), for: .valueChanged)
         
         mPosts = [Post]()
         
@@ -290,15 +303,84 @@ class ProfileController: UIViewController, UINavigationControllerDelegate, UIIma
     func populateProfile() {
         if mParent != nil {
             nameDisplay.text = (mParent?.getFirstName())! + " " + (mAccount?.getFamilyName())!
+            
+            if mParent?.getProfileId() == AccountUtils.loadParent()?.getProfileId() {
+                logoutButton.isHidden = false
+            }
+            
+            else {
+                logoutButton.isHidden = true
+            }
         }
             
         else if mChild != nil {
             nameDisplay.text = (mChild?.getFirstName())! + " " + (mAccount?.getFamilyName())!
             
+            logoutButton.isHidden = false
         }
         
         let locationUtils = LocationUtils(Location: nil)
         locationUtils.updateLocationDisplay(Controller: self, TimeStampDisplay: dateTimeDisplay, LastKnowLocationDisplay: lastKnownLocationDisplay, Parent: mParent, Child: mChild)
+    }
+    
+    @objc private func refreshTimeline(_ sender: Any) {
+        mPosts = [Post]()
+        
+        mPosts = [Post]()
+        
+        let database = Firestore.firestore()
+        var profileId: String?
+        
+        if mParent != nil {
+            profileId = mParent?.getProfileId()
+        }
+            
+        else if mChild != nil {
+            profileId = mChild?.getProfileId()
+        }
+        
+        let sevenDaysAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date())
+        
+        database.collection("accounts").document(Auth.auth().currentUser!.uid).collection("profiles").document(Auth.auth().currentUser!.uid + profileId!).collection("posts").whereField("timeStamp", isGreaterThan: sevenDaysAgo!).addSnapshotListener { querySnapshot, error in
+            guard let documents = querySnapshot?.documents else {
+                print("Error fetching documents: \(error!)")
+                return
+            }
+            
+            for document in documents {
+                let postMessage = document.get("postMessage") as? String
+                let timeStamp = document.get("timeStamp") as? Date
+                let posterId = document.get("posterId") as? String
+                let posterName = document.get("posterName") as? String
+                let hasImage = document.get("hasImage") as? Bool
+                
+                let post = Post(PostMessage: postMessage!, TimeStamp: timeStamp!, PosterId: posterId!, PosterName: posterName!, HasImage: hasImage!)
+                
+                self.mPosts.append(post)
+                
+                self.timeline.reloadData()
+                self.refreshControl.endRefreshing()
+            }
+            
+            self.mPosts = self.mPosts.sorted(by: {$0.getTimeStamp().compare($1.getTimeStamp()) == .orderedDescending})
+            
+            let encodedObject = try? JSONEncoder().encode(self.mPosts)
+            
+            if let encodedObjectJsonString = String(data: encodedObject!, encoding: .utf8) {
+                
+                
+                let fileName = PostUtils.getDocumentsDirectory().appendingPathComponent("posts.fam")
+                
+                do {
+                    // Attempt to save JSON string to file
+                    try encodedObjectJsonString.write(to: fileName, atomically: true, encoding: String.Encoding.utf8)
+                }
+                    
+                catch {
+                    print("Failed to write data to file")
+                }
+            }
+        }
     }
     
     
@@ -392,6 +474,29 @@ class ProfileController: UIViewController, UINavigationControllerDelegate, UIIma
                 
                 self.present(alert, animated: true)
             }
+            
+        case 3:
+                let alert = UIAlertController(title: "Log Out?", message: "Are you sure you want to log this profile out?", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { action in
+                    do {
+                    try Auth.auth().signOut()
+                    
+                    self.performSegue(withIdentifier: "ProfileToLogin", sender: nil)
+                    }
+                    
+                    catch {
+                        let alert = UIAlertController(title: "Uh Oh!", message: "There was a problem logging out. Please try again.", preferredStyle: .alert)
+                        
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        
+                        self.present(alert, animated: true)
+                    }
+                }))
+                
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                
+                self.present(alert, animated: true)
             
         default:
             print("Invalid option")

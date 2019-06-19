@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E4C0A3226044D002583A7646 /* Pods_Fam_ly___iOS_Edition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD84FAA39690810BEBF502B /* Pods_Fam_ly___iOS_Edition.framework */; };
+		F20A420122B9A95700E146DB /* LoadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20A420022B9A95700E146DB /* LoadingController.swift */; };
 		F22AA89D22AA8113000CD396 /* EditPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22AA89C22AA8113000CD396 /* EditPostController.swift */; };
 		F23C9749229C51B3006D46CD /* ProfileLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C9748229C51B3006D46CD /* ProfileLoginController.swift */; };
 		F23C974B229C7831006D46CD /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C974A229C7831006D46CD /* ForgotPasswordController.swift */; };
@@ -76,6 +77,7 @@
 		3BD84FAA39690810BEBF502B /* Pods_Fam_ly___iOS_Edition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_Fam_ly___iOS_Edition.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D898B32D629CC2B57EC5735 /* Pods-Fam.ly - iOS Edition.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fam.ly - iOS Edition.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fam.ly - iOS Edition/Pods-Fam.ly - iOS Edition.debug.xcconfig"; sourceTree = "<group>"; };
 		9AFE2D9965DBB8EA4AEC0B74 /* Pods-Fam.ly - iOS Edition.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fam.ly - iOS Edition.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fam.ly - iOS Edition/Pods-Fam.ly - iOS Edition.release.xcconfig"; sourceTree = "<group>"; };
+		F20A420022B9A95700E146DB /* LoadingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingController.swift; sourceTree = "<group>"; };
 		F22AA89C22AA8113000CD396 /* EditPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostController.swift; sourceTree = "<group>"; };
 		F23C9748229C51B3006D46CD /* ProfileLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLoginController.swift; sourceTree = "<group>"; };
 		F23C974A229C7831006D46CD /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				F2F639222295643D00AA7826 /* ViewController.swift */,
 				F23C9748229C51B3006D46CD /* ProfileLoginController.swift */,
 				F23C974A229C7831006D46CD /* ForgotPasswordController.swift */,
+				F20A420022B9A95700E146DB /* LoadingController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				F23C974B229C7831006D46CD /* ForgotPasswordController.swift in Sources */,
 				F25B1E3A22B87FB600443B74 /* LocateController.swift in Sources */,
 				F2C68BEB229DC2140069E001 /* EditPasswordController.swift in Sources */,
+				F20A420122B9A95700E146DB /* LoadingController.swift in Sources */,
 				F22AA89D22AA8113000CD396 /* EditPostController.swift in Sources */,
 				F2C68BE9229CAFB80069E001 /* EditFamilyController.swift in Sources */,
 				F256EBFF22B11B7100847401 /* PermissionCell.swift in Sources */,

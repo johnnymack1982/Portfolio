@@ -141,7 +141,7 @@ class LocationUtils {
             "checkinTimestamp": date
         ]
         
-        database.collection("account").document(Auth.auth().currentUser!.uid).collection("profiles").document(Auth.auth().currentUser!.uid + profileId!).collection("location").document("location").setData(checkinData) { err in
+        database.collection("accounts").document(Auth.auth().currentUser!.uid).collection("profiles").document(Auth.auth().currentUser!.uid + profileId!).collection("location").document("location").setData(checkinData) { err in
             if let err = err {
                 print("Error writing document: \(err)")
                 

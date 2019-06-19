@@ -19,7 +19,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var masterEmailInput: UITextField!
     @IBOutlet weak var masterPasswordInput: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var passwordRulesDisplay: UILabel!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     
     
@@ -39,52 +41,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         ButtonUtils.disableButton(button: loginButton)
-        
-        let user = Auth.auth().currentUser
-        
-        if user != nil {
-            DispatchQueue.main.async(){
-                let database = Firestore.firestore()
-                let documentRef = database.collection("accounts").document(user!.uid)
-                documentRef.getDocument { (document, error) in
-                    if let document = document, document.exists {
-//                        let familyName = document.get("familyName") as? String
-//                        let masterEmail = document.get("masterEmail") as? String
-//                        let masterPassword = document.get("masterPassword") as? String
-//                        let postalCode = document.get("postalCode") as? Int
-//                        let streetAddress = document.get("streetAddress") as? String
-//                        
-//                        let account = Account(FamilyName: familyName!, StreetAddress: streetAddress!, PostalCode: postalCode!, MasterEmail: masterEmail!, MasterPassword: masterPassword!)
-                        
-                        database.collection("accounts").document(user!.uid).collection("profiles").getDocuments() { (querySnapshot, err) in
-                            if let err = err {
-                                print("Error getting documents: \(err)")
-                            }
-                            
-                            else if AccountUtils.loadAccount() != nil {
-                                AccountUtils.getUpdatedProfiles()
-                                
-                                let parent = AccountUtils.loadParent()
-                                let child = AccountUtils.loadChild()
-                                
-                                if parent == nil && child == nil {
-                                    self.performSegue(withIdentifier: "MasterToProfileLogin", sender: nil)
-                                }
-                                    
-                                else {
-                                    AccountUtils.saveProfile(Parent: parent, Child: child)
-                                    self.performSegue(withIdentifier: "AutoLogin", sender: nil)
-                                }
-                            }
-                        }
-                    }
-                    
-                    else {
-                        print("Document does not exist")
-                    }
-                }
-            }
-        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -103,6 +59,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // Action methods
     @IBAction func loginClicked(_ sender: UIButton) {
+        loginButton.isHidden = true
+        forgotPasswordButton.isHidden = true
+        loadingIndicator.isHidden = false
+        
         Auth.auth().signIn(withEmail: mEmail!, password: mPassword!) { [weak self] user, error in
             if error == nil {
                 let database = Firestore.firestore()
@@ -185,6 +145,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 
                 self!.present(alert, animated: true)
+                
+                self!.loginButton.isHidden = false
+                self!.forgotPasswordButton.isHidden = false
+                self!.loadingIndicator.isHidden = true
             }
         }
     }

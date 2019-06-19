@@ -28,6 +28,8 @@ public class PermissionController: UIViewController, UITextFieldDelegate, UITabl
     var mChild: Child?
     var mParent: Parent?
     
+    let refreshControl = UIRefreshControl()
+    
     
     
     
@@ -59,6 +61,16 @@ public class PermissionController: UIViewController, UITextFieldDelegate, UITabl
     }
     
     public override func viewWillAppear(_ animated: Bool) {
+        if #available(iOS 10.0, *) {
+            requestList.refreshControl = refreshControl
+        } else {
+            requestList.addSubview(refreshControl)
+        }
+        
+        refreshControl.tintColor = UIColor.orange
+        
+        refreshControl.addTarget(self, action: #selector(refreshRequestList(_:)), for: .valueChanged)
+        
         requestList.reloadData()
     }
     
@@ -257,5 +269,10 @@ public class PermissionController: UIViewController, UITextFieldDelegate, UITabl
         default:
             print("Invalid button")
         }
+    }
+    
+    @objc private func refreshRequestList(_ sender: Any) {
+        requestList.reloadData()
+        refreshControl.endRefreshing()
     }
 }

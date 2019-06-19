@@ -18,6 +18,8 @@ class ProfileLoginController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var firstNameInput: UITextField!
     @IBOutlet weak var profilePinInput: UITextField!
     @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     
     
@@ -53,6 +55,10 @@ class ProfileLoginController: UIViewController, UITextFieldDelegate {
     
     // Action methods
     @IBAction func continueClicked(_ sender: UIButton) {
+        continueButton.isHidden = true
+        cancelButton.isHidden = true
+        loadingIndicator.isHidden = false
+        
         let firebaseAuth = Auth.auth()
         let account = firebaseAuth.currentUser
         let database = Firestore.firestore()
@@ -91,6 +97,10 @@ class ProfileLoginController: UIViewController, UITextFieldDelegate {
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 
                 self.present(alert, animated: true)
+                
+                self.continueButton.isHidden = false
+                self.cancelButton.isHidden = false
+                self.loadingIndicator.isHidden = true
             }
         }
     }
