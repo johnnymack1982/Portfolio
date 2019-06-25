@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,8 @@ public class ParentPermissionFragment extends Fragment {
     // Class properties
     View mView;
 
+    SwipeRefreshLayout mRefresher;
+
 
 
     // System generated methods
@@ -38,10 +41,26 @@ public class ParentPermissionFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_parent_permission, container, false);
+        // Inflate layout
+        final View view = inflater.inflate(R.layout.fragment_parent_permission, container, false);
 
+        // Reference view
         mView = view;
 
+        // Reference pull-down refresher
+        mRefresher = view.findViewById(R.id.refresher);
+
+        // Set pull-down refresher list
+        mRefresher.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                populate(view);
+
+                mRefresher.setRefreshing(false);
+            }
+        });
+
+        // Call custom method to populate UI
         populate(view);
 
         return view;
@@ -57,13 +76,15 @@ public class ParentPermissionFragment extends Fragment {
 
 
     // Custom methods
+    // Custom method to populate UI
     private void populate(View view) {
+        // Reference and sort permission requests
         ArrayList<Request> requests = PermissionRequestUtils.loadRequests(getActivity());
         Collections.sort(requests);
         Collections.reverse(requests);
 
+        // Set permission request adapter
         ParentPermissionRequestAdapter parentPermissionRequestAdapter = new ParentPermissionRequestAdapter(requests, getActivity());
-
         ListView requestList = view.findViewById(R.id.list_requests);
         requestList.setAdapter(parentPermissionRequestAdapter);
     }

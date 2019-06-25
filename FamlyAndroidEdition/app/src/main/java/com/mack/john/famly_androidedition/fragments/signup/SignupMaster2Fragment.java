@@ -59,13 +59,15 @@ public class SignupMaster2Fragment extends Fragment implements View.OnClickListe
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate layout
         View view = inflater.inflate(R.layout.fragment_signup_master2, container, false);
 
+        // Call custom methods to set click and text change listeners
         setClickListener(view);
         setTextChangeListener(view);
 
+        // Get user input from sending intent
         Intent sendingIntent = getActivity().getIntent();
-
         mFamilyName = sendingIntent.getStringExtra(SignupMaster1Fragment.EXTRA_FAMILY_NAME);
         mStreetAddress = sendingIntent.getStringExtra(SignupMaster1Fragment.EXTRA_STREET_ADDRESS);
         mPostalCode = sendingIntent.getIntExtra(SignupMaster1Fragment.EXTRA_POSTAL_CODE, 0);
@@ -75,14 +77,16 @@ public class SignupMaster2Fragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        // If user clicked cancel button, return to previous activity
         if(view.getId() == R.id.button_cancel) {
             Intent loginIntent = new Intent(getActivity(), MasterLoginActivity.class);
             startActivity(loginIntent);
         }
 
+        // If user clicked continue button...
         else if(view.getId() == R.id.button_continue) {
+            // Send user input to next activity and launch
             Intent nextIntent = new Intent(getActivity(), SignupMaster3Activity.class);
-
             nextIntent.putExtra(SignupMaster1Fragment.EXTRA_FAMILY_NAME, mFamilyName);
             nextIntent.putExtra(SignupMaster1Fragment.EXTRA_STREET_ADDRESS, mStreetAddress);
             nextIntent.putExtra(SignupMaster1Fragment.EXTRA_POSTAL_CODE, mPostalCode);
@@ -97,6 +101,7 @@ public class SignupMaster2Fragment extends Fragment implements View.OnClickListe
 
 
     // Custom methods
+    // Custom method to set click listener
     private void setClickListener(View view) {
         Button cancelButton = view.findViewById(R.id.button_cancel);
         Button continueButton = view.findViewById(R.id.button_continue);
@@ -107,6 +112,7 @@ public class SignupMaster2Fragment extends Fragment implements View.OnClickListe
         ButtonUtils.disableContinueButton(getActivity(), view);
     }
 
+    // Custom method to set text change listener
     private void setTextChangeListener(final View view) {
         final EditText masterEmailInput = view.findViewById(R.id.input_master_email);
         masterEmailInput.addTextChangedListener(new TextWatcher() {
@@ -127,10 +133,12 @@ public class SignupMaster2Fragment extends Fragment implements View.OnClickListe
                     // Indicate input is valid
                     mValidEmail = true;
 
+                    // If all fields have valid input, enable continue button
                     if(mValidEmail && mValidPassword && mPasswordsMatch) {
                         ButtonUtils.enableContinueButton(getActivity(), view);
                     }
 
+                    // Otherwise, disable continue button
                     else {
                         ButtonUtils.disableContinueButton(getActivity(), view);
                     }
@@ -145,6 +153,7 @@ public class SignupMaster2Fragment extends Fragment implements View.OnClickListe
                     // Indicate input is invalid
                     mValidEmail = false;
 
+                    // Disable continue button
                     ButtonUtils.disableContinueButton(getActivity(), view);
                 }
             }
@@ -157,6 +166,7 @@ public class SignupMaster2Fragment extends Fragment implements View.OnClickListe
         final TextView passwordRules = view.findViewById(R.id.display_password_rules);
         passwordRules.setVisibility(View.GONE);
 
+        // Set password input listener
         final EditText passwordInput = view.findViewById(R.id.input_master_password);
         passwordInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -177,10 +187,12 @@ public class SignupMaster2Fragment extends Fragment implements View.OnClickListe
                     // Indicate input is valid
                     mValidPassword = true;
 
+                    // If all fields have valid input, enable continue button
                     if(mValidEmail && mValidPassword && mPasswordsMatch) {
                         ButtonUtils.enableContinueButton(getActivity(), view);
                     }
 
+                    // Otherwise, disable continue button
                     else {
                         ButtonUtils.disableContinueButton(getActivity(), view);
                     }
@@ -198,6 +210,7 @@ public class SignupMaster2Fragment extends Fragment implements View.OnClickListe
                     // Indicate input is invalid
                     mValidPassword = false;
 
+                    // Disable continue button
                     ButtonUtils.disableContinueButton(getActivity(), view);
                 }
             }
@@ -210,6 +223,7 @@ public class SignupMaster2Fragment extends Fragment implements View.OnClickListe
         final TextView passwordConfirmRules = view.findViewById(R.id.display_password_match_rules);
         passwordConfirmRules.setVisibility(View.GONE);
 
+        // Set password confirm listener
         final EditText passwordConfirmInput = view.findViewById(R.id.input_confirm_master_password);
         passwordConfirmInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -233,10 +247,12 @@ public class SignupMaster2Fragment extends Fragment implements View.OnClickListe
                     // Indicate input is valid
                     mPasswordsMatch = true;
 
+                    // If all fields have valid input, enable continue button
                     if(mValidEmail && mValidPassword && mPasswordsMatch) {
                         ButtonUtils.enableContinueButton(getActivity(), view);
                     }
 
+                    // Otherwise, disable contiue button
                     else {
                         ButtonUtils.disableContinueButton(getActivity(), view);
                     }
@@ -254,6 +270,7 @@ public class SignupMaster2Fragment extends Fragment implements View.OnClickListe
                     // Indicate input is invalid
                     mPasswordsMatch = false;
 
+                    // Disable continue button
                     ButtonUtils.disableContinueButton(getActivity(), view);
                 }
             }

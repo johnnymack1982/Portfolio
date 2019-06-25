@@ -50,6 +50,7 @@ public class LocateMapFragment extends SupportMapFragment implements OnMapReadyC
     public void onActivityCreated(Bundle bundle) {
         super.onActivityCreated(bundle);
 
+        // Reference selected profile
         mProfile = (Profile) getActivity().getIntent().getSerializableExtra(LocateSelectionFragment.EXTRA_PROFILE);
 
         getMapAsync(this);
@@ -71,53 +72,11 @@ public class LocateMapFragment extends SupportMapFragment implements OnMapReadyC
         MapStyleOptions mapStyleOptions = MapStyleOptions.loadRawResourceStyle(getActivity(), R.raw.style_map);
         googleMap.setMapStyle(mapStyleOptions);
 
+        // Reference map
         mMap = googleMap;
 
+        // Reference last known location for selected profile
         LocationUtils locationUtils = new LocationUtils(getActivity());
         locationUtils.getProfileLocation(mProfile, mMap);
-    }
-
-
-
-    // Custom methods
-    private void zoomInCamera() {
-        // If the map is null, do not continue
-        if(mMap == null) {
-            return;
-        }
-
-        // Reference current latitude and longitude
-        LatLng currentLocation = new LatLng(mCurrentLat, mCurrentLong);
-
-        // Zoom camera in to current location
-        CameraUpdate cameraMovement = CameraUpdateFactory.newLatLngZoom(currentLocation, 15);
-        mMap.animateCamera(cameraMovement);
-    }
-
-    private void addMapMarker() {
-        if(mMap == null) {
-            return;
-        }
-
-        @SuppressLint("ResourceType")
-        String green = getResources().getString(R.color.colorGrassPrimary);
-
-        MarkerOptions options = new MarkerOptions();
-        options.title(AccountUtils.loadProfile(getActivity()).getFirstName() + " " + AccountUtils.loadAccount(getActivity()).getFamilyName());
-
-        LocationUtils locationUtils = new LocationUtils(getActivity());
-        options.snippet(locationUtils.convertAddress(getActivity(), mCurrentLat, mCurrentLong));
-
-        LatLng currentLocation = new LatLng(mCurrentLat, mCurrentLong);
-        options.position(currentLocation);
-        options.icon(setMarkerColor(green));
-
-        mMap.addMarker(options);
-    }
-
-    private BitmapDescriptor setMarkerColor(String color) {
-        float[] hsv = new float[3];
-        Color.colorToHSV(Color.parseColor(color), hsv);
-        return BitmapDescriptorFactory.defaultMarker(hsv[0]);
     }
 }

@@ -84,16 +84,21 @@
             tools:srcCompat="@tools:sample/avatars" />
     </android.support.constraint.ConstraintLayout>
 
-    <ListView
-        android:id="@+id/list_newsfeed"
-        android:layout_width="0dp"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresher"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/picker_image"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <ListView
+            android:id="@+id/list_newsfeed"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/picker_image"

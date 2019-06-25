@@ -23,12 +23,14 @@ public class LocateProfileActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_locate_profile);
 
+        // Call custom method to populate fragment
         populateFragment();
     }
 
 
 
     // Custom methods
+    // Custom method to populate fragment
     private void populateFragment() {
         getSupportFragmentManager()
                 .beginTransaction()

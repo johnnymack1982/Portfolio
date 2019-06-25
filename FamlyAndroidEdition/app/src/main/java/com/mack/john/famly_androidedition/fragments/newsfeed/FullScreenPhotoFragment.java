@@ -38,12 +38,15 @@ public class FullScreenPhotoFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate view
         View view = inflater.inflate(R.layout.fragment_full_screen_photo, container, false);
 
+        // Get photo from sending intent
         Intent sendingIntent = getActivity().getIntent();
         mPhoto = BitmapFactory.decodeByteArray(sendingIntent.getByteArrayExtra(NewsfeedAdapter.EXTRA_PHOTO), 0,
                 sendingIntent.getByteArrayExtra(NewsfeedAdapter.EXTRA_PHOTO).length);
 
+        // Display photo
         ImageView postPhoto = view.findViewById(R.id.post_photo);
         postPhoto.setImageBitmap(mPhoto);
 

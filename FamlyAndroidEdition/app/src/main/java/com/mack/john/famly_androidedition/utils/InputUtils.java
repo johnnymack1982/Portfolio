@@ -8,12 +8,14 @@ public class InputUtils {
 
 
     // Custom methods
+    // Custom method to check validity of name input
     public static boolean validName(String name) {
 
         // If name string is empty, it is invalid
         return name != null && !name.trim().equals("");
     }
 
+    // Custom method to check validity of address input
     public static boolean validAddress(String address) {
         // If address string is empty, it is invalid
         if(address == null || address.trim().equals("")) {
@@ -33,16 +35,21 @@ public class InputUtils {
         }
     }
 
+    // Custom method to check validity of postal code input
     public static boolean validPostalCode(String postalCode) {
+
+        // If input is not 5 digits long, input is invalid
         if(postalCode == null || postalCode.trim().equals("") || postalCode.trim().length() != 5) {
             return false;
         }
 
+        // Otherwise, input is valid
         else {
             return true;
         }
     }
 
+    // Custom method to check email address input
     public static boolean validEmail(String email) {
 
         // If input string is empty, it is invalid
@@ -91,22 +98,28 @@ public class InputUtils {
         else return passwordConfirm.equals(password);
     }
 
+    // Custom method to check pin input
     public static boolean validPin(String pin) {
+
+        // If input is blank, it is invalid
         if(pin == null || pin.trim().equals("")) {
             return false;
         }
 
+        // If input is 4 digits long it is valid
         else {
             if(pin.length() == 4) {
                 return true;
             }
 
+            // Otherwise, input is invalid
             else {
                 return false;
             }
         }
     }
 
+    // Custom method to check if pin/password input matches
     public static boolean pinsMatch(String pin, String pinConfirm) {
         // If either input strings are empty, the input is invalid
         if(pin == null || pin.equals("") || pinConfirm == null || pinConfirm.equals("")) {

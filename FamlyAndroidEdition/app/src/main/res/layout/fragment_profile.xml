@@ -21,12 +21,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
             android:src="@drawable/male_icon_large"
             app:civ_border_color="@android:color/transparent"
             app:civ_border_width="2dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/button_logout" />
 
         <TextView
             android:id="@+id/display_name"
@@ -120,14 +119,37 @@
             app:layout_constraintEnd_toEndOf="@+id/profile_photo"
             app:layout_constraintTop_toBottomOf="@+id/profile_photo"
             app:srcCompat="@drawable/gallery_icon" />
+
+        <Button
+            android:id="@+id/button_logout"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/log_out"
+            android:textColor="@color/colorSunPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
-    <ListView
-        android:id="@+id/list_newsfeed"
-        android:layout_width="0dp"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresher"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+
+        <ListView
+            android:id="@+id/list_newsfeed"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 </android.support.constraint.ConstraintLayout>

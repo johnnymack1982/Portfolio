@@ -85,19 +85,24 @@ public class CheckinFragment extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate layout
         View view = inflater.inflate(R.layout.fragment_checkin, container, false);
 
+        // If required permissions don't exist, request them
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, CAMERA_PERMISSION_REQUEST);
         }
 
+        // Inflate map fragmet
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.frame_map_fragment, CheckinMapFragment.newInstance(), CheckinMapFragment.TAG)
                 .commit();
 
+        // Call custom method to set click listener
         setClickListener(view);
 
+        // Reference UI elemets
         mCheckinInput = view.findViewById(R.id.input_checkin);
         mCheckinImageView = view.findViewById(R.id.checkin_image);
         mImagePicker = view.findViewById(R.id.picker_image);
@@ -107,20 +112,26 @@ public class CheckinFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        // If user clicked checkin button, call custom method to create checkin
         if(view.getId() == R.id.button_checkin) {
             checkIn();
         }
 
+        // If user clicked find button, launch find activity
         else if(view.getId() == R.id.button_find) {
             Intent findIntent = new Intent(getActivity(), LocateSelectionActivity.class);
             startActivity(findIntent);
         }
 
+        // If user clicked camera button...
         else if(view.getId() == R.id.button_photo) {
+
+            // If no photo exists, call cusom method to add photo from camera
             if(mCheckinImageView.getDrawable() == null) {
                 addPhotoFromCamera();
             }
 
+            // Otherwise hide image view
             else {
                 mCheckinImageView.setImageDrawable(null);
                 mCheckinImageView.setVisibility(View.GONE);
@@ -133,6 +144,7 @@ public class CheckinFragment extends Fragment implements View.OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        // Populate UI with selected image
         if(resultCode == Activity.RESULT_OK) {
             mCheckinImageView.setVisibility(View.VISIBLE);
 
@@ -150,6 +162,7 @@ public class CheckinFragment extends Fragment implements View.OnClickListener {
     }
 
     // Custom methods
+    // Custom method to set click listener
     private void  setClickListener(View view) {
         mCameraButton = view.findViewById(R.id.button_photo);
         mCheckinButton = view.findViewById(R.id.button_checkin);
@@ -160,28 +173,38 @@ public class CheckinFragment extends Fragment implements View.OnClickListener {
         mFindButton.setOnClickListener(this);
     }
 
+    // Custom method to create checkin
     private void checkIn() {
+        // Instantiate location utilities class
         LocationUtils locationUtils = new LocationUtils(getActivity());
 
+        // Hide image view
         mCheckinImageView.setVisibility(View.GONE);
 
+        // Get current location data
         mCurrentLat = locationUtils.getLatitude();
         mCurrentLong = locationUtils.getLongitude();
 
+        // Track checkin message
         String checkinMessage = "";
 
+        // Reference checkin message innput
         if(mCheckinInput.getText().toString() != null && mCheckinInput.getText().toString() != "") {
             checkinMessage = mCheckinInput.getText().toString();
         }
 
+        // Attempt to create checkin
         locationUtils.checkIn(getActivity(), mCurrentLat, mCurrentLong, mCheckinInput.getText().toString(), mCheckinImage);
     }
 
+    // Custom method to add photo from camera
     private void addPhotoFromCamera() {
+        // If required permissions don't exist, request them
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, CAMERA_PERMISSION_REQUEST);
         }
 
+        // If required permissions exist, launch camera and wait for result
         else {
             try {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -195,6 +218,7 @@ public class CheckinFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    // Custom method to create image file
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());

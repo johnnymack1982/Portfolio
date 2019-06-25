@@ -17,12 +17,14 @@ public class ProfileLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_login);
 
+        // Call custom method to populate fragment
         populateFragment();
     }
 
 
 
     // Custom methods
+    // Custom method to populate fragment
     private void populateFragment() {
         getSupportFragmentManager()
                 .beginTransaction()

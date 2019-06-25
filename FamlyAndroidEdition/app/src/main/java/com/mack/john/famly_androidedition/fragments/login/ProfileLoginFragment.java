@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.mack.john.famly_androidedition.R;
 import com.mack.john.famly_androidedition.NavigationActivity;
@@ -33,6 +34,8 @@ public class ProfileLoginFragment extends Fragment implements View.OnClickListen
     boolean mValidFirstName;
     boolean mValidPin;
 
+    View mView;
+
 
 
     // System generated methods
@@ -47,8 +50,13 @@ public class ProfileLoginFragment extends Fragment implements View.OnClickListen
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate layout
         View view = inflater.inflate(R.layout.fragment_profile_login, container, false);
 
+        // Reference view
+        mView = view;
+
+        // Call custom methods to set click and text change listeners
         setClickListener(view);
         setTextChangeListener(view);
 
@@ -57,12 +65,14 @@ public class ProfileLoginFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
+        // If user clicked cancel button, return to previous activity
         if(view.getId() == R.id.button_cancel) {
             getActivity().finish();
         }
 
+        // If user clicked continue button, attempt to log in to selected profile
         else if(view.getId() == R.id.button_continue) {
-            AccountUtils.loginProfile(getActivity(), mFirstName, mProfilePin);
+            AccountUtils.loginProfile(getActivity(), mFirstName, mProfilePin, mView);
         }
     }
 
@@ -70,15 +80,24 @@ public class ProfileLoginFragment extends Fragment implements View.OnClickListen
 
 
     // Custom methods
+    // Custom method to set click listener
     private void setClickListener(View view) {
+        // Reference buttons in layout
         Button cancelButton = view.findViewById(R.id.button_cancel);
         Button continueButton = view.findViewById(R.id.button_continue);
 
+        // Reference progress indicator and hide by default
+        ProgressBar loadingProgress = view.findViewById(R.id.progress_loading);
+        loadingProgress.setVisibility(View.GONE);
+
+        // Set click listener for buttons
         cancelButton.setOnClickListener(this);
         continueButton.setOnClickListener(this);
     }
 
+    // Custom method to set text change listener
     private void setTextChangeListener(final View view) {
+        // Set first name input listener
         final EditText firstNameInput = view.findViewById(R.id.input_first_name);
         firstNameInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -99,10 +118,12 @@ public class ProfileLoginFragment extends Fragment implements View.OnClickListen
                     // Indicate input is valid
                     mValidFirstName = true;
 
+                    // if all fields have valid input, enable continue button
                     if(mValidFirstName && mValidPin) {
                         ButtonUtils.enableContinueButton(getActivity(), view);
                     }
 
+                    // Otherwise, disable continue button
                     else {
                         ButtonUtils.disableContinueButton(getActivity(), view);
                     }
@@ -117,6 +138,7 @@ public class ProfileLoginFragment extends Fragment implements View.OnClickListen
                     // Indicate input is invalid
                     mValidFirstName = false;
 
+                    // Disable continue button
                     ButtonUtils.disableContinueButton(getActivity(), view);
                 }
             }
@@ -125,6 +147,7 @@ public class ProfileLoginFragment extends Fragment implements View.OnClickListen
             public void afterTextChanged(Editable s) {}
         });
 
+        // Set pin input listener
         final EditText pinInput = view.findViewById(R.id.input_profile_pin);
         pinInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -145,10 +168,12 @@ public class ProfileLoginFragment extends Fragment implements View.OnClickListen
                     // Indicate input is valid
                     mValidPin = true;
 
+                    // If all fields have valid input, enable continue button
                     if(mValidFirstName && mValidPin) {
                         ButtonUtils.enableContinueButton(getActivity(), view);
                     }
 
+                    // Otherwise, disable continue button
                     else {
                         ButtonUtils.disableContinueButton(getActivity(), view);
                     }
@@ -163,6 +188,7 @@ public class ProfileLoginFragment extends Fragment implements View.OnClickListen
                     // Indicate input is invalid
                     mValidPin = false;
 
+                    // Disable continue button
                     ButtonUtils.disableContinueButton(getActivity(), view);
                 }
             }

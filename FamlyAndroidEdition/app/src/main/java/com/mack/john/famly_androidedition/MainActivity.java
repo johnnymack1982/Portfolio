@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
     // Class properties
     private static final String TAG = "MainActivity";
 
-    private static final int LOCATION_PERMISSION_REQUEST = 4;
-
 
 
     // System generated methods
@@ -37,18 +35,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Call custom method to populate fragment
         populateFragment();
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST);
-        }
-
-        AccountUtils.checkAuth(this);
     }
 
 
 
     // Custom methods
+    // Custom method to populate fragment
     private void populateFragment() {
         getSupportFragmentManager()
                 .beginTransaction()

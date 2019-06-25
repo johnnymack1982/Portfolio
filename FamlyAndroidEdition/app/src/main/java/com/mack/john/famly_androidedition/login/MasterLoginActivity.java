@@ -17,12 +17,14 @@ public class MasterLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_master);
 
+        // Call custom method to populate fragment
         populateFragment();
     }
 
 
 
     // Custom methods
+    // Custom method to populate fragment
     private void populateFragment() {
         getSupportFragmentManager()
                 .beginTransaction()

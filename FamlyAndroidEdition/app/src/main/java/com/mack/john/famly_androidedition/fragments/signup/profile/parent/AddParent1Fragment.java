@@ -76,11 +76,14 @@ public class AddParent1Fragment extends Fragment implements View.OnClickListener
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate layout
         View view = inflater.inflate(R.layout.fragment_add_parent1, container, false);
 
+        // Reference gender and family role input fields
         mGenderInput = view.findViewById(R.id.spinner_gender);
         mRoleInput = view.findViewById(R.id.input_family_role);
 
+        // Call custom methods to set click and text change listeners
         setClickListener(view);
         setTextChangeListener(view);
 
@@ -89,21 +92,25 @@ public class AddParent1Fragment extends Fragment implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
+        // If user clicked date input field, call custom method to show date picker
         if(view.getId() == R.id.button_date_picker || view.getId() == R.id.input_dob) {
             pickDate();
         }
 
+        // If user clicked cancel button, return to previous activity
         else if(view.getId() == R.id.button_cancel) {
             Intent loginIntent = new Intent(getActivity(), AddProfileActivity.class);
             startActivity(loginIntent);
         }
 
+        // If user clicked continue button...
         else if(view.getId() == R.id.button_continue) {
+            // Reference gender and family role input
             mGenderId = mGenderInput.getSelectedItemPosition();
             mRoleId = mRoleInput.getSelectedItemPosition();
 
+            // Send user input to next activity and launch
             Intent continueIntent = new Intent(getActivity(), AddParent2Activity.class);
-
             continueIntent.putExtra(EXTRA_FIRST_NAME, mFirstName);
             continueIntent.putExtra(EXTRA_DOB, mDob);
             continueIntent.putExtra(EXTRA_GENDER_ID, mGenderId);
@@ -116,15 +123,16 @@ public class AddParent1Fragment extends Fragment implements View.OnClickListener
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+        // Get selected date
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, dayOfMonth);
-
         mDob = calendar.getTime();
 
+        // Display selected date
         String displayDate = (month + 1) + "/" + dayOfMonth + "/" + year;
-
         mDobInput.setText(displayDate);
 
+        // Indicate date of birth input is valid
         mValidDob = true;
     }
 
@@ -132,6 +140,7 @@ public class AddParent1Fragment extends Fragment implements View.OnClickListener
 
 
     // Custom methods
+    // Custom method to set click listener
     private void setClickListener(View view) {
         ImageButton calendarButton = view.findViewById(R.id.button_date_picker);
         Button cancelButton = view.findViewById(R.id.button_cancel);
@@ -144,7 +153,9 @@ public class AddParent1Fragment extends Fragment implements View.OnClickListener
         dobInput.setOnClickListener(this);
     }
 
+    // Custom method to set text change listener
     private void setTextChangeListener(final View view) {
+        // Set first name input listener
         final EditText firstNameInput = view.findViewById(R.id.input_first_name);
         firstNameInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -165,10 +176,12 @@ public class AddParent1Fragment extends Fragment implements View.OnClickListener
                     // Indicate input is valid
                     mValidFirstName = true;
 
+                    // If all fields have valid input, enable continue button
                     if(mValidFirstName && mValidDob && mValidPin && mPinsMatch) {
                         ButtonUtils.enableContinueButton(getActivity(), view);
                     }
 
+                    // Otherwise, disable continue button
                     else {
                         ButtonUtils.disableContinueButton(getActivity(), view);
                     }
@@ -183,6 +196,7 @@ public class AddParent1Fragment extends Fragment implements View.OnClickListener
                     // Indicate input is invalid
                     mValidFirstName = false;
 
+                    // Disable continue button
                     ButtonUtils.disableContinueButton(getActivity(), view);
                 }
             }
@@ -191,8 +205,10 @@ public class AddParent1Fragment extends Fragment implements View.OnClickListener
             public void afterTextChanged(Editable s) {}
         });
 
+        // Reference date of birth input field
         mDobInput = view.findViewById(R.id.input_dob);
 
+        // Set pin input listener
         final EditText pinInput = view.findViewById(R.id.input_profile_pin);
         pinInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -213,10 +229,12 @@ public class AddParent1Fragment extends Fragment implements View.OnClickListener
                     // Indicate input is valid
                     mValidPin = true;
 
+                    // If all fields have valid input, enable continue button
                     if(mValidFirstName && mValidDob && mValidPin && mPinsMatch) {
                         ButtonUtils.enableContinueButton(getActivity(), view);
                     }
 
+                    // Otherwise, disable continue button
                     else {
                         ButtonUtils.disableContinueButton(getActivity(), view);
                     }
@@ -231,6 +249,7 @@ public class AddParent1Fragment extends Fragment implements View.OnClickListener
                     // Indicate input is invalid
                     mValidPin = false;
 
+                    // Disable continue button
                     ButtonUtils.disableContinueButton(getActivity(), view);
                 }
             }
@@ -239,6 +258,7 @@ public class AddParent1Fragment extends Fragment implements View.OnClickListener
             public void afterTextChanged(Editable s) {}
         });
 
+        // Set pin input listener
         final EditText pinConfirmInput = view.findViewById(R.id.input_confirm_pin);
         pinConfirmInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -259,10 +279,12 @@ public class AddParent1Fragment extends Fragment implements View.OnClickListener
                     // Indicate input is valid
                     mPinsMatch = true;
 
+                    // If all fields have valid input, enable continue button
                     if(mValidFirstName && mValidDob && mValidPin && mPinsMatch) {
                         ButtonUtils.enableContinueButton(getActivity(), view);
                     }
 
+                    // Otherwise, disable continue button
                     else {
                         ButtonUtils.disableContinueButton(getActivity(), view);
                     }
@@ -277,6 +299,7 @@ public class AddParent1Fragment extends Fragment implements View.OnClickListener
                     // Indicate input is invalid
                     mPinsMatch = false;
 
+                    // Disable continue button
                     ButtonUtils.disableContinueButton(getActivity(), view);
                 }
             }
@@ -286,6 +309,7 @@ public class AddParent1Fragment extends Fragment implements View.OnClickListener
         });
     }
 
+    // Custom method to show date picker
     private void pickDate() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity());
         datePickerDialog.setOnDateSetListener(this);

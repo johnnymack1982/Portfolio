@@ -43,8 +43,10 @@ public class LocateSelectionFragment extends Fragment implements View.OnClickLis
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate layout
         View view = inflater.inflate(R.layout.fragment_locate_selection, container, false);
 
+        // Call custom methods to set click listener and populate profile grid
         setClickListener(view);
         populateGrid(view);
 
@@ -53,6 +55,7 @@ public class LocateSelectionFragment extends Fragment implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
+        // if user clicked cancel button, return to previous activity
         if(view.getId() == R.id.button_cancel) {
             getActivity().finish();
         }
@@ -61,26 +64,34 @@ public class LocateSelectionFragment extends Fragment implements View.OnClickLis
 
 
     // Custom methods
+    // Custom method to set click listener
     private void setClickListener(View view) {
         Button cancelButton = view.findViewById(R.id.button_cancel);
 
         cancelButton.setOnClickListener(this);
     }
 
+    // Custom method to populate profile grid
     private void populateGrid(View view) {
+        // Reference all profiles on account
         Account account = AccountUtils.loadAccount(getActivity());
-
         final Profile[] profiles = account.getProfiles().toArray(new Profile[account.getProfiles().size()]);
 
+        // Reference gridview
         GridView profileGrid = view.findViewById(R.id.grid_family);
 
+        // Set gridview adapter
         ProfilesAdapter profilesAdapter = new ProfilesAdapter(getActivity(), profiles, account);
         profileGrid.setAdapter(profilesAdapter);
+
+        // Set gridview click listener
         profileGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Reference selected profile
                 Profile profile = profiles[position];
 
+                // Launch profile location activity and send selected profile
                 Intent editIntent = new Intent(getActivity(), LocateProfileActivity.class);
                 editIntent.putExtra(EXTRA_PROFILE, profile);
 

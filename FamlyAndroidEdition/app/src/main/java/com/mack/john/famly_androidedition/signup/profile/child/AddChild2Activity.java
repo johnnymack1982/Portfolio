@@ -17,12 +17,14 @@ public class AddChild2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_child2);
 
+        // Call custom method to populate fragment
         populateFragment();
     }
 
 
 
     // Custom methods
+    // Custom method to populate fragment
     private void populateFragment() {
         getSupportFragmentManager()
                 .beginTransaction()

@@ -37,35 +37,42 @@ public class ProfilesAdapter extends BaseAdapter {
     // System generated methods
     @Override
     public int getCount() {
+        // Return size of profile list
         return profiles.length;
     }
 
     @Override
     public long getItemId(int position) {
+        // Return position for current item
         return position;
     }
 
     @Override
     public Profile getItem(int position) {
+        // Return current item
         return profiles[position];
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        // Reference current profile
         Profile profile = getItem(position);
 
+        // Inflate cell
         if(convertView == null) {
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             convertView = layoutInflater.inflate(R.layout.cell_list_profiles, null);
         }
 
-        TextView profileNameButton = convertView.findViewById(R.id.profile_name);
-
+        // Display profile photo
         AccountUtils.loadProfilePhoto(context, convertView, profile.getProfileId());
 
+        // Display profile name
+        TextView profileNameButton = convertView.findViewById(R.id.profile_name);
         String name = profile.getFirstName() + " " + account.getFamilyName();
         profileNameButton.setText(name);
 
+        // Return cell
         return convertView;
     }
 }

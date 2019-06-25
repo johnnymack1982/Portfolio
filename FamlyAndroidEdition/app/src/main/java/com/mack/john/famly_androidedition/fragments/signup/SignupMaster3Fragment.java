@@ -74,18 +74,20 @@ public class SignupMaster3Fragment extends Fragment implements View.OnClickListe
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate layout
         View view = inflater.inflate(R.layout.fragment_signup_master3, container, false);
 
+        // Reference photo view
         mPhotoView = view.findViewById(R.id.profile_photo);
 
+        // Call custom method to set click listener
         setClickListener(view);
 
+        // Get user input from sending intent
         Intent sendingIntent = getActivity().getIntent();
-
         mFamilyName = sendingIntent.getStringExtra(SignupMaster1Fragment.EXTRA_FAMILY_NAME);
         mStreetAddress = sendingIntent.getStringExtra(SignupMaster1Fragment.EXTRA_STREET_ADDRESS);
         mPostalCode = sendingIntent.getIntExtra(SignupMaster1Fragment.EXTRA_POSTAL_CODE, 0);
-
         mEmail = sendingIntent.getStringExtra(SignupMaster2Fragment.EXTRA_EMAIL);
         mPassword = sendingIntent.getStringExtra(SignupMaster2Fragment.EXTRA_PASSWORD);
 
@@ -94,25 +96,32 @@ public class SignupMaster3Fragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        // If user clicked gallery button, call custom method to add photo from gallery
         if(view.getId() == R.id.button_gallery) {
             addPhotoFromGallery();
         }
 
+        // If user clicked camera button, call custom method to add photo from camera
         else if(view.getId() == R.id.button_photo) {
             addPhotoFromCamera();
         }
 
+        // If user clicked cancel button, return to previous activity
         else if(view.getId() == R.id.button_cancel) {
             Intent loginIntent = new Intent(getActivity(), MasterLoginActivity.class);
             startActivity(loginIntent);
         }
 
+        // If user clicked continue button...
         else if(view.getId() == R.id.button_continue) {
+            // Create new account object
             Account account = new Account(mFamilyName, mStreetAddress, mPostalCode, mEmail, mPassword);
 
+            // Save and attempt to create new account
             AccountUtils.saveAccount(getActivity(), account, mFamilyPhoto);
             AccountUtils.createAccount(getActivity(), account, mFamilyPhoto);
 
+            // Launch add parent activity
             Intent addParentIntent = new Intent(getActivity(), AddParent1Activity.class);
             startActivity(addParentIntent);
         }
@@ -122,6 +131,7 @@ public class SignupMaster3Fragment extends Fragment implements View.OnClickListe
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        // Populate UI with selected image
         if(resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case GALLERY_REQUEST_CODE:
@@ -148,6 +158,7 @@ public class SignupMaster3Fragment extends Fragment implements View.OnClickListe
 
 
     // Custom methods
+    // Custom method to set click listener
     private void setClickListener(View view) {
         ImageButton galleryButton = view.findViewById(R.id.button_gallery);
         ImageButton cameraButton = view.findViewById(R.id.button_photo);
@@ -160,6 +171,7 @@ public class SignupMaster3Fragment extends Fragment implements View.OnClickListe
         continueButton.setOnClickListener(this);
     }
 
+    // Custom method to add photo from gallery
     private void addPhotoFromGallery() {
         Intent photoIntent = new Intent(Intent.ACTION_PICK);
 
@@ -171,11 +183,14 @@ public class SignupMaster3Fragment extends Fragment implements View.OnClickListe
         startActivityForResult(photoIntent, 1);
     }
 
+    // Custom method to add photo from camera
     private void addPhotoFromCamera() {
+        // If required permissions don't exist, request them
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, CAMERA_PERMISSION_REQUEST);
         }
 
+        // If required permissions exist, launch camera and wait for result
         else {
             try {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -189,6 +204,7 @@ public class SignupMaster3Fragment extends Fragment implements View.OnClickListe
         }
     }
 
+    // Custom method to create image file
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());

@@ -97,6 +97,7 @@
     <string name="location_info_for">Location information for</string>
     <string name="is_unavailable">is unavailable</string>
     <string name="unknown">Unknown Location</string>
+    <string name="log_out">Log Out</string>
 
     <array name="family_roles">
         <item>Mother</item>

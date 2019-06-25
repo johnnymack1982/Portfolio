@@ -32,9 +32,11 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
 
+        // Set bottom navigation listener
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
+        // If returning from editing family profile, set the navigation bar to the correct selection
         try {
             if(getIntent().getAction().equals(FamilyProfileFragment.ACTION_EDIT_PROFILE)) {
                 loadFragment(new ProfileFragment());
@@ -55,6 +57,8 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
         Fragment fragment;
 
         switch (menuItem.getItemId()) {
+
+            // Populate newsfeed fragment
             case R.id.navigation_newsfeed:
                 getIntent().setAction(ACTION_LEAVE_PROFILE);
 
@@ -62,6 +66,7 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
                 loadFragment(fragment);
                 return true;
 
+            // Populate permission fragment
             case R.id.navigation_permission:
                 getIntent().setAction(ACTION_LEAVE_PROFILE);
 
@@ -77,6 +82,7 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
 
                 return true;
 
+            // Populate checkin fragment
             case R.id.navigation_checkin:
                 getIntent().setAction(ACTION_LEAVE_PROFILE);
 
@@ -84,6 +90,7 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
                 loadFragment(fragment);
                 return true;
 
+            // Populate profile fragment
             case R.id.navigation_profile:
                 fragment = new ProfileFragment();
                 loadFragment(fragment);

@@ -71,17 +71,20 @@ public class AddChild2Fragment extends Fragment implements View.OnClickListener 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate layout
         View view = inflater.inflate(R.layout.fragment_add_child2, container, false);
 
+        // Reference photo view
         mPhotoView = view.findViewById(R.id.profile_photo);
 
+        // Get profile details from sending intent
         Intent sendingIntent = getActivity().getIntent();
-
         mFirstName = sendingIntent.getStringExtra(AddChild1Fragment.EXTRA_FIRST_NAME);
         mDob = (Date) sendingIntent.getSerializableExtra(AddChild1Fragment.EXTRA_DOB);
         mGenderId = sendingIntent.getIntExtra(AddChild1Fragment.EXTRA_GENDER_ID, 0);
         mPin = sendingIntent.getIntExtra(AddChild1Fragment.EXTRA_PIN, 0);
 
+        // Call custom method to set click listener
         setClickListener(view);
 
         return view;
@@ -89,25 +92,29 @@ public class AddChild2Fragment extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
+        // If user clicked camera button, call custom method to add photo from camera
         if(view.getId() == R.id.button_photo) {
             addPhotoFromCamera();
         }
 
+        // If user clicked gallery button, call custom method to add photo from gallery
         else if(view.getId() == R.id.button_gallery) {
             addPhotoFromGallery();
         }
 
+        // If user clicked cancel button, return to previous activity
         else if(view.getId() == R.id.button_cancel) {
             Intent cancelIntent = new Intent(getActivity(), AddProfileActivity.class);
             startActivity(cancelIntent);
         }
 
+        // If user clicked continue button...
         else if(view.getId() == R.id.button_continue) {
+            // Create new profile from user input and add to account
             Child child = new Child(mFirstName, mDob, mGenderId, mPin);
-
             AccountUtils.addProfile(getContext(), child, mProfilePhoto);
 
-
+            // Return to previous activity
             Intent createIntent = new Intent(getActivity(), AddProfileActivity.class);
             startActivity(createIntent);
         }
@@ -117,6 +124,7 @@ public class AddChild2Fragment extends Fragment implements View.OnClickListener 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        // Display selected photo
         if(resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case GALLERY_REQUEST_CODE:
@@ -143,6 +151,7 @@ public class AddChild2Fragment extends Fragment implements View.OnClickListener 
 
 
     // Custom methods
+    // Custom method to set click listener
     private void setClickListener(View view) {
         ImageButton cameraButton = view.findViewById(R.id.button_photo);
         ImageButton galleryButton = view.findViewById(R.id.button_gallery);
@@ -155,6 +164,7 @@ public class AddChild2Fragment extends Fragment implements View.OnClickListener 
         createButton.setOnClickListener(this);
     }
 
+    // Custom method to add photo from gallery picker
     private void addPhotoFromGallery() {
         Intent photoIntent = new Intent(Intent.ACTION_PICK);
 
@@ -166,11 +176,14 @@ public class AddChild2Fragment extends Fragment implements View.OnClickListener 
         startActivityForResult(photoIntent, 1);
     }
 
+    // Custom method to add photo from camera
     private void addPhotoFromCamera() {
+        // If required permissions don't exist, request them
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, CAMERA_PERMISSION_REQUEST);
         }
 
+        // If required permissions exist, launch camera and wait for result
         else {
             try {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -184,6 +197,7 @@ public class AddChild2Fragment extends Fragment implements View.OnClickListener 
         }
     }
 
+    // Custom method to create image file
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());

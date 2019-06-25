@@ -53,8 +53,10 @@ public class SignupMaster1Fragment extends Fragment implements View.OnClickListe
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate layout
         View view = inflater.inflate(R.layout.fragment_signup_master1, container, false);
 
+        // Call custom methods to set click and text change listeners
         setClickListener(view);
         setTextChangeListener(view);
 
@@ -63,13 +65,15 @@ public class SignupMaster1Fragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        // If user clicked cancel button, return to previous activity
         if(view.getId() == R.id.button_cancel) {
             getActivity().finish();
         }
 
+        // If user clicked continue button...
         else if(view.getId() == R.id.button_continue) {
+            // Send user input to next activity and launch
             Intent nextIntent = new Intent(getActivity(), SignupMaster2Activity.class);
-
             nextIntent.putExtra(EXTRA_FAMILY_NAME, mFamilyName);
             nextIntent.putExtra(EXTRA_STREET_ADDRESS, mStreetAddress);
             nextIntent.putExtra(EXTRA_POSTAL_CODE, mPostalCode);
@@ -82,6 +86,7 @@ public class SignupMaster1Fragment extends Fragment implements View.OnClickListe
 
 
     // Custom methods
+    // Custom method to set click listener
     private void setClickListener(View view) {
         Button cancelButton = view.findViewById(R.id.button_cancel);
         Button continueButton = view.findViewById(R.id.button_continue);
@@ -92,7 +97,9 @@ public class SignupMaster1Fragment extends Fragment implements View.OnClickListe
         ButtonUtils.disableContinueButton(getActivity(), view);
     }
 
+    // Custom method to set text change listener
     private void setTextChangeListener(final View view) {
+        // Set family name input listener
         final EditText familyNameInput = view.findViewById(R.id.input_family_name);
         familyNameInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -113,10 +120,12 @@ public class SignupMaster1Fragment extends Fragment implements View.OnClickListe
                     // Indicate input is valid
                     mValidFamilyName = true;
 
+                    // If all fields have valid input, enable continue button
                     if(mValidFamilyName && mValidStreetAddress && mValidPostalCode) {
                         ButtonUtils.enableContinueButton(getActivity(), view);
                     }
 
+                    // Otherwise, disable continue button
                     else {
                         ButtonUtils.disableContinueButton(getActivity(), view);
                     }
@@ -131,6 +140,7 @@ public class SignupMaster1Fragment extends Fragment implements View.OnClickListe
                     // Indicate input is invalid
                     mValidFamilyName = false;
 
+                    // Disable continue button
                     ButtonUtils.disableContinueButton(getActivity(), view);
                 }
             }
@@ -139,6 +149,7 @@ public class SignupMaster1Fragment extends Fragment implements View.OnClickListe
             public void afterTextChanged(Editable s) {}
         });
 
+        // Set street address input listener
         final EditText streetAddressInput = view.findViewById(R.id.input_address);
         streetAddressInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -159,10 +170,12 @@ public class SignupMaster1Fragment extends Fragment implements View.OnClickListe
                     // Indicate input is valid
                     mValidStreetAddress = true;
 
+                    // If all fields have valid input, enable continue button
                     if(mValidFamilyName && mValidStreetAddress && mValidPostalCode) {
                         ButtonUtils.enableContinueButton(getActivity(), view);
                     }
 
+                    // Otherwise, disable continue button
                     else {
                         ButtonUtils.disableContinueButton(getActivity(), view);
                     }
@@ -177,6 +190,7 @@ public class SignupMaster1Fragment extends Fragment implements View.OnClickListe
                     // Indicate input is invalid
                     mValidStreetAddress = false;
 
+                    // Disable contiue button
                     ButtonUtils.disableContinueButton(getActivity(), view);
                 }
             }
@@ -185,6 +199,7 @@ public class SignupMaster1Fragment extends Fragment implements View.OnClickListe
             public void afterTextChanged(Editable s) {}
         });
 
+        // Set postal code input listener
         final EditText postalCodeInput = view.findViewById(R.id.input_postal_code);
         postalCodeInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -205,10 +220,12 @@ public class SignupMaster1Fragment extends Fragment implements View.OnClickListe
                     // Indicate input is valid
                     mValidPostalCode = true;
 
+                    // If all fields have valid input, enable continue button
                     if(mValidFamilyName && mValidStreetAddress && mValidPostalCode) {
                         ButtonUtils.enableContinueButton(getActivity(), view);
                     }
 
+                    // Otherwise, disable continue button
                     else {
                         ButtonUtils.disableContinueButton(getActivity(), view);
                     }
@@ -223,6 +240,7 @@ public class SignupMaster1Fragment extends Fragment implements View.OnClickListe
                     // Indicate input is invalid
                     mValidPostalCode = false;
 
+                    // Disable continue button
                     ButtonUtils.disableContinueButton(getActivity(), view);
                 }
             }

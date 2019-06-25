@@ -17,6 +17,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,6 +76,8 @@ public class NewsFeedFragment extends Fragment implements View.OnFocusChangeList
     NewsfeedAdapter mNewsfeedAdapter;
     ListView mNewsfeed;
 
+    SwipeRefreshLayout mRefresher;
+
 
 
     // System generated methods
@@ -89,27 +92,37 @@ public class NewsFeedFragment extends Fragment implements View.OnFocusChangeList
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate layout
         View view = inflater.inflate(R.layout.fragment_newsfeed, container, false);
 
+        // Listen for updates to newsfeed
         PostUtils.listenForNews(getActivity());
 
+        // Load current newsfeed
         mPosts = PostUtils.loadNewsfeed(getActivity());
 
+        // Reference newsfeed display and pull-down refresher
         mNewsfeed = view.findViewById(R.id.list_newsfeed);
+        mRefresher = view.findViewById(R.id.refresher);
 
+        // Reference image picker and photo view
         mImagePicker = view.findViewById(R.id.picker_image);
         mPhotoView = view.findViewById(R.id.post_image);
 
+        // Listen for account updates
         AccountUtils.listenForUpdates(getActivity());
 
+        // If logged in profile is a parent, listen for incoming permission requests
         if(AccountUtils.loadProfile(getActivity()) instanceof Parent) {
             PermissionRequestUtils.receiveRequests(getActivity(), AccountUtils.loadProfile(getActivity()));
         }
 
+        // If logged in profile is a child, listen for incoming request responnses
         else if(AccountUtils.loadProfile(getActivity()) instanceof Child) {
             PermissionRequestUtils.receiveResponses(getActivity(), AccountUtils.loadProfile(getActivity()));
         }
 
+        // Call custom methods to set click and focus change listeners
         setClickListener(view);
         setFocusListener(view);
 
@@ -120,20 +133,24 @@ public class NewsFeedFragment extends Fragment implements View.OnFocusChangeList
     public void onResume() {
         super.onResume();
 
+        // Load current newsfeed and logged in account
         mPosts = PostUtils.loadNewsfeed(getActivity());
         Account account = AccountUtils.loadAccount(getActivity());
 
+        // Set newsfeed adapter
         mNewsfeedAdapter = new NewsfeedAdapter(getActivity(), mPosts, account);
         mNewsfeed.setAdapter(mNewsfeedAdapter);
     }
 
     @Override
     public void onFocusChange(View view, boolean hasFocus) {
+        // If input field has focus, show buttons
         if(hasFocus) {
             mCancelButton.setVisibility(View.VISIBLE);
             mUpdateButton.setVisibility(View.VISIBLE);
         }
 
+        // Otherwise, hide buttons
         else {
             mCancelButton.setVisibility(View.GONE);
             mUpdateButton.setVisibility(View.GONE);
@@ -142,6 +159,7 @@ public class NewsFeedFragment extends Fragment implements View.OnFocusChangeList
 
     @Override
     public void onClick(View view) {
+        // If user clicked photo button, toggle image picker
         if(view.getId() == R.id.button_photo) {
             if(mImagePicker.getVisibility() == View.GONE) {
                 mImagePicker.setVisibility(View.VISIBLE);
@@ -152,14 +170,17 @@ public class NewsFeedFragment extends Fragment implements View.OnFocusChangeList
             }
         }
 
+        // If user clicked camera button, launch camera
         else if(view.getId() == R.id.button_camera) {
             addPhotoFromCamera();
         }
 
+        // If user clicked gallery button, launch gallery picker
         else if(view.getId() == R.id.button_gallery) {
             addPhotoFromGallery();
         }
 
+        // If user clicked cancel button, reset input UI
         else if(view.getId() == R.id.button_cancel) {
             mPostInput.clearFocus();
             mPostInput.setText("");
@@ -172,6 +193,7 @@ public class NewsFeedFragment extends Fragment implements View.OnFocusChangeList
             mPostPhoto = null;
         }
 
+        // If user clicked update button, create new post and reset UI
         else if(view.getId() == R.id.button_update) {
             mPostInput.clearFocus();
 
@@ -180,11 +202,14 @@ public class NewsFeedFragment extends Fragment implements View.OnFocusChangeList
             mCancelButton.setVisibility(View.GONE);
             mUpdateButton.setVisibility(View.GONE);
 
+            // Load logged in profile
             Profile poster = AccountUtils.loadProfile(getActivity());
 
+            // Only continue if acceptable input exists
             if ((mPostInput.getText().toString() != null && mPostInput.getText().toString().trim()!= "") || mPostPhoto != null) {
                 boolean hasImage = false;
 
+                // Indicate whether or not post has a photo
                 if(mPostPhoto != null) {
                     hasImage = true;
                 }
@@ -193,8 +218,10 @@ public class NewsFeedFragment extends Fragment implements View.OnFocusChangeList
                     hasImage = false;
                 }
 
+                // Create new post object
                 Post newPost = new Post(mPostInput.getText().toString().trim(), new Date(), poster.getProfileId(), poster.getFirstName(), hasImage);
 
+                // Add post to family newsfeed
                 PostUtils.createPost(getActivity(), newPost, poster, mPostPhoto);
             }
 
@@ -207,6 +234,7 @@ public class NewsFeedFragment extends Fragment implements View.OnFocusChangeList
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        // If a valid image was picked, populate in UI
         if(resultCode == Activity.RESULT_OK) {
             mPhotoView.setVisibility(View.VISIBLE);
             mCancelButton.setVisibility(View.VISIBLE);
@@ -237,26 +265,45 @@ public class NewsFeedFragment extends Fragment implements View.OnFocusChangeList
 
 
     // Custom methods
+    // Custom method to set click listener
     private void setClickListener(View view) {
+        // Reference all buttons in layout
         mCameraButton = view.findViewById(R.id.button_photo);
         mCancelButton = view.findViewById(R.id.button_cancel);
         mUpdateButton = view.findViewById(R.id.button_update);
         ImageButton cameraButton = view.findViewById(R.id.button_camera);
         ImageButton galleryButton = view.findViewById(R.id.button_gallery);
 
+        // Set click listener for buttons
         mCameraButton.setOnClickListener(this);
         mCancelButton.setOnClickListener(this);
         mUpdateButton.setOnClickListener(this);
         cameraButton.setOnClickListener(this);
         galleryButton.setOnClickListener(this);
+
+        // Set pull-down refresh listener
+        mRefresher.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Refresh newsfeed and update display
+                mPosts = PostUtils.loadNewsfeed(getActivity());
+                Account account = AccountUtils.loadAccount(getActivity());
+
+                mNewsfeedAdapter = new NewsfeedAdapter(getActivity(), mPosts, account);
+                mNewsfeed.setAdapter(mNewsfeedAdapter);
+                mRefresher.setRefreshing(false);
+            }
+        });
     }
 
+    // Custom method to set input field focus listener
     private void setFocusListener(View view) {
         mPostInput = view.findViewById(R.id.input_post);
 
         mPostInput.setOnFocusChangeListener(this);
     }
 
+    // Custom method to add photo from gallery picker
     private void addPhotoFromGallery() {
         Intent photoIntent = new Intent(Intent.ACTION_PICK);
 
@@ -268,11 +315,14 @@ public class NewsFeedFragment extends Fragment implements View.OnFocusChangeList
         startActivityForResult(photoIntent, 1);
     }
 
+    // Custom method to add photo from camera
     private void addPhotoFromCamera() {
+        // Check for required permissions...if they don't exist, request them
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, CAMERA_PERMISSION_REQUEST);
         }
 
+        // If required permissions exist, launch camera and wait for result
         else {
             try {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -286,6 +336,7 @@ public class NewsFeedFragment extends Fragment implements View.OnFocusChangeList
         }
     }
 
+    // Custom method to create image file
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());

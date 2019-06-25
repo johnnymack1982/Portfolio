@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -35,6 +36,7 @@ import com.mack.john.famly_androidedition.family_profile.EditFamilyActivity;
 import com.mack.john.famly_androidedition.login.MasterLoginActivity;
 import com.mack.john.famly_androidedition.objects.account.Account;
 import com.mack.john.famly_androidedition.objects.account.profile.Profile;
+import com.mack.john.famly_androidedition.signup.profile.AddProfileActivity;
 import com.mack.john.famly_androidedition.utils.AccountUtils;
 
 import java.io.File;
@@ -80,14 +82,22 @@ public class FamilyProfileFragment extends Fragment implements View.OnClickListe
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate view lauout
         View view = inflater.inflate(R.layout.fragment_family_profile, container, false);
 
+        // Reference logged in account
         mAccount = AccountUtils.loadAccount(getActivity());
 
+        // Reference family photo display
         mPhotoView = view.findViewById(R.id.profile_photo);
 
+        // Call custom method to set click listener
         setClickListener(view);
+
+        // Call custom method to populate profile display
         populateProfile(view);
+
+        // Call custom method to populate profile grid
         populateGrid(view);
 
         return view;
@@ -95,7 +105,9 @@ public class FamilyProfileFragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        // If user clicked delete family button...
         if(view.getId() == R.id.button_delete_family) {
+            // Build confirmation alert
             final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
             alertDialogBuilder.setTitle(getString(R.string.delete_account))
                     .setMessage(getString(R.string.delete_account_confirm))
@@ -103,6 +115,8 @@ public class FamilyProfileFragment extends Fragment implements View.OnClickListe
                     .setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+
+                            // Delete account and return to login activity
                             AccountUtils.deleteAccount(getActivity());
 
                             Intent logoutIntent = new Intent(getActivity(), MasterLoginActivity.class);
@@ -116,21 +130,31 @@ public class FamilyProfileFragment extends Fragment implements View.OnClickListe
                         }
                     });
 
+            // Show confirmation alert
             AlertDialog confirmDialog = alertDialogBuilder.create();
             confirmDialog.show();
         }
 
+        // If user clicked edit family button, launch edit family activity
         else if(view.getId() == R.id.button_edit_family){
             Intent editIntent = new Intent(getActivity(), EditFamilyActivity.class);
             startActivity(editIntent);
         }
 
+        // if user clicked camera button, launch camera
         else if(view.getId() == R.id.button_photo) {
             addPhotoFromCamera();
         }
 
+        // If user clicked gallery button, launch gallery picker
         else if(view.getId() == R.id.button_gallery) {
             addPhotoFromGallery();
+        }
+
+        // If user clicked add profile button, launch add profile activity
+        else if(view.getId() == R.id.button_add) {
+            Intent addIntent = new Intent(getActivity(), AddProfileActivity.class);
+            getActivity().startActivity(addIntent);
         }
     }
 
@@ -138,6 +162,7 @@ public class FamilyProfileFragment extends Fragment implements View.OnClickListe
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        // Set family photo to photo take from camera or gallery
         if(resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case GALLERY_REQUEST_CODE:
@@ -167,30 +192,40 @@ public class FamilyProfileFragment extends Fragment implements View.OnClickListe
     }
 
     // Custom methods
+    // Custom method to set click listeer
     private void setClickListener(View view) {
+        // Reference all buttons in layout
         ImageButton deleteFamilyButton = view.findViewById(R.id.button_delete_family);
         ImageButton editFamilyButton = view.findViewById(R.id.button_edit_family);
         ImageButton cameraButton = view.findViewById(R.id.button_photo);
         ImageButton galleryButton = view.findViewById(R.id.button_gallery);
+        FloatingActionButton addButton = view.findViewById(R.id.button_add);
 
+        // Set click listener for buttons
         deleteFamilyButton.setOnClickListener(this);
         editFamilyButton.setOnClickListener(this);
         cameraButton.setOnClickListener(this);
         galleryButton.setOnClickListener(this);
+        addButton.setOnClickListener(this);
     }
 
+    // Custom method to populate profile display
     private void populateProfile(View view) {
+        // Reference display elemets
         ImageView familyPhoto = view.findViewById(R.id.profile_photo);
         TextView familyNameDisplay = view.findViewById(R.id.display_family_name);
         TextView addressDisplay = view.findViewById(R.id.display_address);
 
+        // Get family name
         String familyName = mAccount.getFamilyName() + " " + getString(R.string.family);
 
+        // Populate family details
         AccountUtils.loadAccountPhoto(getActivity(), familyPhoto);
         familyNameDisplay.setText(familyName);
         addressDisplay.setText(mAccount.getFullAddress());
     }
 
+    // Custom method to add photo from gallery picker
     private void addPhotoFromGallery() {
         Intent photoIntent = new Intent(Intent.ACTION_PICK);
 
@@ -202,13 +237,17 @@ public class FamilyProfileFragment extends Fragment implements View.OnClickListe
         startActivityForResult(photoIntent, 1);
     }
 
+    // Custom method to add photo from camera
     private void addPhotoFromCamera() {
+        // Check for required permissions..if they don't exist, request them
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, CAMERA_PERMISSION_REQUEST);
         }
 
+        // If required permissions exist...
         else {
             try {
+                // Start image picker intent and wait for result
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(getActivity(), BuildConfig.APPLICATION_ID + ".provider",
                         createImageFile()));
@@ -220,6 +259,7 @@ public class FamilyProfileFragment extends Fragment implements View.OnClickListe
         }
     }
 
+    // Custom method to create image file
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -239,18 +279,26 @@ public class FamilyProfileFragment extends Fragment implements View.OnClickListe
         return image;
     }
 
+    // Custom method to populate profile grid
     private void populateGrid(View view) {
+        // Reference all profiles on account
         final Profile[] profiles = mAccount.getProfiles().toArray(new Profile[mAccount.getProfiles().size()]);
 
+        // Referece gridview
         GridView profileGrid = view.findViewById(R.id.grid_family);
 
+        // Set grid adapter
         ProfilesAdapter profilesAdapter = new ProfilesAdapter(getActivity(), profiles, mAccount);
         profileGrid.setAdapter(profilesAdapter);
+
+        // Set grid click listener
         profileGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Reference selected profile
                 Profile profile = profiles[position];
 
+                // Launch profile intent and send selected profile
                 Intent editIntent = new Intent(getActivity(), NavigationActivity.class);
                 editIntent.setAction(ACTION_EDIT_PROFILE);
                 editIntent.putExtra(EXTRA_PROFILE, profile);

@@ -43,20 +43,26 @@ public class LocateProfileFragment extends Fragment implements View.OnClickListe
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate view lauout
         View view = inflater.inflate(R.layout.fragment_locate_profile, container, false);
 
+        // Reference view
         mView = view;
 
+        // Inflate map fragment
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.frame_map_fragment, LocateMapFragment.newInstance(), LocateMapFragment.TAG)
                 .commit();
 
+        // Get selected profile from sending intent
         mProfile = (Profile) getActivity().getIntent().getSerializableExtra(LocateSelectionFragment.EXTRA_PROFILE);
 
+        // Update location display for selected profile
         LocationUtils locationUtils = new LocationUtils(getActivity());
         locationUtils.updateLocationDisplay(getActivity(), view, mProfile);
 
+        // Call custom methods to populate display and set click listener
         populateDisplay(view);
         setClickListener(view);
 
@@ -65,6 +71,7 @@ public class LocateProfileFragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        // If user clicked locate button, refresh location data for selected profile
         if(view.getId() == R.id.button_locate) {
             getActivity().getSupportFragmentManager()
                     .beginTransaction()
@@ -74,6 +81,7 @@ public class LocateProfileFragment extends Fragment implements View.OnClickListe
             populateDisplay(mView);
         }
 
+        // If user clicked cancel button, return to previous activity
         else if(view.getId() == R.id.button_cancel) {
             getActivity().finish();
         }
@@ -83,17 +91,23 @@ public class LocateProfileFragment extends Fragment implements View.OnClickListe
 
 
     // Custom methods
+    // Custom method to populate display
     private void populateDisplay(View view) {
+        // Load profile photo
         AccountUtils.loadProfilePhoto(getActivity(), view, mProfile.getProfileId());
 
+        // Display profile name
         TextView profileNameDisplay = view.findViewById(R.id.display_profile_name);
         profileNameDisplay.setText(mProfile.getFirstName() + " " + AccountUtils.loadAccount(getActivity()).getFamilyName());
     }
 
+    // Custom method to set click listener
     private void setClickListener(View view) {
+        // Reference buttons in layout
         Button locateButton = view.findViewById(R.id.button_locate);
         Button cancelButton = view.findViewById(R.id.button_cancel);
 
+        // Set click listener for buttons
         locateButton.setOnClickListener(this);
         cancelButton.setOnClickListener(this);
     }

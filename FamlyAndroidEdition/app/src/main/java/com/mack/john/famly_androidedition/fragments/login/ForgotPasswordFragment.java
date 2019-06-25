@@ -43,10 +43,13 @@ public class ForgotPasswordFragment extends Fragment implements View.OnClickList
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate layout
         View view = inflater.inflate(R.layout.fragment_forgot_password, container, false);
 
+        // Disable send button by default
         ButtonUtils.disableSendButton(getActivity(), view);
 
+        // Call custom methods to set click and text change listeners
         setClickListener(view);
         setTextChangeListener(view);
 
@@ -55,10 +58,12 @@ public class ForgotPasswordFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onClick(View view) {
+        // If user clicked cancel button, return to previous activity
         if(view.getId() == R.id.button_cancel) {
             getActivity().finish();
         }
 
+        // if user clicked send password, send password reset email
         else if(view.getId() == R.id.button_send) {
             AccountUtils.resetPassword(getActivity(), mEmail);
         }
@@ -68,6 +73,7 @@ public class ForgotPasswordFragment extends Fragment implements View.OnClickList
 
 
     // Custom methods
+    // Custom method to set click listener
     private void setClickListener(View view) {
         Button cancelButton = view.findViewById(R.id.button_cancel);
         Button sendButton = view.findViewById(R.id.button_send);
@@ -76,7 +82,9 @@ public class ForgotPasswordFragment extends Fragment implements View.OnClickList
         sendButton.setOnClickListener(this);
     }
 
+    // Custom method to set text change listener
     private void setTextChangeListener(final View view) {
+        // Set email input listener
         final EditText masterEmailInput = view.findViewById(R.id.input_master_email);
         masterEmailInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -96,10 +104,12 @@ public class ForgotPasswordFragment extends Fragment implements View.OnClickList
                     // Indicate input is valid
                     mValidEmail = true;
 
+                    // If input is valid, enable save button
                     if(mValidEmail) {
                         ButtonUtils.enableSendButton(getActivity(), view);
                     }
 
+                    // Otherwise, disable save button
                     else {
                         ButtonUtils.disableSendButton(getActivity(), view);
                     }
@@ -114,6 +124,7 @@ public class ForgotPasswordFragment extends Fragment implements View.OnClickList
                     // Indicate input is invalid
                     mValidEmail = false;
 
+                    // Disable save button
                     ButtonUtils.disableSendButton(getActivity(), view);
                 }
             }

@@ -146,7 +146,7 @@
 
 
 	<xsl:template match="file">
-    <a name="f-{@name}"></a>
+        <a name="f-{@name}" />
     <h3>File <xsl:value-of select="@name"/></h3>
 
     <table class="log" border="0" cellpadding="5" cellspacing="2" width="100%">

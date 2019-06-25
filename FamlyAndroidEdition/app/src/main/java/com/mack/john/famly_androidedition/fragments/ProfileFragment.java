@@ -18,11 +18,13 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -87,6 +89,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     ListView mTimeline;
 
+    SwipeRefreshLayout mRefresher;
+
 
 
     // System generated methods
@@ -101,24 +105,32 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate layout
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        // Reference view
         mView = view;
 
         try {
+            // If selected is not the logged in profile but user is a parent...
             if(getActivity().getIntent() != null && getActivity().getIntent().getAction().equals(FamilyProfileFragment.ACTION_EDIT_PROFILE)) {
                 mEditingSelf = false;
                 mIsParent = true;
+
+                // Get profile from sending intent
                 mProfile = (Profile) getActivity().getIntent().getSerializableExtra(FamilyProfileFragment.EXTRA_PROFILE);
 
+                // Get selected profile name and compare to logged in profile name
                 String selectedName = mProfile.getFirstName();
                 String loadedName = AccountUtils.loadProfile(getActivity()).getFirstName();
 
+                // If names match, indicate that the parent is viewing their own profile
                 if(selectedName.equals(loadedName)) {
                     mEditingSelf = true;
                 }
             }
 
+            // Otherwise, indicate user is not viewing their own profile
             else {
                 mEditingSelf = true;
                 mProfile = AccountUtils.loadProfile(getActivity());
@@ -136,25 +148,33 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         catch (Exception e) {
             e.printStackTrace();
 
+            // Default to viewing own profile
             mEditingSelf = true;
             mProfile = AccountUtils.loadProfile(getActivity());
 
+            // If logged in profile is a parent, indicate that
             if(mProfile instanceof Parent) {
                 mIsParent = true;
             }
 
+            // Otherwise, indicate that logged in profile is not a parent
             else {
                 mIsParent = false;
             }
         }
 
+        // Load account
         mAccount = AccountUtils.loadAccount(getActivity());
+
+        // Load profile photo
         AccountUtils.loadProfilePhoto(getActivity(), view, mProfile.getProfileId());
 
+        // Reference photo view, timeline, and pull-down refresher
         mPhotoView = view.findViewById(R.id.profile_photo);
-
         mTimeline = view.findViewById(R.id.list_newsfeed);
+        mRefresher = view.findViewById(R.id.refresher);
 
+        // Call custom methods to set click listener, set text display, and populate profile display
         setClickListener(view);
         setTextDisplay(view);
         populateProfile(view);
@@ -166,15 +186,19 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
 
+        // Listen for updates to profile timeline
         PostUtils.listenForTimeline(getActivity(), mProfile, mAccount, mTimeline);
 
+        // Update location display
         LocationUtils locationUtils = new LocationUtils(getActivity());
         locationUtils.updateLocationDisplay(getActivity(), mView, mProfile);
     }
 
     @Override
     public void onClick(View view) {
+        // If user clicked delete profile button...
         if(view.getId() == R.id.button_delete_profile) {
+            // Build confirmation alert
             final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
             alertDialogBuilder.setTitle(getString(R.string.delete_profile))
                     .setMessage(getString(R.string.confirm_delete_1) + " " + mProfile.getFirstName() + getString(R.string.confirm_delete_2))
@@ -182,6 +206,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     .setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            // Delete profile
                             AccountUtils.deleteProfile(getActivity(), mEditingSelf, mProfile, mAccount);
                         }
                     })
@@ -192,21 +217,53 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                         }
                     });
 
+            // Show confirm alert
             AlertDialog confirmDialog = alertDialogBuilder.create();
             confirmDialog.show();
         }
 
+        // If user clicked camera button, call custom method to add photo from camera
         else if(view.getId() == R.id.button_photo) {
             addPhotoFromCamera();
         }
 
+        // If user clicked gallery button, call custom method to add photo from gallery
         else if(view.getId() == R.id.button_gallery) {
             addPhotoFromGallery();
         }
 
+        // If user clicked family button, launch family profile activity
         else if(view.getId() == R.id.button_family) {
             Intent familyIntent = new Intent(getActivity(), FamilyProfileActivity.class);
             startActivity(familyIntent);
+        }
+
+        // If user clicked loggout button...
+        else if (view.getId() == R.id.button_logout) {
+            // Build confirm alert
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("Log Out?");
+            builder.setMessage("Are you sure you want to log out of this profile?");
+            builder.setCancelable(true);
+
+            // If user clicked signout button, sign out
+            builder.setPositiveButton("Log Out", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    AccountUtils.signout(getActivity());
+                }
+            });
+
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+
+            // Show cofirm alert
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
         }
     }
 
@@ -214,6 +271,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        // Populate UI with selected image
         if(resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case GALLERY_REQUEST_CODE:
@@ -245,42 +303,74 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
 
     // Custom methods
+    // Custom method to set click listener
     private void setClickListener(View view) {
+        // Reference all buttons in layout
         mDeleteProfileButton = view.findViewById(R.id.button_delete_profile);
         mFamilyButton = view.findViewById(R.id.button_family);
         ImageButton cameraButton = view.findViewById(R.id.button_photo);
         ImageButton galleryButton = view.findViewById(R.id.button_gallery);
+        Button logoutButton = view.findViewById(R.id.button_logout);
+
+        // If displayed profile is the logged in profile, show the lgout button
+        if(mProfile.getProfileId().equals(AccountUtils.loadProfile(getActivity()).getProfileId())) {
+            logoutButton.setVisibility(View.VISIBLE);
+        }
+
+        // Otherwise, hide the logout button
+        else {
+            logoutButton.setVisibility(View.INVISIBLE);
+        }
 
 
+        // Set button click listeers
         mDeleteProfileButton.setOnClickListener(this);
         mFamilyButton.setOnClickListener(this);
         cameraButton.setOnClickListener(this);
         galleryButton.setOnClickListener(this);
+        logoutButton.setOnClickListener(this);
+
+        // Set pull-down refresh listener
+        mRefresher.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                PostUtils.listenForTimeline(getActivity(), mProfile, mAccount, mTimeline);
+
+                mRefresher.setRefreshing(false);
+            }
+        });
     }
 
+    // Custom method to display text elements
     private void setTextDisplay(View view) {
         mNameDisplay = view.findViewById(R.id.display_name);
         mDateTimeDisplay = view.findViewById(R.id.display_timestamp);
         mLastLocationDisplay = view.findViewById(R.id.display_last_location);
     }
 
+    // Custom method to populate profile display
     private void populateProfile(View view) {
+        // Reference UI elements
         TextView profileName = view.findViewById(R.id.display_name);
         ImageButton deleteProfileButton = view.findViewById(R.id.button_delete_profile);
         ImageButton familyButton = view.findViewById(R.id.button_family);
 
+        // If logged in profile is not a parent, hide family and delete profile buttons
         if(!mIsParent) {
             deleteProfileButton.setVisibility(View.GONE);
             familyButton.setVisibility(View.GONE);
         }
 
+        // Display profile name
         String name = mProfile.getFirstName() + " " + mAccount.getFamilyName();
         profileName.setText(name);
 
+        // Display profile's last known location
         LocationUtils locationUtils = new LocationUtils(getActivity());
         locationUtils.updateLocationDisplay(getActivity(), view, mProfile);
     }
 
+    // Custom method to add photo from gallery
     private void addPhotoFromGallery() {
         Intent photoIntent = new Intent(Intent.ACTION_PICK);
 
@@ -292,11 +382,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         startActivityForResult(photoIntent, 1);
     }
 
+    // Custom method to add photo from camera
     private void addPhotoFromCamera() {
+        // If required permissions don't exist, request them
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, CAMERA_PERMISSION_REQUEST);
         }
 
+        // If required permissions exist, launch camera and wait for result
         else {
             try {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -310,6 +403,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    // Custom method to create image file
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());

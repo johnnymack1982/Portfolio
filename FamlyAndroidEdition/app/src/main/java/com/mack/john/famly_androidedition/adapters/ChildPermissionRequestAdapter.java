@@ -42,46 +42,58 @@ public class ChildPermissionRequestAdapter extends BaseAdapter {
     // System generated methods
     @Override
     public int getCount() {
+        // Return size of request list
         return requests.size();
     }
 
     @Override
     public long getItemId(int position) {
+        // Return position or current item
         return position;
     }
 
     @Override
     public Object getItem(int position) {
+        // Return current item
         return requests.get(position);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        // Reference current item
         Request request = requests.get(position);
 
+        // Inflate cell
         if(convertView == null) {
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             convertView = layoutInflater.inflate(R.layout.cell_child_permission, null);
         }
 
+        // Load current account
         AccountUtils.loadProfilePhoto(context, convertView, request.getRequesterId());
 
+        // Display profile name
         TextView profileNameDisplay = convertView.findViewById(R.id.display_profile_name);
         String name = request.getRequesterName() + " " + account.getFamilyName();
         profileNameDisplay.setText(name);
 
+        // Display timestamp
         TextView timestampDisplay = convertView.findViewById(R.id.display_timestamp);
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy @ hh:mm a", Locale.getDefault());
         String timestamp = dateFormat.format(request.getTimeStamp());
         timestampDisplay.setText(timestamp);
 
+        // Display request message
         TextView requestMessageDisplay = convertView.findViewById(R.id.display_last_location);
         requestMessageDisplay.setText(request.getRequestMessage());
 
+        // Reference request status display
         ImageView postStatusDisplay = convertView.findViewById(R.id.display_permission_status);
 
+        // Get request status
         int requestStatus = request.getRequestStatus();
 
+        // Get number of parents on account
         ArrayList<Parent> parents = new ArrayList<>();
 
         for(Profile profile : AccountUtils.loadAccount(context).getProfiles()) {
@@ -90,18 +102,22 @@ public class ChildPermissionRequestAdapter extends BaseAdapter {
             }
         }
 
+        // Indicate request is pending approval
         if(requestStatus == 0) {
             postStatusDisplay.setImageDrawable(context.getDrawable(R.drawable.permission_pending_icon));
         }
 
+        // If both parents approve, indicate request is approved
         else if(requestStatus == parents.size()) {
             postStatusDisplay.setImageDrawable(context.getDrawable(R.drawable.permission_granted_icon));
         }
 
+        // If one parent denies, indicate request is denied
         else if(requestStatus == -1) {
             postStatusDisplay.setImageDrawable(context.getDrawable(R.drawable.permission_denied_icon));
         }
 
+        // Return cell
         return convertView;
     }
 }

@@ -57,12 +57,15 @@ public class CheckinMapFragment extends SupportMapFragment implements OnMapReady
         MapStyleOptions mapStyleOptions = MapStyleOptions.loadRawResourceStyle(getActivity(), R.raw.style_map);
         googleMap.setMapStyle(mapStyleOptions);
 
+        // Reference current location
         LocationUtils locationUtils = new LocationUtils(getActivity());
         mCurrentLat = locationUtils.getLatitude();
         mCurrentLong = locationUtils.getLongitude();
 
+        // Reference map
         mMap = googleMap;
 
+        // Call custom methods to set map location and add marker
         zoomInCamera();
         addMapMarker();
     }
@@ -95,23 +98,29 @@ public class CheckinMapFragment extends SupportMapFragment implements OnMapReady
     }
 
     private void addMapMarker() {
+        // If map is null, do not continue
         if(mMap == null) {
             return;
         }
 
+        // Set custom marker color
         @SuppressLint("ResourceType")
         String green = getResources().getString(R.color.colorGrassPrimary);
 
+        // Set profile name as marker title
         MarkerOptions options = new MarkerOptions();
         options.title(AccountUtils.loadProfile(getActivity()).getFirstName() + " " + AccountUtils.loadAccount(getActivity()).getFamilyName());
 
+        // Set current location as marker snippet
         LocationUtils locationUtils = new LocationUtils(getActivity());
         options.snippet(locationUtils.convertAddress(getActivity(), mCurrentLat, mCurrentLong));
 
+        // Set location for marker
         LatLng currentLocation = new LatLng(mCurrentLat, mCurrentLong);
         options.position(currentLocation);
         options.icon(setMarkerColor(green));
 
+        // Add marker to map
         mMap.addMarker(options);
     }
 

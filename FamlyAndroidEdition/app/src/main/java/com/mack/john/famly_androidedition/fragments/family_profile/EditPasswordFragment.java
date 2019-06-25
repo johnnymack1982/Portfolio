@@ -56,13 +56,17 @@ public class EditPasswordFragment extends Fragment implements View.OnClickListen
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate view layout
         View view = inflater.inflate(R.layout.fragment_edit_password, container, false);
 
+        // Reference logged in account
         mAccount = AccountUtils.loadAccount(getActivity());
 
+        // Load family photo
         mFamilyPhoto = view.findViewById(R.id.profile_photo);
         AccountUtils.loadAccountPhoto(getActivity(), view);
 
+        // Call custom methods to set click and text listeners
         setOnClickListener(view);
         setTextChangeListener(view);
 
@@ -71,17 +75,21 @@ public class EditPasswordFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
+        // If user clicked cancel button, return to previous activity
         if(view.getId() == R.id.button_cancel) {
             getActivity().finish();
         }
 
+        // If user clicked save button...
         else if(view.getId() == R.id.button_save) {
+            // If user entered valid old password, save account changes
             if(mOldPassword.equals(mAccount.getMasterPassword())) {
                 Bitmap photo = ((BitmapDrawable) mFamilyPhoto.getDrawable()).getBitmap();
 
                 AccountUtils.updatePassword(getActivity(), mOldPassword, mNewPassword, mAccount, photo);
             }
 
+            // If user entered invalid old password, let them know
             else {
                 Toast.makeText(getActivity(), getActivity().getString(R.string.invalid_password), Toast.LENGTH_SHORT).show();
             }
@@ -91,18 +99,24 @@ public class EditPasswordFragment extends Fragment implements View.OnClickListen
 
 
     // Custom methods
+    // Custom method to set click listener
     private void setOnClickListener(View view) {
+        // Reference buttons in layout
         Button cancelButton = view.findViewById(R.id.button_cancel);
         Button saveButton = view.findViewById(R.id.button_save);
 
+        // Set click listener for buttons
         cancelButton.setOnClickListener(this);
         saveButton.setOnClickListener(this);
     }
 
+    // Custom method to set text change listener
     private void setTextChangeListener(final View view) {
+        // Set password rules display to hidden as default
         final TextView passwordRules = view.findViewById(R.id.display_password_rules);
         passwordRules.setVisibility(View.GONE);
 
+        // Set old password input listener
         final EditText oldPasswordInput = view.findViewById(R.id.input_old_master_password);
         oldPasswordInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -123,12 +137,15 @@ public class EditPasswordFragment extends Fragment implements View.OnClickListen
                     // Indicate input is valid
                     mValidOldPassword = true;
 
+                    // Reference old password input
                     mOldPassword = oldPasswordInput.getText().toString();
 
+                    // If all fields have valid input, enable save button
                     if(mValidOldPassword && mValidNewPassword && mNewPasswordsMatch) {
                         ButtonUtils.enableSaveButton(getActivity(), view);
                     }
 
+                    // Otherwise, disable save button
                     else {
                         ButtonUtils.disableSaveButton(getActivity(), view);
                     }
@@ -146,6 +163,7 @@ public class EditPasswordFragment extends Fragment implements View.OnClickListen
                     // Indicate input is invalid
                     mValidOldPassword = false;
 
+                    // Disable save button
                     ButtonUtils.disableSaveButton(getActivity(), view);
                 }
             }
@@ -154,6 +172,7 @@ public class EditPasswordFragment extends Fragment implements View.OnClickListen
             public void afterTextChanged(Editable s) {}
         });
 
+        // Set new password input listener
         final EditText newPasswordInput = view.findViewById(R.id.input_new_master_password);
         newPasswordInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -174,10 +193,12 @@ public class EditPasswordFragment extends Fragment implements View.OnClickListen
                     // Indicate input is valid
                     mValidNewPassword = true;
 
+                    // If all fields have valid input, enable save button
                     if(mValidOldPassword && mValidNewPassword && mNewPasswordsMatch) {
                         ButtonUtils.enableSaveButton(getActivity(), view);
                     }
 
+                    // Otherwise, disable save button
                     else {
                         ButtonUtils.disableSaveButton(getActivity(), view);
                     }
@@ -195,6 +216,7 @@ public class EditPasswordFragment extends Fragment implements View.OnClickListen
                     // Indicate input is invalid
                     mValidNewPassword = false;
 
+                    // Disable save button
                     ButtonUtils.disableSaveButton(getActivity(), view);
                 }
             }
@@ -203,6 +225,7 @@ public class EditPasswordFragment extends Fragment implements View.OnClickListen
             public void afterTextChanged(Editable s) {}
         });
 
+        // Set confirm new password input listener
         final EditText confirmNewPasswordInput = view.findViewById(R.id.input_confirm_new_master_password);
         confirmNewPasswordInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -223,12 +246,15 @@ public class EditPasswordFragment extends Fragment implements View.OnClickListen
                     // Indicate input is valid
                     mNewPasswordsMatch = true;
 
+                    // Reference new password input
                     mNewPassword = newPasswordInput.getText().toString().trim();
 
+                    // If all fields have valid input, enable save button
                     if(mValidOldPassword && mValidNewPassword && mNewPasswordsMatch) {
                         ButtonUtils.enableSaveButton(getActivity(), view);
                     }
 
+                    // Otherwise, disable save button
                     else {
                         ButtonUtils.disableSaveButton(getActivity(), view);
                     }
@@ -246,6 +272,7 @@ public class EditPasswordFragment extends Fragment implements View.OnClickListen
                     // Indicate input is invalid
                     mNewPasswordsMatch = false;
 
+                    // Disable save button
                     ButtonUtils.disableSaveButton(getActivity(), view);
                 }
             }
