@@ -55,29 +55,35 @@ class ProfileSignup1: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Disable continue button by default
         ButtonUtils.disableButton(button: continueButton)
-        
-        self.genderRolePicker.delegate = self
-        self.genderRolePicker.dataSource = self
         
         roleLabel.isHidden = true
         
+        // Set geder / family role picker options
+        self.genderRolePicker.delegate = self
+        self.genderRolePicker.dataSource = self
         genders = ["Male", "Female"]
         gendersRoles = [["Male", "Female"],
                     ["Mother", "Father", "Grandmother", "Grandfather", "Aunt", "Uncle"]]
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        
+        // If adding parent, show role id selection in picker
         if mIsParent {
             return 2
         }
         
+        // Otherwise, hide role id selection in picker
         else {
             return 1
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        // Return number of available options in gender / family role picker
         if mIsParent {
             return gendersRoles[component].count
         }
@@ -88,6 +94,8 @@ class ProfileSignup1: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        // Display selected values in gender / family role picker
         if mIsParent {
             return gendersRoles[component][row]
         }
@@ -99,6 +107,8 @@ class ProfileSignup1: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is ProfileSignup2 {
+            
+            // Send user input to destination
             let destination = segue.destination as? ProfileSignup2
             
             mDateOfBirth = dateOfBirthPicker.date
@@ -126,6 +136,7 @@ class ProfileSignup1: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let nextTag = textField.tag + 1
         
+        // On 'enter,' move to next input field. If last field, dismiss keyboard
         if let nextResponder = textField.superview?.viewWithTag(nextTag) {
             nextResponder.becomeFirstResponder()
         } else {
@@ -139,69 +150,93 @@ class ProfileSignup1: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     // Text change listener
     @IBAction func textWatcher(_ sender: UITextField) {
+        
+        // Watch first name input
         if sender == firstNameInput {
             
+            // If input is valid...
             if InputUtils.validName(Name: firstNameInput.text) {
+                
+                // Turn input field green
                 TextFieldUtils.turnGreen(textField: firstNameInput)
                 
+                // Reference user input and indicate input is valid
                 mFirstName = firstNameInput.text
-                
                 mValidFirstName = true
                 
+                // If all fields have valid input, enable continue button
                 if mValidFirstName && mValidPin && mPinsMatch {
                     ButtonUtils.enableButton(button: continueButton)
                 }
             }
             
+            // If input is invalid...
             else {
-                TextFieldUtils.turnRed(textField: firstNameInput)
                 
+                // Turn input field red and indicate input is invalid
+                TextFieldUtils.turnRed(textField: firstNameInput)
                 mValidFirstName = false
                 
+                // Disable continue button
                 ButtonUtils.disableButton(button: continueButton)
             }
         }
         
+        // Watch pin input
         else if sender == pinInput {
             
+            // If input is valid...
             if InputUtils.validPin(pin: pinInput.text) {
-                TextFieldUtils.turnGreen(textField: pinInput)
                 
+                // Turn input field green and indicate input is valid
+                TextFieldUtils.turnGreen(textField: pinInput)
                 mValidPin = true
                 
+                // If all fields have valid input, enable continue button
                 if mValidFirstName && mValidPin && mPinsMatch {
                     ButtonUtils.enableButton(button: continueButton)
                 }
             }
                 
+            // If input is invalid...
             else {
-                TextFieldUtils.turnRed(textField: pinInput)
                 
+                // Turn input field red and indicate input is invalid
+                TextFieldUtils.turnRed(textField: pinInput)
                 mValidPin = false
                 
+                // Disable continue button
                 ButtonUtils.disableButton(button: continueButton)
             }
         }
         
+        // Watch pin confirm input
         else if sender == confirmPinInput {
             
+            // If input is valid...
             if InputUtils.pinsMatch(pin: pinInput.text, pinConfirm: confirmPinInput.text) {
+                
+                // Turn input field green
                 TextFieldUtils.turnGreen(textField: confirmPinInput)
                 
+                // Reference user input and indicate input is valid
                 mPinsMatch = true
-                
                 mProfilePin = Int(pinInput.text!)
                 
+                // If all fields have valid input, enable continue button
                 if mValidFirstName && mValidPin && mPinsMatch {
                     ButtonUtils.enableButton(button: continueButton)
                 }
             }
             
+            // If input is invalid...
             else {
-                TextFieldUtils.turnRed(textField: confirmPinInput)
                 
+                // Turn input field red and indicate input is invalid
+                TextFieldUtils.turnRed(textField: confirmPinInput)
                 mPinsMatch = false
                 
+                // Disable continue button
                 ButtonUtils.disableButton(button: continueButton)
             }
         }

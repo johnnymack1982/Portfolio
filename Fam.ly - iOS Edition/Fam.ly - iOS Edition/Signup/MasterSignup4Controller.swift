@@ -26,11 +26,14 @@ class MasterSignup4Controller: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Call custom method to toggle add parent button
         toggleParentButton()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is ProfileSignup1 {
+            
+            // Send parent profile to next activity
             let destination = segue.destination as? ProfileSignup1
             
             destination?.mIsParent = mIsParent
@@ -40,13 +43,18 @@ class MasterSignup4Controller: UIViewController {
     
     
     // Custom methods
+    // Custom method to toggle add parent button
     private func toggleParentButton() {
+        
+        // Load account
         let account = AccountUtils.loadAccount()
         
+        // If profile has two parents, disable add parent button
         if account!.getParents().count == 2 {
             ButtonUtils.disableButton(button: parentButton)
         }
         
+        // Otherwise, enable add parent button
         else {
             ButtonUtils.enableButton(button: parentButton)
         }
@@ -57,9 +65,12 @@ class MasterSignup4Controller: UIViewController {
     // Action methods
     @IBAction func addProfile(_ sender: UIButton) {
         switch sender.tag {
+            
+        // If user clicked add parent button, let destination know user is adding a parent
         case 0:
             mIsParent = true
             
+        // If user clicked add child button, let destination know user is adding a child
         case 1:
             mIsParent = false
             

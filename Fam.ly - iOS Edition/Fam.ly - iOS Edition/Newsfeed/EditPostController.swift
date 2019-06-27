@@ -29,13 +29,17 @@ class EditPostController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Populate input field with message for selected post
        postInput.text = mPost?.getPostMessage()
     }
     
     
     
     // Custom methods
+    // Custom method to update post
     private func updatePost() {
+        
+        // Update selected post with new input
         mPost?.setPostMessage(PostMessage: postInput.text!)
         mPosts![(mIndexPath?.row)!] = mPost!
         
@@ -47,9 +51,12 @@ class EditPostController: UIViewController {
     // Action methods
     @IBAction func buttonClicked(_ sender: UIButton) {
         switch sender.tag {
+            
+        // If user clicked cancel button, return to previous activity
         case 0:
             performSegue(withIdentifier: "unwindToNewsfeed", sender: self)
             
+        // If user clicked update button, call custom method to update post
         case 1:
             updatePost()
             

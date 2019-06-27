@@ -14,10 +14,12 @@ public class ButtonUtils {
     
     
     // Custom methods
+    // Custom method to disable selected button
     public static func enableButton(button: UIButton) {
         button.isHidden = false
     }
     
+    // Custom method to enable selected button
     public static func disableButton(button: UIButton) {
         button.isHidden = true
     }

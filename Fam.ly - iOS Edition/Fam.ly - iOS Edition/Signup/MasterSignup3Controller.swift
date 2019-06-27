@@ -34,16 +34,20 @@ class MasterSignup3Controller: UIViewController, UINavigationControllerDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Reference image picker and round family photo view
         galleryPicker = ImagePicker(presentationController: self, delegate: self)
         roundImageView()
     }
     
+    // Populate selected image
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         cameraPicker.dismiss(animated: true, completion: nil)
         familyPhoto.image = info[.originalImage] as? UIImage
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Save account to file before continuing to next activity
         let account = Account(FamilyName: mFamilyName!, StreetAddress: mStreetAddress!, PostalCode: mPostalCode!, MasterEmail: mEmail!, MasterPassword: mPassword!)
         
         AccountUtils.saveAccount(Account: account, Photo: familyPhoto.image!)
@@ -53,6 +57,8 @@ class MasterSignup3Controller: UIViewController, UINavigationControllerDelegate,
     
     
     // Custom methods
+    
+    // Custom method to get photo from camera
     func takePhoto() {
         cameraPicker =  UIImagePickerController()
         cameraPicker.delegate = self
@@ -61,6 +67,7 @@ class MasterSignup3Controller: UIViewController, UINavigationControllerDelegate,
         present(cameraPicker, animated: true, completion: nil)
     }
     
+    // Custom method to round photo view
     func roundImageView() {
         familyPhoto.layer.borderWidth = 1.0
         familyPhoto.layer.masksToBounds = false
@@ -75,9 +82,12 @@ class MasterSignup3Controller: UIViewController, UINavigationControllerDelegate,
     // Action methods
     @IBAction func captureImage(_ sender: UIButton) {
         switch sender.tag {
+            
+        // If user clicked camera button, launch camera
         case 0:
             takePhoto()
             
+        // If user clicked gallery button, launch gallery picker
         case 1:
             self.galleryPicker.present(from: sender)
             
@@ -91,6 +101,7 @@ class MasterSignup3Controller: UIViewController, UINavigationControllerDelegate,
 
 extension MasterSignup3Controller : ImagePickerDelegate {
     
+    // Populate selected image in UI
     func didSelect(image: UIImage?) {
         self.familyPhoto.image = image
         

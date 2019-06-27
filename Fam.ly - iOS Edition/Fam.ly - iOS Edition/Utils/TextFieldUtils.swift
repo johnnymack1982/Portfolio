@@ -15,6 +15,7 @@ public class TextFieldUtils {
     
     
     // Custom methods
+    // Custom method to turn input field green
     public static func turnGreen(textField: UITextField) {
         textField.layer.borderColor = UIColor.green.cgColor
         textField.layer.borderWidth = 1.0
@@ -22,6 +23,7 @@ public class TextFieldUtils {
         textField.layer.masksToBounds = true
     }
     
+    // Custom method to turn input field red
     public static func turnRed(textField: UITextField) {
         textField.layer.borderColor = UIColor.red.cgColor
         textField.layer.borderWidth = 1.0

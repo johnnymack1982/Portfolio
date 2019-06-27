@@ -41,44 +41,53 @@ class CheckinController: UIViewController, UIImagePickerControllerDelegate, UINa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Hide image view by default
         postImage.image = nil
         postImageHeight.constant = 0
         
+        // Load profile
         mParent = AccountUtils.loadParent()
         mChild = AccountUtils.loadChild()
         
+        // If profile is a parent, show locate button and get profile name
         if mParent != nil {
             findButton.isHidden = false
             mFirstName = mParent?.getFirstName()
         }
         
+        // If profile is a child, hide locate button and get profile name
         else if mChild != nil {
             findButton.isHidden = true
             mFirstName = mChild?.getFirstName()
         }
         
+        // Set location manager delegate
         mLocationManager.delegate = self
         
+        // Request location permission if necessary
         let authorizationStatus = CLLocationManager.authorizationStatus()
-        
         if authorizationStatus == CLAuthorizationStatus.notDetermined {
             mLocationManager.requestAlwaysAuthorization()
         }
         
+        // Begin updating location
         else {
             mLocationManager.startUpdatingLocation()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        // Hide image view by default
         postImageHeight.constant = 0
         
+        // Request location permission if necessary
         let authorizationStatus = CLLocationManager.authorizationStatus()
-        
         if authorizationStatus == CLAuthorizationStatus.notDetermined {
             mLocationManager.requestAlwaysAuthorization()
         }
-            
+          
+        // Begin updating location
         else {
             mLocationManager.startUpdatingLocation()
         }
@@ -87,6 +96,7 @@ class CheckinController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     
     // Custom methods
+    // Custom method to get photo from camera
     func takePhoto() {
         cameraPicker =  UIImagePickerController()
         cameraPicker.delegate = self
@@ -100,6 +110,8 @@ class CheckinController: UIViewController, UIImagePickerControllerDelegate, UINa
     // Action methods
     @IBAction func buttonClicked(_ sender: UIButton) {
         switch sender.tag {
+            
+        // If user clicked checkin button, create checkin
         case 0:
             let locationUtils = LocationUtils(Location: mLocation!)
             locationUtils.checkIn(Controller: self, Parent: mParent, Child: mChild, Message: checkinInput.text, Image: postImage.image)
@@ -118,34 +130,40 @@ class CheckinController: UIViewController, UIImagePickerControllerDelegate, UINa
 
 extension CheckinController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        // Check for required permission
         guard status == .authorizedWhenInUse || status == .authorizedAlways else {
             return
         }
 
+        // Start updatig location
         mLocationManager.startUpdatingLocation()
-        
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        // Reference location
         guard let location = locations.first else {
             return
         }
         
         mLocation = location
         
+        // Update profile location and show on map
         let locationUtils = LocationUtils(Location: location)
         locationUtils.updateLocation(Parent: mParent, Child: mChild)
-        
         mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
         
+        // Extract address from location
         let geocoder = GMSGeocoder()
         geocoder.reverseGeocodeCoordinate(location.coordinate) { (response, error) in
             guard let address = response?.firstResult(), let lines = address.lines else {
                 return
             }
             
+            // Add location marker to map
             let marker = GMSMarker()
             marker.position = location.coordinate
             marker.title = self.mFirstName! + " " + (AccountUtils.loadAccount()?.getFamilyName())!
@@ -159,6 +177,7 @@ extension CheckinController: CLLocationManagerDelegate {
 
 extension CheckinController : ImagePickerDelegate {
     
+    // Update UI with selected image
     public func didSelect(image: UIImage?) {
         self.postImage.image = image
         

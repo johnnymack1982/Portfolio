@@ -30,21 +30,25 @@ class LocateSelectionController: UIViewController, UITableViewDataSource, UITabl
     // System generated methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        // Show top navigation bar
         self.navigationController!.isNavigationBarHidden = false
         
+        // Load account
         mAccount = AccountUtils.loadAccount()
         
+        // Set tableview source and delegate
         profilesTable.dataSource = self
         profilesTable.delegate = self
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is LocateController {
+            
+            // Send selected profile to destination
             let destination = segue.destination as? LocateController
             
             if mParent != nil {
@@ -65,15 +69,21 @@ class LocateSelectionController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        // Return number of profiles on account
         return (mAccount?.getParents().count)! + (mAccount?.getChildren().count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // Reference cell
         let cell = profilesTable.dequeueReusableCell(withIdentifier: "profileReuseIdentifier") as! ProfileListCell
         
+        // Load profiles
         let parents = mAccount?.getParents()
         let children = mAccount?.getChildren()
         
+        // Populate profile info
         if indexPath.row < parents!.count {
             let parent = parents![indexPath.row]
             let profileId = parent.getProfileId()
@@ -82,6 +92,7 @@ class LocateSelectionController: UIViewController, UITableViewDataSource, UITabl
             AccountUtils.loadProfilePhoto(ProfileId: profileId, ProfilePhoto: cell.profilePhoto)
         }
             
+        // Populate profile info
         else {
             let child = children![indexPath.row - parents!.count]
             let profileId = child.getProfileId()
@@ -94,9 +105,12 @@ class LocateSelectionController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Load profiles
         let parents = mAccount?.getParents()
         let children = mAccount?.getChildren()
         
+        // Launch profile location activity
         if indexPath.row < parents!.count {
             mParent = parents![indexPath.row]
             mChild = nil

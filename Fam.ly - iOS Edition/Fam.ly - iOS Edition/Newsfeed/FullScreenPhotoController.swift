@@ -26,8 +26,10 @@ class FullScreenPhotoController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Hide top navigation bar
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
+        // If a photo exists, display it
         if mPhoto != nil {
             photoView.image = mPhoto
         }

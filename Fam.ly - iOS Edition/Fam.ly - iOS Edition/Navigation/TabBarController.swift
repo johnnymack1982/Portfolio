@@ -13,12 +13,14 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Populate bottom navigation bar
         let appearance = UITabBarItem.appearance(whenContainedInInstancesOf: [TabBarController.self])
         appearance.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        // Hide top navigation bar
         self.navigationController!.isNavigationBarHidden = true
     }
 }

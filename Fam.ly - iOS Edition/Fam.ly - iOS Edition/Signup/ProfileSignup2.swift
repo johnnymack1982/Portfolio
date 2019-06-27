@@ -35,16 +35,22 @@ class ProfileSignup2: UIViewController, UINavigationControllerDelegate, UIImageP
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Reference image picker delegate
         galleryPicker = ImagePicker(presentationController: self, delegate: self)
+        
+        // Call custom method to round profile photo view
         roundImageView()
     }
     
+    // Create image picker
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         cameraPicker.dismiss(animated: true, completion: nil)
         profilePhoto.image = info[.originalImage] as? UIImage
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Add profile to account before moving to next activity
         if mIsParent {
             let parent = Parent(FirstName: mFirstName!, DateOfBirth: mDateOfBirth!, GenderID: mGenderId!, ProfilePIN: mProfilePin!, RoleID: mRoleId!)
             
@@ -61,6 +67,7 @@ class ProfileSignup2: UIViewController, UINavigationControllerDelegate, UIImageP
     
     
     // Custom methods
+    // Custom method to round profile image view
     func roundImageView() {
         profilePhoto.layer.borderWidth = 1.0
         profilePhoto.layer.masksToBounds = false
@@ -69,6 +76,7 @@ class ProfileSignup2: UIViewController, UINavigationControllerDelegate, UIImageP
         profilePhoto.clipsToBounds = true
     }
     
+    // Custom method to get photo from camera
     func takePhoto() {
         cameraPicker =  UIImagePickerController()
         cameraPicker.delegate = self
@@ -82,9 +90,12 @@ class ProfileSignup2: UIViewController, UINavigationControllerDelegate, UIImageP
     // Action methods
     @IBAction func captureImage(_ sender: UIButton) {
         switch sender.tag {
+            
+        // If user clicked camera button, get photo from camera
         case 0:
             takePhoto()
             
+        // If user clicked gallery butto, get photo from gallery picker
         case 1:
             self.galleryPicker.present(from: sender)
             
@@ -98,6 +109,7 @@ class ProfileSignup2: UIViewController, UINavigationControllerDelegate, UIImageP
 
 extension ProfileSignup2 : ImagePickerDelegate {
     
+    // Populate UI with selected image
     func didSelect(image: UIImage?) {
         self.profilePhoto.image = image
         
